@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Conditions - Sana Islamic</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f5f5;margin:0}
+.container{max-width:900px;margin:20px auto;background:#fff;padding:20px;border-radius:10px}
+h1{background:#0b7a3d;color:#fff;padding:15px;text-align:center}
+footer{background:#0b7a3d;color:#fff;text-align:center;padding:15px;margin-top:20px}
+</style>
+</head>
+<body>
+
+<h1>Terms & Conditions</h1>
+
+<div class="container">
+<p>Welcome to Sana Islamic.</p>
+
+<ul>
+<li>This website is provided for Islamic educational purposes.</li>
+<li>Users must use the website responsibly and lawfully.</li>
+<li>Do not copy or misuse the content without permission.</li>
+<li>We may update these terms at any time.</li>
+</ul>
+
+<p>Contact: <b>mdchandmdchand220@gmail.com</b></p>
+</div>
+
+<footer>
+© 2026 Sana Islamic. All Rights Reserved.
+</footer>
+
+</body>
+</html>
+
