@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hadith | Sana Islamic</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>📚 Hadith</h1>
+    <p>40 Hadith Collection</p>
+</header>
+
+<div class="container">
+
+    <div class="card" id="hadith-detail">
+        <p>Hadith load ho rahi hai...</p>
+    </div>
+
+    <br>
+
+    <button class="btn" onclick="goBack()">
+        ⬅ Back to Hadith
+    </button>
+
+</div>
+
+
+<script>
+
+// URL se Hadith number lena
+const urlParams = new URLSearchParams(
+    window.location.search
+);
+
+const hadithNumber = Number(
+    urlParams.get("number")
+);
+
+// Hadith number ko JSON index mein convert karna
+const hadithIndex = hadithNumber - 1;
+
+
+// JSON file load karna
+fetch("hadith.json")
+
+.then(response => {
+
+    if (!response.ok) {
+        throw new Error(
+            "hadith.json file nahi mili"
+        );
+    }
+
+    return response.json();
+
+})
+
+.then(data => {
+
+    const detail =
+        document.getElementById(
+            "hadith-detail"
+        );
+
+
+    // Check karna ki Hadith available hai ya nahi
+    if (
+        isNaN(hadithNumber) ||
+        hadithIndex < 0 ||
+        hadithIndex >= data.length
+    ) {
+
+        detail.innerHTML = `
+
+            <h2>❌ Hadith nahi mili</h2>
+
+            <p>
+                Hadith number sahi nahi hai.
+            </p>
+
+        `;
+
+        return;
+    }
+
+
+    // Sahi Hadith select karna
+    const hadith =
+        data[hadithIndex];
+
+
+    // Hadith display karna
+    detail.innerHTML = `
+<h2>
+    📖 ${hadith.title}
+</h2>
+
+<hr>
+
+<h3>العربية</h3>
+
+<p style="
+    font-size:26px;
+    line-height:2;
+    direction:rtl;
+    text-align:right;
+">
+
+    ${hadith.arabic}
+
+</p>
+
+<hr>
+
+<h3>हिंदी तर्जुमा</h3>
+
+<p style="
+    font-size:20px;
+    line-height:1.8;
+">
+
+    ${hadith.text}
+
+</p>
+
+<hr>
+
+<p>
+    📚 <b>Source:</b>
+    ${hadith.source}
+</p>
+
+
+    `;
+
+})
+
+.catch(error => {
+
+    document.getElementById(
+        "hadith-detail"
+    ).innerHTML = `
+
+        <h2>❌ Error</h2>
+
+        <p>
+            ${error.message}
+        </p>
+
+    `;
+
+});
+
+
+// Back button
+function goBack() {
+
+    window.location.href =
+        "hadith.html";
+
+}
+
+</script>
+
+</body>
+</html>

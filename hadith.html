@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Hadith | Sana Islamic</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>📚 Hadith</h1>
+
+    <p>40 Hadith Collection</p>
+
+</header>
+
+
+<div class="container"
+     id="hadith-container">
+
+    <p>
+        Hadith load ho rahi hai...
+    </p>
+
+</div>
+
+
+<a class="btn"
+   href="index.html">
+
+    ⬅ Back Home
+
+</a>
+
+
+<script>
+
+fetch("hadith.json")
+
+.then(response => {
+
+    if (!response.ok) {
+
+        throw new Error(
+            "hadith.json file nahi mili"
+        );
+
+    }
+
+    return response.json();
+
+})
+
+
+.then(data => {
+
+    const container =
+        document.getElementById(
+            "hadith-container"
+        );
+
+
+    container.innerHTML = "";
+
+
+    data.forEach((hadith, index) => {
+
+        container.innerHTML += `
+
+        <div class="card">
+
+            <h2>
+                📖 ${hadith.title}
+            </h2>
+
+            <p>
+                ${hadith.text}
+            </p>
+
+            <p>
+                📚 ${hadith.source}
+            </p>
+
+            <button
+                class="btn"
+                onclick="readHadith(${index + 1})">
+
+                Read Hadith ${index + 1} ➡
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+})
+
+
+.catch(error => {
+
+    document.getElementById(
+        "hadith-container"
+    ).innerHTML = `
+
+        <div class="card">
+
+            <h2>❌ Error</h2>
+
+            <p>
+                ${error.message}
+            </p>
+
+        </div>
+
+    `;
+
+});
+
+
+// Read Hadith Button
+function readHadith(number) {
+
+    window.location.href =
+        "hadith-detail.html?number=" + number;
+
+}
+
+</script>
+
+
+</body>
+
+</html>
