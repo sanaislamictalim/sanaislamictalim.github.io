@@ -1,761 +1,7040 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="hi">
 <head>
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<title>Islamic Quiz</title>
-
-<link rel="stylesheet" href="style.css">
+<title>SanaIslamicTalim Test</title>
 
 <style>
 
-#questionNumber {
-    font-size: 24px;
-    margin-bottom: 15px;
+*{
+    box-sizing:border-box;
 }
 
-#question {
-    display: block;
-    visibility: visible;
-    color: #111;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 1.5;
-    margin: 20px 0;
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f1f5f9;
+    color:#222;
 }
 
-#score {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 15px 0;
+.header{
+    background:#075e54;
+    color:white;
+    padding:15px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
-#result {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 15px 0;
+.header h1{
+    margin:0;
+    font-size:23px;
 }
 
-.quiz-option {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 17px;
-    text-align: left;
+.header p{
+    margin:5px 0 0;
+    font-size:14px;
 }
 
-.quiz-option.correct {
-    background-color: green !important;
-    color: white !important;
+
+/* TIMER */
+
+.timer-box{
+    background:white;
+    padding:10px;
+    text-align:center;
+    box-shadow:0 2px 7px rgba(0,0,0,.12);
+    position:sticky;
+    top:76px;
+    z-index:90;
 }
 
-.quiz-option.wrong {
-    background-color: red !important;
-    color: white !important;
+.timer-title{
+    font-size:13px;
+    color:#555;
 }
 
-.quiz-option:disabled {
-    cursor: not-allowed;
+.timer{
+    font-size:28px;
+    font-weight:bold;
+    color:#075e54;
+}
+
+.timer.warning{
+    color:#e11d48;
+}
+
+
+/* MAIN */
+
+.container{
+    max-width:700px;
+    margin:auto;
+    padding:12px;
+}
+
+
+/* START */
+
+.start-box{
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    margin-top:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    text-align:center;
+}
+
+.start-box h2{
+    color:#075e54;
+}
+
+.start-btn{
+    width:100%;
+    border:none;
+    border-radius:9px;
+    padding:14px;
+    background:#075e54;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+}
+
+
+/* INFO */
+
+.info-box{
+    background:white;
+    border-radius:12px;
+    padding:13px;
+    margin-bottom:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.info{
+    display:flex;
+    justify-content:space-between;
+    font-weight:bold;
+}
+
+
+/* QUESTION */
+
+.question-box{
+    background:white;
+    border-radius:12px;
+    padding:17px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.question-number{
+    color:#075e54;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.question{
+    font-size:20px;
+    font-weight:bold;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+
+/* OPTIONS */
+
+.option{
+    display:block;
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border:2px solid #ddd;
+    border-radius:10px;
+    background:white;
+    text-align:left;
+    font-size:16px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.option:hover{
+    background:#f8fafc;
+}
+
+.option.correct{
+    background:#22c55e;
+    border-color:#16a34a;
+    color:white;
+}
+
+.option.wrong{
+    background:#ef4444;
+    border-color:#dc2626;
+    color:white;
+}
+
+.option.locked{
+    cursor:not-allowed;
+}
+
+
+/* RESULT */
+
+.result{
+    display:none;
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    margin-top:15px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.result h2{
+    color:#075e54;
+}
+
+.score{
+    font-size:38px;
+    font-weight:bold;
+    margin:15px;
+}
+
+.result-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin:20px 0;
+}
+
+.result-card{
+    padding:15px 5px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.correct-card{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.wrong-card{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.empty-card{
+    background:#f1f5f9;
+    color:#475569;
+}
+
+
+/* SUMMARY */
+
+.summary-box{
+    display:none;
+    background:white;
+    border-radius:12px;
+    padding:15px;
+    margin-top:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.summary-item{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:12px;
+    margin:10px 0;
+    text-align:left;
+}
+
+.summary-correct{
+    border-left:5px solid #22c55e;
+}
+
+.summary-wrong{
+    border-left:5px solid #ef4444;
+}
+
+.summary-empty{
+    border-left:5px solid #94a3b8;
+}
+
+.summary-question{
+    font-weight:bold;
+    line-height:1.5;
+}
+
+.summary-answer{
+    margin-top:8px;
+    line-height:1.6;
+    font-size:14px;
+}
+
+
+/* BUTTON */
+
+.summary-btn,
+.restart-btn{
+    width:100%;
+    border:none;
+    border-radius:9px;
+    padding:13px;
+    margin-top:10px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.summary-btn{
+    background:#2563eb;
+    color:white;
+}
+
+.restart-btn{
+    background:#075e54;
+    color:white;
+}
+
+
+/* HIDDEN */
+
+#quizArea{
+    display:none;
+}
+
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+    .question{
+        font-size:18px;
+    }
+
+    .result-grid{
+        grid-template-columns:1fr;
+    }
+
+    .timer{
+        font-size:25px;
+    }
+
 }
 
 </style>
 
 </head>
 
-
 <body>
 
 
-<header>
+<!-- HEADER -->
 
-<h1>📝 Islamic Quiz</h1>
+<div class="header">
 
-<p>Test Your Islamic Knowledge</p>
+    <h1>SanaIslamicTalim Test</h1>
 
-</header>
+    <p>
+        इस्लामी ज्ञान परीक्षा
+    </p>
 
+</div>
+
+
+<!-- TIMER -->
+
+<div class="timer-box"
+     id="timerBox"
+     style="display:none">
+
+    <div class="timer-title">
+        ⏱️ इस सवाल का समय
+    </div>
+
+    <div class="timer"
+         id="timer">
+        50
+    </div>
+
+    <div class="timer-title">
+        सेकंड
+    </div>
+
+</div>
 
 
 <div class="container">
 
 
-<div class="card">
+<!-- START BOX -->
 
+<div class="start-box"
+     id="startBox">
 
-<h2 id="questionNumber">
-Question Loading...
-</h2>
+    <h2>
+        📝 SanaIslamicTalim Test
+    </h2>
 
+    <p>
+        इस टेस्ट में 50 इस्लामी सवाल होंगे।
+    </p>
 
-<div id="score">
+    <p>
+        हर सवाल के लिए
+        <strong>50 सेकंड</strong>
+        मिलेंगे।
+    </p>
 
-✅ Right Score: 0
+    <p>
+        सही उत्तर 🟢 Green
+        और गलत उत्तर 🔴 Red
+        दिखाई देगा।
+    </p>
 
-&nbsp; | &nbsp;
+    <button
+        class="start-btn"
+        onclick="startQuiz()">
 
-❌ Wrong Score: 0
+        ▶️ टेस्ट शुरू करें
 
-</div>
-
-
-<div id="question">
-Please wait...
-</div>
-
-
-
-<button
-id="optionA"
-class="quiz-option"
-onclick="checkAnswer(0, this)">
-</button>
-
-
-
-<button
-id="optionB"
-class="quiz-option"
-onclick="checkAnswer(1, this)">
-</button>
-
-
-
-<button
-id="optionC"
-class="quiz-option"
-onclick="checkAnswer(2, this)">
-</button>
-
-
-
-<button
-id="optionD"
-class="quiz-option"
-onclick="checkAnswer(3, this)">
-</button>
-
-
-
-<button
-id="optionE"
-class="quiz-option"
-onclick="checkAnswer(4, this)">
-</button>
-
-
-
-<div id="result"></div>
-
+    </button>
 
 </div>
 
 
+<!-- QUIZ AREA -->
 
-<a class="btn" href="index.html">
+<div id="quizArea">
 
-⬅ Back Home
 
-</a>
+    <!-- INFO -->
 
+    <div class="info-box">
+
+        <div class="info">
+
+            <span>
+                📝 प्रश्न:
+                <span id="questionCount">
+                    1 / 50
+                </span>
+            </span>
+
+            <span>
+                ⭐ अंक:
+                <span id="score">
+                    0
+                </span>
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION -->
+
+    <div class="question-box">
+
+        <div class="question-number"
+             id="questionNumber">
+
+            प्रश्न 1
+
+        </div>
+
+
+        <div class="question"
+             id="question">
+
+        </div>
+
+
+        <div id="options">
+
+        </div>
+
+    </div>
 
 </div>
 
+
+<!-- RESULT -->
+
+<div class="result"
+     id="resultBox">
+
+    <h2>
+        🎉 टेस्ट पूरा हुआ
+    </h2>
+
+    <div class="score">
+
+        <span id="finalScore">
+            0
+        </span>
+
+        / 50
+
+    </div>
+
+
+    <div class="result-grid">
+
+
+        <div class="result-card correct-card">
+
+            ✅ सही
+
+            <br>
+
+            <span id="correctCount">
+                0
+            </span>
+
+        </div>
+
+
+        <div class="result-card wrong-card">
+
+            ❌ गलत
+
+            <br>
+
+            <span id="wrongCount">
+                0
+            </span>
+
+        </div>
+
+
+        <div class="result-card empty-card">
+
+            ⚪ समय समाप्त
+
+            <br>
+
+            <span id="unansweredCount">
+                0
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <p>
+
+        📊 Accuracy:
+
+        <strong id="accuracy">
+            0%
+        </strong>
+
+    </p>
+
+
+    <button
+        class="summary-btn"
+        onclick="showSummary()">
+
+        📋 View Summary
+
+    </button>
+
+
+    <button
+        class="restart-btn"
+        onclick="location.reload()">
+
+        🔄 दोबारा देखें
+
+    </button>
+
+</div>
+
+
+<!-- SUMMARY -->
+
+<div class="summary-box"
+     id="summaryBox">
+
+    <h2>
+        📋 Test Summary
+    </h2>
+
+    <div id="summaryContent">
+
+    </div>
+
+</div>
+
+
+</div>
 
 
 <script>
 
 
-/* =====================================
-   GOOGLE APPS SCRIPT URL
-===================================== */
+/* =================================
+   QUIZ QUESTIONS
+   PART 1
+================================= */
 
+const questions = [
 
-const API_URL =
-"https://script.google.com/macros/s/AKfycbyKvZowrYZ9-Srcm2PkvvEL_ZLP3IYnyYo6vQfhTeHIHcNSIStkTfvv2UgslGnI9I-L/exec";
+/* QUESTION 1 */
 
+{
+    question:
+    "क़ुरआन मजीद में कुल कितनी सूरह हैं?",
 
+    options:[
+        "110",
+        "112",
+        "114",
+        "116"
+    ],
 
-/* =====================================
-   VARIABLES
-===================================== */
+    answer:2
+},
 
 
-let quizData = [];
+/* QUESTION 2 */
 
-let currentQuestion = 1;
+{
+    question:
+    "क़ुरआन मजीद किस भाषा में नाज़िल हुआ?",
 
-let rightScore = 0;
+    options:[
+        "फ़ारसी",
+        "अरबी",
+        "उर्दू",
+        "हिब्रू"
+    ],
 
-let wrongScore = 0;
+    answer:1
+},
 
-let answered = false;
 
+/* QUESTION 3 */
 
+{
+    question:
+    "इस्लाम के पाँच अरकान में से पहला क्या है?",
 
-/* =====================================
-   LOAD DATA
-===================================== */
+    options:[
+        "नमाज़",
+        "रोज़ा",
+        "शहादत",
+        "ज़कात"
+    ],
 
+    answer:2
+},
 
-fetch(API_URL)
 
-.then(function(response) {
+/* QUESTION 4 */
 
-return response.json();
+{
+    question:
+    "रमज़ान के रोज़े किस महीने में रखे जाते हैं?",
 
-})
+    options:[
+        "मुहर्रम",
+        "रमज़ान",
+        "रजब",
+        "शाबान"
+    ],
 
-.then(function(data) {
+    answer:1
+},
 
 
-console.log("Google Sheet Data:", data);
+/* QUESTION 5 */
 
+{
+    question:
+    "मुसलमान नमाज़ में किस दिशा की ओर रुख करते हैं?",
 
-/*
-पहली Row Header है
-इसलिए उसे नहीं दिखाना
-*/
+    options:[
+        "मदीना",
+        "यरूशलम",
+        "काबा शरीफ़",
+        "ताइफ़"
+    ],
 
-quizData = data;
+    answer:2
+},
 
 
-/*
-Question Number 1
-Google Sheet Row 2 से आएगा
-*/
+/* QUESTION 6 */
 
-currentQuestion = 1;
+{
+    question:
+    "क़ुरआन मजीद की पहली सूरह कौन-सी है?",
 
+    options:[
+        "अल-बक़रह",
+        "अल-फ़ातिहा",
+        "अल-इख़लास",
+        "अन-नास"
+    ],
 
-/*
-Question दिखाएँ
-*/
+    answer:1
+},
 
-showQuestion();
 
+/* QUESTION 7 */
 
-})
+{
+    question:
+    "क़ुरआन मजीद की सबसे लंबी सूरह कौन-सी है?",
 
-.catch(function(error) {
+    options:[
+        "आल-इमरान",
+        "अन-निसा",
+        "अल-बक़रह",
+        "अल-माइदा"
+    ],
 
+    answer:2
+},
 
-console.log("ERROR:", error);
 
+/* QUESTION 8 */
 
-document.getElementById("questionNumber").innerHTML =
-"Error";
+{
+    question:
+    "क़ुरआन मजीद की सबसे छोटी सूरह कौन-सी है?",
 
+    options:[
+        "अल-कौसर",
+        "अल-फ़लक़",
+        "अन-नास",
+        "अल-इख़लास"
+    ],
 
-document.getElementById("question").innerHTML =
-"❌ Google Sheet से Questions Load नहीं हो रहे।";
+    answer:0
+},
 
 
-});
+/* QUESTION 9 */
 
+{
+    question:
+    "एक दिन में कितनी फ़र्ज़ नमाज़ें हैं?",
 
+    options:[
+        "3",
+        "4",
+        "5",
+        "6"
+    ],
 
-/* =====================================
-   SHOW QUESTION
-===================================== */
+    answer:2
+},
 
 
-function showQuestion() {
+/* QUESTION 10 */
 
+{
+    question:
+    "फ़ज्र की फ़र्ज़ नमाज़ में कितनी रकअत हैं?",
 
-answered = false;
+    options:[
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
 
+    answer:0
+},
 
-/*
-Google Sheet की Row:
 
-Row 0 = Header
+/* QUESTION 11 */
 
-Row 1 = Question 1
+{
+    question:
+    "ज़ुहर की फ़र्ज़ नमाज़ में कितनी रकअत हैं?",
 
-Row 2 = Question 2
+    options:[
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
 
-Row 3 = Question 3
+    answer:2
+},
 
-इसलिए currentQuestion को सीधे index बनाया
-*/
 
+/* QUESTION 12 */
 
-let row = quizData[currentQuestion];
+{
+    question:
+    "असर की फ़र्ज़ नमाज़ में कितनी रकअत हैं?",
 
+    options:[
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
 
+    answer:2
+},
 
-/*
-अगर Question खत्म हो गए
-*/
 
-if (!row) {
+/* QUESTION 13 */
 
+{
+    question:
+    "मग़रिब की फ़र्ज़ नमाज़ में कितनी रकअत हैं?",
 
-document.getElementById("questionNumber").innerHTML =
+    options:[
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
 
-"🎉 Quiz Complete!";
+    answer:1
+},
 
 
-document.getElementById("question").innerHTML =
+/* QUESTION 14 */
 
-"आपने सभी Questions Complete कर लिए।";
+{
+    question:
+    "इशा की फ़र्ज़ नमाज़ में कितनी फ़र्ज़ रकअत हैं?",
 
+    options:[
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
 
-document.getElementById("score").innerHTML =
+    answer:2
+},
 
-"🏆 Final Score<br><br>" +
 
-"✅ Right Score: " +
+/* QUESTION 15 */
 
-rightScore +
+{
+    question:
+    "हज किस शहर में किया जाता है?",
 
-"<br><br>" +
+    options:[
+        "मदीना",
+        "मक्का",
+        "कूफ़ा",
+        "बग़दाद"
+    ],
 
-"❌ Wrong Score: " +
+    answer:1
+},
 
-wrongScore;
 
+/* QUESTION 16 */
 
-document.querySelectorAll(".quiz-option")
+{
+    question:
+    "काबा शरीफ़ किस शहर में है?",
 
-.forEach(function(button) {
+    options:[
+        "मदीना",
+        "मक्का",
+        "ताइफ़",
+        "जेद्दा"
+    ],
 
-button.style.display = "none";
+    answer:1
+},
 
-});
 
+/* QUESTION 17 */
 
-return;
+{
+    question:
+    "मस्जिद-ए-नबवी किस शहर में है?",
 
+    options:[
+        "मक्का",
+        "मदीना",
+        "ताइफ़",
+        "कूफ़ा"
+    ],
+
+    answer:1
+},
+
+
+/* QUESTION 18 */
+
+{
+    question:
+    "मस्जिद-ए-हराम किस शहर में है?",
+
+    options:[
+        "मक्का",
+        "मदीना",
+        "यरूशलम",
+        "ताइफ़"
+    ],
+
+    answer:0
+},
+
+
+/* QUESTION 19 */
+
+{
+    question:
+    "इस्लामी कैलेंडर का पहला महीना कौन-सा है?",
+
+    options:[
+        "रमज़ान",
+        "मुहर्रम",
+        "रजब",
+        "शाबान"
+    ],
+
+    answer:1
+},
+
+
+/* QUESTION 20 */
+
+{
+    question:
+    "ईद-उल-फ़ित्र किस महीने के बाद आती है?",
+
+    options:[
+        "मुहर्रम",
+        "रमज़ान",
+        "रजब",
+        "शाबान"
+    ],
+
+    answer:1
+},
+
+
+/* QUESTION 21 */
+
+{
+    question:
+    "ईद-उल-अज़हा किस इस्लामी महीने में होती है?",
+
+    options:[
+        "रमज़ान",
+        "शव्वाल",
+        "ज़िलहिज्जा",
+        "मुहर्रम"
+    ],
+
+    answer:2
+},
+
+
+/* QUESTION 22 */
+
+{
+    question:
+    "हज किस इस्लामी महीने में किया जाता है?",
+
+    options:[
+        "रमज़ान",
+        "शव्वाल",
+        "ज़िलहिज्जा",
+        "मुहर्रम"
+    ],
+
+    answer:2
+},
+
+
+/* QUESTION 23 */
+
+{
+    question:
+    "वुज़ू मुख्य रूप से किस इबादत के लिए किया जाता है?",
+
+    options:[
+        "नमाज़",
+        "व्यापार",
+        "सोना",
+        "खाना"
+    ],
+
+    answer:0
+},
+
+
+/* QUESTION 24 */
+
+{
+    question:
+    "क़ुरआन मजीद किस नबी पर नाज़िल हुआ?",
+
+    options:[
+        "हज़रत मूसा अलैहिस्सलाम",
+        "हज़रत ईसा अलैहिस्सलाम",
+        "हज़रत मुहम्मद ﷺ",
+        "हज़रत इब्राहीम अलैहिस्सलाम"
+    ],
+
+    answer:2
+},
+
+
+/* QUESTION 25 */
+
+{
+    question:
+    "मुसलमानों के आख़िरी नबी कौन हैं?",
+
+    options:[
+        "हज़रत मूसा अलैहिस्सलाम",
+        "हज़रत ईसा अलैहिस्सलाम",
+        "हज़रत मुहम्मद ﷺ",
+        "हज़रत नूह अलैहिस्सलाम"
+    ],
+
+    answer:2
+},
+
+
+/* QUESTION 26 */
+
+{
+    question:
+    "पहली वह्यी किस गुफा में आई?",
+
+    options:[
+        "ग़ार-ए-हिरा",
+        "ग़ार-ए-सौर",
+        "ग़ार-ए-बदर",
+        "ग़ार-ए-क़मर"
+    ],
+
+    answer:0
+},
+
+
+/* QUESTION 27 */
+
+{
+    question:
+    "पहली वह्यी किस सूरह की शुरुआती आयतों में आई?",
+
+    options:[
+        "अल-फ़ातिहा",
+        "अल-अलक़",
+        "अल-बक़रह",
+        "अल-कौसर"
+    ],
+
+    answer:1
+},
+
+
+/* QUESTION 28 */
+
+{
+    question:
+    "आयतुल कुर्सी किस सूरह में है?",
+
+    options:[
+        "अल-फ़ातिहा",
+        "अल-बक़रह",
+        "आल-इमरान",
+        "अन-नास"
+    ],
+
+    answer:1
+},
+
+
+/* QUESTION 29 */
+
+{
+    question:
+    "आयतुल कुर्सी किस आयत का नाम है?",
+
+    options:[
+        "255",
+        "256",
+        "257",
+        "258"
+    ],
+
+    answer:0
+},
+
+
+/* QUESTION 30 */
+
+{
+    question:
+    "सूरह अल-इख़लास में कितनी आयतें हैं?",
+
+    options:[
+        "3",
+        "4",
+        "5",
+        "6"
+    ],
+
+    answer:1
+},
+
+
+/* QUESTION 31 */
+
+{
+    question:
+    "सूरह अल-फ़ातिहा में कितनी आयतें हैं?",
+
+    options:[
+        "5",
+        "6",
+        "7",
+        "8"
+    ],
+
+    answer:2
+},
+
+
+/* QUESTION 32 */
+
+{
+    question:
+    "सूरह अल-फ़लक़ में कितनी आयतें हैं?",
+
+    options:[
+        "4",
+        "5",
+        "6",
+        "7"
+    ],
+
+    answer:1
+},
+
+
+/* QUESTION 33 */
+
+{
+    question:
+    "सूरह अन-नास में कितनी आयतें हैं?",
+
+    options:[
+        "4",
+        "5",
+        "6",
+        "7"
+    ],
+
+    answer:2
+},
+
+
+/* QUESTION 34 */
+
+{
+    question:
+    "रोज़ा किस समय से शुरू होता है?",
+
+    options:[
+        "सूरज निकलने से",
+        "फ़ज्र का समय शुरू होने से",
+        "ज़ुहर से",
+        "मग़रिब से"
+    ],
+
+    answer:1
+},
+
+
+/* QUESTION 35 */
+
+{
+    question:
+    "रोज़ा किस समय खोला जाता है?",
+
+    options:[
+        "फ़ज्र",
+        "ज़ुहर",
+        "असर",
+        "मग़रिब"
+    ],
+
+    answer:3
+},
+
+
+/* QUESTION 36 */
+
+{
+    question:
+    "सहरी किस इबादत से संबंधित है?",
+
+    options:[
+        "रोज़ा",
+        "हज",
+        "ज़कात",
+        "क़ुर्बानी"
+    ],
+
+    answer:0
+},
+
+
+/* QUESTION 37 */
+
+{
+    question:
+    "तरावीह की नमाज़ किस महीने में पढ़ी जाती है?",
+
+    options:[
+        "मुहर्रम",
+        "रमज़ान",
+        "शव्वाल",
+        "रजब"
+    ],
+
+    answer:1
+},
+
+
+/* QUESTION 38 */
+
+{
+    question:
+    "जुमे की नमाज़ किस दिन होती है?",
+
+    options:[
+        "सोमवार",
+        "बुधवार",
+        "शुक्रवार",
+        "रविवार"
+    ],
+
+    answer:2
+},
+
+
+/* QUESTION 39 */
+
+{
+    question:
+    "अज़ान किस इबादत के समय की सूचना देती है?",
+
+    options:[
+        "नमाज़",
+        "हज",
+        "ज़कात",
+        "क़ुर्बानी"
+    ],
+
+    answer:0
+},
+
+
+/* QUESTION 40 */
+
+{
+    question:
+    "क़िबला किस पवित्र स्थान की ओर है?",
+
+    options:[
+        "मस्जिद-ए-नबवी",
+        "काबा शरीफ़",
+        "मस्जिद-ए-अक्सा",
+        "ग़ार-ए-हिरा"
+    ],
+
+    answer:1
+},
+
+
+/* QUESTION 41 */
+
+{
+    question:
+    "मुसलमानों का पवित्र ग्रंथ कौन-सा है?",
+
+    options:[
+        "क़ुरआन",
+        "तौरात",
+        "ज़बूर",
+        "इंजील"
+    ],
+
+    answer:0
+},
+
+
+/* QUESTION 42 */
+
+{
+    question:
+    "हज़रत मूसा अलैहिस्सलाम पर कौन-सी किताब नाज़िल हुई?",
+
+    options:[
+        "तौरात",
+        "ज़बूर",
+        "इंजील",
+        "क़ुरआन"
+    ],
+
+    answer:0
+},
+
+
+/* QUESTION 43 */
+
+{
+    question:
+    "हज़रत दाऊद अलैहिस्सलाम पर कौन-सी किताब नाज़िल हुई?",
+
+    options:[
+        "तौरात",
+        "ज़बूर",
+        "इंजील",
+        "क़ुरआन"
+    ],
+
+    answer:1
+},
+
+
+/* QUESTION 44 */
+
+{
+    question:
+    "हज़रत ईसा अलैहिस्सलाम पर कौन-सी किताब नाज़िल हुई?",
+
+    options:[
+        "तौरात",
+        "ज़बूर",
+        "इंजील",
+        "क़ुरआन"
+    ],
+
+    answer:2
+},
+
+
+/* QUESTION 45 */
+
+{
+    question:
+    "हज़रत मुहम्मद ﷺ पर कौन-सी किताब नाज़िल हुई?",
+
+    options:[
+        "तौरात",
+        "ज़बूर",
+        "इंजील",
+        "क़ुरआन"
+    ],
+
+    answer:3
+},
+
+
+/* QUESTION 46 */
+
+{
+    question:
+    "इस्लामी अभिवादन क्या है?",
+
+    options:[
+        "नमस्ते",
+        "सलाम",
+        "गुड मॉर्निंग",
+        "हैलो"
+    ],
+
+    answer:1
+},
+
+
+/* QUESTION 47 */
+
+{
+    question:
+    "'अस्सलामु अलैकुम' का जवाब क्या है?",
+
+    options:[
+        "अल्हम्दुलिल्लाह",
+        "वअलैकुम अस्सलाम",
+        "सुब्हानल्लाह",
+        "इंशाअल्लाह"
+    ],
+
+    answer:1
+},
+
+
+/* QUESTION 48 */
+
+{
+    question:
+    "ज़कात इस्लाम के कितने अरकान में से एक है?",
+
+    options:[
+        "पहले",
+        "दूसरे",
+        "तीसरे",
+        "चौथे"
+    ],
+
+    answer:2
+},
+
+
+/* QUESTION 49 */
+
+{
+    question:
+    "इस्लाम के पाँच अरकान में रोज़ा कौन-सा रुक्न है?",
+
+    options:[
+        "पहला",
+        "दूसरा",
+        "तीसरा",
+        "चौथा"
+    ],
+
+    answer:2
+},
+
+
+/* QUESTION 50 */
+
+{
+    question:
+    "नमाज़ से पहले पाकी हासिल करने के लिए आम तौर पर क्या किया जाता है?",
+
+    options:[
+        "वुज़ू",
+        "खाना",
+        "सोना",
+        "सफ़र"
+    ],
+
+    answer:0
+},
+
+
+{
+    question:"इस्लाम के पाँच अरकान में से हज कौन-सा रुक्न है?",
+    options:[
+        "पहला",
+        "दूसरा",
+        "चौथा",
+        "पाँचवाँ"
+    ],
+    answer:3
+},
+
+{
+    question:"ईमान के अरकान कितने हैं?",
+    options:[
+        "4",
+        "5",
+        "6",
+        "7"
+    ],
+    answer:2
+},
+
+{
+    question:"ईमान का पहला रुक्न क्या है?",
+    options:[
+        "अल्लाह पर ईमान",
+        "ज़कात",
+        "हज",
+        "रोज़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"ईमान के अनुसार फ़रिश्तों पर ईमान रखना क्या है?",
+    options:[
+        "ज़रूरी",
+        "मुस्तहब मात्र",
+        "सिर्फ़ विद्वानों के लिए",
+        "ज़रूरी नहीं"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन में सबसे पहले किस नबी का नाम आता है?",
+    options:[
+        "हज़रत आदम अलैहिस्सलाम",
+        "हज़रत नूह अलैहिस्सलाम",
+        "हज़रत इब्राहीम अलैहिस्सलाम",
+        "हज़रत मूसा अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत आदम अलैहिस्सलाम किसके पहले नबी थे?",
+    options:[
+        "फ़रिश्तों के",
+        "इंसानों के",
+        "जिन्नों के",
+        "जानवरों के"
+    ],
+    answer:1
+},
+
+{
+    question:"हज़रत नूह अलैहिस्सलाम की मशहूर नाव किस घटना से संबंधित है?",
+    options:[
+        "हिजरत",
+        "तूफ़ान",
+        "हज",
+        "बदर"
+    ],
+    answer:1
+},
+
+{
+    question:"हज़रत इब्राहीम अलैहिस्सलाम के बेटे हज़रत इस्माईल अलैहिस्सलाम किस महान इबादत से विशेष रूप से जुड़े हैं?",
+    options:[
+        "काबा की तामीर",
+        "समुद्री यात्रा",
+        "मिस्र की हुकूमत",
+        "मदीना की हिजरत"
+    ],
+    answer:0
+},
+
+{
+    question:"काबा शरीफ़ की तामीर में हज़रत इब्राहीम अलैहिस्सलाम के साथ कौन थे?",
+    options:[
+        "हज़रत इस्माईल अलैहिस्सलाम",
+        "हज़रत यूसुफ़ अलैहिस्सलाम",
+        "हज़रत मूसा अलैहिस्सलाम",
+        "हज़रत यूनुस अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत यूसुफ़ अलैहिस्सलाम की कहानी किस सूरह में विस्तार से बयान हुई है?",
+    options:[
+        "सूरह यूसुफ़",
+        "सूरह मरयम",
+        "सूरह नूह",
+        "सूरह क़सस"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत मूसा अलैहिस्सलाम को किस फिरऔन के सामने भेजा गया था?",
+    options:[
+        "नम्रूद",
+        "फिरऔन",
+        "क़ारून",
+        "जालूत"
+    ],
+    answer:1
+},
+
+{
+    question:"हज़रत मूसा अलैहिस्सलाम के भाई का नाम क्या था?",
+    options:[
+        "हारून अलैहिस्सलाम",
+        "इस्माईल अलैहिस्सलाम",
+        "इसहाक़ अलैहिस्सलाम",
+        "याक़ूब अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत ईसा अलैहिस्सलाम की वालिदा का नाम क्या था?",
+    options:[
+        "हाजरा",
+        "मरयम",
+        "आसिया",
+        "सारा"
+    ],
+    answer:1
+},
+
+{
+    question:"हज़रत यूनुस अलैहिस्सलाम किस घटना के लिए प्रसिद्ध हैं?",
+    options:[
+        "मछली के पेट में जाने की घटना",
+        "काबा की तामीर",
+        "हिजरत",
+        "बदर का युद्ध"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत अय्यूब अलैहिस्सलाम किस गुण के लिए प्रसिद्ध हैं?",
+    options:[
+        "सब्र",
+        "व्यापार",
+        "युद्ध",
+        "शायरी"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत सुलेमान अलैहिस्सलाम को अल्लाह ने किस विशेष नेमत से नवाज़ा था?",
+    options:[
+        "बड़ी सल्तनत",
+        "समुद्री जहाज़",
+        "सोने की खान",
+        "कृषि"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत दाऊद अलैहिस्सलाम के बेटे कौन थे?",
+    options:[
+        "हज़रत सुलेमान अलैहिस्सलाम",
+        "हज़रत इस्माईल अलैहिस्सलाम",
+        "हज़रत याक़ूब अलैहिस्सलाम",
+        "हज़रत हारून अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत ज़करिय्या अलैहिस्सलाम के बेटे कौन थे?",
+    options:[
+        "हज़रत याह्या अलैहिस्सलाम",
+        "हज़रत ईसा अलैहिस्सलाम",
+        "हज़रत इसहाक़ अलैहिस्सलाम",
+        "हज़रत यूसुफ़ अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत याह्या अलैहिस्सलाम किस नबी के समकालीन थे?",
+    options:[
+        "हज़रत ईसा अलैहिस्सलाम",
+        "हज़रत मूसा अलैहिस्सलाम",
+        "हज़रत नूह अलैहिस्सलाम",
+        "हज़रत यूसुफ़ अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत इब्राहीम अलैहिस्सलाम को किस उपाधि से जाना जाता है?",
+    options:[
+        "खलीलुल्लाह",
+        "कलीमुल्लाह",
+        "रूहुल्लाह",
+        "नजीयुल्लाह"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत मूसा अलैहिस्सलाम को किस उपाधि से जाना जाता है?",
+    options:[
+        "खलीलुल्लाह",
+        "कलीमुल्लाह",
+        "रूहुल्लाह",
+        "हबीबुल्लाह"
+    ],
+    answer:1
+},
+
+{
+    question:"मक्का से मदीना की ओर नबी ﷺ की यात्रा को क्या कहा जाता है?",
+    options:[
+        "हिजरत",
+        "हज",
+        "उमरा",
+        "जिहाद"
+    ],
+    answer:0
+},
+
+{
+    question:"हिजरत के बाद नबी ﷺ ने किस शहर को अपना ठिकाना बनाया?",
+    options:[
+        "मक्का",
+        "मदीना",
+        "ताइफ़",
+        "बग़दाद"
+    ],
+    answer:1
+},
+
+{
+    question:"मदीना पहुँचने के बाद नबी ﷺ ने सबसे पहले किस मस्जिद की बुनियाद रखी?",
+    options:[
+        "मस्जिद-ए-क़ुबा",
+        "मस्जिद-ए-हराम",
+        "मस्जिद-ए-अक्सा",
+        "मस्जिद-ए-नबवी"
+    ],
+    answer:0
+},
+
+{
+    question:"मदीना की प्रसिद्ध मस्जिद का नाम क्या है?",
+    options:[
+        "मस्जिद-ए-नबवी",
+        "मस्जिद-ए-क़ुबा",
+        "मस्जिद-ए-अक्सा",
+        "मस्जिद-ए-हराम"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम की पहली बड़ी जंग कौन-सी थी?",
+    options:[
+        "ग़ज़वा-ए-बदर",
+        "ग़ज़वा-ए-उहुद",
+        "ग़ज़वा-ए-खंदक़",
+        "ग़ज़वा-ए-तबूक"
+    ],
+    answer:0
+},
+
+{
+    question:"ग़ज़वा-ए-बदर किस हिजरी में हुआ?",
+    options:[
+        "1 हिजरी",
+        "2 हिजरी",
+        "3 हिजरी",
+        "4 हिजरी"
+    ],
+    answer:1
+},
+
+{
+    question:"ग़ज़वा-ए-उहुद किस हिजरी में हुआ?",
+    options:[
+        "2 हिजरी",
+        "3 हिजरी",
+        "4 हिजरी",
+        "5 हिजरी"
+    ],
+    answer:1
+},
+
+{
+    question:"ग़ज़वा-ए-खंदक़ को किस दूसरे नाम से भी जाना जाता है?",
+    options:[
+        "ग़ज़वा-ए-अहज़ाब",
+        "ग़ज़वा-ए-फ़तह",
+        "ग़ज़वा-ए-तबूक",
+        "ग़ज़वा-ए-हुनैन"
+    ],
+    answer:0
+},
+
+{
+    question:"मक्का की फ़तह किस हिजरी में हुई?",
+    options:[
+        "6 हिजरी",
+        "7 हिजरी",
+        "8 हिजरी",
+        "9 हिजरी"
+    ],
+    answer:2
+},
+
+{
+    question:"नबी ﷺ की पहली पत्नी कौन थीं?",
+    options:[
+        "हज़रत आयशा रज़ियल्लाहु अन्हा",
+        "हज़रत ख़दीजा रज़ियल्लाहु अन्हा",
+        "हज़रत हफ़्सा रज़ियल्लाहु अन्हा",
+        "हज़रत उम्मे सलमा रज़ियल्लाहु अन्हा"
+    ],
+    answer:1
+},
+
+{
+    question:"हज़रत ख़दीजा रज़ियल्लाहु अन्हा कौन थीं?",
+    options:[
+        "नबी ﷺ की पत्नी",
+        "नबी ﷺ की बेटी",
+        "नबी ﷺ की बहन",
+        "नबी ﷺ की चाची"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ की बेटी हज़रत फ़ातिमा रज़ियल्लाहु अन्हा के पति कौन थे?",
+    options:[
+        "हज़रत अबू बक्र रज़ियल्लाहु अन्हु",
+        "हज़रत उमर रज़ियल्लाहु अन्हु",
+        "हज़रत अली रज़ियल्लाहु अन्हु",
+        "हज़रत उस्मान रज़ियल्लाहु अन्हु"
+    ],
+    answer:2
+},
+
+{
+    question:"नबी ﷺ के नवासे हज़रत हसन रज़ियल्लाहु अन्हु किसके बेटे थे?",
+    options:[
+        "हज़रत अली और हज़रत फ़ातिमा",
+        "हज़रत अबू बक्र और हज़रत आयशा",
+        "हज़रत उमर और हज़रत हफ़्सा",
+        "हज़रत उस्मान और हज़रत रुकय्या"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत अबू बक्र रज़ियल्लाहु अन्हु इस्लाम के किस खलीफ़ा थे?",
+    options:[
+        "पहले",
+        "दूसरे",
+        "तीसरे",
+        "चौथे"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत उमर रज़ियल्लाहु अन्हु कौन से खलीफ़ा थे?",
+    options:[
+        "पहले",
+        "दूसरे",
+        "तीसरे",
+        "चौथे"
+    ],
+    answer:1
+},
+
+{
+    question:"हज़रत उस्मान रज़ियल्लाहु अन्हु कौन से खलीफ़ा थे?",
+    options:[
+        "पहले",
+        "दूसरे",
+        "तीसरे",
+        "चौथे"
+    ],
+    answer:2
+},
+
+{
+    question:"हज़रत अली रज़ियल्लाहु अन्हु कौन से खलीफ़ा थे?",
+    options:[
+        "पहले",
+        "दूसरे",
+        "तीसरे",
+        "चौथे"
+    ],
+    answer:3
+},
+
+{
+    question:"हज़रत अबू बक्र रज़ियल्लाहु अन्हु का मशहूर लक़ब क्या था?",
+    options:[
+        "अस-सिद्दीक़",
+        "अल-फ़ारूक़",
+        "ज़ुन-नूरैन",
+        "असदुल्लाह"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत उमर रज़ियल्लाहु अन्हु का मशहूर लक़ब क्या था?",
+    options:[
+        "अस-सिद्दीक़",
+        "अल-फ़ारूक़",
+        "ज़ुन-नूरैन",
+        "असदुल्लाह"
+    ],
+    answer:1
+},
+
+{
+    question:"हज़रत उस्मान रज़ियल्लाहु अन्हु का मशहूर लक़ब क्या था?",
+    options:[
+        "अस-सिद्दीक़",
+        "अल-फ़ारूक़",
+        "ज़ुन-नूरैन",
+        "असदुल्लाह"
+    ],
+    answer:2
+},
+
+{
+    question:"हज़रत अली रज़ियल्लाहु अन्हु का मशहूर लक़ब क्या था?",
+    options:[
+        "अस-सिद्दीक़",
+        "अल-फ़ारूक़",
+        "ज़ुन-नूरैन",
+        "असदुल्लाह"
+    ],
+    answer:3
+},
+
+{
+    question:"हदीस किसे कहा जाता है?",
+    options:[
+        "नबी ﷺ के कथन, कर्म और अनुमोदन से संबंधित रिवायत",
+        "सिर्फ़ इतिहास की किताब",
+        "सिर्फ़ क़ुरआन की आयत",
+        "सिर्फ़ अरबी कविता"
+    ],
+    answer:0
+},
+
+{
+    question:"सहीह बुख़ारी के लेखक कौन हैं?",
+    options:[
+        "इमाम बुख़ारी",
+        "इमाम मुस्लिम",
+        "इमाम तिर्मिज़ी",
+        "इमाम अबू दाऊद"
+    ],
+    answer:0
+},
+
+{
+    question:"सहीह मुस्लिम के लेखक कौन हैं?",
+    options:[
+        "इमाम बुख़ारी",
+        "इमाम मुस्लिम",
+        "इमाम नसाई",
+        "इमाम इब्न माजा"
+    ],
+    answer:1
+},
+
+{
+    question:"नबी ﷺ ने मुसलमानों को अच्छे अख़लाक़ के बारे में क्या सिखाया?",
+    options:[
+        "अच्छे व्यवहार की अहमियत",
+        "लोगों से बुरा व्यवहार",
+        "झूठ बोलना",
+        "धोखा देना"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में झूठ बोलना कैसा काम है?",
+    options:[
+        "अच्छा",
+        "बुरा",
+        "फ़र्ज़",
+        "सुन्नत"
+    ],
+    answer:1
+},
+
+{
+    question:"इस्लाम में माता-पिता के साथ कैसा व्यवहार करने की शिक्षा दी गई है?",
+    options:[
+        "अच्छा व्यवहार",
+        "बुरा व्यवहार",
+        "उनकी अवज्ञा",
+        "उपेक्षा"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में पड़ोसी के साथ कैसा व्यवहार करना चाहिए?",
+    options:[
+        "अच्छा व्यवहार",
+        "बुरा व्यवहार",
+        "धोखा",
+        "झगड़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी की अमानत के साथ क्या करना चाहिए?",
+    options:[
+        "हिफ़ाज़त करनी चाहिए",
+        "छुपा लेना चाहिए",
+        "बेच देना चाहिए",
+        "नुकसान पहुँचाना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में वादा पूरा करना कैसा गुण है?",
+    options:[
+        "अच्छा गुण",
+        "बुरा गुण",
+        "नापसंद काम",
+        "बेकार काम"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी पर ज़ुल्म करना इस्लाम में कैसा है?",
+    options:[
+        "जायज़",
+        "नाजायज़",
+        "सुन्नत",
+        "फ़र्ज़"
+    ],
+    answer:1
+},
+
+{
+    question:"क़ुरआन मजीद में कितने पारे हैं?",
+    options:[
+        "20",
+        "25",
+        "30",
+        "40"
+    ],
+    answer:2
+},
+
+{
+    question:"क़ुरआन मजीद में कुल कितने जुज़ (पारे) हैं?",
+    options:[
+        "20",
+        "25",
+        "30",
+        "40"
+    ],
+    answer:2
+},
+
+{
+    question:"सूरह अल-बक़रह क़ुरआन की कौन-सी सूरह है?",
+    options:[
+        "पहली",
+        "दूसरी",
+        "तीसरी",
+        "चौथी"
+    ],
+    answer:1
+},
+
+{
+    question:"सूरह आल-इमरान क़ुरआन की कौन-सी सूरह है?",
+    options:[
+        "दूसरी",
+        "तीसरी",
+        "चौथी",
+        "पाँचवीं"
+    ],
+    answer:1
+},
+
+{
+    question:"सूरह अन-निसा क़ुरआन की कौन-सी सूरह है?",
+    options:[
+        "तीसरी",
+        "चौथी",
+        "पाँचवीं",
+        "छठी"
+    ],
+    answer:1
+},
+
+{
+    question:"सूरह अल-माइदा क़ुरआन की कौन-सी सूरह है?",
+    options:[
+        "चौथी",
+        "पाँचवीं",
+        "छठी",
+        "सातवीं"
+    ],
+    answer:1
+},
+
+{
+    question:"सूरह अल-अनआम क़ुरआन की कौन-सी सूरह है?",
+    options:[
+        "पाँचवीं",
+        "छठी",
+        "सातवीं",
+        "आठवीं"
+    ],
+    answer:1
+},
+
+{
+    question:"सूरह अल-आराफ़ क़ुरआन की कौन-सी सूरह है?",
+    options:[
+        "छठी",
+        "सातवीं",
+        "आठवीं",
+        "नौवीं"
+    ],
+    answer:1
+},
+
+{
+    question:"सूरह अल-अनफ़ाल क़ुरआन की कौन-सी सूरह है?",
+    options:[
+        "सातवीं",
+        "आठवीं",
+        "नौवीं",
+        "दसवीं"
+    ],
+    answer:1
+},
+
+{
+    question:"सूरह अत-तौबा क़ुरआन की कौन-सी सूरह है?",
+    options:[
+        "आठवीं",
+        "नौवीं",
+        "दसवीं",
+        "ग्यारहवीं"
+    ],
+    answer:1
+},
+
+{
+    question:"क़ुरआन में कौन-सी सूरह बिस्मिल्लाह के बिना शुरू होती है?",
+    options:[
+        "सूरह यासीन",
+        "सूरह अत-तौबा",
+        "सूरह रहमान",
+        "सूरह मुल्क"
+    ],
+    answer:1
+},
+
+{
+    question:"सूरह यूनुस का नाम किस नबी के नाम पर है?",
+    options:[
+        "हज़रत यूनुस अलैहिस्सलाम",
+        "हज़रत नूह अलैहिस्सलाम",
+        "हज़रत यूसुफ़ अलैहिस्सलाम",
+        "हज़रत मूसा अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"सूरह मरयम का नाम किसके नाम पर है?",
+    options:[
+        "हज़रत मरयम अलैहिस्सलाम",
+        "हज़रत आसिया",
+        "हज़रत हाजरा",
+        "हज़रत सारा"
+    ],
+    answer:0
+},
+
+{
+    question:"सूरह मुहम्मद का नाम किसके नाम पर है?",
+    options:[
+        "हज़रत मूसा अलैहिस्सलाम",
+        "हज़रत ईसा अलैहिस्सलाम",
+        "हज़रत मुहम्मद ﷺ",
+        "हज़रत इब्राहीम अलैहिस्सलाम"
+    ],
+    answer:2
+},
+
+{
+    question:"सूरह नूह का नाम किस नबी के नाम पर है?",
+    options:[
+        "हज़रत नूह अलैहिस्सलाम",
+        "हज़रत हूद अलैहिस्सलाम",
+        "हज़रत सालेह अलैहिस्सलाम",
+        "हज़रत लूत अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"सूरह जिन्न किस मख़लूक़ के बारे में है?",
+    options:[
+        "फ़रिश्ते",
+        "जिन्न",
+        "जानवर",
+        "पक्षी"
+    ],
+    answer:1
+},
+
+{
+    question:"सूरह अल-कहफ़ का अर्थ किससे संबंधित है?",
+    options:[
+        "गुफा",
+        "समुद्र",
+        "पहाड़",
+        "बाग़"
+    ],
+    answer:0
+},
+
+{
+    question:"सूरह अल-कहफ़ किस दिन पढ़ने की विशेष फ़ज़ीलत हदीसों में आई है?",
+    options:[
+        "सोमवार",
+        "बुधवार",
+        "जुमे के दिन",
+        "रविवार"
+    ],
+    answer:2
+},
+
+{
+    question:"सूरह अल-फ़ील में किस घटना का उल्लेख है?",
+    options:[
+        "हाथी वालों की घटना",
+        "बदर की जंग",
+        "हिजरत",
+        "मक्का की फ़तह"
+    ],
+    answer:0
+},
+
+{
+    question:"सूरह अल-कौसर में किस चीज़ की खुशखबरी दी गई है?",
+    options:[
+        "कौसर",
+        "सल्तनत",
+        "सोने की खान",
+        "समुद्री यात्रा"
+    ],
+    answer:0
+},
+
+{
+    question:"सूरह अल-अस्र में इंसान के बारे में क्या बताया गया है?",
+    options:[
+        "इंसान घाटे में है, सिवाय ईमान और नेक अमल वालों के",
+        "हर इंसान अमीर है",
+        "हर इंसान नबी है",
+        "हर इंसान फ़रिश्ता है"
+    ],
+    answer:0
+},
+
+{
+    question:"सूरह अल-इख़लास का मुख्य विषय क्या है?",
+    options:[
+        "तौहीद",
+        "व्यापार",
+        "यात्रा",
+        "खेती"
+    ],
+    answer:0
+},
+
+{
+    question:"'कुल हुवल्लाहु अहद' किस सूरह की शुरुआत है?",
+    options:[
+        "अल-फ़लक़",
+        "अन-नास",
+        "अल-इख़लास",
+        "अल-कौसर"
+    ],
+    answer:2
+},
+
+{
+    question:"'कुल अऊज़ु बिरब्बिल फ़लक़' किस सूरह की शुरुआत है?",
+    options:[
+        "अल-फ़लक़",
+        "अन-नास",
+        "अल-इख़लास",
+        "अल-मसद"
+    ],
+    answer:0
+},
+
+{
+    question:"'कुल अऊज़ु बिरब्बिन नास' किस सूरह की शुरुआत है?",
+    options:[
+        "अल-फ़लक़",
+        "अन-नास",
+        "अल-कौसर",
+        "अल-फ़ील"
+    ],
+    answer:1
+},
+
+{
+    question:"सूरह अल-मसद में किस व्यक्ति का उल्लेख है?",
+    options:[
+        "अबू लहब",
+        "अबू बक्र",
+        "उमर",
+        "उस्मान"
+    ],
+    answer:0
+},
+
+{
+    question:"सूरह अल-फ़ील में किस जानवर का उल्लेख है?",
+    options:[
+        "घोड़ा",
+        "ऊँट",
+        "हाथी",
+        "शेर"
+    ],
+    answer:2
+},
+
+{
+    question:"क़ुरआन मजीद की कौन-सी सूरह 'उम्मुल क़ुरआन' के नाम से भी जानी जाती है?",
+    options:[
+        "अल-बक़रह",
+        "अल-फ़ातिहा",
+        "यासीन",
+        "अल-मुल्क"
+    ],
+    answer:1
+},
+
+{
+    question:"सूरह अल-फ़ातिहा का एक मशहूर नाम क्या है?",
+    options:[
+        "उम्मुल किताब",
+        "ज़ुन-नूरैन",
+        "अल-फ़ारूक़",
+        "अस-सिद्दीक़"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन मजीद की तिलावत शुरू करते समय आम तौर पर किससे पनाह माँगी जाती है?",
+    options:[
+        "शैतान से",
+        "फ़रिश्तों से",
+        "इंसानों से",
+        "जानवरों से"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन पढ़ने से पहले 'अऊज़ु बिल्लाहि मिनश्शैतानिर्रजीम' पढ़ने को क्या कहा जाता है?",
+    options:[
+        "इस्तिआज़ा",
+        "तकबीर",
+        "तस्बीह",
+        "तहलील"
+    ],
+    answer:0
+},
+
+{
+    question:"'बिस्मिल्लाहिर्रहमानिर्रहीम' में किसका नाम लिया जाता है?",
+    options:[
+        "अल्लाह",
+        "फ़रिश्ते",
+        "नबी",
+        "सहाबा"
+    ],
+    answer:0
+},
+
+{
+    question:"'अल्हम्दुलिल्लाह' का अर्थ किससे संबंधित है?",
+    options:[
+        "सारी तारीफ़ अल्लाह के लिए है",
+        "अल्लाह सबसे बड़ा है",
+        "अल्लाह के सिवा कोई नहीं",
+        "अल्लाह पाक है"
+    ],
+    answer:0
+},
+
+{
+    question:"'सुब्हानल्लाह' का अर्थ किस भाव को व्यक्त करता है?",
+    options:[
+        "अल्लाह पाक है",
+        "सारी तारीफ़ अल्लाह के लिए है",
+        "अल्लाह सबसे बड़ा है",
+        "मैं माफ़ी माँगता हूँ"
+    ],
+    answer:0
+},
+
+{
+    question:"'अल्लाहु अकबर' का अर्थ क्या है?",
+    options:[
+        "अल्लाह सबसे बड़ा है",
+        "अल्लाह पाक है",
+        "सारी तारीफ़ अल्लाह के लिए है",
+        "अल्लाह से माफ़ी"
+    ],
+    answer:0
+},
+
+{
+    question:"'ला इलाहा इल्लल्लाह' किस महत्वपूर्ण अकीदे को व्यक्त करता है?",
+    options:[
+        "तौहीद",
+        "हज",
+        "ज़कात",
+        "रोज़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"'अस्तग़फ़िरुल्लाह' कहने का संबंध किससे है?",
+    options:[
+        "अल्लाह से माफ़ी माँगना",
+        "खाना खाना",
+        "सफ़र करना",
+        "सोना"
+    ],
+    answer:0
+},
+
+{
+    question:"दुआ किससे माँगनी चाहिए?",
+    options:[
+        "अल्लाह से",
+        "सिर्फ़ इंसानों से",
+        "जानवरों से",
+        "किसी भी वस्तु से"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में शुक्र किसके लिए अदा किया जाता है?",
+    options:[
+        "अल्लाह की नेमतों पर",
+        "सिर्फ़ धन पर",
+        "सिर्फ़ भोजन पर",
+        "सिर्फ़ यात्रा पर"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसीबत के समय मुसलमान को किस गुण को अपनाना चाहिए?",
+    options:[
+        "सब्र",
+        "घमंड",
+        "झूठ",
+        "गुस्सा"
+    ],
+    answer:0
+},
+
+{
+    question:"नेमत मिलने पर मुसलमान को क्या करना चाहिए?",
+    options:[
+        "अल्लाह का शुक्र अदा करना चाहिए",
+        "घमंड करना चाहिए",
+        "दूसरों को नीचा दिखाना चाहिए",
+        "नेमत का इनकार करना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में तकब्बुर का क्या अर्थ है?",
+    options:[
+        "घमंड",
+        "सब्र",
+        "शुक्र",
+        "माफ़ी"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में सब्र का अर्थ क्या है?",
+    options:[
+        "धैर्य रखना",
+        "घमंड करना",
+        "झूठ बोलना",
+        "धोखा देना"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में ग़ीबत से क्या मतलब है?",
+    options:[
+        "किसी व्यक्ति की गैर-मौजूदगी में उसकी ऐसी बात करना जो उसे नापसंद हो",
+        "किसी की मदद करना",
+        "सलाम करना",
+        "दुआ करना"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में झूठी गवाही देना कैसा काम है?",
+    options:[
+        "बुरा और गुनाह का काम",
+        "अच्छा काम",
+        "सुन्नत",
+        "मुस्तहब"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में धोखा देना कैसा काम है?",
+    options:[
+        "नाजायज़",
+        "फ़र्ज़",
+        "सुन्नत",
+        "मुस्तहब"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में वादा पूरा करना किस गुण से संबंधित है?",
+    options:[
+        "ईमानदारी",
+        "धोखा",
+        "घमंड",
+        "झूठ"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में सच्चाई को क्या महत्व दिया गया है?",
+    options:[
+        "बहुत महत्वपूर्ण",
+        "कोई महत्व नहीं",
+        "सिर्फ़ व्यापार में",
+        "सिर्फ़ यात्रा में"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसलमान को किसी दूसरे मुसलमान से मिलने पर क्या करना चाहिए?",
+    options:[
+        "सलाम करना",
+        "झगड़ा करना",
+        "मुँह फेरना",
+        "धोखा देना"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में सफ़ाई के बारे में क्या शिक्षा है?",
+    options:[
+        "सफ़ाई का ध्यान रखना चाहिए",
+        "सफ़ाई की कोई जरूरत नहीं",
+        "सिर्फ़ घर साफ़ करना चाहिए",
+        "सिर्फ़ मस्जिद साफ़ करनी चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"खाना शुरू करते समय मुसलमान आम तौर पर क्या पढ़ता है?",
+    options:[
+        "बिस्मिल्लाह",
+        "अज़ान",
+        "तकबीर-ए-तशरीक़",
+        "सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"खाना खाने के बाद अल्लाह का शुक्र अदा करना किस आदाब में शामिल है?",
+    options:[
+        "खाने के आदाब",
+        "सफ़र के आदाब",
+        "हज के अरकान",
+        "निकाह के अरकान"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में इल्म हासिल करने का क्या महत्व है?",
+    options:[
+        "बहुत महत्वपूर्ण",
+        "कोई महत्व नहीं",
+        "सिर्फ़ अमीरों के लिए",
+        "सिर्फ़ व्यापारियों के लिए"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी मुसलमान की मदद करना किस अच्छे गुण से संबंधित है?",
+    options:[
+        "भाईचारा और नेकी",
+        "घमंड",
+        "धोखा",
+        "झूठ"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में रोज़े का अरबी नाम क्या है?",
+    options:[
+        "सौम",
+        "सलात",
+        "ज़कात",
+        "हज"
+    ],
+    answer:0
+},
+
+{
+    question:"रमज़ान किस इस्लामी इबादत से विशेष रूप से संबंधित है?",
+    options:[
+        "रोज़ा",
+        "कुर्बानी",
+        "निकाह",
+        "व्यापार"
+    ],
+    answer:0
+},
+
+{
+    question:"रमज़ान के रोज़े किस महीने में रखे जाते हैं?",
+    options:[
+        "मुहर्रम",
+        "रजब",
+        "रमज़ान",
+        "शव्वाल"
+    ],
+    answer:2
+},
+
+{
+    question:"रोज़ा किस समय से शुरू होता है?",
+    options:[
+        "फ़ज्र के समय से",
+        "ज़ुहर के समय से",
+        "असर के समय से",
+        "मग़रिब के समय से"
+    ],
+    answer:0
+},
+
+{
+    question:"रोज़ा किस समय खोला जाता है?",
+    options:[
+        "फ़ज्र",
+        "ज़ुहर",
+        "असर",
+        "मग़रिब"
+    ],
+    answer:3
+},
+
+{
+    question:"रोज़ा खोलने को क्या कहा जाता है?",
+    options:[
+        "सहरी",
+        "इफ़्तार",
+        "तिलावत",
+        "इक़ामत"
+    ],
+    answer:1
+},
+
+{
+    question:"रोज़े से पहले सुबह का खाना क्या कहलाता है?",
+    options:[
+        "इफ़्तार",
+        "सहरी",
+        "वलीमा",
+        "नज़र"
+    ],
+    answer:1
+},
+
+{
+    question:"रमज़ान के बाद कौन-सी ईद आती है?",
+    options:[
+        "ईदुल-फ़ित्र",
+        "ईदुल-अज़हा",
+        "ईद-ए-मिलाद",
+        "कोई नहीं"
+    ],
+    answer:0
+},
+
+{
+    question:"ईदुल-फ़ित्र किस महीने की शुरुआत में होती है?",
+    options:[
+        "रमज़ान",
+        "शव्वाल",
+        "मुहर्रम",
+        "ज़िलहिज्जा"
+    ],
+    answer:1
+},
+
+{
+    question:"रमज़ान के आख़िरी दस दिनों में कौन-सी रात विशेष महत्व रखती है?",
+    options:[
+        "शबे-बरात",
+        "लैलतुल-क़द्र",
+        "शबे-मेराज",
+        "जुमेरात"
+    ],
+    answer:1
+},
+
+{
+    question:"लैलतुल-क़द्र का अर्थ क्या है?",
+    options:[
+        "क़द्र की रात",
+        "ईद की रात",
+        "हिजरत की रात",
+        "सफ़र की रात"
+    ],
+    answer:0
+},
+
+{
+    question:"लैलतुल-क़द्र किस महीने में होती है?",
+    options:[
+        "मुहर्रम",
+        "रमज़ान",
+        "शव्वाल",
+        "रजब"
+    ],
+    answer:1
+},
+
+{
+    question:"रमज़ान में रात की विशेष नमाज़ को क्या कहा जाता है?",
+    options:[
+        "तरावीह",
+        "जनाज़ा",
+        "इशराक़",
+        "चाश्त"
+    ],
+    answer:0
+},
+
+{
+    question:"तरावीह किस महीने में विशेष रूप से पढ़ी जाती है?",
+    options:[
+        "रमज़ान",
+        "शव्वाल",
+        "मुहर्रम",
+        "सफ़र"
+    ],
+    answer:0
+},
+
+{
+    question:"ज़कात इस्लाम का कौन-सा रुक्न है?",
+    options:[
+        "पहला",
+        "दूसरा",
+        "तीसरा",
+        "पाँचवाँ"
+    ],
+    answer:2
+},
+
+{
+    question:"ज़कात का मुख्य उद्देश्य क्या है?",
+    options:[
+        "माल को पाक करना और जरूरतमंदों की मदद करना",
+        "व्यापार बढ़ाना",
+        "सफ़र करना",
+        "घर बनाना"
+    ],
+    answer:0
+},
+
+{
+    question:"ज़कात किस प्रकार के माल से संबंधित होती है?",
+    options:[
+        "योग्य माल और संपत्ति",
+        "सिर्फ़ कपड़े",
+        "सिर्फ़ भोजन",
+        "सिर्फ़ किताबें"
+    ],
+    answer:0
+},
+
+{
+    question:"सदक़ा किसे कहा जाता है?",
+    options:[
+        "अल्लाह की राह में स्वेच्छा से किया गया दान",
+        "सिर्फ़ फ़र्ज़ रोज़ा",
+        "सिर्फ़ नमाज़",
+        "सिर्फ़ हज"
+    ],
+    answer:0
+},
+
+{
+    question:"ज़रूरतमंद की मदद करना इस्लाम में कैसा काम है?",
+    options:[
+        "नेकी",
+        "गुनाह",
+        "नापसंद",
+        "हराम"
+    ],
+    answer:0
+},
+
+{
+    question:"हज किस महीने में किया जाता है?",
+    options:[
+        "रमज़ान",
+        "शव्वाल",
+        "ज़िलहिज्जा",
+        "मुहर्रम"
+    ],
+    answer:2
+},
+
+{
+    question:"हज किस शहर में अदा किया जाता है?",
+    options:[
+        "मदीना",
+        "मक्का",
+        "कूफ़ा",
+        "बग़दाद"
+    ],
+    answer:1
+},
+
+{
+    question:"काबा शरीफ़ किस शहर में स्थित है?",
+    options:[
+        "मदीना",
+        "मक्का",
+        "ताइफ़",
+        "यरूशलम"
+    ],
+    answer:1
+},
+
+{
+    question:"मुसलमान नमाज़ में किस दिशा की ओर रुख करते हैं?",
+    options:[
+        "मस्जिद-ए-नबवी",
+        "काबा",
+        "मस्जिद-ए-क़ुबा",
+        "माउंट अराफ़ात"
+    ],
+    answer:1
+},
+
+{
+    question:"काबा शरीफ़ को किस मस्जिद में शामिल किया गया है?",
+    options:[
+        "मस्जिद-ए-हराम",
+        "मस्जिद-ए-नबवी",
+        "मस्जिद-ए-क़ुबा",
+        "मस्जिद-ए-अक्सा"
+    ],
+    answer:0
+},
+
+{
+    question:"हज के दौरान काबा का चक्कर लगाने को क्या कहते हैं?",
+    options:[
+        "सई",
+        "तवाफ़",
+        "रमी",
+        "वुक़ूफ़"
+    ],
+    answer:1
+},
+
+{
+    question:"सफ़ा और मरवा के बीच चलने को क्या कहा जाता है?",
+    options:[
+        "तवाफ़",
+        "सई",
+        "रमी",
+        "इहराम"
+    ],
+    answer:1
+},
+
+{
+    question:"हज के दौरान शैतान को कंकड़ मारने की रस्म को क्या कहते हैं?",
+    options:[
+        "रमी",
+        "सई",
+        "तवाफ़",
+        "वुक़ूफ़"
+    ],
+    answer:0
+},
+
+{
+    question:"अरफ़ात का मैदान किस इबादत से संबंधित है?",
+    options:[
+        "हज",
+        "निकाह",
+        "ज़कात",
+        "रोज़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"ईदुल-अज़हा किस महीने में होती है?",
+    options:[
+        "रमज़ान",
+        "शव्वाल",
+        "ज़िलहिज्जा",
+        "मुहर्रम"
+    ],
+    answer:2
+},
+
+{
+    question:"ईदुल-अज़हा के मौके पर कौन-सी इबादत विशेष रूप से की जाती है?",
+    options:[
+        "कुर्बानी",
+        "तरावीह",
+        "एतिकाफ़",
+        "सिर्फ़ इफ़्तार"
+    ],
+    answer:0
+},
+
+{
+    question:"कुर्बानी किस नबी की याद से विशेष रूप से जुड़ी है?",
+    options:[
+        "हज़रत इब्राहीम अलैहिस्सलाम",
+        "हज़रत नूह अलैहिस्सलाम",
+        "हज़रत यूसुफ़ अलैहिस्सलाम",
+        "हज़रत यूनुस अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत इब्राहीम अलैहिस्सलाम के बेटे का नाम क्या था जिनसे कुर्बानी की घटना संबंधित है?",
+    options:[
+        "इस्माईल अलैहिस्सलाम",
+        "याक़ूब अलैहिस्सलाम",
+        "यूसुफ़ अलैहिस्सलाम",
+        "हारून अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"मुहर्रम इस्लामी कैलेंडर का कौन-सा महीना है?",
+    options:[
+        "पहला",
+        "दूसरा",
+        "दसवाँ",
+        "बारहवाँ"
+    ],
+    answer:0
+},
+
+{
+    question:"आशूरा का रोज़ा किस तारीख से संबंधित है?",
+    options:[
+        "1 मुहर्रम",
+        "10 मुहर्रम",
+        "15 मुहर्रम",
+        "27 मुहर्रम"
+    ],
+    answer:1
+},
+
+{
+    question:"इस्लामी कैलेंडर में कितने महीने होते हैं?",
+    options:[
+        "10",
+        "11",
+        "12",
+        "13"
+    ],
+    answer:2
+},
+
+{
+    question:"इस्लामी कैलेंडर किस प्रकार का कैलेंडर है?",
+    options:[
+        "सौर",
+        "चंद्र",
+        "सौर-चंद्र मिश्रित",
+        "इनमें से कोई नहीं"
+    ],
+    answer:1
+},
+
+{
+    question:"इस्लामी कैलेंडर का अंतिम महीना कौन-सा है?",
+    options:[
+        "ज़िलक़ादा",
+        "ज़िलहिज्जा",
+        "मुहर्रम",
+        "रजब"
+    ],
+    answer:1
+},
+
+{
+    question:"इस्लामी कैलेंडर में रजब कौन-सा महीना है?",
+    options:[
+        "छठा",
+        "सातवाँ",
+        "आठवाँ",
+        "नौवाँ"
+    ],
+    answer:1
+},
+
+{
+    question:"इस्लामी कैलेंडर में शाबान कौन-सा महीना है?",
+    options:[
+        "सातवाँ",
+        "आठवाँ",
+        "नौवाँ",
+        "दसवाँ"
+    ],
+    answer:1
+},
+
+{
+    question:"इस्लामी कैलेंडर में रमज़ान कौन-सा महीना है?",
+    options:[
+        "आठवाँ",
+        "नौवाँ",
+        "दसवाँ",
+        "ग्यारहवाँ"
+    ],
+    answer:1
+},
+
+{
+    question:"इस्लामी कैलेंडर में शव्वाल कौन-सा महीना है?",
+    options:[
+        "नौवाँ",
+        "दसवाँ",
+        "ग्यारहवाँ",
+        "बारहवाँ"
+    ],
+    answer:1
+},
+
+{
+    question:"इस्लामी कैलेंडर में ज़िलहिज्जा कौन-सा महीना है?",
+    options:[
+        "दसवाँ",
+        "ग्यारहवाँ",
+        "बारहवाँ",
+        "नौवाँ"
+    ],
+    answer:2
+},
+
+{
+    question:"पाँच वक्त की नमाज़ों में सबसे पहली नमाज़ कौन-सी है?",
+    options:[
+        "फ़ज्र",
+        "ज़ुहर",
+        "असर",
+        "मग़रिब"
+    ],
+    answer:0
+},
+
+{
+    question:"पाँच वक्त की नमाज़ों में दोपहर की नमाज़ कौन-सी है?",
+    options:[
+        "फ़ज्र",
+        "ज़ुहर",
+        "असर",
+        "इशा"
+    ],
+    answer:1
+},
+
+{
+    question:"पाँच वक्त की नमाज़ों में शाम के समय वाली नमाज़ कौन-सी है?",
+    options:[
+        "असर",
+        "मग़रिब",
+        "इशा",
+        "फ़ज्र"
+    ],
+    answer:1
+},
+
+{
+    question:"पाँच वक्त की नमाज़ों में रात की नमाज़ कौन-सी है?",
+    options:[
+        "फ़ज्र",
+        "ज़ुहर",
+        "मग़रिब",
+        "इशा"
+    ],
+    answer:3
+},
+
+{
+    question:"अज़ान किस उद्देश्य से दी जाती है?",
+    options:[
+        "नमाज़ के समय की सूचना देने के लिए",
+        "सफ़र के लिए",
+        "खाना शुरू करने के लिए",
+        "सोने के लिए"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ के लिए खड़े होने से पहले पाकी हासिल करने का आम तरीका क्या है?",
+    options:[
+        "वुज़ू",
+        "तिजारत",
+        "सफ़र",
+        "खाना"
+    ],
+    answer:0
+},
+
+{
+    question:"वुज़ू किस इबादत की तैयारी से विशेष रूप से संबंधित है?",
+    options:[
+        "नमाज़",
+        "व्यापार",
+        "निकाह",
+        "सफ़र"
+    ],
+    answer:0
+},
+
+{
+    question:"मस्जिद में प्रवेश करते समय मुसलमान को किस तरह का व्यवहार करना चाहिए?",
+    options:[
+        "अदब और सम्मान के साथ",
+        "शोर करना",
+        "दौड़ना",
+        "झगड़ा करना"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ में क़िबला किस दिशा को कहा जाता है?",
+    options:[
+        "काबा की दिशा",
+        "मदीना की दिशा",
+        "ताइफ़ की दिशा",
+        "किसी भी दिशा"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ में क़ुरआन की तिलावत करना किससे संबंधित है?",
+    options:[
+        "क़िराअत",
+        "तवाफ़",
+        "सई",
+        "रमी"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ के बाद अल्लाह का ज़िक्र करना कैसा अमल है?",
+    options:[
+        "नेक अमल",
+        "हराम",
+        "गुनाह",
+        "मना"
+    ],
+    answer:0
+},
+
+{
+    question:"दुआ करते समय किससे मदद माँगनी चाहिए?",
+    options:[
+        "अल्लाह से",
+        "सिर्फ़ माल से",
+        "सिर्फ़ ताकत से",
+        "किसी वस्तु से"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ की शुरुआत में हाथ उठाकर 'अल्लाहु अकबर' कहना क्या कहलाता है?",
+    options:[
+        "तकबीर-ए-तहरीमा",
+        "तस्बीह",
+        "तहलील",
+        "इस्तिग़फ़ार"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ में रुकूअ का अर्थ क्या है?",
+    options:[
+        "झुकना",
+        "बैठना",
+        "खड़ा होना",
+        "सोना"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ में सज्दा किसके सामने किया जाता है?",
+    options:[
+        "अल्लाह के सामने",
+        "लोगों के सामने",
+        "किसी वस्तु के सामने",
+        "किसी राजा के सामने"
+    ],
+    answer:0
+},
+
+{
+    question:"सज्दा किस इबादत का महत्वपूर्ण हिस्सा है?",
+    options:[
+        "नमाज़",
+        "व्यापार",
+        "सफ़र",
+        "निकाह"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ में बैठने की अवस्था को आम तौर पर क्या कहा जाता है?",
+    options:[
+        "क़ियाम",
+        "क़ादा",
+        "रुकूअ",
+        "सज्दा"
+    ],
+    answer:1
+},
+
+{
+    question:"क़ियाम का अर्थ क्या है?",
+    options:[
+        "खड़ा होना",
+        "बैठना",
+        "झुकना",
+        "सोना"
+    ],
+    answer:0
+},
+
+{
+    question:"रुकूअ के बाद सीधा खड़ा होना क्या कहलाता है?",
+    options:[
+        "क़ौमा",
+        "क़ादा",
+        "तशह्हुद",
+        "सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ के अंत में दाएँ और बाएँ सलाम फेरना किससे संबंधित है?",
+    options:[
+        "नमाज़ समाप्त करने से",
+        "रोज़ा शुरू करने से",
+        "वुज़ू से",
+        "हज से"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ में 'अत्तहिय्यात' किस अवस्था में पढ़ा जाता है?",
+    options:[
+        "बैठकर",
+        "रुकूअ में",
+        "सज्दे में",
+        "चलते हुए"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ में सूरह फ़ातिहा का क्या महत्व है?",
+    options:[
+        "बहुत महत्वपूर्ण",
+        "कोई महत्व नहीं",
+        "सिर्फ़ ईद में",
+        "सिर्फ़ सफ़र में"
+    ],
+    answer:0
+},
+
+{
+    question:"मस्जिद में नमाज़ पढ़ने वाले स्थान को क्या कहा जाता है?",
+    options:[
+        "मुसल्ला",
+        "बाज़ार",
+        "मजलिस",
+        "मकान"
+    ],
+    answer:0
+},
+
+{
+    question:"जुमे की नमाज़ किस दिन होती है?",
+    options:[
+        "गुरुवार",
+        "शुक्रवार",
+        "शनिवार",
+        "रविवार"
+    ],
+    answer:1
+},
+
+{
+    question:"जुमे की नमाज़ से पहले ख़ुत्बा दिया जाता है। ख़ुत्बा किससे संबंधित है?",
+    options:[
+        "नसीहत और दीन की याद दिलाने से",
+        "व्यापार से",
+        "खेल से",
+        "सफ़र से"
+    ],
+    answer:0
+},
+
+{
+    question:"ईद की नमाज़ किस अवसर पर पढ़ी जाती है?",
+    options:[
+        "ईद के दिन",
+        "हर सोमवार",
+        "हर महीने",
+        "सिर्फ़ रमज़ान के पहले दिन"
+    ],
+    answer:0
+},
+
+{
+    question:"जनाज़े की नमाज़ किसके लिए पढ़ी जाती है?",
+    options:[
+        "मृत मुसलमान के लिए",
+        "यात्री के लिए",
+        "बीमार व्यक्ति के लिए",
+        "व्यापारी के लिए"
+    ],
+    answer:0
+},
+
+{
+    question:"जनाज़े की नमाज़ में आम नमाज़ की तरह रुकूअ और सज्दा होता है?",
+    options:[
+        "नहीं",
+        "हाँ",
+        "सिर्फ़ कभी-कभी",
+        "केवल ईद पर"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसलमानों के लिए रोज़ाना कितनी फ़र्ज़ नमाज़ें हैं?",
+    options:[
+        "3",
+        "4",
+        "5",
+        "6"
+    ],
+    answer:2
+},
+
+{
+    question:"फ़ज्र की फ़र्ज़ नमाज़ में कितनी रकअत हैं?",
+    options:[
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
+    answer:0
+},
+
+{
+    question:"ज़ुहर की फ़र्ज़ नमाज़ में कितनी रकअत हैं?",
+    options:[
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
+    answer:2
+},
+
+{
+    question:"असर की फ़र्ज़ नमाज़ में कितनी रकअत हैं?",
+    options:[
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
+    answer:2
+},
+
+{
+    question:"मग़रिब की फ़र्ज़ नमाज़ में कितनी रकअत हैं?",
+    options:[
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
+    answer:1
+},
+
+{
+    question:"इशा की फ़र्ज़ नमाज़ में कितनी रकअत हैं?",
+    options:[
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
+    answer:2
+},
+
+{
+    question:"फ़ज्र का समय किससे पहले होता है?",
+    options:[
+        "सूर्योदय",
+        "दोपहर",
+        "सूर्यास्त",
+        "आधी रात"
+    ],
+    answer:0
+},
+
+{
+    question:"मग़रिब की नमाज़ का समय किसके बाद शुरू होता है?",
+    options:[
+        "सूर्यास्त",
+        "सूर्योदय",
+        "दोपहर",
+        "आधी रात"
+    ],
+    answer:0
+},
+
+{
+    question:"इशा की नमाज़ किस समय से संबंधित है?",
+    options:[
+        "रात",
+        "सुबह",
+        "दोपहर",
+        "सूर्योदय"
+    ],
+    answer:0
+},
+
+{
+    question:"अज़ान देने वाले व्यक्ति को क्या कहा जाता है?",
+    options:[
+        "मुअज्ज़िन",
+        "इमाम",
+        "ख़तीब",
+        "क़ारी"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ में लोगों की अगुवाई करने वाले व्यक्ति को क्या कहा जाता है?",
+    options:[
+        "इमाम",
+        "मुअज्ज़िन",
+        "क़ारी",
+        "मुहद्दिस"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन को खूबसूरत आवाज़ में पढ़ने वाले को आम तौर पर क्या कहा जाता है?",
+    options:[
+        "क़ारी",
+        "मुअज्ज़िन",
+        "इमाम",
+        "ख़तीब"
+    ],
+    answer:0
+},
+
+{
+    question:"हदीस का अध्ययन करने वाले विद्वान को आम तौर पर क्या कहा जाता है?",
+    options:[
+        "मुहद्दिस",
+        "मुअज्ज़िन",
+        "क़ारी",
+        "ख़तीब"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लामी कानून और फ़िक़्ह का ज्ञान रखने वाले विद्वान को क्या कहा जाता है?",
+    options:[
+        "फ़क़ीह",
+        "मुअज्ज़िन",
+        "क़ारी",
+        "हाफ़िज़"
+    ],
+    answer:0
+},
+
+{
+    question:"जो व्यक्ति पूरा क़ुरआन याद कर ले उसे क्या कहा जाता है?",
+    options:[
+        "हाफ़िज़",
+        "मुअज्ज़िन",
+        "ख़तीब",
+        "फ़क़ीह"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन मजीद किस भाषा में नाज़िल हुआ?",
+    options:[
+        "अरबी",
+        "फ़ारसी",
+        "उर्दू",
+        "हिंदी"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन मजीद किस नबी ﷺ पर नाज़िल हुआ?",
+    options:[
+        "हज़रत मुहम्मद ﷺ",
+        "हज़रत मूसा अलैहिस्सलाम",
+        "हज़रत ईसा अलैहिस्सलाम",
+        "हज़रत इब्राहीम अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन मजीद किस फ़रिश्ते के माध्यम से नाज़िल हुआ?",
+    options:[
+        "जिब्रील अलैहिस्सलाम",
+        "मीकाईल अलैहिस्सलाम",
+        "इस्राफ़ील अलैहिस्सलाम",
+        "मलिक"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन की पहली वह्यी कहाँ आई?",
+    options:[
+        "ग़ार-ए-हिरा",
+        "ग़ार-ए-सौर",
+        "मस्जिद-ए-नबवी",
+        "मस्जिद-ए-क़ुबा"
+    ],
+    answer:0
+},
+
+{
+    question:"ग़ार-ए-हिरा किस पहाड़ पर स्थित है?",
+    options:[
+        "जबल-ए-नूर",
+        "जबल-ए-उहुद",
+        "अराफ़ात",
+        "सफ़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ पर पहली वह्यी किस उम्र में आई?",
+    options:[
+        "25 वर्ष",
+        "30 वर्ष",
+        "40 वर्ष",
+        "50 वर्ष"
+    ],
+    answer:2
+},
+
+{
+    question:"पहली वह्यी की शुरुआत किस शब्द से हुई?",
+    options:[
+        "इक़रा",
+        "अल्हम्दुलिल्लाह",
+        "सुब्हानल्लाह",
+        "अल्लाहु अकबर"
+    ],
+    answer:0
+},
+
+{
+    question:"'इक़रा' का अर्थ क्या है?",
+    options:[
+        "पढ़ो",
+        "बैठो",
+        "चलो",
+        "सोओ"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ का जन्म किस शहर में हुआ?",
+    options:[
+        "मक्का",
+        "मदीना",
+        "ताइफ़",
+        "कूफ़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ के पिता का नाम क्या था?",
+    options:[
+        "अब्दुल्लाह",
+        "अबू तालिब",
+        "अब्दुल मुत्तलिब",
+        "अब्बास"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ की माता का नाम क्या था?",
+    options:[
+        "आमिना",
+        "ख़दीजा",
+        "फ़ातिमा",
+        "आयशा"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ के दादा का नाम क्या था?",
+    options:[
+        "अब्दुल मुत्तलिब",
+        "अबू तालिब",
+        "अब्दुल्लाह",
+        "अबू लहब"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ के चाचा अबू तालिब का नबी ﷺ से क्या रिश्ता था?",
+    options:[
+        "चाचा",
+        "भाई",
+        "मामा",
+        "दादा"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ की पैदाइश किस क़बीले में हुई?",
+    options:[
+        "क़ुरैश",
+        "औस",
+        "ख़ज़रज",
+        "बनू नज़ीर"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ को मक्का के लोग किस अमानतदार उपाधि से पुकारते थे?",
+    options:[
+        "अल-अमीन",
+        "अल-फ़ारूक़",
+        "अस-सिद्दीक़",
+        "ज़ुन-नूरैन"
+    ],
+    answer:0
+},
+
+{
+    question:"'अल-अमीन' का अर्थ क्या है?",
+    options:[
+        "अमानतदार",
+        "बहादुर",
+        "विद्वान",
+        "शासक"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ ने मक्का से मदीना की हिजरत किसके साथ की?",
+    options:[
+        "हज़रत अबू बक्र रज़ियल्लाहु अन्हु",
+        "हज़रत उमर रज़ियल्लाहु अन्हु",
+        "हज़रत उस्मान रज़ियल्लाहु अन्हु",
+        "हज़रत अली रज़ियल्लाहु अन्हु"
+    ],
+    answer:0
+},
+
+{
+    question:"हिजरत के दौरान नबी ﷺ और हज़रत अबू बक्र रज़ियल्लाहु अन्हु किस गुफा में ठहरे?",
+    options:[
+        "ग़ार-ए-सौर",
+        "ग़ार-ए-हिरा",
+        "ग़ार-ए-उहुद",
+        "ग़ार-ए-नूर"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ की हिजरत के बाद इस्लामी इतिहास में कौन-सा कैलेंडर शुरू हुआ?",
+    options:[
+        "हिजरी कैलेंडर",
+        "रोमन कैलेंडर",
+        "फ़ारसी कैलेंडर",
+        "ईसवी कैलेंडर"
+    ],
+    answer:0
+},
+
+{
+    question:"मदीना का पुराना नाम क्या था?",
+    options:[
+        "यसरिब",
+        "ताइफ़",
+        "कूफ़ा",
+        "बसरा"
+    ],
+    answer:0
+},
+
+{
+    question:"मस्जिद-ए-नबवी किस शहर में है?",
+    options:[
+        "मक्का",
+        "मदीना",
+        "ताइफ़",
+        "दमिश्क"
+    ],
+    answer:1
+},
+
+{
+    question:"मस्जिद-ए-हराम किस शहर में है?",
+    options:[
+        "मक्का",
+        "मदीना",
+        "कूफ़ा",
+        "बसरा"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में सबसे बड़ा गुनाह क्या है?",
+    options:[
+        "शिर्क",
+        "सोना",
+        "सफ़र करना",
+        "व्यापार करना"
+    ],
+    answer:0
+},
+
+{
+    question:"शिर्क का अर्थ क्या है?",
+    options:[
+        "अल्लाह के साथ किसी को शरीक ठहराना",
+        "अल्लाह का शुक्र करना",
+        "रोज़ा रखना",
+        "सदक़ा देना"
+    ],
+    answer:0
+},
+
+{
+    question:"तौहीद का अर्थ क्या है?",
+    options:[
+        "अल्लाह को एक मानना",
+        "बहुत से देवताओं को मानना",
+        "सिर्फ़ रोज़ा रखना",
+        "सिर्फ़ हज करना"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में इबादत का हक़दार कौन है?",
+    options:[
+        "सिर्फ़ अल्लाह",
+        "फ़रिश्ते",
+        "नबी",
+        "इंसान"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह की कोई संतान है?",
+    options:[
+        "नहीं",
+        "हाँ",
+        "सिर्फ़ एक",
+        "यह ज्ञात नहीं"
+    ],
+    answer:0
+},
+
+{
+    question:"सूरह अल-इख़लास में अल्लाह के बारे में क्या बताया गया है?",
+    options:[
+        "वह एक है",
+        "उसके कई साझीदार हैं",
+        "वह इंसान है",
+        "वह फ़रिश्ता है"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह को किस नाम से 'सबसे अधिक क्षमा करने वाला' कहा जाता है?",
+    options:[
+        "अल-ग़फ़ूर",
+        "अल-मालिक",
+        "अल-ख़ालिक़",
+        "अल-अव्वल"
+    ],
+    answer:0
+},
+
+{
+    question:"'अर-रहमान' का अर्थ क्या है?",
+    options:[
+        "बहुत मेहरबान",
+        "सबसे बड़ा",
+        "सबसे पहला",
+        "बादशाह"
+    ],
+    answer:0
+},
+
+{
+    question:"'अर-रहीम' का अर्थ किससे संबंधित है?",
+    options:[
+        "बहुत रहम करने वाला",
+        "सबसे बड़ा",
+        "पैदा करने वाला",
+        "मालिक"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह ने इंसानों को किस उद्देश्य से पैदा किया?",
+    options:[
+        "अपनी इबादत के लिए",
+        "सिर्फ़ धन कमाने के लिए",
+        "सिर्फ़ खेलने के लिए",
+        "सिर्फ़ यात्रा के लिए"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में फ़र्ज़ का अर्थ क्या है?",
+    options:[
+        "अनिवार्य काम",
+        "सिर्फ़ पसंदीदा काम",
+        "मना किया हुआ काम",
+        "साधारण काम"
+    ],
+    answer:0
+},
+
+{
+    question:"हराम का अर्थ क्या है?",
+    options:[
+        "जिससे शरीअत ने रोका है",
+        "फ़र्ज़ काम",
+        "सुन्नत काम",
+        "मुस्तहब काम"
+    ],
+    answer:0
+},
+
+{
+    question:"हलाल का अर्थ क्या है?",
+    options:[
+        "जायज़ और अनुमत",
+        "मना किया हुआ",
+        "फ़र्ज़ नमाज़",
+        "सिर्फ़ रोज़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"सुन्नत किससे संबंधित है?",
+    options:[
+        "नबी ﷺ के तरीक़े और मार्गदर्शन से",
+        "सिर्फ़ व्यापार से",
+        "सिर्फ़ खेती से",
+        "सिर्फ़ यात्रा से"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ की बातों, कामों और अनुमोदनों से संबंधित रिवायत को क्या कहते हैं?",
+    options:[
+        "हदीस",
+        "फ़िक़्ह",
+        "तफ़्सीर",
+        "सीरत"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ की ज़िंदगी और जीवन-चरित्र के अध्ययन को क्या कहा जाता है?",
+    options:[
+        "सीरत",
+        "तजवीद",
+        "फ़िक़्ह",
+        "तफ़्सीर"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन की व्याख्या को क्या कहा जाता है?",
+    options:[
+        "तफ़्सीर",
+        "सीरत",
+        "हदीस",
+        "अज़ान"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन को सही उच्चारण के साथ पढ़ने के नियमों को क्या कहा जाता है?",
+    options:[
+        "तजवीद",
+        "सीरत",
+        "फ़िक़्ह",
+        "सदक़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में सलाम का जवाब कैसे दिया जाता है?",
+    options:[
+        "वअलैकुम अस्सलाम",
+        "अल्लाहु अकबर",
+        "अल्हम्दुलिल्लाह",
+        "सुब्हानल्लाह"
+    ],
+    answer:0
+},
+
+{
+    question:"'अस्सलामु अलैकुम' का अर्थ क्या है?",
+    options:[
+        "आप पर सलामती हो",
+        "अल्लाह सबसे बड़ा है",
+        "सारी तारीफ़ अल्लाह के लिए है",
+        "अल्लाह से माफ़ी"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसलमान आपस में किस चीज़ को फैलाने की कोशिश करते हैं?",
+    options:[
+        "सलाम और शांति",
+        "नफ़रत",
+        "झगड़ा",
+        "धोखा"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में मुसलमानों के बीच भाईचारे को क्या महत्व दिया गया है?",
+    options:[
+        "बहुत महत्व",
+        "कोई महत्व नहीं",
+        "सिर्फ़ व्यापार में",
+        "सिर्फ़ यात्रा में"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी गरीब की मदद करना किस प्रकार का काम है?",
+    options:[
+        "नेक काम",
+        "गुनाह",
+        "हराम",
+        "मना"
+    ],
+    answer:0
+},
+
+{
+    question:"यतीम किसे कहा जाता है?",
+    options:[
+        "जिस बच्चे के पिता का इंतकाल हो गया हो",
+        "यात्री को",
+        "बीमार व्यक्ति को",
+        "व्यापारी को"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में यतीम के साथ कैसा व्यवहार करना चाहिए?",
+    options:[
+        "अच्छा व्यवहार और देखभाल",
+        "ज़ुल्म",
+        "उपेक्षा",
+        "धोखा"
+    ],
+    answer:0
+},
+
+{
+    question:"मिस्कीन से क्या मतलब है?",
+    options:[
+        "ज़रूरतमंद व्यक्ति",
+        "बादशाह",
+        "व्यापारी",
+        "सैनिक"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में पड़ोसी के अधिकारों का क्या महत्व है?",
+    options:[
+        "बहुत महत्वपूर्ण",
+        "कोई महत्व नहीं",
+        "सिर्फ़ अमीर पड़ोसी के लिए",
+        "सिर्फ़ रिश्तेदारों के लिए"
+    ],
+    answer:0
+},
+
+{
+    question:"माता-पिता की सेवा करना किस प्रकार का काम है?",
+    options:[
+        "नेक काम",
+        "हराम",
+        "गुनाह",
+        "मना"
+    ],
+    answer:0
+},
+
+{
+    question:"माता-पिता से बात करते समय कैसा व्यवहार करना चाहिए?",
+    options:[
+        "अदब और सम्मान से",
+        "गुस्से से",
+        "बदतमीज़ी से",
+        "घमंड से"
+    ],
+    answer:0
+},
+
+{
+    question:"रिश्तेदारों के साथ अच्छे संबंध बनाए रखने को क्या कहा जाता है?",
+    options:[
+        "सिलह-रहमी",
+        "ग़ीबत",
+        "तकब्बुर",
+        "रिबा"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में ग़ीबत से बचने की शिक्षा क्यों दी गई है?",
+    options:[
+        "क्योंकि यह बुरा काम है",
+        "क्योंकि इससे धन कम होता है",
+        "क्योंकि इससे सफ़र रुकता है",
+        "क्योंकि इससे नींद आती है"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ को जानबूझकर छोड़ना कैसा मामला है?",
+    options:[
+        "बहुत गंभीर मामला",
+        "साधारण खेल",
+        "कोई महत्व नहीं",
+        "सिर्फ़ आदत"
+    ],
+    answer:0
+},
+
+{
+    question:"रोज़ा किस चीज़ से इंसान को बचने की शिक्षा देता है?",
+    options:[
+        "गुनाह और बुरी आदतों से",
+        "इल्म से",
+        "सच्चाई से",
+        "नेक कामों से"
+    ],
+    answer:0
+},
+
+{
+    question:"रमज़ान में क़ुरआन की तिलावत बढ़ाना कैसा अमल है?",
+    options:[
+        "नेक अमल",
+        "हराम",
+        "मना",
+        "गुनाह"
+    ],
+    answer:0
+},
+
+{
+    question:"एतिकाफ़ आम तौर पर किस जगह किया जाता है?",
+    options:[
+        "मस्जिद",
+        "बाज़ार",
+        "खेत",
+        "सड़क"
+    ],
+    answer:0
+},
+
+{
+    question:"रमज़ान के आख़िरी दस दिनों में एतिकाफ़ किससे संबंधित है?",
+    options:[
+        "इबादत",
+        "व्यापार",
+        "खेल",
+        "सफ़र"
+    ],
+    answer:0
+},
+
+{
+    question:"फ़ित्राना किस ईद से संबंधित है?",
+    options:[
+        "ईदुल-फ़ित्र",
+        "ईदुल-अज़हा",
+        "दोनों से समान रूप से",
+        "किसी से नहीं"
+    ],
+    answer:0
+},
+
+{
+    question:"ईदुल-फ़ित्र से पहले गरीबों की मदद के लिए कौन-सा सदक़ा दिया जाता है?",
+    options:[
+        "सदक़ा-ए-फ़ित्र",
+        "ज़कातुल-माल",
+        "कुर्बानी",
+        "कफ़्फ़ारा"
+    ],
+    answer:0
+},
+
+{
+    question:"ईदुल-अज़हा में कुर्बानी किस तारीख़ से शुरू होती है?",
+    options:[
+        "10 ज़िलहिज्जा",
+        "1 रमज़ान",
+        "10 मुहर्रम",
+        "1 शव्वाल"
+    ],
+    answer:0
+},
+
+{
+    question:"कुर्बानी का मुख्य उद्देश्य क्या है?",
+    options:[
+        "अल्लाह की रज़ा हासिल करना",
+        "दिखावा करना",
+        "व्यापार करना",
+        "मनोरंजन करना"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में दिखावे के लिए इबादत करने को क्या कहा जाता है?",
+    options:[
+        "रियाकारी",
+        "सब्र",
+        "शुक्र",
+        "तौबा"
+    ],
+    answer:0
+},
+
+{
+    question:"तौबा का अर्थ क्या है?",
+    options:[
+        "गुनाह से पलटकर अल्लाह से माफ़ी माँगना",
+        "व्यापार करना",
+        "सफ़र करना",
+        "खाना खाना"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह से गुनाहों की माफ़ी माँगने को क्या कहा जाता है?",
+    options:[
+        "इस्तिग़फ़ार",
+        "तवाफ़",
+        "सई",
+        "रमी"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसलमान को गुनाह हो जाने के बाद क्या करना चाहिए?",
+    options:[
+        "सच्ची तौबा करनी चाहिए",
+        "गुनाह पर घमंड करना चाहिए",
+        "दूसरों को दोष देना चाहिए",
+        "गुनाह को अच्छा समझना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह से डरने और उसकी आज्ञा मानने की भावना को क्या कहा जाता है?",
+    options:[
+        "तक़वा",
+        "तकब्बुर",
+        "ग़ीबत",
+        "हसद"
+    ],
+    answer:0
+},
+
+{
+    question:"हसद का अर्थ क्या है?",
+    options:[
+        "दूसरे की नेमत के खत्म होने की इच्छा करना",
+        "दूसरे की मदद करना",
+        "शुक्र करना",
+        "माफ़ करना"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में हसद से क्या शिक्षा दी गई है?",
+    options:[
+        "बचना चाहिए",
+        "इसे बढ़ाना चाहिए",
+        "इसे अपनाना चाहिए",
+        "इसे फैलाना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"अच्छा अख़लाक़ किससे संबंधित है?",
+    options:[
+        "अच्छे चरित्र और व्यवहार से",
+        "सिर्फ़ धन से",
+        "सिर्फ़ कपड़ों से",
+        "सिर्फ़ भोजन से"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ ने मुसलमानों को किस चीज़ की विशेष शिक्षा दी?",
+    options:[
+        "अच्छे अख़लाक़ की",
+        "धोखे की",
+        "झूठ की",
+        "घमंड की"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी व्यक्ति को माफ़ कर देना किस गुण से संबंधित है?",
+    options:[
+        "दरगुज़र",
+        "तकब्बुर",
+        "हसद",
+        "ग़ीबत"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में गुस्से को नियंत्रित करना कैसा गुण है?",
+    options:[
+        "अच्छा गुण",
+        "बुरा गुण",
+        "हराम",
+        "नापसंद"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी को नुकसान पहुँचाने से बचना किससे संबंधित है?",
+    options:[
+        "अच्छे व्यवहार से",
+        "घमंड से",
+        "ग़ीबत से",
+        "झूठ से"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में इंसाफ़ का अर्थ क्या है?",
+    options:[
+        "न्याय करना",
+        "ज़ुल्म करना",
+        "धोखा देना",
+        "घमंड करना"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी के साथ अन्याय करना इस्लाम में कैसा है?",
+    options:[
+        "ज़ुल्म",
+        "नेकी",
+        "सुन्नत",
+        "सदक़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह इंसानों को किस चीज़ का आदेश देता है?",
+    options:[
+        "इंसाफ़ और नेकी",
+        "ज़ुल्म",
+        "धोखा",
+        "झूठ"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसलमान को किसी की बुराई सुनकर क्या करना चाहिए?",
+    options:[
+        "बिना जाँच के उसे फैलाने से बचना चाहिए",
+        "तुरंत फैलाना चाहिए",
+        "झूठ जोड़ना चाहिए",
+        "उसका मज़ाक बनाना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में नमाज़ के लिए सबसे महत्वपूर्ण शर्तों में से एक क्या है?",
+    options:[
+        "वक़्त का होना",
+        "व्यापार करना",
+        "सफ़र करना",
+        "सोना"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ के लिए शरीर और कपड़ों की पाकी का क्या महत्व है?",
+    options:[
+        "बहुत महत्वपूर्ण",
+        "कोई महत्व नहीं",
+        "सिर्फ़ ईद में",
+        "सिर्फ़ जुमे में"
+    ],
+    answer:0
+},
+
+{
+    question:"वुज़ू टूटने के बाद नमाज़ के लिए क्या करना पड़ता है?",
+    options:[
+        "दोबारा वुज़ू करना",
+        "खाना खाना",
+        "सोना",
+        "सफ़र करना"
+    ],
+    answer:0
+},
+
+{
+    question:"ग़ुस्ल किससे संबंधित है?",
+    options:[
+        "बड़ी पाकी हासिल करने से",
+        "व्यापार से",
+        "सफ़र से",
+        "खाना खाने से"
+    ],
+    answer:0
+},
+
+{
+    question:"तयम्मुम कब किया जाता है?",
+    options:[
+        "जब पानी उपलब्ध न हो या उसके इस्तेमाल में शरीअत के अनुसार कठिनाई हो",
+        "हर नमाज़ में",
+        "सिर्फ़ ईद में",
+        "सिर्फ़ जुमे में"
+    ],
+    answer:0
+},
+
+{
+    question:"तयम्मुम किस चीज़ से किया जाता है?",
+    options:[
+        "पाक मिट्टी या मिट्टी की جنس से",
+        "पानी से",
+        "तेल से",
+        "खाने से"
+    ],
+    answer:0
+},
+
+{
+    question:"क़िबला किस दिशा को कहा जाता है?",
+    options:[
+        "काबा शरीफ़ की दिशा",
+        "मदीना की दिशा",
+        "सूर्योदय की दिशा",
+        "सूर्यास्त की दिशा"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसलमान नमाज़ में क़िबला की ओर क्यों रुख करते हैं?",
+    options:[
+        "अल्लाह के आदेश का पालन करते हुए",
+        "सिर्फ़ परंपरा के कारण",
+        "सफ़र के लिए",
+        "व्यापार के लिए"
+    ],
+    answer:0
+},
+
+{
+    question:"मस्जिद में नमाज़ पढ़ने वाले व्यक्ति को क्या करना चाहिए?",
+    options:[
+        "अदब और खामोशी रखना",
+        "शोर करना",
+        "दौड़ना",
+        "लोगों को परेशान करना"
+    ],
+    answer:0
+},
+
+{
+    question:"अज़ान सुनने पर मुसलमान को किस इबादत की तैयारी करनी चाहिए?",
+    options:[
+        "नमाज़",
+        "व्यापार",
+        "खेल",
+        "सफ़र"
+    ],
+    answer:0
+},
+
+{
+    question:"अज़ान में 'हय्या अलस्सलाह' का अर्थ क्या है?",
+    options:[
+        "नमाज़ की ओर आओ",
+        "खाने की ओर आओ",
+        "घर जाओ",
+        "सफ़र करो"
+    ],
+    answer:0
+},
+
+{
+    question:"अज़ान में 'हय्या अललफलाह' का अर्थ किससे संबंधित है?",
+    options:[
+        "कामयाबी की ओर आओ",
+        "बाज़ार जाओ",
+        "घर जाओ",
+        "सो जाओ"
+    ],
+    answer:0
+},
+
+{
+    question:"इक़ामत किससे संबंधित है?",
+    options:[
+        "फ़र्ज़ नमाज़ शुरू होने की सूचना",
+        "रोज़ा खोलने की सूचना",
+        "सफ़र की सूचना",
+        "खाने की सूचना"
+    ],
+    answer:0
+},
+
+{
+    question:"जमाअत के साथ नमाज़ पढ़ाने वाले को क्या कहा जाता है?",
+    options:[
+        "इमाम",
+        "मुअज्ज़िन",
+        "क़ारी",
+        "मुहद्दिस"
+    ],
+    answer:0
+},
+
+{
+    question:"इमाम के पीछे नमाज़ पढ़ने वाले को क्या कहा जाता है?",
+    options:[
+        "मुक़्तदी",
+        "मुअज्ज़िन",
+        "ख़तीब",
+        "मुहद्दिस"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ में इमाम की पैरवी करना किसका हिस्सा है?",
+    options:[
+        "जमाअत",
+        "व्यापार",
+        "सफ़र",
+        "रोज़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ में जानबूझकर बातचीत करना किससे संबंधित समस्या है?",
+    options:[
+        "नमाज़ के ख़िलाफ़ काम",
+        "सदक़ा",
+        "ज़कात",
+        "हज"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ में ध्यान और ख़ुशूअ रखना कैसा गुण है?",
+    options:[
+        "बहुत अच्छा",
+        "बुरा",
+        "हराम",
+        "मना"
+    ],
+    answer:0
+},
+
+{
+    question:"ख़ुशूअ का अर्थ क्या है?",
+    options:[
+        "नमाज़ में विनम्रता और ध्यान",
+        "घमंड",
+        "हँसी-मज़ाक",
+        "बातचीत"
+    ],
+    answer:0
+},
+
+{
+    question:"नमाज़ के बाद दुआ करना किससे संबंधित है?",
+    options:[
+        "अल्लाह से माँगने से",
+        "व्यापार से",
+        "सफ़र से",
+        "खाने से"
+    ],
+    answer:0
+},
+
+{
+    question:"दुआ में सबसे पहले किससे माँगना चाहिए?",
+    options:[
+        "अल्लाह से",
+        "लोगों से",
+        "माल से",
+        "किसी वस्तु से"
+    ],
+    answer:0
+},
+
+{
+    question:"तस्बीह का अर्थ किससे संबंधित है?",
+    options:[
+        "अल्लाह की पाकी बयान करना",
+        "व्यापार करना",
+        "सफ़र करना",
+        "खाना खाना"
+    ],
+    answer:0
+},
+
+{
+    question:"तहलील किस ज़िक्र से संबंधित है?",
+    options:[
+        "ला इलाहा इल्लल्लाह",
+        "अल्लाहु अकबर",
+        "अल्हम्दुलिल्लाह",
+        "अस्तग़फ़िरुल्लाह"
+    ],
+    answer:0
+},
+
+{
+    question:"तकबीर किस ज़िक्र से संबंधित है?",
+    options:[
+        "अल्लाहु अकबर",
+        "सुब्हानल्लाह",
+        "अल्हम्दुलिल्लाह",
+        "अस्तग़फ़िरुल्लाह"
+    ],
+    answer:0
+},
+
+{
+    question:"तहमीद किस ज़िक्र से संबंधित है?",
+    options:[
+        "अल्हम्दुलिल्लाह",
+        "अल्लाहु अकबर",
+        "ला इलाहा इल्लल्लाह",
+        "अस्तग़फ़िरुल्लाह"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्तिग़फ़ार किससे संबंधित है?",
+    options:[
+        "अल्लाह से माफ़ी माँगना",
+        "व्यापार करना",
+        "सफ़र करना",
+        "खाना खाना"
+    ],
+    answer:0
+},
+
+{
+    question:"दुरूद किससे संबंधित है?",
+    options:[
+        "नबी ﷺ पर सलाम और रहमत भेजने से",
+        "व्यापार से",
+        "सफ़र से",
+        "खाने से"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ का नाम सुनने पर मुसलमान क्या पढ़ता है?",
+    options:[
+        "दुरूद और सलाम",
+        "अज़ान",
+        "इक़ामत",
+        "सिर्फ़ तकबीर"
+    ],
+    answer:0
+},
+
+{
+    question:"हदीस में नबी ﷺ की कही हुई बात को क्या कहा जाता है?",
+    options:[
+        "क़ौली हदीस",
+        "फ़िक़्ह",
+        "तफ़्सीर",
+        "सीरत"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ के किए हुए काम की रिवायत किस प्रकार की हदीस से संबंधित हो सकती है?",
+    options:[
+        "फ़ेअली हदीस",
+        "क़ौली हदीस",
+        "तफ़्सीर",
+        "फ़िक़्ह"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ के सामने किसी काम को देखकर आपकी ख़ामोशी किससे संबंधित हो सकती है?",
+    options:[
+        "तक़रीरी हदीस",
+        "क़ौली हदीस",
+        "तफ़्सीर",
+        "फ़िक़्ह"
+    ],
+    answer:0
+},
+
+{
+    question:"हदीस की जाँच में रावी का क्या महत्व है?",
+    options:[
+        "बहुत महत्वपूर्ण",
+        "कोई महत्व नहीं",
+        "सिर्फ़ नाम के लिए",
+        "सिर्फ़ किताब के लिए"
+    ],
+    answer:0
+},
+
+{
+    question:"हदीस बयान करने वाले व्यक्ति को क्या कहा जाता है?",
+    options:[
+        "रावी",
+        "इमाम",
+        "मुअज्ज़िन",
+        "ख़तीब"
+    ],
+    answer:0
+},
+
+{
+    question:"हदीस की किताबों में सहीह हदीस का अर्थ क्या है?",
+    options:[
+        "प्रामाणिक/सही हदीस",
+        "झूठी बात",
+        "क़ुरआन की आयत",
+        "सिर्फ़ इतिहास"
+    ],
+    answer:0
+},
+
+{
+    question:"सहीह बुख़ारी किससे संबंधित प्रसिद्ध किताब है?",
+    options:[
+        "हदीस",
+        "तफ़्सीर",
+        "व्याकरण",
+        "इतिहास"
+    ],
+    answer:0
+},
+
+{
+    question:"सहीह मुस्लिम किस विषय की प्रसिद्ध किताब है?",
+    options:[
+        "हदीस",
+        "फ़िक़्ह ही केवल",
+        "भूगोल",
+        "गणित"
+    ],
+    answer:0
+},
+
+{
+    question:"हदीस सीखते समय बिना जाँच के हर बात को नबी ﷺ की ओर मंसूब करना कैसा है?",
+    options:[
+        "बचने योग्य",
+        "बहुत अच्छा",
+        "सुन्नत",
+        "फ़र्ज़"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन और सही हदीस इस्लामी जीवन में किससे संबंधित हैं?",
+    options:[
+        "मार्गदर्शन",
+        "मनोरंजन",
+        "व्यापार मात्र",
+        "खेल"
+    ],
+    answer:0
+},
+
+{
+    question:"नबी ﷺ की सुन्नत का पालन करने का उद्देश्य क्या है?",
+    options:[
+        "नबी ﷺ के बताए हुए सही तरीके पर चलना",
+        "दुनिया की शोहरत",
+        "धन कमाना",
+        "दूसरों को नीचा दिखाना"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में नीयत का क्या महत्व है?",
+    options:[
+        "बहुत महत्वपूर्ण",
+        "कोई महत्व नहीं",
+        "सिर्फ़ व्यापार में",
+        "सिर्फ़ सफ़र में"
+    ],
+    answer:0
+},
+
+{
+    question:"इबादत में अच्छी नीयत क्यों महत्वपूर्ण है?",
+    options:[
+        "क्योंकि अमल का उद्देश्य अल्लाह की रज़ा होना चाहिए",
+        "दिखावे के लिए",
+        "शोहरत के लिए",
+        "लोगों की तारीफ़ के लिए"
+    ],
+    answer:0
+},
+
+{
+    question:"रियाकारी किस चीज़ को खराब कर सकती है?",
+    options:[
+        "इबादत की नीयत को",
+        "खाने को",
+        "सफ़र को",
+        "कपड़ों को"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह के लिए नेक काम करना किससे संबंधित है?",
+    options:[
+        "इख़लास",
+        "तकब्बुर",
+        "हसद",
+        "ग़ीबत"
+    ],
+    answer:0
+},
+
+{
+    question:"इख़लास का अर्थ क्या है?",
+    options:[
+        "नीयत में सच्चाई और अल्लाह के लिए करना",
+        "दिखावा",
+        "घमंड",
+        "झूठ"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह की रज़ा हासिल करना किसका उद्देश्य होना चाहिए?",
+    options:[
+        "नेक अमल का",
+        "गुनाह का",
+        "धोखे का",
+        "झूठ का"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसलमान को अपने अच्छे काम पर घमंड करने से क्या करना चाहिए?",
+    options:[
+        "बचना चाहिए",
+        "घमंड बढ़ाना चाहिए",
+        "लोगों को बताना चाहिए",
+        "दूसरों को नीचा दिखाना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह का शुक्र अदा करने का एक तरीका क्या है?",
+    options:[
+        "उसकी नेमतों का सही इस्तेमाल करना",
+        "नेमतों का घमंड करना",
+        "दूसरों को दुख देना",
+        "नेमत का इनकार करना"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसीबत में अल्लाह पर भरोसा रखने को क्या कहा जाता है?",
+    options:[
+        "तवक्कुल",
+        "तकब्बुर",
+        "ग़ीबत",
+        "हसद"
+    ],
+    answer:0
+},
+
+{
+    question:"तवक्कुल का अर्थ क्या है?",
+    options:[
+        "अल्लाह पर भरोसा करना",
+        "लोगों पर घमंड करना",
+        "झूठ बोलना",
+        "धोखा देना"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसीबत में सब्र और अल्लाह पर भरोसा रखना कैसा गुण है?",
+    options:[
+        "अच्छा गुण",
+        "बुरा गुण",
+        "हराम",
+        "मना"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह की नेमत मिलने पर क्या करना चाहिए?",
+    options:[
+        "शुक्र अदा करना",
+        "घमंड करना",
+        "दूसरों को अपमानित करना",
+        "नेमत का इनकार करना"
+    ],
+    answer:0
+},
+
+{
+    question:"गुनाह से बचने और अल्लाह की आज्ञा मानने की कोशिश किससे संबंधित है?",
+    options:[
+        "तक़वा",
+        "ग़ीबत",
+        "हसद",
+        "तकब्बुर"
+    ],
+    answer:0
+},
+
+{
+    question:"अच्छे मुसलमान की पहचान किन चीज़ों से होती है?",
+    options:[
+        "ईमान, नेक अमल और अच्छा अख़लाक़",
+        "सिर्फ़ धन",
+        "सिर्फ़ शोहरत",
+        "सिर्फ़ ताकत"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में सब्र का अर्थ क्या है?",
+    options:[
+        "धैर्य रखना",
+        "गुस्सा करना",
+        "घमंड करना",
+        "झूठ बोलना"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसीबत आने पर मुसलमान को क्या करना चाहिए?",
+    options:[
+        "सब्र और दुआ करनी चाहिए",
+        "निराश होकर सब छोड़ देना चाहिए",
+        "दूसरों को नुकसान देना चाहिए",
+        "गुस्सा फैलाना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"शुक्र का अर्थ क्या है?",
+    options:[
+        "अल्लाह की नेमतों का आभार मानना",
+        "घमंड करना",
+        "शिकायत करना",
+        "झूठ बोलना"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह की नेमत पर 'अल्हम्दुलिल्लाह' कहना किससे संबंधित है?",
+    options:[
+        "शुक्र",
+        "ग़ीबत",
+        "हसद",
+        "तकब्बुर"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह से मदद माँगने के लिए क्या किया जा सकता है?",
+    options:[
+        "दुआ",
+        "ग़ीबत",
+        "झूठ",
+        "धोखा"
+    ],
+    answer:0
+},
+
+{
+    question:"दुआ करते समय किसके सामने झुकना चाहिए?",
+    options:[
+        "सिर्फ़ अल्लाह के सामने",
+        "लोगों के सामने",
+        "धन के सामने",
+        "किसी वस्तु के सामने"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह के अलावा किसी और को इबादत में शरीक करना क्या कहलाता है?",
+    options:[
+        "शिर्क",
+        "शुक्र",
+        "सब्र",
+        "तक़वा"
+    ],
+    answer:0
+},
+
+{
+    question:"तौबा के लिए सबसे जरूरी बात क्या है?",
+    options:[
+        "गुनाह छोड़कर अल्लाह की ओर लौटना",
+        "गुनाह पर घमंड करना",
+        "गुनाह दोहराना",
+        "दूसरों को दोष देना"
+    ],
+    answer:0
+},
+
+{
+    question:"सच्ची तौबा करने वाले को क्या उम्मीद रखनी चाहिए?",
+    options:[
+        "अल्लाह की रहमत और माफ़ी की",
+        "लोगों की तारीफ़ की",
+        "धन की",
+        "शोहरत की"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह की रहमत से मायूस होना कैसा रवैया है?",
+    options:[
+        "गलत रवैया",
+        "नेक काम",
+        "सुन्नत",
+        "सदक़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसलमान को अल्लाह की रहमत के बारे में कैसा भरोसा रखना चाहिए?",
+    options:[
+        "अच्छा भरोसा",
+        "निराशा",
+        "बदगुमानी",
+        "घमंड"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह के डर और उसकी रहमत की उम्मीद के बीच कैसा संतुलन होना चाहिए?",
+    options:[
+        "दोनों रखना चाहिए",
+        "सिर्फ़ डर",
+        "सिर्फ़ दुनिया",
+        "सिर्फ़ धन"
+    ],
+    answer:0
+},
+
+{
+    question:"तकब्बुर का अर्थ क्या है?",
+    options:[
+        "घमंड",
+        "सब्र",
+        "शुक्र",
+        "तौबा"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में घमंड से क्या शिक्षा दी गई है?",
+    options:[
+        "बचना चाहिए",
+        "इसे बढ़ाना चाहिए",
+        "इसे अपनाना चाहिए",
+        "इसे फैलाना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी गरीब को उसकी गरीबी की वजह से नीचा समझना कैसा व्यवहार है?",
+    options:[
+        "बुरा व्यवहार",
+        "नेकी",
+        "सुन्नत",
+        "सदक़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"अल्लाह के नज़दीक इंसान की असली क़ीमत किससे संबंधित है?",
+    options:[
+        "तक़वा",
+        "धन",
+        "रंग",
+        "कपड़े"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में नस्ल और क़बीले के आधार पर घमंड करना कैसा है?",
+    options:[
+        "गलत",
+        "नेक",
+        "फ़र्ज़",
+        "सुन्नत"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसलमानों के बीच बराबरी और भाईचारे का क्या महत्व है?",
+    options:[
+        "बहुत महत्वपूर्ण",
+        "कोई महत्व नहीं",
+        "सिर्फ़ अमीरों के लिए",
+        "सिर्फ़ यात्रियों के लिए"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी मुसलमान को बिना वजह गाली देना कैसा काम है?",
+    options:[
+        "बुरा काम",
+        "नेक काम",
+        "सदक़ा",
+        "सुन्नत"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी का मज़ाक उड़ाने से क्या करना चाहिए?",
+    options:[
+        "बचना चाहिए",
+        "इसे बढ़ाना चाहिए",
+        "दूसरों को सिखाना चाहिए",
+        "इसे आदत बनाना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी व्यक्ति को उसके नाम से बुरे तरीके से पुकारना कैसा व्यवहार है?",
+    options:[
+        "बुरा व्यवहार",
+        "नेकी",
+        "सदक़ा",
+        "सुन्नत"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में बदनाम करने और अपमानित करने से क्या शिक्षा दी गई है?",
+    options:[
+        "बचना चाहिए",
+        "बढ़ाना चाहिए",
+        "फैलाना चाहिए",
+        "इसे मज़ाक बनाना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी की गलती देखकर क्या बेहतर है?",
+    options:[
+        "नर्मी से सुधार की नसीहत करना",
+        "सबके सामने अपमान करना",
+        "मज़ाक उड़ाना",
+        "ग़ीबत करना"
+    ],
+    answer:0
+},
+
+{
+    question:"नसीहत का अर्थ क्या है?",
+    options:[
+        "भलाई की सलाह देना",
+        "अपमान करना",
+        "झूठ बोलना",
+        "धोखा देना"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में मुसलमान को अपने भाई के लिए क्या पसंद करना चाहिए?",
+    options:[
+        "भलाई",
+        "नुकसान",
+        "नफ़रत",
+        "धोखा"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी की खुशी देखकर खुश होना किस गुण से संबंधित है?",
+    options:[
+        "अच्छे दिल और भाईचारे से",
+        "हसद से",
+        "तकब्बुर से",
+        "ग़ीबत से"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी की नेमत देखकर उसके लिए बरकत की दुआ करना कैसा व्यवहार है?",
+    options:[
+        "अच्छा व्यवहार",
+        "हसद",
+        "गुनाह",
+        "घमंड"
+    ],
+    answer:0
+},
+
+{
+    question:"किसी की परेशानी में उसकी मदद करना किससे संबंधित है?",
+    options:[
+        "भाईचारा",
+        "हसद",
+        "ग़ीबत",
+        "तकब्बुर"
+    ],
+    answer:0
+},
+
+{
+    question:"बीमार व्यक्ति की खैरियत पूछना कैसा काम है?",
+    options:[
+        "नेक काम",
+        "गुनाह",
+        "हराम",
+        "घमंड"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसाफ़िर की मदद करना कैसा काम है?",
+    options:[
+        "नेक काम",
+        "गुनाह",
+        "हराम",
+        "ग़ीबत"
+    ],
+    answer:0
+},
+
+{
+    question:"मेहमान के साथ अच्छा व्यवहार करना इस्लाम में कैसा है?",
+    options:[
+        "पसंदीदा अच्छा व्यवहार",
+        "बुरा काम",
+        "हराम",
+        "गुनाह"
+    ],
+    answer:0
+},
+
+{
+    question:"मेहमान की इज़्ज़त करना किस अच्छे गुण से संबंधित है?",
+    options:[
+        "अच्छे अख़लाक़",
+        "तकब्बुर",
+        "हसद",
+        "ग़ीबत"
+    ],
+    answer:0
+},
+
+{
+    question:"माता-पिता के बाद रिश्तेदारों के साथ अच्छा व्यवहार करना कैसा है?",
+    options:[
+        "अच्छा और नेक काम",
+        "गुनाह",
+        "हराम",
+        "मना"
+    ],
+    answer:0
+},
+
+{
+    question:"पड़ोसी भूखा हो और हम खाना खाएँ तो इस्लामी अख़लाक़ हमें क्या सिखाता है?",
+    options:[
+        "पड़ोसी का ख्याल रखना",
+        "उसे परेशान करना",
+        "उसका मज़ाक उड़ाना",
+        "उसे अनदेखा करना"
+    ],
+    answer:0
+},
+
+{
+    question:"पड़ोसी को तकलीफ़ देने से क्या करना चाहिए?",
+    options:[
+        "बचना चाहिए",
+        "इसे बढ़ाना चाहिए",
+        "इसे सही समझना चाहिए",
+        "दूसरों को सिखाना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"रास्ते में किसी को नुकसान पहुँचाने वाली चीज़ देखकर क्या करना अच्छा है?",
+    options:[
+        "उसे हटाना",
+        "वहीं छोड़ देना",
+        "दूसरों को परेशान करना",
+        "उसका मज़ाक बनाना"
+    ],
+    answer:0
+},
+
+{
+    question:"सफाई का इस्लाम में क्या महत्व है?",
+    options:[
+        "महत्वपूर्ण",
+        "कोई महत्व नहीं",
+        "सिर्फ़ ईद पर",
+        "सिर्फ़ जुमे पर"
+    ],
+    answer:0
+},
+
+{
+    question:"मस्जिद में गंदगी करना कैसा व्यवहार है?",
+    options:[
+        "गलत",
+        "नेक",
+        "सुन्नत",
+        "सदक़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"वुज़ू करते समय पानी के इस्तेमाल में क्या करना चाहिए?",
+    options:[
+        "फ़िज़ूलखर्ची से बचना चाहिए",
+        "बहुत अधिक पानी बहाना चाहिए",
+        "पानी बर्बाद करना चाहिए",
+        "पानी से खेलना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में फ़िज़ूलखर्ची से क्या शिक्षा दी गई है?",
+    options:[
+        "बचना चाहिए",
+        "बढ़ाना चाहिए",
+        "इसे अच्छा समझना चाहिए",
+        "इसे आदत बनाना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"खाने में बिस्मिल्लाह कहना किससे संबंधित है?",
+    options:[
+        "अल्लाह का नाम लेना",
+        "सफ़र करना",
+        "व्यापार करना",
+        "सोना"
+    ],
+    answer:0
+},
+
+{
+    question:"खाना खाने के बाद अल्लाह का शुक्र अदा करने के लिए क्या कहा जाता है?",
+    options:[
+        "अल्हम्दुलिल्लाह",
+        "अल्लाहु अकबर",
+        "ला इलाहा इल्लल्लाह",
+        "अस्तग़फ़िरुल्लाह"
+    ],
+    answer:0
+},
+
+{
+    question:"खाना किस हाथ से खाने की सुन्नत है?",
+    options:[
+        "दाएँ हाथ से",
+        "बाएँ हाथ से",
+        "दोनों हाथों से",
+        "किसी भी हाथ से हमेशा"
+    ],
+    answer:0
+},
+
+{
+    question:"खाने में अपने सामने से खाने की शिक्षा किससे संबंधित है?",
+    options:[
+        "सुन्नत के अदब से",
+        "व्यापार से",
+        "सफ़र से",
+        "हज से"
+    ],
+    answer:0
+},
+
+{
+    question:"खाने में बिस्मिल्लाह भूल जाएँ तो क्या किया जा सकता है?",
+    options:[
+        "याद आने पर अल्लाह का नाम लिया जा सकता है",
+        "खाना फेंक देना चाहिए",
+        "खाना छोड़ देना चाहिए",
+        "दूसरों को दोष देना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"पानी पीते समय किस तरह पीना इस्लामी अदब में शामिल है?",
+    options:[
+        "अदब और संयम से",
+        "बेहद जल्दबाज़ी से",
+        "पानी बर्बाद करके",
+        "दूसरों पर छिड़ककर"
+    ],
+    answer:0
+},
+
+{
+    question:"सोने से पहले अल्लाह को याद करना किससे संबंधित है?",
+    options:[
+        "ज़िक्र और सुन्नत के अदब से",
+        "व्यापार से",
+        "सफ़र से",
+        "खेल से"
+    ],
+    answer:0
+},
+
+{
+    question:"जागने के बाद अल्लाह का शुक्र करना कैसा काम है?",
+    options:[
+        "अच्छा काम",
+        "गुनाह",
+        "हराम",
+        "मना"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसलमान को अपने समय के बारे में क्या करना चाहिए?",
+    options:[
+        "उसका अच्छा इस्तेमाल करना चाहिए",
+        "पूरा समय बर्बाद करना चाहिए",
+        "दूसरों को परेशान करना चाहिए",
+        "सिर्फ़ खेलना चाहिए"
+    ],
+    answer:0
+},
+
+{
+    question:"इल्म हासिल करना किस प्रकार का काम है?",
+    options:[
+        "बहुत अच्छा काम",
+        "गुनाह",
+        "हराम",
+        "मना"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन पढ़ते समय कैसा व्यवहार करना चाहिए?",
+    options:[
+        "अदब और ध्यान से",
+        "मज़ाक करते हुए",
+        "शोर करते हुए",
+        "बिना सम्मान के"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन की तिलावत से पहले क्या करना अच्छा है?",
+    options:[
+        "अल्लाह की पनाह माँगना",
+        "व्यापार शुरू करना",
+        "खेलना",
+        "सोना"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन सुनते समय मुसलमान को कैसा रवैया रखना चाहिए?",
+    options:[
+        "ध्यान से सुनना और अदब रखना",
+        "शोर करना",
+        "मज़ाक करना",
+        "दूसरों को परेशान करना"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन की आयतों पर विचार करने को क्या कहा जाता है?",
+    options:[
+        "तदब्बुर",
+        "ग़ीबत",
+        "तकब्बुर",
+        "हसद"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लामी जीवन में क़ुरआन का मुख्य उद्देश्य क्या है?",
+    options:[
+        "मार्गदर्शन",
+        "सिर्फ़ सजावट",
+        "सिर्फ़ व्यापार",
+        "सिर्फ़ मनोरंजन"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसलमान को क़ुरआन के अनुसार जीवन बिताने की कोशिश क्यों करनी चाहिए?",
+    options:[
+        "क्योंकि क़ुरआन मार्गदर्शन देता है",
+        "सिर्फ़ दिखावे के लिए",
+        "सिर्फ़ शोहरत के लिए",
+        "सिर्फ़ धन के लिए"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में रोज़े का मुख्य उद्देश्य क्या है?",
+    options:[
+        "तक़वा हासिल करना",
+        "सिर्फ़ भूखा रहना",
+        "सिर्फ़ वजन कम करना",
+        "सिर्फ़ नींद लेना"
+    ],
+    answer:0
+},
+
+{
+    question:"रमज़ान किस इस्लामी महीने का नाम है?",
+    options:[
+        "नौवाँ महीना",
+        "दसवाँ महीना",
+        "ग्यारहवाँ महीना",
+        "बारहवाँ महीना"
+    ],
+    answer:0
+},
+
+{
+    question:"रमज़ान में मुसलमान किस इबादत को फ़र्ज़ तौर पर अदा करते हैं?",
+    options:[
+        "रोज़ा",
+        "सिर्फ़ हज",
+        "सिर्फ़ कुर्बानी",
+        "सिर्फ़ एतिकाफ़"
+    ],
+    answer:0
+},
+
+{
+    question:"सहरी किससे संबंधित है?",
+    options:[
+        "रोज़े से पहले रात/सुबह का खाना",
+        "रोज़ा खोलने के बाद का खाना",
+        "ईद की नमाज़",
+        "हज"
+    ],
+    answer:0
+},
+
+{
+    question:"इफ़्तार किसे कहते हैं?",
+    options:[
+        "रोज़ा खोलना",
+        "रोज़ा शुरू करना",
+        "नमाज़ शुरू करना",
+        "हज करना"
+    ],
+    answer:0
+},
+
+{
+    question:"रोज़ा किस समय समाप्त किया जाता है?",
+    options:[
+        "सूर्यास्त पर",
+        "सूर्योदय पर",
+        "दोपहर में",
+        "आधी रात में"
+    ],
+    answer:0
+},
+
+{
+    question:"रमज़ान में रात की विशेष नमाज़ को क्या कहा जाता है?",
+    options:[
+        "तरावीह",
+        "इशराक़",
+        "चाश्त",
+        "जनाज़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"तरावीह किस महीने में विशेष रूप से पढ़ी जाती है?",
+    options:[
+        "रमज़ान",
+        "मुहर्रम",
+        "रजब",
+        "शव्वाल"
+    ],
+    answer:0
+},
+
+{
+    question:"लैलतुल क़द्र किस महीने में आती है?",
+    options:[
+        "रमज़ान",
+        "मुहर्रम",
+        "सफ़र",
+        "शव्वाल"
+    ],
+    answer:0
+},
+
+{
+    question:"लैलतुल क़द्र को आम तौर पर किस नाम से जाना जाता है?",
+    options:[
+        "शबे क़द्र",
+        "शबे बरात",
+        "आशूरा",
+        "ईद"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन के अनुसार लैलतुल क़द्र कितनी महत्वपूर्ण रात है?",
+    options:[
+        "हज़ार महीनों से बेहतर",
+        "एक दिन से कम",
+        "सिर्फ़ एक घंटे की",
+        "साधारण रात"
+    ],
+    answer:0
+},
+
+{
+    question:"रमज़ान के आख़िरी दस दिनों में किस इबादत का विशेष महत्व है?",
+    options:[
+        "एतिकाफ़",
+        "व्यापार",
+        "सफ़र",
+        "खेल"
+    ],
+    answer:0
+},
+
+{
+    question:"ज़कात किस प्रकार की इबादत है?",
+    options:[
+        "माल से संबंधित इबादत",
+        "सिर्फ़ नमाज़",
+        "सिर्फ़ रोज़ा",
+        "सिर्फ़ हज"
+    ],
+    answer:0
+},
+
+{
+    question:"ज़कात किसके माल पर विशेष शर्तों के साथ फ़र्ज़ होती है?",
+    options:[
+        "निसाब को पहुँचने वाले माल पर",
+        "हर बच्चे के खिलौने पर",
+        "हर कपड़े पर",
+        "हर खाने पर"
+    ],
+    answer:0
+},
+
+{
+    question:"निसाब किससे संबंधित है?",
+    options:[
+        "ज़कात के लिए माल की निर्धारित सीमा",
+        "नमाज़ के समय",
+        "रोज़े के समय",
+        "हज के रास्ते"
+    ],
+    answer:0
+},
+
+{
+    question:"ज़कात का एक उद्देश्य क्या है?",
+    options:[
+        "ज़रूरतमंदों की मदद करना",
+        "दिखावा करना",
+        "धन बर्बाद करना",
+        "घमंड करना"
+    ],
+    answer:0
+},
+
+{
+    question:"ज़कात देने से माल के बारे में इस्लामी शिक्षा क्या है?",
+    options:[
+        "माल की पाकीज़गी और जरूरतमंदों की मदद",
+        "माल को बर्बाद करना",
+        "माल छिपाना",
+        "माल पर घमंड करना"
+    ],
+    answer:0
+},
+
+{
+    question:"सदक़ा और ज़कात में एक मुख्य अंतर क्या है?",
+    options:[
+        "ज़कात फ़र्ज़ है जबकि सदक़ा आम तौर पर स्वैच्छिक नेकी है",
+        "दोनों हमेशा बिल्कुल एक ही हैं",
+        "सदक़ा हराम है",
+        "ज़कात सिर्फ़ नमाज़ है"
+    ],
+    answer:0
+},
+
+{
+    question:"हज किस शहर में किया जाता है?",
+    options:[
+        "मक्का",
+        "मदीना",
+        "ताइफ़",
+        "कूफ़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"हज किस इस्लामी महीने में किया जाता है?",
+    options:[
+        "ज़िलहिज्जा",
+        "रमज़ान",
+        "मुहर्रम",
+        "शव्वाल"
+    ],
+    answer:0
+},
+
+{
+    question:"काबा शरीफ़ किस मस्जिद में स्थित है?",
+    options:[
+        "मस्जिद-ए-हराम",
+        "मस्जिद-ए-नबवी",
+        "मस्जिद-ए-क़ुबा",
+        "मस्जिद-ए-अक्सा"
+    ],
+    answer:0
+},
+
+{
+    question:"काबा शरीफ़ का तवाफ़ कितनी बार किया जाता है?",
+    options:[
+        "7 बार",
+        "5 बार",
+        "3 बार",
+        "10 बार"
+    ],
+    answer:0
+},
+
+{
+    question:"सफ़ा और मरवा के बीच चलने को क्या कहा जाता है?",
+    options:[
+        "सई",
+        "तवाफ़",
+        "रमी",
+        "वुक़ूफ़"
+    ],
+    answer:0
+},
+
+{
+    question:"सफ़ा और मरवा किससे संबंधित हैं?",
+    options:[
+        "हज और उमरा",
+        "नमाज़",
+        "ज़कात",
+        "रोज़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"हज में अरफ़ात का मैदान किससे संबंधित है?",
+    options:[
+        "वुक़ूफ़-ए-अरफ़ात",
+        "तवाफ़",
+        "सदक़ा",
+        "अज़ान"
+    ],
+    answer:0
+},
+
+{
+    question:"हज के दौरान मीना किससे संबंधित स्थान है?",
+    options:[
+        "हज के मनासिक से",
+        "व्यापार से",
+        "नमाज़ के पाँच वक़्त से",
+        "रोज़ा खोलने से"
+    ],
+    answer:0
+},
+
+{
+    question:"हज में शैतान को कंकड़ मारने की रस्म को क्या कहा जाता है?",
+    options:[
+        "रमी-ए-जमरात",
+        "तवाफ़",
+        "सई",
+        "वुक़ूफ़"
+    ],
+    answer:0
+},
+
+{
+    question:"उमरा किससे संबंधित इबादत है?",
+    options:[
+        "मक्का की ज़ियारत और विशेष इबादत से",
+        "सिर्फ़ रोज़े से",
+        "सिर्फ़ ज़कात से",
+        "सिर्फ़ जनाज़े से"
+    ],
+    answer:0
+},
+
+{
+    question:"हज और उमरा में काबा का क्या महत्व है?",
+    options:[
+        "काबा इनके प्रमुख मनासिक का केंद्र है",
+        "कोई महत्व नहीं",
+        "सिर्फ़ देखने के लिए",
+        "सिर्फ़ व्यापार के लिए"
+    ],
+    answer:0
+},
+
+{
+    question:"मस्जिद-ए-नबवी किस शहर में स्थित है?",
+    options:[
+        "मदीना",
+        "मक्का",
+        "ताइफ़",
+        "जेद्दा"
+    ],
+    answer:0
+},
+
+{
+    question:"मस्जिद-ए-नबवी में कौन-सा पवित्र स्थान प्रसिद्ध है?",
+    options:[
+        "रौज़ा-ए-मुबारक",
+        "ग़ार-ए-हिरा",
+        "सफ़ा",
+        "मरवा"
+    ],
+    answer:0
+},
+
+{
+    question:"मस्जिद-ए-क़ुबा किस शहर से संबंधित है?",
+    options:[
+        "मदीना",
+        "मक्का",
+        "ताइफ़",
+        "बसरा"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम की पहली मस्जिद के रूप में कौन-सी मस्जिद प्रसिद्ध है?",
+    options:[
+        "मस्जिद-ए-क़ुबा",
+        "मस्जिद-ए-हराम",
+        "मस्जिद-ए-नबवी",
+        "मस्जिद-ए-अक्सा"
+    ],
+    answer:0
+},
+
+{
+    question:"मस्जिद-ए-अक्सा किस शहर में स्थित है?",
+    options:[
+        "बैतुल-मक़दिस",
+        "मक्का",
+        "मदीना",
+        "ताइफ़"
+    ],
+    answer:0
+},
+
+{
+    question:"मस्जिद-ए-अक्सा किस पवित्र क्षेत्र से संबंधित है?",
+    options:[
+        "यरूशलम/बैतुल-मक़दिस",
+        "मक्का",
+        "मदीना",
+        "कूफ़ा"
+    ],
+    answer:0
+},
+
+{
+    question:"इस्लाम में तीन विशेष मस्जिदों में से एक कौन-सी है?",
+    options:[
+        "मस्जिद-ए-हराम",
+        "गाँव की मस्जिद ही केवल",
+        "बाज़ार की दुकान",
+        "घर"
+    ],
+    answer:0
+},
+
+{
+    question:"मस्जिद-ए-हराम का मुख्य पवित्र केंद्र क्या है?",
+    options:[
+        "काबा",
+        "सफ़ा",
+        "मरवा",
+        "अरफ़ात"
+    ],
+    answer:0
+},
+
+{
+    question:"काबा शरीफ़ को किस नबी और उनके बेटे ने बनाया था?",
+    options:[
+        "इब्राहीम अलैहिस्सलाम और इस्माईल अलैहिस्सलाम",
+        "मूसा अलैहिस्सलाम और हारून अलैहिस्सलाम",
+        "ईसा अलैहिस्सलाम और याह्या अलैहिस्सलाम",
+        "नूह अलैहिस्सलाम और लूत अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत इब्राहीम अलैहिस्सलाम के बेटे का नाम क्या था जिन्होंने काबा के निर्माण में उनके साथ मदद की?",
+    options:[
+        "इस्माईल अलैहिस्सलाम",
+        "इसहाक़ अलैहिस्सलाम",
+        "यूसुफ़ अलैहिस्सलाम",
+        "याक़ूब अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत इस्माईल अलैहिस्सलाम की माता का नाम क्या था?",
+    options:[
+        "हाजरा",
+        "मरियम",
+        "आसिया",
+        "सारा"
+    ],
+    answer:0
+},
+
+{
+    question:"ज़मज़म का कुआँ किस पवित्र शहर में है?",
+    options:[
+        "मक्का",
+        "मदीना",
+        "ताइफ़",
+        "दमिश्क"
+    ],
+    answer:0
+},
+
+{
+    question:"ज़मज़म का पानी किससे संबंधित प्रसिद्ध घटना है?",
+    options:[
+        "हज़रत हाजरा और हज़रत इस्माईल अलैहिस्सलाम",
+        "हज़रत मूसा अलैहिस्सलाम",
+        "हज़रत नूह अलैहिस्सलाम",
+        "हज़रत यूसुफ़ अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत इब्राहीम अलैहिस्सलाम को किस उपाधि से जाना जाता है?",
+    options:[
+        "खलीलुल्लाह",
+        "कलिमुल्लाह",
+        "रूहुल्लाह",
+        "सैफुल्लाह"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत मूसा अलैहिस्सलाम को किस उपाधि से जाना जाता है?",
+    options:[
+        "कलिमुल्लाह",
+        "खलीलुल्लाह",
+        "रूहुल्लाह",
+        "सैफुल्लाह"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत ईसा अलैहिस्सलाम की माता का नाम क्या था?",
+    options:[
+        "मरियम अलैहस्सलाम",
+        "हाजरा",
+        "आमिना",
+        "सारा"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत ईसा अलैहिस्सलाम के जन्म की घटना किससे संबंधित है?",
+    options:[
+        "हज़रत मरियम अलैहस्सलाम",
+        "हज़रत हाजरा",
+        "हज़रत आमिना",
+        "हज़रत फ़ातिमा"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत नूह अलैहिस्सलाम की प्रसिद्ध घटना किससे संबंधित है?",
+    options:[
+        "कश्ती और तूफ़ान",
+        "काबा का निर्माण",
+        "ग़ार-ए-हिरा",
+        "हिजरत"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत यूसुफ़ अलैहिस्सलाम की कहानी में किस गुण की विशेष मिसाल मिलती है?",
+    options:[
+        "सब्र और माफ़ी",
+        "घमंड",
+        "हसद",
+        "धोखा"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत अय्यूब अलैहिस्सलाम किस गुण के लिए प्रसिद्ध हैं?",
+    options:[
+        "सब्र",
+        "घमंड",
+        "धोखा",
+        "ग़ीबत"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत यूनुस अलैहिस्सलाम की घटना किससे संबंधित है?",
+    options:[
+        "मछली के पेट में होने की घटना",
+        "काबा निर्माण",
+        "हिजरत",
+        "ग़ार-ए-हिरा"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत दाऊद अलैहिस्सलाम किसके लिए भी प्रसिद्ध हैं?",
+    options:[
+        "ज़बूर",
+        "तौरात",
+        "इंजील",
+        "क़ुरआन"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत मूसा अलैहिस्सलाम पर कौन-सी किताब नाज़िल हुई?",
+    options:[
+        "तौरात",
+        "ज़बूर",
+        "इंजील",
+        "क़ुरआन"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत ईसा अलैहिस्सलाम पर कौन-सी किताब नाज़िल हुई?",
+    options:[
+        "इंजील",
+        "तौरात",
+        "ज़बूर",
+        "क़ुरआन"
+    ],
+    answer:0
+},
+
+{
+    question:"हज़रत दाऊद अलैहिस्सलाम पर कौन-सी किताब नाज़िल हुई?",
+    options:[
+        "ज़बूर",
+        "तौरात",
+        "इंजील",
+        "क़ुरआन"
+    ],
+    answer:0
+},
+
+{
+    question:"क़ुरआन मजीद किस नबी ﷺ पर नाज़िल हुआ?",
+    options:[
+        "हज़रत मुहम्मद ﷺ",
+        "हज़रत मूसा अलैहिस्सलाम",
+        "हज़रत ईसा अलैहिस्सलाम",
+        "हज़रत दाऊद अलैहिस्सलाम"
+    ],
+    answer:0
+},
+
+{
+    question:"सभी नबियों की दावत का मूल संदेश क्या था?",
+    options:[
+        "सिर्फ़ अल्लाह की इबादत",
+        "धन जमा करना",
+        "दुनियावी शोहरत",
+        "घमंड करना"
+    ],
+    answer:0
+},
+
+{
+    question:"मुसलमान सभी नबियों के बारे में क्या मानते हैं?",
+    options:[
+        "उन पर ईमान रखते हैं",
+        "सिर्फ़ कुछ को मानते हैं",
+        "किसी को नहीं मानते",
+        "केवल इतिहास मानते हैं"
+    ],
+    answer:0
 }
-
-
-
-/*
-Question Number
-*/
-
-document.getElementById("questionNumber").innerHTML =
-
-"Question " + currentQuestion;
-
-
-
-/*
-IMPORTANT:
-
-Google Sheet Column A
-= row[0]
-
-यही Question है
-*/
-
-document.getElementById("question").innerHTML =
-
-"Question: " + row[0];
-
-
-
-/*
-Option A
-Column B = row[1]
-*/
-
-document.getElementById("optionA").innerHTML =
-
-"A. " + row[1];
-
-
-
-/*
-Option B
-Column C = row[2]
-*/
-
-document.getElementById("optionB").innerHTML =
-
-"B. " + row[2];
-
-
-
-/*
-Option C
-Column D = row[3]
-*/
-
-document.getElementById("optionC").innerHTML =
-
-"C. " + row[3];
-
-
-
-/*
-Option D
-Column E = row[4]
-*/
-
-document.getElementById("optionD").innerHTML =
-
-"D. " + row[4];
-
-
-
-/*
-Option E
-Column F = row[5]
-*/
-
-document.getElementById("optionE").innerHTML =
-
-"E. " + row[5];
-
-
-
-/*
-Result Clear
-*/
-
-document.getElementById("result").innerHTML = "";
-
-
-
-/*
-Buttons Reset
-*/
-
-document.querySelectorAll(".quiz-option")
-
-.forEach(function(button) {
-
-
-button.disabled = false;
-
-
-button.style.display = "block";
-
-
-button.classList.remove("correct");
-
-
-button.classList.remove("wrong");
-
-
-});
-
-
-
-/*
-Score Update
-*/
-
-updateScore();
-
-
-}
-
-
-
-/* =====================================
-   CHECK ANSWER
-===================================== */
-
-
-function checkAnswer(selectedIndex, clickedButton) {
-
-
-/*
-एक Question का Answer
-सिर्फ एक बार
-*/
-
-if (answered) {
-
-return;
-
-}
-
-
-answered = true;
-
-
-
-/*
-Current Question
-*/
-
-let row = quizData[currentQuestion];
-
-
-
-/*
-5 Options निकालना
-*/
-
-let options = [
-
-String(row[1]).trim(),
-
-String(row[2]).trim(),
-
-String(row[3]).trim(),
-
-String(row[4]).trim(),
-
-String(row[5]).trim()
 
 ];
 
 
 
-/*
-G Column = Answer
-
-यह पूरा Answer Text है
-*/
-
-let correctAnswer =
-
-String(row[6]).trim();
 
 
 
-/*
-Text को साफ करना
-
-Extra Spaces हटाना
-Small Letter करना
-*/
-
-correctAnswer =
-
-correctAnswer
-
-.replace(/\s+/g, " ")
-
-.toLowerCase();
 
 
+/* =================================
+   QUIZ SETTINGS
+================================= */
 
-/*
-सही Option ढूँढना
-*/
+const MAX_ATTEMPTS = 20;
 
-let correctIndex = -1;
+const QUESTIONS_PER_ATTEMPT = 50;
 
-
-
-for (let i = 0; i < options.length; i++) {
-
-
-let optionText =
-
-options[i]
-
-.replace(/\s+/g, " ")
-
-.toLowerCase();
+const TIME_PER_QUESTION = 50;
 
 
-if (optionText === correctAnswer) {
+/* =================================
+   QUIZ VARIABLES
+================================= */
+
+let currentQuestion = 0;
+
+let currentAttempt = 1;
+
+let userAnswers = [];
+
+let score = 0;
+
+let correctCount = 0;
+
+let wrongCount = 0;
+
+let unansweredCount = 0;
+
+let timerInterval = null;
+
+let timeLeft = TIME_PER_QUESTION;
+
+let answerLocked = false;
 
 
-correctIndex = i;
+/* =================================
+   START QUIZ
+================================= */
+
+function startQuiz(){
+
+    currentAttempt =
+        parseInt(
+            localStorage.getItem(
+                "sanaIslamicCurrentAttempt"
+            )
+        ) || 1;
 
 
-break;
+    if(currentAttempt > MAX_ATTEMPTS){
+
+        currentAttempt = MAX_ATTEMPTS;
+
+    }
 
 
-}
+    currentQuestion = 0;
 
-}
+    userAnswers = [];
+
+    score = 0;
+
+    correctCount = 0;
+
+    wrongCount = 0;
+
+    unansweredCount = 0;
 
 
-
-/*
-अगर Answer A/B/C/D/E के रूप में है
-तो उसे भी पहचानना
-*/
-
-if (correctIndex === -1) {
+    document.getElementById(
+        "startBox"
+    ).style.display = "none";
 
 
-if (correctAnswer === "a") {
+    document.getElementById(
+        "quizArea"
+    ).style.display = "block";
 
-correctIndex = 0;
 
-}
+    document.getElementById(
+        "timerBox"
+    ).style.display = "block";
 
-else if (correctAnswer === "b") {
 
-correctIndex = 1;
+    document.getElementById(
+        "score"
+    ).innerText = "0";
 
-}
 
-else if (correctAnswer === "c") {
-
-correctIndex = 2;
-
-}
-
-else if (correctAnswer === "d") {
-
-correctIndex = 3;
-
-}
-
-else if (correctAnswer === "e") {
-
-correctIndex = 4;
-
-}
+    loadQuestion();
 
 }
 
 
+/* =================================
+   GET CURRENT ATTEMPT QUESTIONS
+================================= */
 
-/*
-सभी Buttons
-*/
+function getAttemptQuestions(){
 
-let buttons =
-
-document.querySelectorAll(".quiz-option");
-
-
-
-/*
-सही जवाब
-*/
-
-if (selectedIndex === correctIndex) {
+    const start =
+        (currentAttempt - 1)
+        * QUESTIONS_PER_ATTEMPT;
 
 
-rightScore++;
+    const end =
+        start + QUESTIONS_PER_ATTEMPT;
 
 
-clickedButton.classList.add("correct");
-
-
-document.getElementById("result").innerHTML =
-
-"✅ सही जवाब! Right Score +1";
-
+    return questions.slice(start,end);
 
 }
 
 
-/*
-गलत जवाब
-*/
+/* =================================
+   LOAD QUESTION
+================================= */
 
-else {
+function loadQuestion(){
 
-
-wrongScore++;
-
-
-clickedButton.classList.add("wrong");
+    clearInterval(timerInterval);
 
 
-document.getElementById("result").innerHTML =
-
-"❌ गलत जवाब! Wrong Score +1";
+    answerLocked = false;
 
 
-/*
-सही Answer को Green दिखाएँ
-*/
-
-if (correctIndex >= 0) {
+    const attemptQuestions =
+        getAttemptQuestions();
 
 
-buttons[correctIndex]
+    if(
+        currentQuestion >=
+        attemptQuestions.length
+    ){
 
-.classList.add("correct");
+        finishQuiz();
 
+        return;
+
+    }
+
+
+    const q =
+        attemptQuestions[currentQuestion];
+
+
+    document.getElementById(
+        "questionNumber"
+    ).innerText =
+        "प्रश्न "
+        + (currentQuestion + 1);
+
+
+    document.getElementById(
+        "questionCount"
+    ).innerText =
+        (currentQuestion + 1)
+        + " / "
+        + QUESTIONS_PER_ATTEMPT;
+
+
+    document.getElementById(
+        "question"
+    ).innerText =
+        q.question;
+
+
+    document.getElementById(
+        "score"
+    ).innerText =
+        score;
+
+
+    const optionsBox =
+        document.getElementById(
+            "options"
+        );
+
+
+    optionsBox.innerHTML = "";
+
+
+    q.options.forEach(
+        function(option,index){
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "option";
+
+
+            button.innerText =
+                String.fromCharCode(
+                    65 + index
+                )
+                + ") "
+                + option;
+
+
+            button.onclick =
+                function(){
+
+                    selectAnswer(
+                        index
+                    );
+
+                };
+
+
+            optionsBox.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    startTimer();
 
 }
 
-}
+
+/* =================================
+   START 50 SECOND TIMER
+================================= */
+
+function startTimer(){
+
+    clearInterval(timerInterval);
 
 
-
-/*
-Score Update
-*/
-
-updateScore();
+    timeLeft =
+        TIME_PER_QUESTION;
 
 
-
-/*
-सभी Buttons Disable
-*/
-
-buttons.forEach(function(button) {
-
-button.disabled = true;
-
-});
+    updateTimer();
 
 
+    timerInterval =
+        setInterval(
+            function(){
 
-/*
-1 Second बाद
-अगला Question
-*/
-
-setTimeout(function() {
+                timeLeft--;
 
 
-currentQuestion++;
+                updateTimer();
 
 
-showQuestion();
+                if(timeLeft <= 0){
+
+                    clearInterval(
+                        timerInterval
+                    );
 
 
-}, 1000);
+                    timeExpired();
 
+                }
 
-}
-
-
-
-/* =====================================
-   UPDATE SCORE
-===================================== */
-
-
-function updateScore() {
-
-
-document.getElementById("score").innerHTML =
-
-"✅ Right Score: " +
-
-rightScore +
-
-" &nbsp; | &nbsp; " +
-
-"❌ Wrong Score: " +
-
-wrongScore;
-
+            },
+            1000
+        );
 
 }
 
+
+/* =================================
+   UPDATE TIMER
+================================= */
+
+function updateTimer(){
+
+    const timer =
+        document.getElementById(
+            "timer"
+        );
+
+
+    timer.innerText =
+        timeLeft;
+
+
+    if(timeLeft <= 10){
+
+        timer.classList.add(
+            "warning"
+        );
+
+    }else{
+
+        timer.classList.remove(
+            "warning"
+        );
+
+    }
+
+}
+
+
+/* =================================
+   SELECT ANSWER
+================================= */
+
+function selectAnswer(selectedIndex){
+
+    if(answerLocked){
+
+        return;
+
+    }
+
+
+    answerLocked = true;
+
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    const attemptQuestions =
+        getAttemptQuestions();
+
+
+    const q =
+        attemptQuestions[
+            currentQuestion
+        ];
+
+
+    userAnswers[
+        currentQuestion
+    ] = selectedIndex;
+
+
+    const optionButtons =
+        document.querySelectorAll(
+            ".option"
+        );
+
+
+    optionButtons.forEach(
+        function(button){
+
+            button.classList.add(
+                "locked"
+            );
+
+        }
+    );
+
+
+    if(
+        selectedIndex ===
+        q.answer
+    ){
+
+        optionButtons[
+            selectedIndex
+        ].classList.add(
+            "correct"
+        );
+
+
+        score++;
+
+        correctCount++;
+
+
+        document.getElementById(
+            "score"
+        ).innerText =
+            score;
+
+
+    }else{
+
+        optionButtons[
+            selectedIndex
+        ].classList.add(
+            "wrong"
+        );
+
+
+        optionButtons[
+            q.answer
+        ].classList.add(
+            "correct"
+        );
+
+
+        wrongCount++;
+
+    }
+
+
+    setTimeout(
+        function(){
+
+            nextQuestion();
+
+        },
+        1000
+    );
+
+}
+
+
+/* =================================
+   TIME EXPIRED
+================================= */
+
+function timeExpired(){
+
+    if(answerLocked){
+
+        return;
+
+    }
+
+
+    answerLocked = true;
+
+
+    userAnswers[
+        currentQuestion
+    ] = null;
+
+
+    unansweredCount++;
+
+
+    const optionButtons =
+        document.querySelectorAll(
+            ".option"
+        );
+
+
+    optionButtons.forEach(
+        function(button){
+
+            button.classList.add(
+                "locked"
+            );
+
+        }
+    );
+
+
+    setTimeout(
+        function(){
+
+            nextQuestion();
+
+        },
+        700
+    );
+
+}
+
+
+/* =================================
+   NEXT QUESTION AUTOMATICALLY
+================================= */
+
+function nextQuestion(){
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    currentQuestion++;
+
+
+    const attemptQuestions =
+        getAttemptQuestions();
+
+
+    if(
+        currentQuestion >=
+        attemptQuestions.length
+    ){
+
+        finishQuiz();
+
+        return;
+
+    }
+
+
+    loadQuestion();
+
+}
+/* =================================
+   FINISH QUIZ
+================================= */
+
+function finishQuiz(){
+
+    clearInterval(timerInterval);
+
+    document.getElementById(
+        "quizArea"
+    ).style.display = "none";
+
+    document.getElementById(
+        "timerBox"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "resultBox"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "finalScore"
+    ).innerText = score;
+
+
+    document.getElementById(
+        "correctCount"
+    ).innerText = correctCount;
+
+
+    document.getElementById(
+        "wrongCount"
+    ).innerText = wrongCount;
+
+
+    document.getElementById(
+        "unansweredCount"
+    ).innerText = unansweredCount;
+
+
+    let accuracy = 0;
+
+
+    if(QUESTIONS_PER_ATTEMPT > 0){
+
+        accuracy =
+            Math.round(
+                (correctCount /
+                QUESTIONS_PER_ATTEMPT) * 100
+            );
+
+    }
+
+
+    document.getElementById(
+        "accuracy"
+    ).innerText =
+        accuracy + "%";
+
+
+    /*
+       अगला Attempt तैयार करें
+    */
+
+    if(currentAttempt < MAX_ATTEMPTS){
+
+        localStorage.setItem(
+            "sanaIslamicCurrentAttempt",
+            currentAttempt + 1
+        );
+
+    }else{
+
+        localStorage.setItem(
+            "sanaIslamicCurrentAttempt",
+            MAX_ATTEMPTS + 1
+        );
+
+    }
+
+}
+
+
+/* =================================
+   VIEW SUMMARY
+================================= */
+
+function showSummary(){
+
+    const summaryBox =
+        document.getElementById(
+            "summaryBox"
+        );
+
+
+    const summaryContent =
+        document.getElementById(
+            "summaryContent"
+        );
+
+
+    summaryContent.innerHTML = "";
+
+
+    const attemptQuestions =
+        getAttemptQuestions();
+
+
+    attemptQuestions.forEach(
+        function(q,index){
+
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            const userAnswer =
+                userAnswers[index];
+
+
+            /*
+               समय समाप्त / कोई जवाब नहीं
+            */
+
+            if(
+                userAnswer === null ||
+                userAnswer === undefined
+            ){
+
+                item.className =
+                    "summary-item summary-empty";
+
+
+                item.innerHTML = `
+
+                    <div class="summary-question">
+
+                        प्रश्न ${index + 1}:
+                        ${q.question}
+
+                    </div>
+
+                    <div class="summary-answer">
+
+                        ⚪ आपका उत्तर:
+                        <strong>खाली</strong>
+
+                        <br>
+
+                        सही उत्तर:
+                        <strong>
+                            ${q.options[q.answer]}
+                        </strong>
+
+                        <br><br>
+
+                        ⏱️ समय समाप्त होने के कारण
+                        इस प्रश्न का उत्तर नहीं दिया गया।
+
+                    </div>
+
+                `;
+
+            }
+
+
+            /*
+               सही जवाब
+            */
+
+            else if(
+                userAnswer === q.answer
+            ){
+
+                item.className =
+                    "summary-item summary-correct";
+
+
+                item.innerHTML = `
+
+                    <div class="summary-question">
+
+                        प्रश्न ${index + 1}:
+                        ${q.question}
+
+                    </div>
+
+                    <div class="summary-answer">
+
+                        🟢 आपका उत्तर:
+                        <strong>
+                            ${q.options[userAnswer]}
+                        </strong>
+
+                        <br>
+
+                        सही उत्तर:
+                        <strong>
+                            ${q.options[q.answer]}
+                        </strong>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            /*
+               गलत जवाब
+            */
+
+            else{
+
+                item.className =
+                    "summary-item summary-wrong";
+
+
+                item.innerHTML = `
+
+                    <div class="summary-question">
+
+                        प्रश्न ${index + 1}:
+                        ${q.question}
+
+                    </div>
+
+                    <div class="summary-answer">
+
+                        🔴 आपका उत्तर:
+                        <strong>
+                            ${q.options[userAnswer]}
+                        </strong>
+
+                        <br>
+
+                        🟢 सही उत्तर:
+                        <strong>
+                            ${q.options[q.answer]}
+                        </strong>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            summaryContent.appendChild(
+                item
+            );
+
+        }
+    );
+
+
+    summaryBox.style.display =
+        "block";
+
+
+    summaryBox.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =================================
+   PAGE LOAD CHECK
+================================= */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        let savedAttempt =
+            parseInt(
+                localStorage.getItem(
+                    "sanaIslamicCurrentAttempt"
+                )
+            );
+
+
+        if(
+            !savedAttempt ||
+            savedAttempt < 1
+        ){
+
+            localStorage.setItem(
+                "sanaIslamicCurrentAttempt",
+                "1"
+            );
+
+        }
+
+    }
+);
 
 </script>
 
-
 </body>
-
 </html>
