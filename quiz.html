@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Islamic Quiz</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+#questionNumber {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+#question {
+    display: block;
+    visibility: visible;
+    color: #111;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 20px 0;
+}
+
+#score {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+#result {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.quiz-option {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 17px;
+    text-align: left;
+}
+
+.quiz-option.correct {
+    background-color: green !important;
+    color: white !important;
+}
+
+.quiz-option.wrong {
+    background-color: red !important;
+    color: white !important;
+}
+
+.quiz-option:disabled {
+    cursor: not-allowed;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>📝 Islamic Quiz</h1>
+
+<p>Test Your Islamic Knowledge</p>
+
+</header>
+
+
+
+<div class="container">
+
+
+<div class="card">
+
+
+<h2 id="questionNumber">
+Question Loading...
+</h2>
+
+
+<div id="score">
+
+✅ Right Score: 0
+
+&nbsp; | &nbsp;
+
+❌ Wrong Score: 0
+
+</div>
+
+
+<div id="question">
+Please wait...
+</div>
+
+
+
+<button
+id="optionA"
+class="quiz-option"
+onclick="checkAnswer(0, this)">
+</button>
+
+
+
+<button
+id="optionB"
+class="quiz-option"
+onclick="checkAnswer(1, this)">
+</button>
+
+
+
+<button
+id="optionC"
+class="quiz-option"
+onclick="checkAnswer(2, this)">
+</button>
+
+
+
+<button
+id="optionD"
+class="quiz-option"
+onclick="checkAnswer(3, this)">
+</button>
+
+
+
+<button
+id="optionE"
+class="quiz-option"
+onclick="checkAnswer(4, this)">
+</button>
+
+
+
+<div id="result"></div>
+
+
+</div>
+
+
+
+<a class="btn" href="index.html">
+
+⬅ Back Home
+
+</a>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================
+   GOOGLE APPS SCRIPT URL
+===================================== */
+
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbyKvZowrYZ9-Srcm2PkvvEL_ZLP3IYnyYo6vQfhTeHIHcNSIStkTfvv2UgslGnI9I-L/exec";
+
+
+
+/* =====================================
+   VARIABLES
+===================================== */
+
+
+let quizData = [];
+
+let currentQuestion = 1;
+
+let rightScore = 0;
+
+let wrongScore = 0;
+
+let answered = false;
+
+
+
+/* =====================================
+   LOAD DATA
+===================================== */
+
+
+fetch(API_URL)
+
+.then(function(response) {
+
+return response.json();
+
+})
+
+.then(function(data) {
+
+
+console.log("Google Sheet Data:", data);
+
+
+/*
+पहली Row Header है
+इसलिए उसे नहीं दिखाना
+*/
+
+quizData = data;
+
+
+/*
+Question Number 1
+Google Sheet Row 2 से आएगा
+*/
+
+currentQuestion = 1;
+
+
+/*
+Question दिखाएँ
+*/
+
+showQuestion();
+
+
+})
+
+.catch(function(error) {
+
+
+console.log("ERROR:", error);
+
+
+document.getElementById("questionNumber").innerHTML =
+"Error";
+
+
+document.getElementById("question").innerHTML =
+"❌ Google Sheet से Questions Load नहीं हो रहे।";
+
+
+});
+
+
+
+/* =====================================
+   SHOW QUESTION
+===================================== */
+
+
+function showQuestion() {
+
+
+answered = false;
+
+
+/*
+Google Sheet की Row:
+
+Row 0 = Header
+
+Row 1 = Question 1
+
+Row 2 = Question 2
+
+Row 3 = Question 3
+
+इसलिए currentQuestion को सीधे index बनाया
+*/
+
+
+let row = quizData[currentQuestion];
+
+
+
+/*
+अगर Question खत्म हो गए
+*/
+
+if (!row) {
+
+
+document.getElementById("questionNumber").innerHTML =
+
+"🎉 Quiz Complete!";
+
+
+document.getElementById("question").innerHTML =
+
+"आपने सभी Questions Complete कर लिए।";
+
+
+document.getElementById("score").innerHTML =
+
+"🏆 Final Score<br><br>" +
+
+"✅ Right Score: " +
+
+rightScore +
+
+"<br><br>" +
+
+"❌ Wrong Score: " +
+
+wrongScore;
+
+
+document.querySelectorAll(".quiz-option")
+
+.forEach(function(button) {
+
+button.style.display = "none";
+
+});
+
+
+return;
+
+}
+
+
+
+/*
+Question Number
+*/
+
+document.getElementById("questionNumber").innerHTML =
+
+"Question " + currentQuestion;
+
+
+
+/*
+IMPORTANT:
+
+Google Sheet Column A
+= row[0]
+
+यही Question है
+*/
+
+document.getElementById("question").innerHTML =
+
+"Question: " + row[0];
+
+
+
+/*
+Option A
+Column B = row[1]
+*/
+
+document.getElementById("optionA").innerHTML =
+
+"A. " + row[1];
+
+
+
+/*
+Option B
+Column C = row[2]
+*/
+
+document.getElementById("optionB").innerHTML =
+
+"B. " + row[2];
+
+
+
+/*
+Option C
+Column D = row[3]
+*/
+
+document.getElementById("optionC").innerHTML =
+
+"C. " + row[3];
+
+
+
+/*
+Option D
+Column E = row[4]
+*/
+
+document.getElementById("optionD").innerHTML =
+
+"D. " + row[4];
+
+
+
+/*
+Option E
+Column F = row[5]
+*/
+
+document.getElementById("optionE").innerHTML =
+
+"E. " + row[5];
+
+
+
+/*
+Result Clear
+*/
+
+document.getElementById("result").innerHTML = "";
+
+
+
+/*
+Buttons Reset
+*/
+
+document.querySelectorAll(".quiz-option")
+
+.forEach(function(button) {
+
+
+button.disabled = false;
+
+
+button.style.display = "block";
+
+
+button.classList.remove("correct");
+
+
+button.classList.remove("wrong");
+
+
+});
+
+
+
+/*
+Score Update
+*/
+
+updateScore();
+
+
+}
+
+
+
+/* =====================================
+   CHECK ANSWER
+===================================== */
+
+
+function checkAnswer(selectedIndex, clickedButton) {
+
+
+/*
+एक Question का Answer
+सिर्फ एक बार
+*/
+
+if (answered) {
+
+return;
+
+}
+
+
+answered = true;
+
+
+
+/*
+Current Question
+*/
+
+let row = quizData[currentQuestion];
+
+
+
+/*
+5 Options निकालना
+*/
+
+let options = [
+
+String(row[1]).trim(),
+
+String(row[2]).trim(),
+
+String(row[3]).trim(),
+
+String(row[4]).trim(),
+
+String(row[5]).trim()
+
+];
+
+
+
+/*
+G Column = Answer
+
+यह पूरा Answer Text है
+*/
+
+let correctAnswer =
+
+String(row[6]).trim();
+
+
+
+/*
+Text को साफ करना
+
+Extra Spaces हटाना
+Small Letter करना
+*/
+
+correctAnswer =
+
+correctAnswer
+
+.replace(/\s+/g, " ")
+
+.toLowerCase();
+
+
+
+/*
+सही Option ढूँढना
+*/
+
+let correctIndex = -1;
+
+
+
+for (let i = 0; i < options.length; i++) {
+
+
+let optionText =
+
+options[i]
+
+.replace(/\s+/g, " ")
+
+.toLowerCase();
+
+
+if (optionText === correctAnswer) {
+
+
+correctIndex = i;
+
+
+break;
+
+
+}
+
+}
+
+
+
+/*
+अगर Answer A/B/C/D/E के रूप में है
+तो उसे भी पहचानना
+*/
+
+if (correctIndex === -1) {
+
+
+if (correctAnswer === "a") {
+
+correctIndex = 0;
+
+}
+
+else if (correctAnswer === "b") {
+
+correctIndex = 1;
+
+}
+
+else if (correctAnswer === "c") {
+
+correctIndex = 2;
+
+}
+
+else if (correctAnswer === "d") {
+
+correctIndex = 3;
+
+}
+
+else if (correctAnswer === "e") {
+
+correctIndex = 4;
+
+}
+
+}
+
+
+
+/*
+सभी Buttons
+*/
+
+let buttons =
+
+document.querySelectorAll(".quiz-option");
+
+
+
+/*
+सही जवाब
+*/
+
+if (selectedIndex === correctIndex) {
+
+
+rightScore++;
+
+
+clickedButton.classList.add("correct");
+
+
+document.getElementById("result").innerHTML =
+
+"✅ सही जवाब! Right Score +1";
+
+
+}
+
+
+/*
+गलत जवाब
+*/
+
+else {
+
+
+wrongScore++;
+
+
+clickedButton.classList.add("wrong");
+
+
+document.getElementById("result").innerHTML =
+
+"❌ गलत जवाब! Wrong Score +1";
+
+
+/*
+सही Answer को Green दिखाएँ
+*/
+
+if (correctIndex >= 0) {
+
+
+buttons[correctIndex]
+
+.classList.add("correct");
+
+
+}
+
+}
+
+
+
+/*
+Score Update
+*/
+
+updateScore();
+
+
+
+/*
+सभी Buttons Disable
+*/
+
+buttons.forEach(function(button) {
+
+button.disabled = true;
+
+});
+
+
+
+/*
+1 Second बाद
+अगला Question
+*/
+
+setTimeout(function() {
+
+
+currentQuestion++;
+
+
+showQuestion();
+
+
+}, 1000);
+
+
+}
+
+
+
+/* =====================================
+   UPDATE SCORE
+===================================== */
+
+
+function updateScore() {
+
+
+document.getElementById("score").innerHTML =
+
+"✅ Right Score: " +
+
+rightScore +
+
+" &nbsp; | &nbsp; " +
+
+"❌ Wrong Score: " +
+
+wrongScore;
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

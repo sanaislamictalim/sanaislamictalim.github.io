@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sana Islamic - Prayer Time</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f9f4;
+    margin:0;
+    padding:20px;
+}
+
+.card{
+    max-width:500px;
+    margin:auto;
+    background:#fff;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+    padding:20px;
+}
+
+h2{
+    text-align:center;
+    color:green;
+}
+
+.location{
+    text-align:center;
+    color:#555;
+    margin:10px 0;
+}
+
+.date{
+    text-align:center;
+    color:#087f5b;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+button{
+    display:block;
+    margin:15px auto;
+    padding:12px 20px;
+    background:green;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:darkgreen;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th{
+    background:green;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#f7f7f7;
+}
+
+#message{
+    text-align:center;
+    color:#555;
+    margin:15px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>🕌 Sana Islamic</h2>
+
+<div class="location" id="location">
+📍 Location पता की जा रही है...
+</div>
+
+<div class="date" id="date"></div>
+
+<button onclick="getPrayerTimes()">
+📍 मेरी Location से Prayer Time देखें
+</button>
+
+<div id="message">
+कृपया Location Permission Allow करें।
+</div>
+
+<table id="prayerTable" style="display:none;">
+
+<tr>
+<th>Namaz</th>
+<th>Time</th>
+</tr>
+
+<tr>
+<td>🌅 Fajr</td>
+<td id="fajr">--</td>
+</tr>
+
+<tr>
+<td>🌄 Sunrise</td>
+<td id="sunrise">--</td>
+</tr>
+
+<tr>
+<td>☀️ Dhuhr</td>
+<td id="dhuhr">--</td>
+</tr>
+
+<tr>
+<td>🌤 Asr</td>
+<td id="asr">--</td>
+</tr>
+
+<tr>
+<td>🌇 Maghrib</td>
+<td id="maghrib">--</td>
+</tr>
+
+<tr>
+<td>🌙 Isha</td>
+<td id="isha">--</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<script>
+
+function getPrayerTimes(){
+
+    if(!navigator.geolocation){
+        document.getElementById("message").innerText =
+        "आपके Browser में GPS Location Support नहीं है।";
+        return;
+    }
+
+    document.getElementById("message").innerText =
+    "📍 आपकी Location खोजी जा रही है...";
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position){
+
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+
+            getPrayerData(latitude, longitude);
+
+        },
+
+        function(error){
+
+            document.getElementById("message").innerText =
+            "❌ Location Permission Allow करें।";
+
+        }
+
+    );
+
+}
+
+
+function getPrayerData(latitude, longitude){
+
+    let today = new Date();
+
+    let day = today.getDate();
+    let month = today.getMonth() + 1;
+    let year = today.getFullYear();
+
+    let url =
+    "https://api.aladhan.com/v1/timings/" +
+    day + "-" + month + "-" + year +
+    "?latitude=" + latitude +
+    "&longitude=" + longitude +
+    "&method=3";
+
+    fetch(url)
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        let timings = data.data.timings;
+
+        document.getElementById("fajr").innerText =
+        convertTime(timings.Fajr);
+
+        document.getElementById("sunrise").innerText =
+        convertTime(timings.Sunrise);
+
+        document.getElementById("dhuhr").innerText =
+        convertTime(timings.Dhuhr);
+
+        document.getElementById("asr").innerText =
+        convertTime(timings.Asr);
+
+        document.getElementById("maghrib").innerText =
+        convertTime(timings.Maghrib);
+
+        document.getElementById("isha").innerText =
+        convertTime(timings.Isha);
+
+        document.getElementById("date").innerText =
+        data.data.date.readable;
+
+        document.getElementById("location").innerText =
+        "📍 आपकी Current Location";
+
+        document.getElementById("message").innerText =
+        "✅ आज का Prayer Time";
+
+        document.getElementById("prayerTable").style.display =
+        "table";
+
+    })
+
+    .catch(error => {
+
+        document.getElementById("message").innerText =
+        "❌ Prayer Time लोड नहीं हो पाया। Internet Check करें।";
+
+    });
+
+}
+
+
+function convertTime(time){
+
+    let parts = time.split(":");
+
+    let hour = parseInt(parts[0]);
+    let minute = parts[1];
+
+    let ampm = hour >= 12 ? "PM" : "AM";
+
+    hour = hour % 12;
+
+    if(hour === 0){
+        hour = 12;
+    }
+
+    return hour + ":" + minute + " " + ampm;
+
+}
+
+
+document.getElementById("date").innerText =
+new Date().toLocaleDateString("hi-IN");
+
+
+window.onload = function(){
+
+    getPrayerTimes();
+
+};
+
+</script>
+
+</body>
+</html>
