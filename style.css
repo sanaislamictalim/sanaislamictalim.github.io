@@ -1,296 +1,547 @@
-/* ==============================
-   SANA ISLAMIC - STYLE
-   ============================== */
+<style>
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    background: linear-gradient(135deg, #063d2d, #087f5b);
-    color: #123b2d;
-    min-height: 100vh;
+body{
+    font-family:Arial,"Noto Sans Devanagari",sans-serif;
+    background:linear-gradient(135deg,#031d14,#075538,#032218);
+    color:white;
 }
 
-/* Header */
-header {
-    width: 94%;
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 22px 15px;
-    text-align: center;
-    background: linear-gradient(135deg, #075b43, #0a8f68);
-    border: 3px solid #d8b84c;
-    border-radius: 25px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+/* ================= HEADER ================= */
+
+header{
+    width:96%;
+    max-width:1500px;
+    margin:8px auto;
+    padding:10px;
+    text-align:center;
+    border-radius:20px;
+    background:linear-gradient(135deg,#075d3b,#08794d);
+    border:2px solid #d4af37;
+    box-shadow:0 5px 15px rgba(0,0,0,.35);
 }
 
-header h1 {
-    color: #fff5c7;
-    font-size: 30px;
-    font-weight: 700;
-    margin-bottom: 10px;
+header h1{
+    margin:0;
+    font-size:30px;
+    color:#fff8d0;
 }
 
-header p {
-    color: #fff;
-    font-size: 21px;
-    font-weight: 600;
+/* ================= SALAM ================= */
+
+.salam-card{
+    width:96%;
+    max-width:1500px;
+    margin:8px auto 12px;
+    padding:10px;
+    text-align:center;
+    border-radius:20px;
+    background:linear-gradient(135deg,#fffdf0,#f1f8e9);
+    border:2px solid #d4af37;
+    color:#075d3b;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
 }
 
-/* Main buttons */
-.container {
-    width: 94%;
-    max-width: 1000px;
-    margin: 25px auto 50px;
-    padding: 12px;
+.salam-arabic{
+    font-size:25px;
+    font-weight:bold;
+    line-height:1.4;
 }
 
-.btn {
-    position: relative;
-    display: block;
-    width: 100%;
-    min-height: 95px;
-    margin: 14px 0;
-    padding: 15px 48px 15px 75px;
-
-    background: linear-gradient(135deg, #fffdf2, #f5f7e9);
-    color: #064d37;
-
-    text-decoration: none;
-    border-radius: 22px;
-    border: 3px solid #d3ad37;
-
-    font-size: 19px;
-    font-weight: 700;
-    line-height: 1.45;
-
-    box-shadow: 0 7px 15px rgba(0,0,0,0.25);
-    transition: 0.25s ease;
-    overflow: hidden;
+.salam-hindi{
+    font-size:20px;
+    color:#7b1fa2;
+    font-weight:bold;
 }
 
-/* Left icon */
-.btn::before {
-    content: "☪";
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-
-    width: 45px;
-    height: 45px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: linear-gradient(135deg, #087f5b, #064d37);
-    color: #ffe99a;
-
-    border: 3px solid #d8b84c;
-    border-radius: 50%;
-    font-size: 23px;
+.salam-english{
+    font-size:17px;
+    color:#555;
 }
 
-/* Right arrow */
-.btn::after {
-    content: "›";
-    position: absolute;
-    right: 17px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #087f5b;
-    font-size: 38px;
+/* ================= BUTTON AREA ================= */
+
+.container{
+    width:96%;
+    max-width:1500px;
+    margin:0 auto 10px;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:7px;
 }
 
-/* Button effect */
-.btn:hover {
-    transform: translateY(-3px);
-    background: #ffffff;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.30);
+/* ================= MAIN BUTTON ================= */
+
+.btn{
+    position:relative;
+
+    min-height:110px;
+
+    padding:8px 105px 8px 205px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    text-decoration:none;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f4f8ee
+        );
+
+    color:#173c2b;
+
+    border:2px solid #d4af37;
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,.30);
+
+    overflow:hidden;
+
+    transition:.2s;
 }
 
-.btn:active {
-    transform: scale(0.98);
+/* ================= LEFT ICON ================= */
+
+.btn .hi{
+    position:relative;
+
+    font-size:22px;
+    font-weight:bold;
+
+    color:#111;
+
+    z-index:2;
 }
 
-/* ==================================
-   DONATION - SMALL TOP RIGHT BUTTON
-   ================================== */
+/* Icon ko thoda bada */
 
-.donation-box {
-    position: fixed !important;
-    top: 12px !important;
-    right: 10px !important;
-    left: auto !important;
-    bottom: auto !important;
-
-    width: 108px !important;
-    height: 60px !important;
-    min-width: 108px !important;
-    max-width: 108px !important;
-
-    padding: 4px !important;
-    margin: 0 !important;
-
-    background: #fffdf0 !important;
-    border: 2px solid #d4af37 !important;
-    border-radius: 15px !important;
-
-    z-index: 999999 !important;
-    overflow: hidden !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    box-shadow: 0 4px 12px rgba(0,0,0,0.35) !important;
+.btn .hi::first-letter{
+    font-size:45px;
 }
 
-/* Hide old large donation content */
-.donation-box .donation-heart,
-.donation-box h2,
-.donation-box .dots,
-.donation-box .donate-title,
-.donation-box .donation-word,
-.donation-box p {
-    display: none !important;
+/* ================= URDU ================= */
+
+.btn .urdu{
+    font-size:19px;
+    font-weight:bold;
+    color:#111;
+    margin-top:2px;
 }
 
-/* Only Donate button remains */
-.donation-box .donate-button {
-    display: flex !important;
+/* ================= ENGLISH ================= */
 
-    width: 96px !important;
-    height: 50px !important;
-
-    margin: 0 !important;
-    padding: 3px !important;
-
-    background: linear-gradient(135deg, #087f5b, #064d37) !important;
-    color: white !important;
-
-    border: 1px solid #d4af37 !important;
-    border-radius: 12px !important;
-
-    text-decoration: none !important;
-
-    align-items: center !important;
-    justify-content: center !important;
-    flex-direction: column !important;
-
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    line-height: 17px !important;
-
-    box-shadow: none !important;
+.btn .eng{
+    font-size:17px;
+    font-weight:bold;
+    color:#075e3b;
+    margin-top:2px;
 }
 
-.donation-box .donate-button small {
-    display: block !important;
-    font-size: 10px !important;
-    color: white !important;
-    margin: 0 !important;
+/* ================= CHAND LOGO RIGHT ================= */
+
+.btn::before{
+
+    content:"☪";
+
+    position:absolute;
+
+    right:55px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:58px;
+    height:58px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #075e3b,
+            #159957
+        );
+
+    color:#fff4b0;
+
+    font-size:31px;
+
+    border:3px solid #d4af37;
+
+    box-shadow:
+        0 2px 6px rgba(0,0,0,.3);
+
+    z-index:5;
 }
 
-/* Mobile */
-@media (max-width: 600px) {
+/* ================= ARROW ================= */
 
-    header {
-        width: 94%;
-        margin: 15px auto;
-        padding: 18px 10px;
+.btn::after{
+
+    content:"›";
+
+    position:absolute;
+
+    right:15px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:43px;
+    font-weight:bold;
+
+    color:#087f4f;
+
+    z-index:5;
+}
+
+/* ================= HOVER ================= */
+
+.btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,.4);
+}
+
+.btn:active{
+    transform:scale(.97);
+}
+
+/* ================= DIFFERENT BUTTON COLORS ================= */
+
+.green{
+    border-color:#218c5b;
+}
+
+.blue{
+    border-color:#2878c8;
+}
+
+.purple{
+    border-color:#8e44ad;
+}
+
+.orange{
+    border-color:#d88a18;
+}
+
+.pink{
+    border-color:#c43c78;
+}
+
+.teal{
+    border-color:#159a9c;
+}
+
+/* ================= CHAND COLORS ================= */
+
+.green::before{
+    background:linear-gradient(135deg,#075e3b,#159957);
+}
+
+.blue::before{
+    background:linear-gradient(135deg,#123f91,#2878c8);
+}
+
+.purple::before{
+    background:linear-gradient(135deg,#54146d,#8e44ad);
+}
+
+.orange::before{
+    background:linear-gradient(135deg,#a94d00,#d88a18);
+}
+
+.pink::before{
+    background:linear-gradient(135deg,#a40d4e,#c43c78);
+}
+
+.teal::before{
+    background:linear-gradient(135deg,#006b6b,#159a9c);
+}
+
+/* ================= DONATION ================= */
+
+.donation-box{
+
+    position:fixed !important;
+
+    top:8px !important;
+    right:10px !important;
+    left:auto !important;
+    bottom:auto !important;
+
+    width:180px !important;
+    max-width:180px !important;
+
+    height:auto !important;
+
+    padding:8px !important;
+
+    margin:0 !important;
+
+    border-radius:18px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #075e3b,
+            #087f4f
+        ) !important;
+
+    border:3px solid #d4af37 !important;
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,.4) !important;
+
+    text-align:center;
+
+    z-index:99999;
+}
+
+/* Donation ka bada content chhota */
+
+.donation-heart{
+    display:none !important;
+}
+
+.donation-box h2{
+    display:none !important;
+}
+
+.dots{
+    display:none !important;
+}
+
+.donate-title{
+    display:none !important;
+}
+
+.donation-word{
+    display:none !important;
+}
+
+.donation-box p{
+    display:none !important;
+}
+
+.donate-button{
+
+    display:block !important;
+
+    margin:0 !important;
+
+    padding:8px 5px !important;
+
+    border-radius:14px !important;
+
+    background:transparent !important;
+
+    color:white !important;
+
+    text-decoration:none;
+
+    font-size:18px !important;
+
+    font-weight:bold;
+}
+
+.donate-button small{
+    display:block;
+    font-size:14px;
+    margin-top:2px;
+}
+
+/* ================= CONTACT ================= */
+
+footer{
+
+    display:block !important;
+
+    width:96%;
+
+    max-width:1500px;
+
+    margin:5px auto 15px;
+
+    padding:12px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #075e3b,
+            #087f4f
+        );
+
+    border:2px solid #d4af37;
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,.3);
+}
+
+footer a{
+    color:#fff4b0;
+    text-decoration:none;
+    font-weight:bold;
+    margin:0 10px;
+}
+
+footer p{
+    display:none;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+    header{
+        width:96%;
+        padding:14px 5px;
+        margin-top:5px;
     }
 
-    header h1 {
-        font-size: 25px;
+    header h1{
+        font-size:25px;
     }
 
-    header p {
-        font-size: 18px;
+    .salam-card{
+        width:96%;
+        padding:12px 5px;
     }
 
-    .container {
-        width: 94%;
-        padding: 5px;
-        margin-top: 20px;
+    .salam-arabic{
+        font-size:20px;
     }
 
-    .btn {
-        min-height: 95px;
-        padding: 15px 43px 15px 70px;
-        font-size: 17px;
-        border-radius: 20px;
+    .salam-hindi{
+        font-size:17px;
     }
 
-    .btn::before {
-        left: 12px;
-        width: 44px;
-        height: 44px;
-        font-size: 22px;
+    .salam-english{
+        font-size:14px;
     }
 
-    .btn::after {
-        right: 10px;
-        font-size: 34px;
+    /* 2 COLUMN HAMESHA */
+
+    .container{
+        width:96%;
+        grid-template-columns:1fr 1fr;
+        gap:6px;
     }
 
-    .donation-box {
-        top: 8px !important;
-        right: 7px !important;
-        width: 105px !important;
-        max-width: 105px !important;
-        height: 56px !important;
-        min-width: 105px !important;
+    .btn{
+
+        min-height:125px;
+
+        padding:
+            8px
+            62px
+            8px
+            65px;
+
+        border-radius:18px;
     }
 
-    .donation-box .donate-button {
-        width: 94px !important;
-        height: 47px !important;
-        font-size: 13px !important;
+    /* Chand */
+
+    .btn::before{
+
+        right:25px;
+
+        width:42px;
+        height:42px;
+
+        font-size:22px;
+
+        border-width:2px;
     }
 
-    .donation-box .donate-button small {
-        font-size: 9px !important;
+    /* Arrow */
+
+    .btn::after{
+
+        right:5px;
+
+        font-size:30px;
+    }
+
+    .btn .hi{
+
+        font-size:15px;
+        line-height:1.25;
+    }
+
+    .btn .hi::first-letter{
+        font-size:28px;
+    }
+
+    .btn .urdu{
+        font-size:13px;
+        line-height:1.25;
+    }
+
+    .btn .eng{
+        font-size:12px;
+        line-height:1.2;
+    }
+
+    /* Donation */
+
+    .donation-box{
+
+        width:145px !important;
+        max-width:145px !important;
+
+        top:5px !important;
+        right:5px !important;
+
+        border-radius:15px !important;
+
+        padding:4px !important;
+    }
+
+    .donate-button{
+
+        font-size:15px !important;
+        padding:5px !important;
+    }
+
+    .donate-button small{
+        font-size:11px;
+    }
+
+    footer{
+        width:96%;
+        font-size:12px;
+        padding:9px 3px;
+    }
+
+    footer a{
+        margin:0 3px;
     }
 }
 
-/* Old amount/app buttons */
-.amounts {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.amounts button {
-    padding: 10px 20px;
-    font-size: 18px;
-    background: green;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.apps {
-    margin-top: 20px;
-}
-
-.apps button {
-    padding: 10px 15px;
-    margin: 5px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    background: green;
-    color: white;
-    cursor: pointer;
-}
+</style>
