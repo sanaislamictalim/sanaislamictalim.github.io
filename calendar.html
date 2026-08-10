@@ -3,156 +3,912 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Islamic Calendar</title>
+
+<title>Sana Islamic - Islamic Calendar</title>
 
 <style>
-body{
-margin:0;
-padding:0;
-font-family:Arial,sans-serif;
-background:#a9f406;
+
+*{
+box-sizing:border-box;
 }
 
-.card{
-max-width:500px;
-margin:20px auto;
-background:#e70909;
-border-radius:15px;
-padding:20px;
-box-shadow:0 0 10px rgba(0,0,0,.2);
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#061743;
+color:white;
+}
+
+.header{
+background:#4055b8;
+padding:12px 15px;
 text-align:center;
 }
 
-h2{
+.header h2{
+margin:0;
+font-size:24px;
+}
+
+#clock{
+font-size:20px;
+font-weight:bold;
+margin-top:5px;
+}
+
+.main{
+padding:15px 8px 35px;
+background:
+radial-gradient(
+circle at 50% 20%,
+#178bd8 0%,
+#17439e 40%,
+#061743 90%
+);
+min-height:100vh;
+}
+
+.title{
+text-align:center;
+font-size:25px;
+margin:8px 0 15px;
+}
+
+.monthBox{
+max-width:600px;
+margin:auto;
+background:rgba(0,0,0,.25);
+padding:12px;
+border-radius:15px;
+}
+
+.monthTitle{
+text-align:center;
+font-size:21px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.buttons{
+display:flex;
+justify-content:space-between;
+gap:10px;
+margin-bottom:12px;
+}
+
+.buttons button{
+flex:1;
+border:0;
+border-radius:10px;
+padding:11px;
+font-size:16px;
+font-weight:bold;
+background:#12a9e0;
+color:white;
+}
+
+.todayBtn{
+background:#ffffff !important;
+color:#222 !important;
+}
+
+.calendar{
+width:100%;
+border-collapse:collapse;
+table-layout:fixed;
+}
+
+.calendar th{
+background:#4055b8;
+padding:8px 2px;
+font-size:13px;
+}
+
+.calendar td{
+border:2px solid #061743;
+height:82px;
+vertical-align:top;
+padding:4px 2px;
+background:#f5f5f5;
+color:#111;
+position:relative;
+}
+
+.calendar td.today{
+background:#ffe082;
+}
+
+.calendar td.holiday{
+background:#b7f7c5;
+}
+
+.dateEnglish{
+font-size:18px;
+font-weight:bold;
+}
+
+.dateHindi{
+font-size:12px;
+font-weight:bold;
+margin-top:2px;
+}
+
+.dateUrdu{
+font-size:12px;
+direction:rtl;
+margin-top:2px;
+}
+
+.hijri{
+font-size:10px;
+color:#17439e;
+margin-top:3px;
+}
+
+.tick{
+font-size:16px;
+font-weight:bold;
 color:green;
-margin-bottom:15px;
+}
+
+.holidayName{
+font-size:9px;
+font-weight:bold;
+color:#075c16;
+line-height:11px;
+margin-top:2px;
 }
 
 .info{
+max-width:600px;
+margin:15px auto 0;
 background:#06edf9;
+color:#111;
 border:2px solid green;
 border-radius:10px;
 padding:10px;
-margin-bottom:15px;
-}
-
-.info div{
-font-size:18px;
+text-align:center;
 font-weight:bold;
-margin:6px 0;
 }
 
-table{
-width:100%;
-border-collapse:collapse;
+.footerNote{
+max-width:600px;
+margin:12px auto;
+font-size:12px;
+text-align:center;
+color:#ffe082;
 }
 
-th{
-background:green;
-color:rgb(190, 246, 5);
-padding:15px;
-}
-
-td{
-border:5px solid #140617;
-padding:15px;
-}
-
-tr:nth-child(even){
-background:#05f5e9;
-}
 </style>
-
 </head>
+
 <body>
 
-<div class="card">
+<div class="header">
 
-<h2>🕌 इस्लामिक कैलेंडर</h2>
+<h2>🕌 Sana Islamic</h2>
 
-<div class="info">
-<div id="today"></div>
-<div id="urduDay"></div>
-<div id="hijri"></div>
-<div id="time"></div>
+<div id="clock">
+🕒 --:--:--
 </div>
 
-<table>
+</div>
+
+
+<div class="main">
+
+<div class="title">
+📅 इस्लामिक कैलेंडर
+</div>
+
+
+<div class="monthBox">
+
+<div id="monthTitle" class="monthTitle">
+Loading...
+</div>
+
+
+<div class="buttons">
+
+<button onclick="previousMonth()">
+⬅ पिछला
+</button>
+
+<button class="todayBtn" onclick="goToday()">
+आज
+</button>
+
+<button onclick="nextMonth()">
+अगला ➡
+</button>
+
+</div>
+
+
+<table class="calendar">
+
+<thead>
 
 <tr>
-<th>महीना</th>
-<th>अरबी</th>
+
+<th>
+रवि<br>
+اتوار
+</th>
+
+<th>
+सोम<br>
+پیر
+</th>
+
+<th>
+मंगल<br>
+منگل
+</th>
+
+<th>
+बुध<br>
+بدھ
+</th>
+
+<th>
+गुरु<br>
+جمعرات
+</th>
+
+<th>
+शुक्र<br>
+جمعہ
+</th>
+
+<th>
+शनि<br>
+ہفتہ
+</th>
+
 </tr>
-<tr><td>1. मुहर्रम</td><td>مُحَرَّم</td></tr>
-<tr><td>2. सफर</td><td>صَفَر</td></tr>
-<tr><td>3. रबीउल अव्वल</td><td>رَبِيعُ الْأَوَّل</td></tr>
-<tr><td>4. रबीउल आखिर</td><td>رَبِيعُ الآخِر</td></tr>
-<tr><td>5. जुमादाल ऊला</td><td>جُمَادَى الْأُولَى</td></tr>
-<tr><td>6. जुमादाल आखिरा</td><td>جُمَادَى الْآخِرَة</td></tr>
-<tr><td>7. रजब</td><td>رَجَب</td></tr>
-<tr><td>8. शाबान</td><td>شَعْبَان</td></tr>
-<tr><td>9. रमज़ान</td><td>رَمَضَان</td></tr>
-<tr><td>10. शव्वाल</td><td>شَوَّال</td></tr>
-<tr><td>11. ज़िलक़ादा</td><td>ذُو الْقَعْدَة</td></tr>
-<tr><td>12. ज़िलहिज्जा</td><td>ذُو الْحِجَّة</td></tr>
+
+</thead>
+
+<tbody id="calendarBody">
+</tbody>
 
 </table>
 
 </div>
+
+
+<div id="info" class="info">
+आज की तारीख लोड हो रही है...
+</div>
+
+
+<div class="footerNote">
+🌙 Hijri तारीख अनुमानित है। चाँद देखने के अनुसार
+1 दिन आगे या पीछे हो सकती है।
+</div>
+
+</div>
+
+
 <script>
-function updateDate() {
+
+/* =========================
+   VARIABLES
+========================= */
+
+let viewDate = new Date();
+
+const monthNamesHindi = [
+"जनवरी","फ़रवरी","मार्च","अप्रैल",
+"मई","जून","जुलाई","अगस्त",
+"सितंबर","अक्टूबर","नवंबर","दिसंबर"
+];
+
+const monthNamesEnglish = [
+"January","February","March","April",
+"May","June","July","August",
+"September","October","November","December"
+];
+
+const monthNamesUrdu = [
+"جنوری","فروری","مارچ","اپریل",
+"مئی","جون","جولائی","اگست",
+"ستمبر","اکتوبر","نومبر","دسمبر"
+];
+
+const hindiDays = [
+"रवि","सोम","मंगल","बुध",
+"गुरु","शुक्र","शनि"
+];
+
+const urduDays = [
+"اتوار","پیر","منگل","بدھ",
+"جمعرات","جمعہ","ہفتہ"
+];
+
+
+/* =========================
+   ISLAMIC EVENTS
+========================= */
+
+const islamicEvents = {
+
+"1-1":"नया इस्लामी साल",
+
+"10-1":"आशूरा",
+
+"12-3":"ईद-ए-मिलादुन्नबी ﷺ",
+
+"27-7":"शब-ए-मेराज",
+
+"15-8":"शब-ए-बरात",
+
+"1-9":"रमज़ान शुरू",
+
+"27-9":"शब-ए-क़द्र",
+
+"1-10":"ईद-उल-फ़ित्र",
+
+"9-12":"अरफ़ा",
+
+"10-12":"ईद-उल-अज़हा"
+
+};
+
+
+/* =========================
+   LIVE CLOCK
+========================= */
+
+function updateClock(){
 
 const now = new Date();
 
-const urduDays = [
-"اتوار",
-"پیر",
-"منگل",
-"بدھ",
-"جمعرات",
-"جمعہ",
-"ہفتہ"
-];
+const time =
+now.toLocaleTimeString(
+"en-IN",
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit",
+hour12:true
+}
+);
 
-const urduDay = urduDays[now.getDay()];
+document.getElementById("clock").innerHTML =
+"🕒 " + time;
 
-const englishDate = now.toLocaleDateString("en-IN", {
-weekday: "long",
-day: "numeric",
-month: "long",
-year: "numeric"
-});
-
-const hijriDate = new Intl.DateTimeFormat("en-TN-u-ca-islamic", {
-day: "numeric",
-month: "long",
-year: "numeric"
-}).format(now);
-
-const liveTime = now.toLocaleTimeString("en-IN", {
-hour: "2-digit",
-minute: "2-digit",
-second: "2-digit",
-hour12: true
-});
-
-document.getElementById("today").innerHTML =
-"📅 English: " + englishDate;
-
-document.getElementById("urduDay").innerHTML =
-"🕌 Urdu Day: " + urduDay;
-
-document.getElementById("hijri").innerHTML =
-"🌙 Hijri: " + hijriDate;
-
-document.getElementById("time").innerHTML =
-"🕒 Time: " + liveTime;
 }
 
-updateDate();
+updateClock();
 
-// Har 1 second baad time update hoga
-setInterval(updateDate, 1000);
+setInterval(
+updateClock,
+1000
+);
+
+
+/* =========================
+   HIJRI DATE
+========================= */
+
+function getHijri(date){
+
+try{
+
+const formatter =
+new Intl.DateTimeFormat(
+"en-TN-u-ca-islamic",
+{
+day:"numeric",
+month:"numeric",
+year:"numeric"
+}
+);
+
+const parts =
+formatter.formatToParts(date);
+
+let day = "";
+let month = "";
+let year = "";
+
+parts.forEach(function(part){
+
+if(part.type === "day"){
+day = parseInt(part.value);
+}
+
+if(part.type === "month"){
+month = parseInt(part.value);
+}
+
+if(part.type === "year"){
+year = parseInt(part.value);
+}
+
+});
+
+return {
+day:day,
+month:month,
+year:year
+};
+
+}catch(e){
+
+return {
+day:0,
+month:0,
+year:0
+};
+
+}
+
+}
+
+
+/* =========================
+   FORMAT HIJRI MONTH
+========================= */
+
+const hijriMonths = [
+
+"मुहर्रम",
+
+"सफ़र",
+
+"रबीउल अव्वल",
+
+"रबीउल आखिर",
+
+"जुमादाल ऊला",
+
+"जुमादाल आखिरा",
+
+"रजब",
+
+"शाबान",
+
+"रमज़ान",
+
+"शव्वाल",
+
+"ज़िलक़ादा",
+
+"ज़िलहिज्जा"
+
+];
+
+const hijriMonthsUrdu = [
+
+"مُحَرَّم",
+
+"صَفَر",
+
+"رَبِيعُ الْأَوَّل",
+
+"رَبِيعُ الآخِر",
+
+"جُمَادَى الْأُولَى",
+
+"جُمَادَى الْآخِرَة",
+
+"رَجَب",
+
+"شَعْبَان",
+
+"رَمَضَان",
+
+"شَوَّال",
+
+"ذُو الْقَعْدَة",
+
+"ذُو الْحِجَّة"
+
+];
+
+
+/* =========================
+   CREATE CALENDAR
+========================= */
+
+function createCalendar(){
+
+const year =
+viewDate.getFullYear();
+
+const month =
+viewDate.getMonth();
+
+
+document.getElementById(
+"monthTitle"
+).innerHTML =
+
+"📅 "
++
+monthNamesHindi[month]
++
+" "
++
+year
++
+" | "
++
+monthNamesEnglish[month]
++
+" | "
++
+monthNamesUrdu[month];
+
+
+/* FIRST DAY */
+
+const firstDay =
+new Date(
+year,
+month,
+1
+).getDay();
+
+
+/* NUMBER OF DAYS */
+
+const totalDays =
+new Date(
+year,
+month + 1,
+0
+).getDate();
+
+
+const tbody =
+document.getElementById(
+"calendarBody"
+);
+
+tbody.innerHTML = "";
+
+
+let row =
+document.createElement("tr");
+
+
+/* EMPTY CELLS */
+
+for(
+let i=0;
+i<firstDay;
+i++
+){
+
+const cell =
+document.createElement("td");
+
+cell.innerHTML = "";
+
+row.appendChild(cell);
+
+}
+
+
+/* DATES */
+
+for(
+let day=1;
+day<=totalDays;
+day++
+){
+
+const date =
+new Date(
+year,
+month,
+day
+);
+
+const cell =
+document.createElement("td");
+
+
+/* TODAY */
+
+const today =
+new Date();
+
+if(
+date.getFullYear() ===
+today.getFullYear()
+&&
+date.getMonth() ===
+today.getMonth()
+&&
+date.getDate() ===
+today.getDate()
+){
+
+cell.classList.add("today");
+
+}
+
+
+/* HIJRI */
+
+const hijri =
+getHijri(date);
+
+
+/* HIJRI EVENT */
+
+const eventKey =
+hijri.month
++
+"-"
++
+hijri.day;
+
+
+const eventName =
+islamicEvents[eventKey];
+
+
+if(eventName){
+
+cell.classList.add(
+"holiday"
+);
+
+}
+
+
+/* CELL CONTENT */
+
+let html = "";
+
+html +=
+'<div class="dateEnglish">'
++
+day
++
+"</div>";
+
+html +=
+'<div class="dateHindi">'
++
+hindiDays[
+date.getDay()
+]
++
+"</div>";
+
+html +=
+'<div class="dateUrdu">'
++
+urduDays[
+date.getDay()
+]
++
+"</div>";
+
+
+if(
+hijri.day &&
+hijri.month
+){
+
+html +=
+'<div class="hijri">'
++
+hijri.day
++
+" "
++
+hijriMonths[
+hijri.month - 1
+]
++
+"</div>";
+
+}
+
+
+if(eventName){
+
+html +=
+'<div class="tick">✓</div>';
+
+html +=
+'<div class="holidayName">'
++
+eventName
++
+"</div>";
+
+}
+
+
+cell.innerHTML =
+html;
+
+
+row.appendChild(cell);
+
+
+/* NEW ROW */
+
+if(
+date.getDay() === 6
+){
+
+tbody.appendChild(row);
+
+row =
+document.createElement("tr");
+
+}
+
+}
+
+
+/* LAST ROW */
+
+if(
+row.children.length > 0
+){
+
+while(
+row.children.length < 7
+){
+
+const empty =
+document.createElement("td");
+
+row.appendChild(empty);
+
+}
+
+tbody.appendChild(row);
+
+}
+
+
+/* INFO */
+
+const todayHijri =
+getHijri(
+new Date()
+);
+
+if(
+todayHijri.day &&
+todayHijri.month
+){
+
+document.getElementById(
+"info"
+).innerHTML =
+
+"📅 आज: "
++
+new Date().getDate()
++
+" "
++
+monthNamesHindi[
+new Date().getMonth()
+]
++
+" "
++
+new Date().getFullYear()
+
++
+" | 🌙 Hijri: "
+
++
+todayHijri.day
++
+" "
++
+hijriMonths[
+todayHijri.month - 1
+]
+
++
+" | "
+
++
+hijriMonthsUrdu[
+todayHijri.month - 1
+];
+
+}
+
+}
+
+
+/* =========================
+   PREVIOUS
+========================= */
+
+function previousMonth(){
+
+viewDate.setMonth(
+viewDate.getMonth() - 1
+);
+
+createCalendar();
+
+}
+
+
+/* =========================
+   NEXT
+========================= */
+
+function nextMonth(){
+
+viewDate.setMonth(
+viewDate.getMonth() + 1
+);
+
+createCalendar();
+
+}
+
+
+/* =========================
+   TODAY
+========================= */
+
+function goToday(){
+
+viewDate =
+new Date();
+
+createCalendar();
+
+}
+
+
+/* =========================
+   AUTO UPDATE
+========================= */
+
+createCalendar();
+
+
+/*
+   आधी रात के बाद
+   नया दिन अपने-आप update
+   करने के लिए हर 1 मिनट check
+*/
+
+setInterval(
+function(){
+
+const now =
+new Date();
+
+if(
+viewDate.getFullYear() ===
+now.getFullYear()
+&&
+viewDate.getMonth() ===
+now.getMonth()
+){
+
+createCalendar();
+
+}
+
+},
+60000
+);
+
 </script>
 
 </body>
