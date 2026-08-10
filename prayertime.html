@@ -1,1095 +1,706 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sana Islamic - Prayer Time</title>
-<div id="jummaSetting" style="display:none;text-align:center;margin-top:12px;">
+  <title>Madhubani Prayer Time</title>
 
-<label>
-🕋 Jumma का समय सेट करें:
-</label>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-<br><br>
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, #155e52, transparent 40%),
+        linear-gradient(145deg, #041d1a, #06332d 60%, #021613);
+      color: #fff;
+      padding: 18px;
+    }
 
-<input
-type="time"
-id="jummaTime"
-value="13:30"
-style="
-padding:10px;
-border-radius:8px;
-border:2px solid green;
-font-size:16px;
-">
+    .app {
+      max-width: 620px;
+      margin: auto;
+    }
 
-<button
-onclick="saveJummaTime()"
-style="
-display:inline-block;
-margin:8px;
-padding:10px 15px;
-background:green;
-color:white;
-border:0;
-border-radius:8px;
-font-weight:bold;
-">
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 10px 0 20px;
+    }
 
-💾 Save
+    .mosque {
+      font-size: 42px;
+      margin-bottom: 5px;
+    }
 
-</button>
+    .header h1 {
+      font-size: 28px;
+      color: #f4d77b;
+    }
 
-</div>
+    .location {
+      margin-top: 6px;
+      opacity: .75;
+      font-size: 14px;
+    }
 
-<script>
-function saveJummaTime() {
+    /* Clock */
+    .clock-card {
+      text-align: center;
+      padding: 25px 15px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 15px 40px rgba(0,0,0,.25);
+      margin-bottom: 20px;
+    }
 
-    let time = document.getElementById("jummaTime").value;
+    #clock {
+      font-size: 44px;
+      font-weight: 700;
+      color: #f4d77b;
+      letter-spacing: 1px;
+    }
 
-    localStorage.setItem("jummaTime", time);
+    #today {
+      margin-top: 8px;
+      font-size: 14px;
+      opacity: .75;
+    }
 
-    alert("Jumma का समय Save हो गया: " + time);
-}
-</script>
+    /* Current Prayer */
+    .next-card {
+      background: linear-gradient(135deg, #c99a35, #80601d);
+      padding: 18px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
 
-<style>
+    .next-card small {
+      opacity: .85;
+    }
 
-*{
-box-sizing:border-box;
-}
+    #nextPrayer {
+      font-size: 23px;
+      margin-top: 5px;
+      font-weight: bold;
+    }
 
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#061743;
-color:white;
-}
+    /* Section */
+    .section-title {
+      margin: 22px 3px 12px;
+      font-size: 19px;
+      color: #f4d77b;
+    }
 
-.header{
-background:#4055b8;
-padding:12px;
-text-align:center;
-}
+    /* Prayer */
+    .prayer-list {
+      display: grid;
+      gap: 10px;
+    }
 
-.header h2{
-margin:0;
-font-size:24px;
-}
+    .prayer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 17px 18px;
+      border-radius: 17px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.08);
+      transition: .2s;
+    }
 
-#clock{
-font-size:21px;
-font-weight:bold;
-margin-top:5px;
-}
+    .prayer:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.11);
+    }
 
-.main{
-min-height:100vh;
-padding:15px 8px 35px;
+    .prayer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-background:
-radial-gradient(
-circle at 50% 20%,
-#178bd8 0%,
-#17439e 40%,
-#061743 90%
-);
-}
+    .icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(244,215,123,.12);
+      font-size: 20px;
+    }
 
-.card{
-max-width:550px;
-margin:auto;
-background:rgba(0,0,0,.25);
-border-radius:15px;
-padding:15px;
-}
+    .prayer-name {
+      font-size: 17px;
+      font-weight: bold;
+    }
 
-h1{
-text-align:center;
-font-size:24px;
-margin:5px 0 15px;
-}
+    .prayer-sub {
+      font-size: 11px;
+      opacity: .55;
+      margin-top: 3px;
+    }
 
-.location{
-text-align:center;
-font-size:15px;
-margin:8px 0;
-}
+    .prayer-time {
+      font-size: 19px;
+      font-weight: bold;
+      color: #f4d77b;
+    }
 
-.date{
-text-align:center;
-font-weight:bold;
-font-size:16px;
-margin:10px 0;
-}
+    /* Special */
+    .special {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
 
-button{
-display:block;
-margin:12px auto;
+    .special-box {
+      padding: 17px;
+      border-radius: 17px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.08);
+    }
 
-padding:12px 20px;
+    .special-box .emoji {
+      font-size: 23px;
+    }
 
-background:#12a9e0;
-color:white;
+    .special-box h3 {
+      margin-top: 8px;
+      font-size: 15px;
+    }
 
-border:none;
-border-radius:9px;
+    .special-box p {
+      margin-top: 5px;
+      color: #f4d77b;
+      font-size: 18px;
+      font-weight: bold;
+    }
 
-font-size:16px;
-font-weight:bold;
-}
+    /* Loading */
+    #loading {
+      text-align: center;
+      padding: 20px;
+      opacity: .7;
+    }
 
-button:hover{
-background:#087fbb;
-}
+    /* Footer */
+    footer {
+      text-align: center;
+      margin: 25px 0 8px;
+      font-size: 12px;
+      opacity: .5;
+    }
 
-.message{
-text-align:center;
-margin:12px 0;
-font-weight:bold;
-}
+    @media(max-width:480px) {
+      #clock {
+        font-size: 36px;
+      }
 
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:15px;
-background:white;
-color:#111;
-border-radius:10px;
-overflow:hidden;
-}
+      .header h1 {
+        font-size: 24px;
+      }
 
-th{
-background:#4055b8;
-color:white;
-padding:11px 5px;
-font-size:15px;
-}
+      .special {
+        grid-template-columns: 1fr 1fr;
+      }
 
-td{
-padding:11px 5px;
-border:1px solid #ddd;
-text-align:center;
-font-weight:bold;
-}
-
-tr:nth-child(even){
-background:#f3f7ff;
-}
-
-.highlight{
-background:#d5ffd9 !important;
-color:#075c16;
-}
-
-.jumma{
-background:#fff0a8 !important;
-color:#6b5200;
-}
-
-.ramadan{
-background:#d7f3ff !important;
-color:#075c7a;
-}
-
-.note{
-font-size:12px;
-text-align:center;
-margin-top:15px;
-color:#ffe082;
-line-height:18px;
-}
-
-</style>
+      .prayer {
+        padding: 14px;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
-
-<!-- =========================
-     HEADER
-========================= -->
-
-<div class="header">
-
-<h2>🕌 Sana Islamic</h2>
-
-<div id="clock">
-🕒 --:--:--
-</div>
-
-</div>
-
-
-<div class="main">
-
-
-<div class="card">
-
-
-<h1>
-🕌 आज के Prayer Times
-</h1>
-
-
-<div id="location" class="location">
-📍 Location पता की जा रही है...
-</div>
-
-
-<div id="date" class="date">
-📅 तारीख लोड हो रही है...
-</div>
-
-
-<button onclick="getPrayerTimes()">
-📍 मेरी Location से Prayer Time
-</button>
-
-
-<div id="message" class="message">
-कृपया Location Permission Allow करें।
-</div>
-
-
-<table id="prayerTable"
-style="display:none;">
-
-<tr>
-
-<th>
-वक्त
-</th>
-
-<th>
-समय
-</th>
-
-</tr>
-
-
-<!-- SEHRI -->
-
-<tr id="sehriRow"
-class="ramadan">
-
-<td>
-🌙 सहरी / Imsak
-</td>
-
-<td id="imsak">
---
-</td>
-
-</tr>
-
-
-<!-- FAJR -->
-
-<tr>
-
-<td>
-🕌 फ़ज्र
-</td>
-
-<td id="fajr">
---
-</td>
-
-</tr>
-
-
-<!-- SUNRISE -->
-
-<tr>
-
-<td>
-🌅 सूर्योदय
-</td>
-
-<td id="sunrise">
---
-</td>
-
-</tr>
-
-
-<!-- ZAWAL -->
-
-<tr>
-
-<td>
-☀️ ज़वाल
-</td>
-
-<td id="zawal">
---
-</td>
-
-</tr>
-
-
-<!-- DHUHR -->
-
-<tr>
-
-<td>
-🕌 ज़ुहर
-</td>
-
-<td id="dhuhr">
---
-</td>
-
-</tr>
-
-
-<!-- JUMMA -->
-
-<tr id="jummaRow"
-class="jumma">
-
-<td>
-🕋 जुम्मा
-</td>
-
-<td id="jumma">
---
-</td>
-
-</tr>
-
-
-<!-- ASR -->
-
-<tr>
-
-<td>
-🕌 असर
-</td>
-
-<td id="asr">
---
-</td>
-
-</tr>
-
-
-<!-- SUNSET -->
-
-<tr>
-
-<td>
-🌇 सूर्यास्त
-</td>
-
-<td id="sunset">
---
-</td>
-
-</tr>
-
-
-<!-- MAGHRIB -->
-
-<tr id="iftarRow"
-class="ramadan">
-
-<td>
-🌙 इफ़्तार / मग़रिब
-</td>
-
-<td id="maghrib">
---
-</td>
-
-</tr>
-
-
-<!-- ISHA -->
-
-<tr>
-
-<td>
-🕌 इशा
-</td>
-
-<td id="isha">
---
-</td>
-
-</tr>
-
-
-<!-- MIDNIGHT -->
-
-<tr>
-
-<td>
-🌌 इस्लामी मध्यरात्रि
-</td>
-
-<td id="midnight">
---
-</td>
-
-</tr>
-
-
-<!-- LAST THIRD -->
-
-<tr>
-
-<td>
-⭐ तहज्जुद / आख़िरी तिहाई
-</td>
-
-<td id="lastthird">
---
-</td>
-
-</tr>
-
-
-</table>
-
-
-<div class="note">
-
-🌙 सहरी और इफ़्तार रमज़ान में विशेष रूप से उपयोग होंगे।<br>
-
-🕋 जुम्मा का वास्तविक समय मस्जिद के अनुसार अलग हो सकता है।<br>
-
-📍 Prayer Times आपकी Current Location और calculation method के अनुसार हैं।
-
-</div>
-
-
-</div>
+<div class="app">
+
+  <div class="header">
+    <div class="mosque">🕌</div>
+    <h1>Prayer Time</h1>
+    <div class="location">
+      Madhubani, Bihar, India
+    </div>
+  </div>
+
+  <!-- LIVE CLOCK -->
+  <div class="clock-card">
+    <div id="clock">00:00:00</div>
+    <div id="today">Loading date...</div>
+  </div>
+
+  <!-- NEXT PRAYER -->
+  <div class="next-card">
+    <small>Next Prayer</small>
+    <div id="nextPrayer">Loading...</div>
+  </div>
+
+  <div class="section-title">
+    🕌 Aaj Ke Namaz Ke Auqaat
+  </div>
+
+  <div id="loading">
+    Prayer timings load ho rahe hain...
+  </div>
+
+  <div class="prayer-list" id="prayerList"></div>
+
+  <div class="section-title">
+    ✨ Special Times
+  </div>
+
+  <div class="special">
+
+    <div class="special-box">
+      <div class="emoji">☀️</div>
+      <h3>Zawal</h3>
+      <p id="zawal">--:--</p>
+    </div>
+
+    <div class="special-box">
+      <div class="emoji">🌙</div>
+      <h3>Tahajjud</h3>
+      <p id="tahajjud">--:--</p>
+    </div>
+
+    <div class="special-box">
+      <div class="emoji">🍽️</div>
+      <h3>Sehri End</h3>
+      <p id="sehri">--:--</p>
+    </div>
+
+    <div class="special-box">
+      <div class="emoji">🌇</div>
+      <h3>Iftar</h3>
+      <p id="iftar">--:--</p>
+    </div>
+
+  </div>
+
+  <footer>
+    Original Prayer Time • Madhubani, Bihar
+  </footer>
 
 </div>
 
 
 <script>
 
+/* =====================================================
+   BASIC SETTINGS
+   ===================================================== */
 
-/* =========================
+const CITY = "Madhubani";
+const COUNTRY = "India";
+
+/*
+   1 = University of Islamic Sciences, Karachi
+   2 = ISNA
+   3 = Muslim World League
+   4 = Umm Al-Qura
+   5 = Egyptian General Authority
+
+   Karachi method is commonly used in South Asia.
+*/
+const METHOD = 1;
+
+
+/* =====================================================
    LIVE CLOCK
-========================= */
+   ===================================================== */
 
-function updateClock(){
+function updateClock() {
 
-const now = new Date();
+  const now = new Date();
 
-const time =
-now.toLocaleTimeString(
-"en-IN",
-{
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit",
-hour12:true
-}
-);
+  const time = now.toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true
+  });
 
-document.getElementById(
-"clock"
-).innerHTML =
-"🕒 " + time;
+  const date = now.toLocaleDateString("en-IN", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  });
 
+  document.getElementById("clock").textContent = time;
+  document.getElementById("today").textContent = date;
 }
 
 updateClock();
-
-setInterval(
-updateClock,
-1000
-);
+setInterval(updateClock, 1000);
 
 
-/* =========================
-   GET LOCATION
-========================= */
+/* =====================================================
+   GET TODAY'S DATE
+   ===================================================== */
 
-function getPrayerTimes(){
+function getToday() {
 
-if(!navigator.geolocation){
+  const now = new Date();
 
-document.getElementById(
-"message"
-).innerText =
-"❌ आपके Browser में GPS Support नहीं है।";
+  const day = String(now.getDate()).padStart(2, "0");
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const year = now.getFullYear();
 
-return;
+  return `${day}-${month}-${year}`;
+}
+
+
+/* =====================================================
+   FORMAT TIME
+   ===================================================== */
+
+function formatTime(time24) {
+
+  if (!time24) return "--:--";
+
+  const parts = time24.split(":");
+
+  let hour = parseInt(parts[0]);
+  const minute = parts[1];
+
+  const ampm = hour >= 12 ? "PM" : "AM";
+
+  hour = hour % 12;
+
+  if (hour === 0) hour = 12;
+
+  return `${String(hour).padStart(2,"0")}:${minute} ${ampm}`;
+}
+
+
+/* =====================================================
+   PRAYER DATA
+   ===================================================== */
+
+let prayerTimes = [];
+
+
+/* =====================================================
+   LOAD PRAYER TIMES
+   ===================================================== */
+
+async function loadPrayerTimes() {
+
+  const date = getToday();
+
+  const url =
+    `https://api.aladhan.com/v1/timingsByCity/${date}` +
+    `?city=${encodeURIComponent(CITY)}` +
+    `&country=${encodeURIComponent(COUNTRY)}` +
+    `&method=${METHOD}`;
+
+  try {
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Network error");
+    }
+
+    const result = await response.json();
+
+    if (result.code !== 200) {
+      throw new Error("API error");
+    }
+
+    const timings = result.data.timings;
+
+    prayerTimes = [
+      {
+        name: "Fajr",
+        urdu: "فجر",
+        icon: "🌅",
+        time: timings.Fajr
+      },
+      {
+        name: "Dhuhr",
+        urdu: "ظہر",
+        icon: "☀️",
+        time: timings.Dhuhr
+      },
+      {
+        name: "Asr",
+        urdu: "عصر",
+        icon: "🌤️",
+        time: timings.Asr
+      },
+      {
+        name: "Maghrib",
+        urdu: "مغرب",
+        icon: "🌇",
+        time: timings.Maghrib
+      },
+      {
+        name: "Isha",
+        urdu: "عشاء",
+        icon: "🌙",
+        time: timings.Isha
+      }
+    ];
+
+    displayPrayerTimes(timings);
+
+  } catch (error) {
+
+    document.getElementById("loading").innerHTML =
+      "⚠️ Prayer timings load nahi ho paaye. Internet connection check karein.";
+
+    console.error(error);
+  }
+}
+
+
+/* =====================================================
+   DISPLAY PRAYER TIMES
+   ===================================================== */
+
+function displayPrayerTimes(timings) {
+
+  document.getElementById("loading").style.display = "none";
+
+  const list = document.getElementById("prayerList");
+
+  list.innerHTML = "";
+
+  prayerTimes.forEach(prayer => {
+
+    const item = document.createElement("div");
+
+    item.className = "prayer";
+
+    item.innerHTML = `
+      <div class="prayer-left">
+
+        <div class="icon">
+          ${prayer.icon}
+        </div>
+
+        <div>
+          <div class="prayer-name">
+            ${prayer.name}
+          </div>
+
+          <div class="prayer-sub">
+            ${prayer.urdu}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="prayer-time">
+        ${formatTime(prayer.time)}
+      </div>
+    `;
+
+    list.appendChild(item);
+
+  });
+
+
+  /* Sehri = Fajr */
+  document.getElementById("sehri").textContent =
+    formatTime(timings.Fajr);
+
+
+  /* Iftar = Maghrib */
+  document.getElementById("iftar").textContent =
+    formatTime(timings.Maghrib);
+
+
+  /* Sunrise and Sunset */
+  const sunrise = timings.Sunrise;
+  const sunset = timings.Sunset;
+  const dhuhr = timings.Dhuhr;
+
+
+  /*
+     Approximate Zawal:
+     midpoint between Sunrise and Sunset
+  */
+
+  const zawal = midpointTime(sunrise, sunset);
+
+  document.getElementById("zawal").textContent =
+    formatTime(zawal);
+
+
+  /*
+     Approximate Tahajjud:
+     midpoint of night calculation.
+     Tahajjud starts after Isha and ends before Fajr.
+  */
+
+  const tahajjud = tahajjudStart(timings.Isha, timings.Fajr);
+
+  document.getElementById("tahajjud").textContent =
+    formatTime(tahajjud);
+
+
+  updateNextPrayer();
 
 }
 
 
-document.getElementById(
-"message"
-).innerText =
-"📍 आपकी Location खोजी जा रही है...";
+/* =====================================================
+   MIDPOINT
+   ===================================================== */
 
+function midpointTime(start, end) {
 
-navigator.geolocation.getCurrentPosition(
+  const s = timeToMinutes(start);
+  const e = timeToMinutes(end);
 
-function(position){
+  let difference = e - s;
 
-const latitude =
-position.coords.latitude;
+  if (difference < 0) {
+    difference += 1440;
+  }
 
-const longitude =
-position.coords.longitude;
+  const middle = s + difference / 2;
 
-
-document.getElementById(
-"location"
-).innerHTML =
-
-"📍 Location: "
-+
-latitude.toFixed(4)
-+
-", "
-+
-longitude.toFixed(4);
-
-
-getPrayerData(
-latitude,
-longitude
-);
-
-},
-
-function(error){
-
-document.getElementById(
-"message"
-).innerText =
-"❌ Location Permission Allow करें।";
-
-},
-
-{
-
-enableHighAccuracy:true,
-
-timeout:15000,
-
-maximumAge:0
-
-}
-
-);
-
+  return minutesToTime(middle % 1440);
 }
 
 
-/* =========================
-   GET PRAYER DATA
-========================= */
+/* =====================================================
+   TAHAJJUD START
+   ===================================================== */
 
-function getPrayerData(
-latitude,
-longitude
-){
+function tahajjudStart(isha, fajr) {
 
-const today =
-new Date();
+  let i = timeToMinutes(isha);
+  let f = timeToMinutes(fajr);
 
+  if (f <= i) {
+    f += 1440;
+  }
 
-const day =
-today.getDate();
+  /*
+     Last third of night:
+     Tahajjud start = Isha + 2/3 of night duration
+  */
 
-const month =
-today.getMonth()+1;
+  const night = f - i;
 
-const year =
-today.getFullYear();
+  const start = i + (night * 2 / 3);
 
-
-/*
-  Method 3 = Muslim World League
-
-  Asr = Standard
-*/
-
-const url =
-
-"https://api.aladhan.com/v1/timings/"
-+
-day
-+
-"-"
-+
-month
-+
-"-"
-+
-year
-+
-"?latitude="
-+
-latitude
-+
-"&longitude="
-+
-longitude
-+
-"&method=3"
-+
-"&school=0";
+  return minutesToTime(start % 1440);
+}
 
 
-fetch(url)
+/* =====================================================
+   TIME CONVERTER
+   ===================================================== */
 
-.then(function(response){
+function timeToMinutes(time) {
 
-return response.json();
+  const parts = time.split(":");
 
-})
-
-.then(function(data){
-
-if(
-!data.data ||
-!data.data.timings
-){
-
-throw new Error(
-"Prayer data unavailable"
-);
+  return parseInt(parts[0]) * 60 +
+         parseInt(parts[1]);
 
 }
 
 
-const timings =
-data.data.timings;
+function minutesToTime(minutes) {
 
+  minutes = Math.round(minutes);
 
-/* =========================
-   DISPLAY TIMES
-========================= */
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
 
-document.getElementById(
-"imsak"
-).innerText =
-convertTime(
-timings.Imsak
-);
-
-
-document.getElementById(
-"fajr"
-).innerText =
-convertTime(
-timings.Fajr
-);
-
-
-document.getElementById(
-"sunrise"
-).innerText =
-convertTime(
-timings.Sunrise
-);
-
-
-document.getElementById(
-"zawal"
-).innerText =
-calculateZawal(
-timings.Sunrise,
-timings.Sunset
-);
-
-
-document.getElementById(
-"dhuhr"
-).innerText =
-convertTime(
-timings.Dhuhr
-);
-
-
-document.getElementById(
-"asr"
-).innerText =
-convertTime(
-timings.Asr
-);
-
-
-document.getElementById(
-"sunset"
-).innerText =
-convertTime(
-timings.Sunset
-);
-
-
-document.getElementById(
-"maghrib"
-).innerText =
-convertTime(
-timings.Maghrib
-);
-
-
-document.getElementById(
-"isha"
-).innerText =
-convertTime(
-timings.Isha
-);
-
-
-/* MIDNIGHT */
-
-if(timings.Midnight){
-
-document.getElementById(
-"midnight"
-).innerText =
-convertTime(
-timings.Midnight
-);
+  return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}`;
 
 }
 
 
-/* LAST THIRD */
+/* =====================================================
+   NEXT PRAYER
+   ===================================================== */
 
-if(timings.Lastthird){
+function updateNextPrayer() {
 
-document.getElementById(
-"lastthird"
-).innerText =
-convertTime(
-timings.Lastthird
-);
+  if (!prayerTimes.length) return;
 
-}
+  const now = new Date();
 
-
-/* DATE */
-
-document.getElementById(
-"date"
-).innerText =
-
-"📅 "
-+
-data.data.date.readable
-+
-" | 🌙 "
-+
-data.data.date.hijri.day
-+
-" "
-+
-data.data.date.hijri.month.en
-+
-" "
-+
-data.data.date.hijri.year;
+  const currentMinutes =
+    now.getHours() * 60 +
+    now.getMinutes();
 
 
-/* SHOW TABLE */
-
-document.getElementById(
-"prayerTable"
-).style.display =
-"table";
+  let next = null;
 
 
-/* MESSAGE */
+  for (const prayer of prayerTimes) {
 
-document.getElementById(
-"message"
-).innerText =
-"✅ आज का Prayer Time";
+    const pTime =
+      timeToMinutes(prayer.time);
+
+    if (pTime > currentMinutes) {
+
+      next = prayer;
+      break;
+
+    }
+
+  }
 
 
-/* FRIDAY */
+  /*
+     If all prayers are finished,
+     next prayer is tomorrow's Fajr.
+  */
 
-const weekday =
-new Date().getDay();
+  if (!next) {
 
+    next = prayerTimes[0];
 
-if(weekday === 5){
+    document.getElementById("nextPrayer").textContent =
+      `Tomorrow • ${next.name} • ${formatTime(next.time)}`;
 
-document.getElementById(
-"jummaRow"
-).style.display =
-"table-row";
+  } else {
 
-document.getElementById(
-"jumma"
-).innerText =
-"मस्जिद के अनुसार";
+    document.getElementById("nextPrayer").textContent =
+      `${next.name} • ${formatTime(next.time)}`;
 
-}
-
-else{
-
-document.getElementById(
-"jummaRow"
-).style.display =
-"none";
+  }
 
 }
 
 
-/* RAMADAN CHECK */
-
-const hijriMonth =
-parseInt(
-data.data.date.hijri.month.number
-);
-
-
-if(hijriMonth === 9){
-
-document.getElementById(
-"sehriRow"
-).style.display =
-"table-row";
-
-document.getElementById(
-"iftarRow"
-).style.display =
-"table-row";
-
-}
-
-else{
-
-document.getElementById(
-"sehriRow"
-).style.display =
-"none";
-
-document.getElementById(
-"iftarRow"
-).style.display =
-"none";
-
-}
-
-})
-
-.catch(function(error){
-
-console.log(error);
-
-document.getElementById(
-"message"
-).innerText =
-"❌ Prayer Time लोड नहीं हो पाया। Internet Check करें।";
-
-});
-
-}
-
-
-/* =========================
-   CONVERT TIME
-========================= */
-
-function convertTime(time){
-
-if(!time){
-
-return "--";
-
-}
-
-
-/*
- API कभी-कभी
- "04:35 (+05)"
- जैसा दे सकती है
-*/
-
-time =
-time
-.toString()
-.trim()
-.split(" ")[0];
-
-
-const parts =
-time.split(":");
-
-
-let hour =
-parseInt(parts[0]);
-
-const minute =
-parts[1];
-
-
-const ampm =
-hour >= 12
-?
-"PM"
-:
-"AM";
-
-
-hour =
-hour % 12;
-
-
-if(hour === 0){
-
-hour = 12;
-
-}
-
-
-return
-hour
-+
-":"
-+
-minute
-+
-" "
-+
-ampm;
-
-}
-
-
-/* =========================
-   ZAWAL
-========================= */
-
-function calculateZawal(
-sunrise,
-sunset
-){
-
-if(
-!sunrise ||
-!sunset
-){
-
-return "--";
-
-}
-
-
-function minutes(time){
-
-const parts =
-time
-.split(":");
-
-return
-parseInt(parts[0])
-*
-60
-+
-parseInt(parts[1]);
-
-}
-
-
-const rise =
-minutes(
-sunrise
-);
-
-const set =
-minutes(
-sunset
-);
-
-
-const middle =
-Math.round(
-(
-rise + set
-) / 2
-);
-
-
-let hour =
-Math.floor(
-middle / 60
-);
-
-let minute =
-middle % 60;
-
-
-const ampm =
-hour >= 12
-?
-"PM"
-:
-"AM";
-
-
-hour =
-hour % 12;
-
-
-if(hour === 0){
-
-hour = 12;
-
-}
-
-
-return
-hour
-+
-":"
-+
-String(minute)
-.padStart(2,"0")
-+
-" "
-+
-ampm;
-
-}
-
-
-/* =========================
+/* =====================================================
    START
-========================= */
+   ===================================================== */
 
-window.onload =
-function(){
-
-getPrayerTimes();
-
-};
+loadPrayerTimes();
 
 
-/* =========================
-   REFRESH EVERY DAY
-========================= */
+/*
+   Refresh prayer information every 30 minutes.
+*/
+setInterval(loadPrayerTimes, 30 * 60 * 1000);
 
-setInterval(
 
-function(){
-
-getPrayerTimes();
-
-},
-
-60 * 60 * 1000
-
-);
+/*
+   Update next prayer every minute.
+*/
+setInterval(updateNextPrayer, 60 * 1000);
 
 </script>
 
