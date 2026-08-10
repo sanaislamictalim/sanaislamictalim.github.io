@@ -5,6 +5,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Sana Islamic - Prayer Time</title>
+<div id="jummaSetting" style="display:none;text-align:center;margin-top:12px;">
+
+<label>
+🕋 Jumma का समय सेट करें:
+</label>
+
+<br><br>
+
+<input
+type="time"
+id="jummaTime"
+value="13:30"
+style="
+padding:10px;
+border-radius:8px;
+border:2px solid green;
+font-size:16px;
+">
+
+<button
+onclick="saveJummaTime()"
+style="
+display:inline-block;
+margin:8px;
+padding:10px 15px;
+background:green;
+color:white;
+border:0;
+border-radius:8px;
+font-weight:bold;
+">
+
+💾 Save
+
+</button>
+
+</div>
+
+<script>
+function saveJummaTime() {
+
+    let time = document.getElementById("jummaTime").value;
+
+    localStorage.setItem("jummaTime", time);
+
+    alert("Jumma का समय Save हो गया: " + time);
+}
+</script>
 
 <style>
 
