@@ -7,278 +7,1041 @@
 <title>Sana Islamic - Prayer Time</title>
 
 <style>
+
+*{
+box-sizing:border-box;
+}
+
 body{
-    font-family:Arial,sans-serif;
-    background:#f4f9f4;
-    margin:0;
-    padding:20px;
+margin:0;
+font-family:Arial,sans-serif;
+background:#061743;
+color:white;
+}
+
+.header{
+background:#4055b8;
+padding:12px;
+text-align:center;
+}
+
+.header h2{
+margin:0;
+font-size:24px;
+}
+
+#clock{
+font-size:21px;
+font-weight:bold;
+margin-top:5px;
+}
+
+.main{
+min-height:100vh;
+padding:15px 8px 35px;
+
+background:
+radial-gradient(
+circle at 50% 20%,
+#178bd8 0%,
+#17439e 40%,
+#061743 90%
+);
 }
 
 .card{
-    max-width:500px;
-    margin:auto;
-    background:#fff;
-    border-radius:15px;
-    box-shadow:0 0 10px rgba(0,0,0,.2);
-    padding:20px;
+max-width:550px;
+margin:auto;
+background:rgba(0,0,0,.25);
+border-radius:15px;
+padding:15px;
 }
 
-h2{
-    text-align:center;
-    color:green;
+h1{
+text-align:center;
+font-size:24px;
+margin:5px 0 15px;
 }
 
 .location{
-    text-align:center;
-    color:#555;
-    margin:10px 0;
+text-align:center;
+font-size:15px;
+margin:8px 0;
 }
 
 .date{
-    text-align:center;
-    color:#087f5b;
-    font-weight:bold;
-    margin-bottom:15px;
+text-align:center;
+font-weight:bold;
+font-size:16px;
+margin:10px 0;
 }
 
 button{
-    display:block;
-    margin:15px auto;
-    padding:12px 20px;
-    background:green;
-    color:white;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
+display:block;
+margin:12px auto;
+
+padding:12px 20px;
+
+background:#12a9e0;
+color:white;
+
+border:none;
+border-radius:9px;
+
+font-size:16px;
+font-weight:bold;
 }
 
 button:hover{
-    background:darkgreen;
+background:#087fbb;
+}
+
+.message{
+text-align:center;
+margin:12px 0;
+font-weight:bold;
 }
 
 table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+background:white;
+color:#111;
+border-radius:10px;
+overflow:hidden;
 }
 
 th{
-    background:green;
-    color:white;
-    padding:12px;
+background:#4055b8;
+color:white;
+padding:11px 5px;
+font-size:15px;
 }
 
 td{
-    padding:12px;
-    border:1px solid #ddd;
-    text-align:center;
+padding:11px 5px;
+border:1px solid #ddd;
+text-align:center;
+font-weight:bold;
 }
 
 tr:nth-child(even){
-    background:#f7f7f7;
+background:#f3f7ff;
 }
 
-#message{
-    text-align:center;
-    color:#555;
-    margin:15px 0;
+.highlight{
+background:#d5ffd9 !important;
+color:#075c16;
 }
+
+.jumma{
+background:#fff0a8 !important;
+color:#6b5200;
+}
+
+.ramadan{
+background:#d7f3ff !important;
+color:#075c7a;
+}
+
+.note{
+font-size:12px;
+text-align:center;
+margin-top:15px;
+color:#ffe082;
+line-height:18px;
+}
+
 </style>
 </head>
 
+
 <body>
 
-<div class="card">
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<div class="header">
 
 <h2>🕌 Sana Islamic</h2>
 
-<div class="location" id="location">
+<div id="clock">
+🕒 --:--:--
+</div>
+
+</div>
+
+
+<div class="main">
+
+
+<div class="card">
+
+
+<h1>
+🕌 आज के Prayer Times
+</h1>
+
+
+<div id="location" class="location">
 📍 Location पता की जा रही है...
 </div>
 
-<div class="date" id="date"></div>
+
+<div id="date" class="date">
+📅 तारीख लोड हो रही है...
+</div>
+
 
 <button onclick="getPrayerTimes()">
-📍 मेरी Location से Prayer Time देखें
+📍 मेरी Location से Prayer Time
 </button>
 
-<div id="message">
+
+<div id="message" class="message">
 कृपया Location Permission Allow करें।
 </div>
 
-<table id="prayerTable" style="display:none;">
+
+<table id="prayerTable"
+style="display:none;">
 
 <tr>
-<th>Namaz</th>
-<th>Time</th>
+
+<th>
+वक्त
+</th>
+
+<th>
+समय
+</th>
+
 </tr>
 
-<tr>
-<td>🌅 Fajr</td>
-<td id="fajr">--</td>
+
+<!-- SEHRI -->
+
+<tr id="sehriRow"
+class="ramadan">
+
+<td>
+🌙 सहरी / Imsak
+</td>
+
+<td id="imsak">
+--
+</td>
+
 </tr>
 
-<tr>
-<td>🌄 Sunrise</td>
-<td id="sunrise">--</td>
-</tr>
+
+<!-- FAJR -->
 
 <tr>
-<td>☀️ Dhuhr</td>
-<td id="dhuhr">--</td>
+
+<td>
+🕌 फ़ज्र
+</td>
+
+<td id="fajr">
+--
+</td>
+
 </tr>
 
-<tr>
-<td>🌤 Asr</td>
-<td id="asr">--</td>
-</tr>
+
+<!-- SUNRISE -->
 
 <tr>
-<td>🌇 Maghrib</td>
-<td id="maghrib">--</td>
+
+<td>
+🌅 सूर्योदय
+</td>
+
+<td id="sunrise">
+--
+</td>
+
 </tr>
 
+
+<!-- ZAWAL -->
+
 <tr>
-<td>🌙 Isha</td>
-<td id="isha">--</td>
+
+<td>
+☀️ ज़वाल
+</td>
+
+<td id="zawal">
+--
+</td>
+
 </tr>
+
+
+<!-- DHUHR -->
+
+<tr>
+
+<td>
+🕌 ज़ुहर
+</td>
+
+<td id="dhuhr">
+--
+</td>
+
+</tr>
+
+
+<!-- JUMMA -->
+
+<tr id="jummaRow"
+class="jumma">
+
+<td>
+🕋 जुम्मा
+</td>
+
+<td id="jumma">
+--
+</td>
+
+</tr>
+
+
+<!-- ASR -->
+
+<tr>
+
+<td>
+🕌 असर
+</td>
+
+<td id="asr">
+--
+</td>
+
+</tr>
+
+
+<!-- SUNSET -->
+
+<tr>
+
+<td>
+🌇 सूर्यास्त
+</td>
+
+<td id="sunset">
+--
+</td>
+
+</tr>
+
+
+<!-- MAGHRIB -->
+
+<tr id="iftarRow"
+class="ramadan">
+
+<td>
+🌙 इफ़्तार / मग़रिब
+</td>
+
+<td id="maghrib">
+--
+</td>
+
+</tr>
+
+
+<!-- ISHA -->
+
+<tr>
+
+<td>
+🕌 इशा
+</td>
+
+<td id="isha">
+--
+</td>
+
+</tr>
+
+
+<!-- MIDNIGHT -->
+
+<tr>
+
+<td>
+🌌 इस्लामी मध्यरात्रि
+</td>
+
+<td id="midnight">
+--
+</td>
+
+</tr>
+
+
+<!-- LAST THIRD -->
+
+<tr>
+
+<td>
+⭐ तहज्जुद / आख़िरी तिहाई
+</td>
+
+<td id="lastthird">
+--
+</td>
+
+</tr>
+
 
 </table>
+
+
+<div class="note">
+
+🌙 सहरी और इफ़्तार रमज़ान में विशेष रूप से उपयोग होंगे।<br>
+
+🕋 जुम्मा का वास्तविक समय मस्जिद के अनुसार अलग हो सकता है।<br>
+
+📍 Prayer Times आपकी Current Location और calculation method के अनुसार हैं।
+
+</div>
+
+
+</div>
 
 </div>
 
 
 <script>
 
+
+/* =========================
+   LIVE CLOCK
+========================= */
+
+function updateClock(){
+
+const now = new Date();
+
+const time =
+now.toLocaleTimeString(
+"en-IN",
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit",
+hour12:true
+}
+);
+
+document.getElementById(
+"clock"
+).innerHTML =
+"🕒 " + time;
+
+}
+
+updateClock();
+
+setInterval(
+updateClock,
+1000
+);
+
+
+/* =========================
+   GET LOCATION
+========================= */
+
 function getPrayerTimes(){
 
-    if(!navigator.geolocation){
-        document.getElementById("message").innerText =
-        "आपके Browser में GPS Location Support नहीं है।";
-        return;
-    }
+if(!navigator.geolocation){
 
-    document.getElementById("message").innerText =
-    "📍 आपकी Location खोजी जा रही है...";
+document.getElementById(
+"message"
+).innerText =
+"❌ आपके Browser में GPS Support नहीं है।";
 
-    navigator.geolocation.getCurrentPosition(
-
-        function(position){
-
-            let latitude = position.coords.latitude;
-            let longitude = position.coords.longitude;
-
-            getPrayerData(latitude, longitude);
-
-        },
-
-        function(error){
-
-            document.getElementById("message").innerText =
-            "❌ Location Permission Allow करें।";
-
-        }
-
-    );
+return;
 
 }
 
 
-function getPrayerData(latitude, longitude){
+document.getElementById(
+"message"
+).innerText =
+"📍 आपकी Location खोजी जा रही है...";
 
-    let today = new Date();
 
-    let day = today.getDate();
-    let month = today.getMonth() + 1;
-    let year = today.getFullYear();
+navigator.geolocation.getCurrentPosition(
 
-    let url =
-    "https://api.aladhan.com/v1/timings/" +
-    day + "-" + month + "-" + year +
-    "?latitude=" + latitude +
-    "&longitude=" + longitude +
-    "&method=3";
+function(position){
 
-    fetch(url)
+const latitude =
+position.coords.latitude;
 
-    .then(response => response.json())
+const longitude =
+position.coords.longitude;
 
-    .then(data => {
 
-        let timings = data.data.timings;
+document.getElementById(
+"location"
+).innerHTML =
 
-        document.getElementById("fajr").innerText =
-        convertTime(timings.Fajr);
+"📍 Location: "
++
+latitude.toFixed(4)
++
+", "
++
+longitude.toFixed(4);
 
-        document.getElementById("sunrise").innerText =
-        convertTime(timings.Sunrise);
 
-        document.getElementById("dhuhr").innerText =
-        convertTime(timings.Dhuhr);
+getPrayerData(
+latitude,
+longitude
+);
 
-        document.getElementById("asr").innerText =
-        convertTime(timings.Asr);
+},
 
-        document.getElementById("maghrib").innerText =
-        convertTime(timings.Maghrib);
+function(error){
 
-        document.getElementById("isha").innerText =
-        convertTime(timings.Isha);
+document.getElementById(
+"message"
+).innerText =
+"❌ Location Permission Allow करें।";
 
-        document.getElementById("date").innerText =
-        data.data.date.readable;
+},
 
-        document.getElementById("location").innerText =
-        "📍 आपकी Current Location";
+{
 
-        document.getElementById("message").innerText =
-        "✅ आज का Prayer Time";
+enableHighAccuracy:true,
 
-        document.getElementById("prayerTable").style.display =
-        "table";
+timeout:15000,
 
-    })
-
-    .catch(error => {
-
-        document.getElementById("message").innerText =
-        "❌ Prayer Time लोड नहीं हो पाया। Internet Check करें।";
-
-    });
+maximumAge:0
 
 }
 
+);
+
+}
+
+
+/* =========================
+   GET PRAYER DATA
+========================= */
+
+function getPrayerData(
+latitude,
+longitude
+){
+
+const today =
+new Date();
+
+
+const day =
+today.getDate();
+
+const month =
+today.getMonth()+1;
+
+const year =
+today.getFullYear();
+
+
+/*
+  Method 3 = Muslim World League
+
+  Asr = Standard
+*/
+
+const url =
+
+"https://api.aladhan.com/v1/timings/"
++
+day
++
+"-"
++
+month
++
+"-"
++
+year
++
+"?latitude="
++
+latitude
++
+"&longitude="
++
+longitude
++
+"&method=3"
++
+"&school=0";
+
+
+fetch(url)
+
+.then(function(response){
+
+return response.json();
+
+})
+
+.then(function(data){
+
+if(
+!data.data ||
+!data.data.timings
+){
+
+throw new Error(
+"Prayer data unavailable"
+);
+
+}
+
+
+const timings =
+data.data.timings;
+
+
+/* =========================
+   DISPLAY TIMES
+========================= */
+
+document.getElementById(
+"imsak"
+).innerText =
+convertTime(
+timings.Imsak
+);
+
+
+document.getElementById(
+"fajr"
+).innerText =
+convertTime(
+timings.Fajr
+);
+
+
+document.getElementById(
+"sunrise"
+).innerText =
+convertTime(
+timings.Sunrise
+);
+
+
+document.getElementById(
+"zawal"
+).innerText =
+calculateZawal(
+timings.Sunrise,
+timings.Sunset
+);
+
+
+document.getElementById(
+"dhuhr"
+).innerText =
+convertTime(
+timings.Dhuhr
+);
+
+
+document.getElementById(
+"asr"
+).innerText =
+convertTime(
+timings.Asr
+);
+
+
+document.getElementById(
+"sunset"
+).innerText =
+convertTime(
+timings.Sunset
+);
+
+
+document.getElementById(
+"maghrib"
+).innerText =
+convertTime(
+timings.Maghrib
+);
+
+
+document.getElementById(
+"isha"
+).innerText =
+convertTime(
+timings.Isha
+);
+
+
+/* MIDNIGHT */
+
+if(timings.Midnight){
+
+document.getElementById(
+"midnight"
+).innerText =
+convertTime(
+timings.Midnight
+);
+
+}
+
+
+/* LAST THIRD */
+
+if(timings.Lastthird){
+
+document.getElementById(
+"lastthird"
+).innerText =
+convertTime(
+timings.Lastthird
+);
+
+}
+
+
+/* DATE */
+
+document.getElementById(
+"date"
+).innerText =
+
+"📅 "
++
+data.data.date.readable
++
+" | 🌙 "
++
+data.data.date.hijri.day
++
+" "
++
+data.data.date.hijri.month.en
++
+" "
++
+data.data.date.hijri.year;
+
+
+/* SHOW TABLE */
+
+document.getElementById(
+"prayerTable"
+).style.display =
+"table";
+
+
+/* MESSAGE */
+
+document.getElementById(
+"message"
+).innerText =
+"✅ आज का Prayer Time";
+
+
+/* FRIDAY */
+
+const weekday =
+new Date().getDay();
+
+
+if(weekday === 5){
+
+document.getElementById(
+"jummaRow"
+).style.display =
+"table-row";
+
+document.getElementById(
+"jumma"
+).innerText =
+"मस्जिद के अनुसार";
+
+}
+
+else{
+
+document.getElementById(
+"jummaRow"
+).style.display =
+"none";
+
+}
+
+
+/* RAMADAN CHECK */
+
+const hijriMonth =
+parseInt(
+data.data.date.hijri.month.number
+);
+
+
+if(hijriMonth === 9){
+
+document.getElementById(
+"sehriRow"
+).style.display =
+"table-row";
+
+document.getElementById(
+"iftarRow"
+).style.display =
+"table-row";
+
+}
+
+else{
+
+document.getElementById(
+"sehriRow"
+).style.display =
+"none";
+
+document.getElementById(
+"iftarRow"
+).style.display =
+"none";
+
+}
+
+})
+
+.catch(function(error){
+
+console.log(error);
+
+document.getElementById(
+"message"
+).innerText =
+"❌ Prayer Time लोड नहीं हो पाया। Internet Check करें।";
+
+});
+
+}
+
+
+/* =========================
+   CONVERT TIME
+========================= */
 
 function convertTime(time){
 
-    let parts = time.split(":");
+if(!time){
 
-    let hour = parseInt(parts[0]);
-    let minute = parts[1];
-
-    let ampm = hour >= 12 ? "PM" : "AM";
-
-    hour = hour % 12;
-
-    if(hour === 0){
-        hour = 12;
-    }
-
-    return hour + ":" + minute + " " + ampm;
+return "--";
 
 }
 
 
-document.getElementById("date").innerText =
-new Date().toLocaleDateString("hi-IN");
+/*
+ API कभी-कभी
+ "04:35 (+05)"
+ जैसा दे सकती है
+*/
+
+time =
+time
+.toString()
+.trim()
+.split(" ")[0];
 
 
-window.onload = function(){
+const parts =
+time.split(":");
 
-    getPrayerTimes();
+
+let hour =
+parseInt(parts[0]);
+
+const minute =
+parts[1];
+
+
+const ampm =
+hour >= 12
+?
+"PM"
+:
+"AM";
+
+
+hour =
+hour % 12;
+
+
+if(hour === 0){
+
+hour = 12;
+
+}
+
+
+return
+hour
++
+":"
++
+minute
++
+" "
++
+ampm;
+
+}
+
+
+/* =========================
+   ZAWAL
+========================= */
+
+function calculateZawal(
+sunrise,
+sunset
+){
+
+if(
+!sunrise ||
+!sunset
+){
+
+return "--";
+
+}
+
+
+function minutes(time){
+
+const parts =
+time
+.split(":");
+
+return
+parseInt(parts[0])
+*
+60
++
+parseInt(parts[1]);
+
+}
+
+
+const rise =
+minutes(
+sunrise
+);
+
+const set =
+minutes(
+sunset
+);
+
+
+const middle =
+Math.round(
+(
+rise + set
+) / 2
+);
+
+
+let hour =
+Math.floor(
+middle / 60
+);
+
+let minute =
+middle % 60;
+
+
+const ampm =
+hour >= 12
+?
+"PM"
+:
+"AM";
+
+
+hour =
+hour % 12;
+
+
+if(hour === 0){
+
+hour = 12;
+
+}
+
+
+return
+hour
++
+":"
++
+String(minute)
+.padStart(2,"0")
++
+" "
++
+ampm;
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+window.onload =
+function(){
+
+getPrayerTimes();
 
 };
+
+
+/* =========================
+   REFRESH EVERY DAY
+========================= */
+
+setInterval(
+
+function(){
+
+getPrayerTimes();
+
+},
+
+60 * 60 * 1000
+
+);
 
 </script>
 
