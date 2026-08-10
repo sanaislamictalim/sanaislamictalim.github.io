@@ -1,1 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sanaislamictalim.github.io/sitemap.xml
 
