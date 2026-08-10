@@ -1,0 +1,296 @@
+/* ==============================
+   SANA ISLAMIC - STYLE
+   ============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #063d2d, #087f5b);
+    color: #123b2d;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    width: 94%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 22px 15px;
+    text-align: center;
+    background: linear-gradient(135deg, #075b43, #0a8f68);
+    border: 3px solid #d8b84c;
+    border-radius: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+header h1 {
+    color: #fff5c7;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #fff;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+/* Main buttons */
+.container {
+    width: 94%;
+    max-width: 1000px;
+    margin: 25px auto 50px;
+    padding: 12px;
+}
+
+.btn {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 95px;
+    margin: 14px 0;
+    padding: 15px 48px 15px 75px;
+
+    background: linear-gradient(135deg, #fffdf2, #f5f7e9);
+    color: #064d37;
+
+    text-decoration: none;
+    border-radius: 22px;
+    border: 3px solid #d3ad37;
+
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.45;
+
+    box-shadow: 0 7px 15px rgba(0,0,0,0.25);
+    transition: 0.25s ease;
+    overflow: hidden;
+}
+
+/* Left icon */
+.btn::before {
+    content: "☪";
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(135deg, #087f5b, #064d37);
+    color: #ffe99a;
+
+    border: 3px solid #d8b84c;
+    border-radius: 50%;
+    font-size: 23px;
+}
+
+/* Right arrow */
+.btn::after {
+    content: "›";
+    position: absolute;
+    right: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #087f5b;
+    font-size: 38px;
+}
+
+/* Button effect */
+.btn:hover {
+    transform: translateY(-3px);
+    background: #ffffff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.30);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* ==================================
+   DONATION - SMALL TOP RIGHT BUTTON
+   ================================== */
+
+.donation-box {
+    position: fixed !important;
+    top: 12px !important;
+    right: 10px !important;
+    left: auto !important;
+    bottom: auto !important;
+
+    width: 108px !important;
+    height: 60px !important;
+    min-width: 108px !important;
+    max-width: 108px !important;
+
+    padding: 4px !important;
+    margin: 0 !important;
+
+    background: #fffdf0 !important;
+    border: 2px solid #d4af37 !important;
+    border-radius: 15px !important;
+
+    z-index: 999999 !important;
+    overflow: hidden !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35) !important;
+}
+
+/* Hide old large donation content */
+.donation-box .donation-heart,
+.donation-box h2,
+.donation-box .dots,
+.donation-box .donate-title,
+.donation-box .donation-word,
+.donation-box p {
+    display: none !important;
+}
+
+/* Only Donate button remains */
+.donation-box .donate-button {
+    display: flex !important;
+
+    width: 96px !important;
+    height: 50px !important;
+
+    margin: 0 !important;
+    padding: 3px !important;
+
+    background: linear-gradient(135deg, #087f5b, #064d37) !important;
+    color: white !important;
+
+    border: 1px solid #d4af37 !important;
+    border-radius: 12px !important;
+
+    text-decoration: none !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 17px !important;
+
+    box-shadow: none !important;
+}
+
+.donation-box .donate-button small {
+    display: block !important;
+    font-size: 10px !important;
+    color: white !important;
+    margin: 0 !important;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    header {
+        width: 94%;
+        margin: 15px auto;
+        padding: 18px 10px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    header p {
+        font-size: 18px;
+    }
+
+    .container {
+        width: 94%;
+        padding: 5px;
+        margin-top: 20px;
+    }
+
+    .btn {
+        min-height: 95px;
+        padding: 15px 43px 15px 70px;
+        font-size: 17px;
+        border-radius: 20px;
+    }
+
+    .btn::before {
+        left: 12px;
+        width: 44px;
+        height: 44px;
+        font-size: 22px;
+    }
+
+    .btn::after {
+        right: 10px;
+        font-size: 34px;
+    }
+
+    .donation-box {
+        top: 8px !important;
+        right: 7px !important;
+        width: 105px !important;
+        max-width: 105px !important;
+        height: 56px !important;
+        min-width: 105px !important;
+    }
+
+    .donation-box .donate-button {
+        width: 94px !important;
+        height: 47px !important;
+        font-size: 13px !important;
+    }
+
+    .donation-box .donate-button small {
+        font-size: 9px !important;
+    }
+}
+
+/* Old amount/app buttons */
+.amounts {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.amounts button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.apps {
+    margin-top: 20px;
+}
+
+.apps button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: green;
+    color: white;
+    cursor: pointer;
+}
