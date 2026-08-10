@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Sana Islamic</title>
 
     <link rel="stylesheet" href="style.css">
 
+
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7WXTSTLMJ"></script>
+
+    <script async
+        src="https://www.googletagmanager.com/gtag/js?id=G-Q7WXTSTLMJ">
+    </script>
 
     <script>
+
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
@@ -20,21 +28,63 @@
         }
 
         gtag('js', new Date());
+
         gtag('config', 'G-Q7WXTSTLMJ');
+
     </script>
 
+
     <!-- Google AdSense -->
+
     <script async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8660774533772675"
         crossorigin="anonymous">
     </script>
 
 
-    <!-- Splash Screen CSS -->
+    <!-- =========================
+         NEW APP DESIGN
+    ========================== -->
+
     <style>
 
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                "Noto Sans Devanagari",
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #071f17,
+                    #0b4d38,
+                    #06251c
+                );
+
+            color: white;
+
+        }
+
+
+
+        /* =====================
+           SPLASH SCREEN
+        ====================== */
+
         #splash {
+
             position: fixed;
+
             top: 0;
             left: 0;
 
@@ -44,10 +94,12 @@
             background: white;
 
             display: flex;
+
             justify-content: center;
             align-items: center;
 
             z-index: 99999;
+
         }
 
 
@@ -62,6 +114,562 @@
             object-fit: contain;
 
             display: block;
+
+        }
+
+
+
+        /* =====================
+           DONATION BOX
+        ====================== */
+
+        .donation-box {
+
+            width: 94%;
+
+            max-width: 650px;
+
+            margin: 18px auto;
+
+            padding: 20px;
+
+            text-align: center;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fffdf0,
+                    #f3f8e9
+                );
+
+            color: #14532d;
+
+            border: 2px solid #d4af37;
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,0.35);
+
+        }
+
+
+        .donation-heart {
+
+            font-size: 35px;
+
+        }
+
+
+        .donation-box h2 {
+
+            margin: 5px 0;
+
+            color: #075e3b;
+
+        }
+
+
+        .dots {
+
+            color: #c49a20;
+
+            letter-spacing: 3px;
+
+        }
+
+
+        .donation-word {
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: #7b1fa2;
+
+        }
+
+
+        .donate-button {
+
+            display: inline-block;
+
+            margin-top: 10px;
+
+            padding: 12px 30px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087f4f,
+                    #0b5d3b
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 5px 12px rgba(0,0,0,0.3);
+
+        }
+
+
+
+        /* =====================
+           HEADER
+        ====================== */
+
+        header {
+
+            width: 94%;
+
+            max-width: 700px;
+
+            margin: 20px auto;
+
+            text-align: center;
+
+            padding: 22px 12px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #174d35,
+                    #0b7650
+                );
+
+            border: 2px solid #d4af37;
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,0.35);
+
+        }
+
+
+        header h1 {
+
+            margin: 0 0 10px;
+
+            font-size: 30px;
+
+            color: #fff4c4;
+
+        }
+
+
+        /* =====================
+           SALAM CARD
+        ====================== */
+
+        .salam-card {
+
+            width: 94%;
+
+            max-width: 700px;
+
+            margin: 15px auto 25px;
+
+            padding: 18px 10px;
+
+            text-align: center;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fffbea,
+                    #edf8e9
+                );
+
+            border: 2px solid #d4af37;
+
+            color: #174d35;
+
+            box-shadow:
+                0 7px 18px rgba(0,0,0,0.3);
+
+        }
+
+
+        .salam-arabic {
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+            line-height: 1.7;
+
+            color: #075e3b;
+
+        }
+
+
+        .salam-hindi {
+
+            font-size: 17px;
+
+            color: #7b1fa2;
+
+            font-weight: bold;
+
+            margin-top: 5px;
+
+        }
+
+
+        .salam-english {
+
+            font-size: 15px;
+
+            color: #555;
+
+            margin-top: 4px;
+
+        }
+
+
+
+        /* =====================
+           BUTTON CONTAINER
+        ====================== */
+
+        .container {
+
+            width: 94%;
+
+            max-width: 800px;
+
+            margin: 0 auto 30px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+
+        }
+
+
+
+        /* =====================
+           APP BUTTON
+        ====================== */
+
+        .btn {
+
+            position: relative;
+
+            min-height: 105px;
+
+            padding: 12px 38px 12px 70px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #f4f8ee
+                );
+
+            color: #173c2b;
+
+            border: 2px solid #d4af37;
+
+            box-shadow:
+                0 7px 14px rgba(0,0,0,0.3);
+
+            overflow: hidden;
+
+            transition: 0.2s;
+
+        }
+
+
+        /* LEFT ICON AREA */
+
+        .btn::before {
+
+            content: "☪";
+
+            position: absolute;
+
+            left: 8px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 48px;
+
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #075e3b,
+                    #159957
+                );
+
+            color: #fff4b0;
+
+            font-size: 25px;
+
+            border: 2px solid #d4af37;
+
+        }
+
+
+        /* RIGHT ARROW */
+
+        .btn::after {
+
+            content: "›";
+
+            position: absolute;
+
+            right: 13px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 35px;
+
+            font-weight: bold;
+
+            color: #087f4f;
+
+        }
+
+
+        .btn:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 20px rgba(0,0,0,0.35);
+
+        }
+
+
+        .btn:active {
+
+            transform: scale(0.96);
+
+        }
+
+
+        /* =====================
+           BUTTON TEXT
+        ====================== */
+
+        .btn .hi {
+
+            font-size: 19px;
+
+            font-weight: bold;
+
+            color: #173c2b;
+
+        }
+
+
+        .btn .urdu {
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            color: #7b1fa2;
+
+            margin-top: 3px;
+
+        }
+
+
+        .btn .eng {
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            color: #087f4f;
+
+            margin-top: 3px;
+
+        }
+
+
+
+        /* =====================
+           DIFFERENT COLORS
+        ====================== */
+
+        .green {
+            border-color: #218c5b;
+        }
+
+        .blue {
+            border-color: #2878c8;
+        }
+
+        .purple {
+            border-color: #8e44ad;
+        }
+
+        .orange {
+            border-color: #d88a18;
+        }
+
+        .pink {
+            border-color: #c43c78;
+        }
+
+        .teal {
+            border-color: #159a9c;
+        }
+
+
+
+        /* =====================
+           MOBILE
+        ====================== */
+
+        @media (max-width: 600px) {
+
+            .container {
+
+                grid-template-columns: 1fr 1fr;
+
+                gap: 12px;
+
+            }
+
+
+            .btn {
+
+                min-height: 110px;
+
+                padding:
+                    10px
+                    25px
+                    10px
+                    25px;
+
+                border-radius: 20px;
+
+            }
+
+
+            .btn::before {
+
+                position: relative;
+
+                left: auto;
+
+                top: auto;
+
+                transform: none;
+
+                width: 42px;
+
+                height: 42px;
+
+                font-size: 21px;
+
+                margin-bottom: 5px;
+
+            }
+
+
+            .btn::after {
+
+                right: 7px;
+
+                font-size: 28px;
+
+            }
+
+
+            .btn .hi {
+
+                font-size: 16px;
+
+            }
+
+
+            .btn .urdu {
+
+                font-size: 15px;
+
+            }
+
+
+            .btn .eng {
+
+                font-size: 13px;
+
+            }
+
+
+            header h1 {
+
+                font-size: 25px;
+
+            }
+
+
+            .salam-arabic {
+
+                font-size: 21px;
+
+            }
+
+        }
+
+
+
+        /* =====================
+           VERY SMALL MOBILE
+        ====================== */
+
+        @media (max-width: 360px) {
+
+            .container {
+
+                grid-template-columns: 1fr;
+
+            }
+
         }
 
     </style>
@@ -72,24 +680,30 @@
 <body>
 
 
-    <!-- 4 Second Logo Screen -->
+
+    <!-- =====================
+         SPLASH
+    ====================== -->
 
     <div id="splash">
 
         <img
             src="am.jpg"
-            alt="Sana Islamic Logo"
-        >
+            alt="Sana Islamic Logo">
 
     </div>
 
 
 
-    <!-- Donation Box -->
+    <!-- =====================
+         DONATION
+    ====================== -->
 
     <div class="donation-box">
 
-        <div class="donation-heart">❤️</div>
+        <div class="donation-heart">
+            ❤️
+        </div>
 
         <h2>
             इस्लाम के कामों<br>
@@ -97,7 +711,7 @@
         </h2>
 
         <div class="dots">
-            ••••••••••••••••••••
+            ••••••••••••••••••
         </div>
 
         <div class="donate-title">
@@ -109,7 +723,7 @@
         </div>
 
         <div class="dots">
-            ••••••••••••••••••••
+            ••••••••••••••••••
         </div>
 
         <p>
@@ -117,7 +731,9 @@
             में बरकत अता फरमाए
         </p>
 
-        <a href="donation.html" class="donate-button">
+        <a
+            href="donation.html"
+            class="donate-button">
 
             ❤️ DONATE<br>
 
@@ -131,7 +747,9 @@
 
 
 
-    <!-- Header -->
+    <!-- =====================
+         HEADER
+    ====================== -->
 
     <header>
 
@@ -139,154 +757,293 @@
             🕌 Sana Islamic
         </h1>
 
-        <p>
-            السلام عليكم ورحمة الله وبركاته
-        </p>
-
     </header>
 
 
 
-    <!-- Main Buttons -->
+    <!-- =====================
+         SALAM
+    ====================== -->
+
+    <div class="salam-card">
+
+        <div class="salam-arabic">
+
+            السلام عليكم ورحمة الله وبركاته
+
+        </div>
+
+        <div class="salam-hindi">
+
+            अस्सलामु अलैकुम व रहमतुल्लाहि व बरकातुह
+
+        </div>
+
+        <div class="salam-english">
+
+            Peace, Mercy and Blessings of Allah be upon you
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================
+         MAIN BUTTONS
+    ====================== -->
 
     <div class="container">
 
 
-        <a class="btn" href="quran.html">
 
-            📖 क़ुरआन पढ़ो।<br>
+        <a class="btn green" href="quran.html">
 
-            قرآن پڑھو۔
+            <span class="hi">
+                📖 क़ुरआन पढ़ें
+            </span>
 
-        </a>
+            <span class="urdu">
+                قرآن پڑھیں
+            </span>
 
-
-
-        <a class="btn" href="hadith.html">
-
-            हदीस पढ़ो।<br>
-
-            حدیث پڑھو।📚
-
-        </a>
-
-
-
-        <a class="btn" href="naat.html">
-
-            ▶️ नअत सुनो।<br>
-
-            ▶️ نعت سنیں
+            <span class="eng">
+                Read Quran
+            </span>
 
         </a>
 
 
 
-        <a class="btn" href="dua.html">
+        <a class="btn blue" href="hadith.html">
 
-            🤲 🙏 दुआ<br>
+            <span class="hi">
+                📚 हदीस पढ़ें
+            </span>
 
-            🤲 دعا
+            <span class="urdu">
+                حدیث پڑھیں
+            </span>
 
-        </a>
-
-
-
-        <a class="btn" href="kalma.html">
-
-            ☪️ 6📿 کلمہ<br>
-
-            📿 कलिमा
+            <span class="eng">
+                Read Hadith
+            </span>
 
         </a>
 
 
 
-        <a class="btn" href="darud.html">
+        <a class="btn purple" href="naat.html">
 
-            🌹 📿 درود<br>
+            <span class="hi">
+                🎙️ नअत सुनें
+            </span>
 
-            📿 दुरूद
+            <span class="urdu">
+                نعت سنیں
+            </span>
 
-        </a>
-
-
-
-        <a class="btn" href="duayequnud.html">
-
-            🤲 🤲 دعائے قنوت<br>
-
-            🤲 दुआ-ए-कुनूत
+            <span class="eng">
+                Listen to Naat
+            </span>
 
         </a>
 
 
 
-        <a class="btn" href="allahki99nam.html">
+        <a class="btn orange" href="dua.html">
 
-            🕌 99 Names of Allah
+            <span class="hi">
+                🤲 दुआ पढ़ें
+            </span>
 
-        </a>
+            <span class="urdu">
+                دعا پڑھیں
+            </span>
 
-
-
-        <a class="btn" href="qibla.html">
-
-            🧭 Qibla 🧭 قبلہ دیکھو<br>
-
-            🧭 क़िब्ला देखो
-
-        </a>
-
-
-
-        <a class="btn" href="namazejanaja.html">
-
-            🕌 🕌 جنازہ کیسے پڑھیں؟<br>
-
-            🕌 जनाज़ा कैसे पढ़ें?
+            <span class="eng">
+                Read Dua
+            </span>
 
         </a>
 
 
 
-        <a class="btn" href="prayertime.html">
+        <a class="btn teal" href="kalma.html">
 
-            🕌 Prayer Time 🕌 نماز کے اوقات دیکھیں<br>
+            <span class="hi">
+                📿 6 कलमे
+            </span>
 
-            🕌 नमाज़ के समय देखें
+            <span class="urdu">
+                چھ کلمے
+            </span>
 
-        </a>
-
-
-
-        <a class="btn" href="calendar.html">
-
-            📅 Islamic 📅 اسلامی کیلنڈر<br>
-
-            📅 इस्लामी कैलेंडर<br>
-
-            Calendar
+            <span class="eng">
+                Six Kalmas
+            </span>
 
         </a>
 
 
 
-        <a class="btn" href="quiz.html">
+        <a class="btn pink" href="darud.html">
 
-            📝 Islamic Quiz ❓ اسلامی سوال و جواب سیکھیں<br>
+            <span class="hi">
+                🌹 दरूद पढ़ें
+            </span>
 
-            ❓ इस्लामी सवाल-जवاب सीखیں
+            <span class="urdu">
+                درود پڑھیں
+            </span>
+
+            <span class="eng">
+                Read Durood
+            </span>
 
         </a>
 
 
 
-        <a class="btn" href="quran-audio.html">
+        <a class="btn orange" href="duayequnud.html">
 
-            🎧 Quran Audio 🎧 قرآن سنیں<br>
+            <span class="hi">
+                🤲 दुआ-ए-कुनूत
+            </span>
 
-            🎧 क़ुरआन सुनें
+            <span class="urdu">
+                دعائے قنوت
+            </span>
+
+            <span class="eng">
+                Dua-e-Qunoot
+            </span>
+
+        </a>
+
+
+
+        <a class="btn green" href="allahki99nam.html">
+
+            <span class="hi">
+                🕌 अल्लाह के 99 नाम
+            </span>
+
+            <span class="urdu">
+                اللہ کے 99 نام
+            </span>
+
+            <span class="eng">
+                99 Names of Allah
+            </span>
+
+        </a>
+
+
+
+        <a class="btn blue" href="qibla.html">
+
+            <span class="hi">
+                🧭 क़िब्ला देखें
+            </span>
+
+            <span class="urdu">
+                قبلہ دیکھیں
+            </span>
+
+            <span class="eng">
+                Find Qibla
+            </span>
+
+        </a>
+
+
+
+        <a class="btn purple" href="namazejanaja.html">
+
+            <span class="hi">
+                🕌 जनाज़े की नमाज़
+            </span>
+
+            <span class="urdu">
+                جنازے کی نماز
+            </span>
+
+            <span class="eng">
+                Funeral Prayer
+            </span>
+
+        </a>
+
+
+
+        <a class="btn teal" href="prayertime.html">
+
+            <span class="hi">
+                🕌 नमाज़ के समय
+            </span>
+
+            <span class="urdu">
+                نماز کے اوقات
+            </span>
+
+            <span class="eng">
+                Prayer Times
+            </span>
+
+        </a>
+
+
+
+        <a class="btn orange" href="calendar.html">
+
+            <span class="hi">
+                📅 इस्लामी कैलेंडर
+            </span>
+
+            <span class="urdu">
+                اسلامی کیلنڈر
+            </span>
+
+            <span class="eng">
+                Islamic Calendar
+            </span>
+
+        </a>
+
+
+
+        <a class="btn blue" href="quiz.html">
+
+            <span class="hi">
+                📝 इस्लामी सवाल-जवाब
+            </span>
+
+            <span class="urdu">
+                اسلامی سوال و جواب
+            </span>
+
+            <span class="eng">
+                Islamic Quiz
+            </span>
+
+        </a>
+
+
+
+        <a class="btn purple" href="quran-audio.html">
+
+            <span class="hi">
+                🎧 क़ुरआन सुनें
+            </span>
+
+            <span class="urdu">
+                قرآن سنیں
+            </span>
+
+            <span class="eng">
+                Listen to Quran
+            </span>
 
         </a>
 
@@ -295,9 +1052,11 @@
 
 
 
-    <!-- Hidden Footer -->
+    <!-- =====================
+         HIDDEN FOOTER
+    ====================== -->
 
-    <footer style="display: none;">
+    <footer style="display:none;">
 
         <a href="about.html">
             About Us
@@ -327,7 +1086,6 @@
             Refund Policy
         </a>
 
-
         <p>
             Email: mdchandmdchand220@gmail.com
         </p>
@@ -336,13 +1094,22 @@
 
 
 
-    <!-- 2 Second Splash Screen Script -->
+    <!-- =====================
+         SPLASH SCRIPT
+    ====================== -->
 
     <script>
 
         setTimeout(function () {
 
-            document.getElementById("splash").style.display = "none";
+            var splash =
+                document.getElementById("splash");
+
+            if (splash) {
+
+                splash.style.display = "none";
+
+            }
 
         }, 2000);
 
