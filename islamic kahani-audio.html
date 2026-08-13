@@ -113,6 +113,17 @@
     </div>
 
 </div>
+<script>
+const audios = document.querySelectorAll("audio");
+
+audios.forEach((audio, index) => {
+    audio.addEventListener("ended", function () {
+        if (index + 1 < audios.length) {
+            audios[index + 1].play();
+        }
+    });
+});
+</script>
 
 </body>
 </html>
