@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>इस्लामिक कहानियाँ</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf7ef;
+            color: #222;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #087f5b;
+            margin-bottom: 20px;
+        }
+
+        .story {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .story h2 {
+            color: #087f5b;
+            margin-bottom: 10px;
+        }
+
+        .story p {
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📖 इस्लामिक कहानियाँ</h1>
+
+    <div class="story">
+        <h2>हज़रत आदम अलैहिस्सलाम की कहानी</h2>
+
+        <p>
+            यहाँ इस्लामिक कहानी का विवरण लिखा जाएगा।
+        </p>
+
+        <p>
+            इस कहानी से हमें अल्लाह पर ईमान, सब्र और नेक अमल की सीख मिलती है।
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
