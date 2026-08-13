@@ -8,18 +8,29 @@
 <body>
 
     <audio controls>
-        <source src="naat-audio/An_Nabi_Salloo_Alae___Owais_Raza_Qadri___New_Naat_2020___official_version___OSA_Islamic(256k).mp3" type="audio/mpeg">
+        <source src="naat-audio/naat1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio> 
     <audio controls>
-<source src="irshadalish-naat-shareef-464267.mp3" type="audio/mpeg">
+<source src="naat-audio/naat2.mp3" type="audio/mpeg">
  </audio>
 
 
 
 
 
+<div>
+<script>
+const audios = document.querySelectorAll("audio");
 
+audios.forEach((audio, index) => {
+    audio.addEventListener("ended", function () {
+        if (index + 1 < audios.length) {
+            audios[index + 1].play();
+        }
+    });
+});
+</script>
 
 
 
