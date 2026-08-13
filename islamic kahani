@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>इस्लामिक कहानियाँ</title>
+    <title>इस्लामिक कहानियाँ - Audio</title>
 
     <style>
         * {
@@ -17,7 +17,6 @@
             font-family: Arial, sans-serif;
             background: #eaf7ef;
             color: #222;
-            line-height: 1.8;
         }
 
         .container {
@@ -29,25 +28,30 @@
         h1 {
             text-align: center;
             color: #087f5b;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .story {
             background: white;
             padding: 20px;
-            border-radius: 12px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
         }
 
         .story h2 {
             color: #087f5b;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        audio {
+            width: 100%;
+            margin: 10px 0 15px;
         }
 
         .story p {
             font-size: 17px;
-            margin-bottom: 12px;
+            line-height: 1.8;
         }
     </style>
 </head>
@@ -56,18 +60,56 @@
 
 <div class="container">
 
-    <h1>📖 इस्लामिक कहानियाँ</h1>
+    <h1>📖 इस्लामिक कहानियाँ 🎧</h1>
 
+    <!-- कहानी 1 -->
     <div class="story">
-        <h2>हज़रत आदम अलैहिस्सलाम की कहानी</h2>
+
+        <h2>कहानी</h2>
+
+        <audio controls>
+            <source src="audio2/kahani1.mp3" type="audio/mpeg">
+            आपका ब्राउज़र Audio को सपोर्ट नहीं करता।
+        </audio>
 
         <p>
-            यहाँ इस्लामिक कहानी का विवरण लिखा जाएगा।
+            
         </p>
 
+    </div>
+
+
+    <!-- कहानी 2 -->
+    <div class="story">
+
+        <h2>कहानी</h2>
+
+        <audio controls>
+            <source src="audio2/kahani2.mp3" type="audio/mpeg">
+            आपका ब्राउज़र Audio को सपोर्ट नहीं करता।
+        </audio>
+
         <p>
-            इस कहानी से हमें अल्लाह पर ईमान, सब्र और नेक अमल की सीख मिलती है।
+            
         </p>
+
+    </div>
+
+
+    <!-- कहानी 3 -->
+    <div class="story">
+
+        <h2>कहानी</h2>
+
+        <audio controls>
+            <source src="audio2/kahani3.mp3" type="audio/mpeg">
+            आपका ब्राउज़र Audio को सपोर्ट नहीं करता।
+        </audio>
+
+        <p>
+            
+        </p>
+
     </div>
 
 </div>
