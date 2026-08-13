@@ -1,1 +1,468 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>दीन-ए-इस्लाम की बुनियादी तालीम | Sana Islamic</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#f5f5ef;
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+  color:#222;
+}
+
+/* HEADER */
+
+.header{
+  height:64px;
+  background:#004d2d;
+  border-bottom:3px solid #d7a82d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.header-logo{
+  height:58px;
+  max-width:62%;
+  object-fit:contain;
+}
+
+.back{
+  position:absolute;
+  left:10px;
+  top:10px;
+  width:43px;
+  height:43px;
+  border:2px solid #d7a82d;
+  border-radius:50%;
+  color:white;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+}
+
+/* TITLE */
+
+.title-box{
+  width:96%;
+  margin:7px auto;
+  background:#fffef4;
+  border:2px solid #d7a82d;
+  border-radius:22px;
+  text-align:center;
+  padding:9px;
+  box-shadow:0 2px 5px #999;
+}
+
+.title-box .ar{
+  font-size:24px;
+  font-weight:bold;
+  color:#075d35;
+}
+
+.title-box .hi{
+  font-size:21px;
+  font-weight:bold;
+  color:#641477;
+  margin-top:4px;
+}
+
+.title-box .ur{
+  font-size:19px;
+  font-weight:bold;
+  color:#075d35;
+  margin-top:3px;
+}
+
+.title-box .en{
+  font-size:15px;
+  margin-top:3px;
+}
+
+/* LESSON CARD */
+
+.lesson{
+  width:96%;
+  margin:9px auto;
+  background:white;
+  border:2px solid #087553;
+  border-radius:20px;
+  box-shadow:0 2px 5px #999;
+  overflow:hidden;
+}
+
+.lesson-title{
+  background:linear-gradient(90deg,#d8f2e7,#fff);
+  border-bottom:2px solid #087553;
+  padding:11px;
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  color:#075d35;
+}
+
+.lesson-body{
+  padding:13px;
+}
+
+.lesson-body h3{
+  margin:4px 0 8px;
+  color:#641477;
+  font-size:19px;
+}
+
+.lesson-body p{
+  margin:8px 0;
+  line-height:1.65;
+  font-size:17px;
+}
+
+.arabic{
+  direction:rtl;
+  text-align:center;
+  font-size:25px;
+  line-height:1.8;
+  color:#075d35;
+  margin:8px 0;
+  font-weight:bold;
+}
+
+.note{
+  background:#fffef4;
+  border:1px solid #d7a82d;
+  border-radius:14px;
+  padding:10px;
+  margin-top:10px;
+  line-height:1.6;
+  font-size:16px;
+}
+
+/* NAVIGATION */
+
+.navigation{
+  width:96%;
+  margin:12px auto 18px;
+  display:flex;
+  gap:8px;
+}
+
+.nav-btn{
+  flex:1;
+  background:#004d2d;
+  border:2px solid #d7a82d;
+  border-radius:18px;
+  padding:11px 5px;
+  color:white;
+  text-decoration:none;
+  text-align:center;
+  font-weight:bold;
+  font-size:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:520px){
+
+  .header{
+    height:60px;
+  }
+
+  .header-logo{
+    height:52px;
+  }
+
+  .back{
+    width:40px;
+    height:40px;
+    top:9px;
+  }
+
+  .title-box .ar{
+    font-size:20px;
+  }
+
+  .title-box .hi{
+    font-size:18px;
+  }
+
+  .title-box .ur{
+    font-size:17px;
+  }
+
+  .title-box .en{
+    font-size:14px;
+  }
+
+  .lesson-title{
+    font-size:18px;
+  }
+
+  .lesson-body p{
+    font-size:16px;
+  }
+
+  .arabic{
+    font-size:22px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+<a href="kitab.html" class="back">‹</a>
+
+<img
+src="assets/header_logo.png"
+alt="Sana Islamic"
+class="header-logo">
+
+</header>
+
+
+<!-- TITLE -->
+
+<div class="title-box">
+
+<div class="ar">
+بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+</div>
+
+<div class="hi">
+दीन-ए-इस्लाम की बुनियादी तालीम
+</div>
+
+<div class="ur">
+دینِ اسلام کی بنیادی تعلیم
+</div>
+
+<div class="en">
+Basic Islamic Teachings
+</div>
+
+</div>
+
+
+<!-- LESSON 1 -->
+
+<div class="lesson">
+
+<div class="lesson-title">
+📖 सबक 1 — इस्लाम क्या है?
+</div>
+
+<div class="lesson-body">
+
+<p>
+इस्लाम अल्लाह तआला का पसंद किया हुआ दीन है।
+इस्लाम इंसान को अल्लाह की इबादत करने,
+अच्छे अख़लाक़ अपनाने और सही रास्ते पर चलने की
+तालीम देता है।
+</p>
+
+<div class="arabic">
+إِنَّ الدِّينَ عِندَ اللَّهِ الْإِسْلَامُ
+</div>
+
+<p>
+इस्लाम का मतलब है अल्लाह तआला के हुक्म को
+मानना और उसके बताए हुए रास्ते पर चलना।
+</p>
+
+<div class="note">
+<strong>याद रखें:</strong><br>
+एक मुसलमान का सबसे बड़ा मकसद अल्लाह तआला
+की इबादत करना और उसकी रज़ा हासिल करना है।
+</div>
+
+</div>
+
+</div>
+
+
+<!-- LESSON 2 -->
+
+<div class="lesson">
+
+<div class="lesson-title">
+🕌 सबक 2 — इस्लाम के पाँच अरकान
+</div>
+
+<div class="lesson-body">
+
+<p>
+इस्लाम की बुनियाद पाँच अहम अरकान पर है:
+</p>
+
+<p>
+<strong>1. कलमा / शहादत</strong><br>
+अल्लाह के एक होने और मुहम्मद ﷺ के अल्लाह के रसूल होने की गवाही देना।
+</p>
+
+<p>
+<strong>2. नमाज़</strong><br>
+पाँच वक्त की नमाज़ अदा करना।
+</p>
+
+<p>
+<strong>3. ज़कात</strong><br>
+जिस मुसलमान पर ज़कात फ़र्ज़ हो, वह अपने माल की ज़कात अदा करे।
+</p>
+
+<p>
+<strong>4. रोज़ा</strong><br>
+रमज़ान के महीने में रोज़े रखना।
+</p>
+
+<p>
+<strong>5. हज</strong><br>
+जिसे रास्ते और माल की ताकत हासिल हो, वह ज़िंदगी में एक बार बैतुल्लाह का हज करे।
+</p>
+
+<div class="note">
+<strong>याद रखें:</strong><br>
+ये इस्लाम के पाँच बुनियादी अरकान हैं।
+</div>
+
+</div>
+
+</div>
+
+
+<!-- LESSON 3 -->
+
+<div class="lesson">
+
+<div class="lesson-title">
+🤲 सबक 3 — ईमान के छह अरकान
+</div>
+
+<div class="lesson-body">
+
+<p>
+ईमान के छह बुनियादी अरकान हैं:
+</p>
+
+<p>
+<strong>1.</strong> अल्लाह तआला पर ईमान लाना।<br>
+<strong>2.</strong> उसके फ़रिश्तों पर ईमान लाना।<br>
+<strong>3.</strong> उसकी किताबों पर ईमान लाना।<br>
+<strong>4.</strong> उसके रसूलों पर ईमान लाना।<br>
+<strong>5.</strong> आख़िरत और क़यामत के दिन पर ईमान लाना।<br>
+<strong>6.</strong> अच्छी और बुरी तक़दीर अल्लाह की तरफ़ से होने पर ईमान लाना।
+</p>
+
+<div class="note">
+ईमान सिर्फ़ ज़ुबान से कहने का नाम नहीं, बल्कि दिल से यक़ीन और
+अल्लाह के बताए हुए रास्ते को मानना भी है।
+</div>
+
+</div>
+
+</div>
+
+
+<!-- LESSON 4 -->
+
+<div class="lesson">
+
+<div class="lesson-title">
+🕋 सबक 4 — हमारा रब कौन है?
+</div>
+
+<div class="lesson-body">
+
+<p>
+हमारा रब <strong>अल्लाह तआला</strong> है।
+वही हमें पैदा करने वाला है, वही हमें रोज़ी देता है
+और वही पूरी कायनात का मालिक है।
+</p>
+
+<p>
+मुसलमान का अकीदा है कि अल्लाह तआला अकेला है,
+उसका कोई शरीक नहीं।
+इबादत के लायक़ सिर्फ़ वही है।
+</p>
+
+<div class="arabic">
+قُلْ هُوَ اللَّهُ أَحَدٌ
+</div>
+
+<p>
+अर्थ: कह दीजिए कि वह अल्लाह एक है।
+</p>
+
+</div>
+
+</div>
+
+
+<!-- LESSON 5 -->
+
+<div class="lesson">
+
+<div class="lesson-title">
+❤️ सबक 5 — अच्छे अख़लाक़
+</div>
+
+<div class="lesson-body">
+
+<p>
+इस्लाम हमें अच्छे अख़लाक़ की तालीम देता है।
+मुसलमान को सच बोलना, माता-पिता का सम्मान करना,
+पड़ोसियों के साथ अच्छा व्यवहार करना और दूसरों की मदद करना चाहिए।
+</p>
+
+<p>
+हमें झूठ, धोखा, गाली-गलौज, घमंड और किसी को तकलीफ़ देने से बचना चाहिए।
+</p>
+
+<div class="note">
+<strong>आज का सबक:</strong><br>
+हम रोज़मर्रा की ज़िंदगी में कम-से-कम एक अच्छा काम
+करने की कोशिश करें और किसी को अपनी ज़ुबान या हाथ से तकलीफ़ न दें।
+</div>
+
+</div>
+
+</div>
+
+
+<!-- NAVIGATION -->
+
+<div class="navigation">
+
+<a href="kitab.html" class="nav-btn">
+‹ किताब पर वापस
+</a>
+
+<a href="taleem-2.html" class="nav-btn">
+अगला अध्याय ›
+</a>
+
+</div>
+
+
+</body>
+</html>
 
