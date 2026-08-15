@@ -28,8 +28,6 @@ body{
     margin:auto;
 }
 
-/* Main Heading */
-
 .main-title{
     text-align:center;
     background:linear-gradient(135deg,#08752d,#22a451,#075d25);
@@ -50,8 +48,6 @@ body{
     font-size:22px;
 }
 
-/* Cards */
-
 .card{
     background:linear-gradient(
         135deg,
@@ -62,9 +58,7 @@ body{
 
     padding:20px;
     margin-bottom:18px;
-
     border-radius:18px;
-
     border:2px solid #16833b;
 
     box-shadow:
@@ -83,21 +77,15 @@ body{
     color:#08752d;
 }
 
-/* Urdu */
-
 .urdu{
     direction:rtl;
     text-align:right;
     font-size:20px;
 }
 
-/* Lists */
-
 li{
     margin-bottom:10px;
 }
-
-/* Important Box */
 
 .note{
     background:linear-gradient(
@@ -107,15 +95,12 @@ li{
     );
 
     border-left:6px solid #16833b;
-
     padding:15px;
-
     border-radius:12px;
-
     margin-top:15px;
 }
 
-/* Questions */
+/* Question */
 
 .question{
     background:linear-gradient(
@@ -124,13 +109,50 @@ li{
         #ffffff
     );
 
+    padding:15px;
+    margin:15px 0;
+
+    border-radius:12px;
+    border:1px solid #8dcc9d;
+}
+
+.answer-box{
+    width:100%;
     padding:12px;
+    margin-top:10px;
 
-    margin:10px 0;
-
+    border:2px solid #16833b;
     border-radius:10px;
 
-    border:1px solid #8dcc9d;
+    font-size:16px;
+    outline:none;
+}
+
+.answer-box:focus{
+    border-color:#075d25;
+}
+
+.check-btn{
+    margin-top:10px;
+    padding:10px 18px;
+
+    border:0;
+    border-radius:10px;
+
+    background:linear-gradient(
+        135deg,
+        #08752d,
+        #22a451
+    );
+
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.result{
+    font-weight:bold;
+    margin-top:10px;
 }
 
 .footer{
@@ -148,7 +170,7 @@ li{
 
 <div class="container">
 
-<!-- Main Title -->
+<!-- TITLE -->
 
 <div class="main-title">
 
@@ -159,7 +181,7 @@ li{
 </div>
 
 
-<!-- Lesson 1 -->
+<!-- LESSON 1 -->
 
 <div class="card">
 
@@ -187,7 +209,7 @@ li{
 </div>
 
 
-<!-- Six Pillars -->
+<!-- SIX PILLARS -->
 
 <div class="card">
 
@@ -259,7 +281,7 @@ li{
 </div>
 
 
-<!-- Aqeedah -->
+<!-- AQEEDAH -->
 
 <div class="card">
 
@@ -286,7 +308,7 @@ li{
 </div>
 
 
-<!-- Basic Aqeedah -->
+<!-- BASIC AQEEDAH -->
 
 <div class="card">
 
@@ -355,7 +377,7 @@ li{
 </div>
 
 
-<!-- Remember -->
+<!-- REMEMBER -->
 
 <div class="card">
 
@@ -390,7 +412,7 @@ li{
 </div>
 
 
-<!-- Questions -->
+<!-- QUESTIONS -->
 
 <div class="card">
 
@@ -400,84 +422,160 @@ li{
 <span class="urdu">❓ سبق کے سوالات</span>
 </h2>
 
+
+<!-- QUESTION 1 -->
+
 <div class="question">
 
-<b>1. हिंदी:</b>
+<b>सवाल 1:</b>
 ईमान के कितने अरकान हैं?
 
+<p class="urdu">
+سوال 1: ایمان کے کتنے ارکان ہیں؟
+</p>
+
+<input
+type="text"
+id="answer1"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
 <br>
 
-<span class="urdu">
-<b>اردو:</b>
-ایمان کے کتنے ارکان ہیں؟
-</span>
+<button
+class="check-btn"
+onclick="checkAnswer(1)">
+जवाब जांचें
+</button>
+
+<p id="result1" class="result"></p>
 
 </div>
 
 
-<div class="question">
-
-<b>2. हिंदी:</b>
-ईमान के 6 अरकान कौन-कौन से हैं?
-
-<br>
-
-<span class="urdu">
-<b>اردو:</b>
-ایمان کے 6 ارکان کون کون سے ہیں؟
-</span>
-
-</div>
-
+<!-- QUESTION 2 -->
 
 <div class="question">
 
-<b>3. हिंदी:</b>
-अकीदा किसे कहते हैं?
-
-<br>
-
-<span class="urdu">
-<b>اردو:</b>
-عقیدہ کسے کہتے ہیں؟
-</span>
-
-</div>
-
-
-<div class="question">
-
-<b>4. हिंदी:</b>
+<b>सवाल 2:</b>
 इबादत के लायक कौन है?
 
+<p class="urdu">
+سوال 2: عبادت کے لائق کون ہے؟
+</p>
+
+<input
+type="text"
+id="answer2"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
 <br>
 
-<span class="urdu">
-<b>اردو:</b>
-عبادت کے لائق کون ہے؟
-</span>
+<button
+class="check-btn"
+onclick="checkAnswer(2)">
+जवाब जांचें
+</button>
+
+<p id="result2" class="result"></p>
 
 </div>
 
+
+<!-- QUESTION 3 -->
 
 <div class="question">
 
-<b>5. हिंदी:</b>
-आख़िरी नबी कौन हैं?
+<b>सवाल 3:</b>
+अकीदा किसे कहते हैं?
+
+<p class="urdu">
+سوال 3: عقیدہ کسے کہتے ہیں؟
+</p>
+
+<input
+type="text"
+id="answer3"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
 
 <br>
 
-<span class="urdu">
-<b>اردو:</b>
-آخری نبی کون ہیں؟
-</span>
+<button
+class="check-btn"
+onclick="checkAnswer(3)">
+जवाब जांचें
+</button>
+
+<p id="result3" class="result"></p>
+
+</div>
+
+
+<!-- QUESTION 4 -->
+
+<div class="question">
+
+<b>सवाल 4:</b>
+आख़िरी नबी कौन हैं?
+
+<p class="urdu">
+سوال 4: آخری نبی کون ہیں؟
+</p>
+
+<input
+type="text"
+id="answer4"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<br>
+
+<button
+class="check-btn"
+onclick="checkAnswer(4)">
+जवाब जांचें
+</button>
+
+<p id="result4" class="result"></p>
+
+</div>
+
+
+<!-- QUESTION 5 -->
+
+<div class="question">
+
+<b>सवाल 5:</b>
+क़यामत के दिन पर ईमान लाना किसका हिस्सा है?
+
+<p class="urdu">
+سوال 5: قیامت کے دن پر ایمان لانا کس کا حصہ ہے؟
+</p>
+
+<input
+type="text"
+id="answer5"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<br>
+
+<button
+class="check-btn"
+onclick="checkAnswer(5)">
+जवाब जांचें
+</button>
+
+<p id="result5" class="result"></p>
 
 </div>
 
 </div>
 
 
-<!-- Footer -->
+<!-- FOOTER -->
 
 <div class="footer">
 
@@ -489,6 +587,118 @@ li{
 
 </div>
 
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+function checkAnswer(number){
+
+    let input =
+    document.getElementById("answer" + number);
+
+    let result =
+    document.getElementById("result" + number);
+
+    let answer =
+    input.value.trim().toLowerCase();
+
+
+    if(answer === ""){
+
+        result.innerHTML =
+        "⚠️ पहले अपना जवाब लिखें।";
+
+        return;
+    }
+
+
+    let correct = false;
+
+
+    if(number === 1){
+
+        if(
+            answer === "6" ||
+            answer === "६" ||
+            answer.includes("छह") ||
+            answer.includes("छः") ||
+            answer.includes("چھ")
+        ){
+            correct = true;
+        }
+
+    }
+
+
+    if(number === 2){
+
+        if(
+            answer.includes("अल्लाह") ||
+            answer.includes("allah") ||
+            answer.includes("اللہ")
+        ){
+            correct = true;
+        }
+
+    }
+
+
+    if(number === 3){
+
+        if(
+            answer.includes("बुनियादी") ||
+            answer.includes("ईमानी") ||
+            answer.includes("بنیادی") ||
+            answer.includes("ایمانی") ||
+            answer.includes("یقین")
+        ){
+            correct = true;
+        }
+
+    }
+
+
+    if(number === 4){
+
+        if(
+            answer.includes("मुहम्मद") ||
+            answer.includes("محمد") ||
+            answer.includes("muhammad")
+        ){
+            correct = true;
+        }
+
+    }
+
+
+    if(number === 5){
+
+        if(
+            answer.includes("ईमान") ||
+            answer.includes("ایمان")
+        ){
+            correct = true;
+        }
+
+    }
+
+
+    if(correct){
+
+        result.innerHTML =
+        "✅ सही जवाब! माशाअल्लाह।";
+
+    }else{
+
+        result.innerHTML =
+        "❌ जवाब सही नहीं है। दोबारा कोशिश करें।";
+
+    }
+
+}
+
+</script>
+
 </body>
 </html>
-
