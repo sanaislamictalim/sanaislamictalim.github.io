@@ -14,13 +14,27 @@ content="width=device-width, initial-scale=1.0">
     box-sizing:border-box;
 }
 
+/* Text selection बंद */
+
 body{
     margin:0;
     padding:15px;
-    background:linear-gradient(135deg,#e8f5e9,#f7fff8,#dff5e5);
+
+    background:
+    linear-gradient(
+        135deg,
+        #e8f5e9,
+        #f7fff8,
+        #dff5e5
+    );
+
     font-family:Arial,sans-serif;
     line-height:2;
     color:#18351f;
+
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    user-select:none;
 }
 
 .container{
@@ -30,12 +44,25 @@ body{
 
 .main-title{
     text-align:center;
-    background:linear-gradient(135deg,#08752d,#22a451,#075d25);
+
+    background:
+    linear-gradient(
+        135deg,
+        #08752d,
+        #22a451,
+        #075d25
+    );
+
     color:white;
+
     padding:20px;
+
     border-radius:20px;
+
     margin-bottom:20px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.15);
 }
 
 .main-title h1{
@@ -49,7 +76,9 @@ body{
 }
 
 .card{
-    background:linear-gradient(
+
+    background:
+    linear-gradient(
         135deg,
         #e8f5e9,
         #ffffff,
@@ -57,19 +86,31 @@ body{
     );
 
     padding:20px;
+
     margin-bottom:18px;
+
     border-radius:18px;
+
     border:2px solid #16833b;
 
     box-shadow:
-        0 4px 12px rgba(0,0,0,0.10);
+    0 4px 12px rgba(0,0,0,0.10);
+
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    user-select:none;
 }
 
 .card h2{
     color:#08752d;
+
     text-align:center;
+
     margin-top:0;
-    border-bottom:2px solid #7acb91;
+
+    border-bottom:
+    2px solid #7acb91;
+
     padding-bottom:8px;
 }
 
@@ -88,77 +129,117 @@ li{
 }
 
 .note{
-    background:linear-gradient(
+
+    background:
+    linear-gradient(
         135deg,
         #ffffff,
         #e1f7e7
     );
 
-    border-left:6px solid #16833b;
+    border-left:
+    6px solid #16833b;
+
     padding:15px;
+
     border-radius:12px;
+
     margin-top:15px;
 }
 
-/* Question */
+
+/* Questions */
 
 .question{
-    background:linear-gradient(
+
+    background:
+    linear-gradient(
         135deg,
         #f0fff3,
         #ffffff
     );
 
     padding:15px;
+
     margin:15px 0;
 
     border-radius:12px;
+
     border:1px solid #8dcc9d;
 }
 
+
+/* Answer Box */
+
 .answer-box{
+
     width:100%;
+
     padding:12px;
+
     margin-top:10px;
 
-    border:2px solid #16833b;
+    border:
+    2px solid #16833b;
+
     border-radius:10px;
 
     font-size:16px;
+
     outline:none;
+
+    -webkit-user-select:text;
+    user-select:text;
 }
 
-.answer-box:focus{
-    border-color:#075d25;
-}
+
+/* Button */
 
 .check-btn{
+
     margin-top:10px;
+
     padding:10px 18px;
 
     border:0;
+
     border-radius:10px;
 
-    background:linear-gradient(
+    background:
+    linear-gradient(
         135deg,
         #08752d,
         #22a451
     );
 
     color:white;
+
     font-size:16px;
+
     cursor:pointer;
 }
 
+
+/* Result */
+
 .result{
+
     font-weight:bold;
+
     margin-top:10px;
 }
 
+
+/* Footer */
+
 .footer{
+
     text-align:center;
+
     color:#08752d;
+
     font-weight:bold;
+
     padding:15px;
 }
 
@@ -169,6 +250,7 @@ li{
 <body>
 
 <div class="container">
+
 
 <!-- TITLE -->
 
@@ -181,14 +263,16 @@ li{
 </div>
 
 
-<!-- LESSON 1 -->
+<!-- LESSON -->
 
 <div class="card">
 
 <h2>
 सबक 1: ईमान क्या है؟
 <br>
-<span class="urdu">سبق 1: ایمان کیا ہے؟</span>
+<span class="urdu">
+سبق 1: ایمان کیا ہے؟
+</span>
 </h2>
 
 <h3>हिंदी:</h3>
@@ -199,11 +283,15 @@ li{
 उन पर यक़ीन रखना।
 </p>
 
-<h3 class="urdu">اردو:</h3>
+<h3 class="urdu">
+اردو:
+</h3>
 
 <p class="urdu">
+
 ایمان کا مطلب ہے اللہ تعالیٰ اور اس کے بتائے ہوئے
 تمام ضروری عقائد کو دل سے سچا ماننا اور ان پر یقین رکھنا۔
+
 </p>
 
 </div>
@@ -216,64 +304,95 @@ li{
 <h2>
 ईमान के 6 अरकान
 <br>
-<span class="urdu">ایمان کے 6 ارکان</span>
+<span class="urdu">
+ایمان کے 6 ارکان
+</span>
 </h2>
 
 <ol>
 
 <li>
+
 <b>हिंदी:</b>
 अल्लाह तआला पर ईमान लाना।
+
 <br>
+
 <span class="urdu">
 اللہ تعالیٰ پر ایمان لانا۔
 </span>
+
 </li>
 
+
 <li>
+
 <b>हिंदी:</b>
 उसके फ़रिश्तों पर ईमान लाना।
+
 <br>
+
 <span class="urdu">
 اس کے فرشتوں پر ایمان لانا۔
 </span>
+
 </li>
 
+
 <li>
+
 <b>हिंदी:</b>
 उसकी किताबों पर ईमान लाना।
+
 <br>
+
 <span class="urdu">
 اس کی کتابوں پر ایمان لانا۔
 </span>
+
 </li>
 
+
 <li>
+
 <b>हिंदी:</b>
 उसके रसूलों पर ईमान लाना।
+
 <br>
+
 <span class="urdu">
 اس کے رسولوں پر ایمان لانا۔
 </span>
+
 </li>
 
+
 <li>
+
 <b>हिंदी:</b>
 क़यामत के दिन पर ईमान लाना।
+
 <br>
+
 <span class="urdu">
 قیامت کے دن پر ایمان لانا۔
 </span>
+
 </li>
 
+
 <li>
+
 <b>हिंदी:</b>
 अच्छी और बुरी तक़दीर अल्लाह की तरफ़ से होने
 पर ईमान लाना।
+
 <br>
+
 <span class="urdu">
 اچھی اور بری تقدیر اللہ کی طرف سے ہونے پر ایمان لانا۔
 </span>
+
 </li>
 
 </ol>
@@ -286,23 +405,35 @@ li{
 <div class="card">
 
 <h2>
+
 अकीदा क्या है?
+
 <br>
-<span class="urdu">عقیدہ کیا ہے؟</span>
+
+<span class="urdu">
+عقیدہ کیا ہے؟
+</span>
+
 </h2>
 
-<h3>हिंदी:</h3>
+<h3>
+हिंदी:
+</h3>
 
 <p>
 अकीदा उन बुनियादी ईमानी बातों को कहते हैं
 जिन्हें मुसलमान दिल से सच्चा मानता है।
 </p>
 
-<h3 class="urdu">اردو:</h3>
+<h3 class="urdu">
+اردو:
+</h3>
 
 <p class="urdu">
+
 عقیدہ ان بنیادی ایمانی باتوں کو کہتے ہیں
 جنہیں مسلمان دل سے سچا مانتا ہے۔
+
 </p>
 
 </div>
@@ -313,63 +444,100 @@ li{
 <div class="card">
 
 <h2>
+
 हमारा बुनियादी अकीदा
+
 <br>
-<span class="urdu">ہمارا بنیادی عقیدہ</span>
+
+<span class="urdu">
+ہمارا بنیادی عقیدہ
+</span>
+
 </h2>
 
 <ul>
 
 <li>
+
 <b>हिंदी:</b>
 अल्लाह तआला एक है।
+
 <br>
-<span class="urdu">اللہ تعالیٰ ایک ہے۔</span>
+
+<span class="urdu">
+اللہ تعالیٰ ایک ہے۔
+</span>
+
 </li>
 
+
 <li>
+
 <b>हिंदी:</b>
 इबादत के लायक सिर्फ़ अल्लाह तआला है।
+
 <br>
+
 <span class="urdu">
 عبادت کے لائق صرف اللہ تعالیٰ ہے۔
 </span>
+
 </li>
 
+
 <li>
+
 <b>हिंदी:</b>
 हज़रत मुहम्मद ﷺ अल्लाह के रसूल हैं।
+
 <br>
+
 <span class="urdu">
 حضرت محمد ﷺ اللہ کے رسول ہیں۔
 </span>
+
 </li>
 
+
 <li>
+
 <b>हिंदी:</b>
 क़ुरआन मजीद अल्लाह की किताब है।
+
 <br>
+
 <span class="urdu">
 قرآن مجید اللہ کی کتاب ہے۔
 </span>
+
 </li>
 
+
 <li>
+
 <b>हिंदी:</b>
 क़यामत का दिन आने वाला है।
+
 <br>
+
 <span class="urdu">
 قیامت کا دن آنے والا ہے۔
 </span>
+
 </li>
 
+
 <li>
+
 <b>हिंदी:</b>
 हर इंसान को अपने आमाल का हिसाब देना होगा।
+
 <br>
+
 <span class="urdu">
 ہر انسان کو اپنے اعمال کا حساب دینا ہوگا۔
 </span>
+
 </li>
 
 </ul>
@@ -382,9 +550,15 @@ li{
 <div class="card">
 
 <h2>
+
 📝 याद रखने की बात
+
 <br>
-<span class="urdu">📝 یاد رکھنے کی بات</span>
+
+<span class="urdu">
+📝 یاد رکھنے کی بات
+</span>
+
 </h2>
 
 <div class="note">
@@ -400,7 +574,9 @@ li{
 
 <p class="urdu">
 
-<b>اردو:</b><br>
+<b>اردو:</b>
+
+<br>
 
 ایمان کی بنیادی باتوں کو سمجھنا اور ان پر
 سچا یقین رکھنا بہت ضروری ہے۔
@@ -417,9 +593,15 @@ li{
 <div class="card">
 
 <h2>
+
 ❓ सबक के सवाल
+
 <br>
-<span class="urdu">❓ سبق کے سوالات</span>
+
+<span class="urdu">
+❓ سبق کے سوالات
+</span>
+
 </h2>
 
 
@@ -428,6 +610,7 @@ li{
 <div class="question">
 
 <b>सवाल 1:</b>
+
 ईमान के कितने अरकान हैं?
 
 <p class="urdu">
@@ -438,17 +621,24 @@ li{
 type="text"
 id="answer1"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
+>
 
 <br>
 
 <button
 class="check-btn"
-onclick="checkAnswer(1)">
+onclick="checkAnswer(1)"
+>
+
 जवाब जांचें
+
 </button>
 
-<p id="result1" class="result"></p>
+<p
+id="result1"
+class="result">
+</p>
 
 </div>
 
@@ -458,6 +648,7 @@ onclick="checkAnswer(1)">
 <div class="question">
 
 <b>सवाल 2:</b>
+
 इबादत के लायक कौन है?
 
 <p class="urdu">
@@ -468,17 +659,24 @@ onclick="checkAnswer(1)">
 type="text"
 id="answer2"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
+>
 
 <br>
 
 <button
 class="check-btn"
-onclick="checkAnswer(2)">
+onclick="checkAnswer(2)"
+>
+
 जवाब जांचें
+
 </button>
 
-<p id="result2" class="result"></p>
+<p
+id="result2"
+class="result">
+</p>
 
 </div>
 
@@ -488,6 +686,7 @@ onclick="checkAnswer(2)">
 <div class="question">
 
 <b>सवाल 3:</b>
+
 अकीदा किसे कहते हैं?
 
 <p class="urdu">
@@ -498,17 +697,24 @@ onclick="checkAnswer(2)">
 type="text"
 id="answer3"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
+>
 
 <br>
 
 <button
 class="check-btn"
-onclick="checkAnswer(3)">
+onclick="checkAnswer(3)"
+>
+
 जवाब जांचें
+
 </button>
 
-<p id="result3" class="result"></p>
+<p
+id="result3"
+class="result">
+</p>
 
 </div>
 
@@ -518,6 +724,7 @@ onclick="checkAnswer(3)">
 <div class="question">
 
 <b>सवाल 4:</b>
+
 आख़िरी नबी कौन हैं?
 
 <p class="urdu">
@@ -528,17 +735,24 @@ onclick="checkAnswer(3)">
 type="text"
 id="answer4"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
+>
 
 <br>
 
 <button
 class="check-btn"
-onclick="checkAnswer(4)">
+onclick="checkAnswer(4)"
+>
+
 जवाब जांचें
+
 </button>
 
-<p id="result4" class="result"></p>
+<p
+id="result4"
+class="result">
+</p>
 
 </div>
 
@@ -548,6 +762,7 @@ onclick="checkAnswer(4)">
 <div class="question">
 
 <b>सवाल 5:</b>
+
 क़यामत के दिन पर ईमान लाना किसका हिस्सा है?
 
 <p class="urdu">
@@ -558,17 +773,24 @@ onclick="checkAnswer(4)">
 type="text"
 id="answer5"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
+>
 
 <br>
 
 <button
 class="check-btn"
-onclick="checkAnswer(5)">
+onclick="checkAnswer(5)"
+>
+
 जवाब जांचें
+
 </button>
 
-<p id="result5" class="result"></p>
+<p
+id="result5"
+class="result">
+</p>
 
 </div>
 
@@ -580,15 +802,16 @@ onclick="checkAnswer(5)">
 <div class="footer">
 
 📖 ईमान और अकीदा सीखें
+
 <br>
+
 ایمان اور عقیدہ سیکھیں
 
 </div>
 
+
 </div>
 
-
-<!-- JAVASCRIPT -->
 
 <script>
 
@@ -603,18 +826,19 @@ function checkAnswer(number){
     let answer =
     input.value.trim().toLowerCase();
 
-
     if(answer === ""){
 
         result.innerHTML =
         "⚠️ पहले अपना जवाब लिखें।";
 
         return;
-    }
 
+    }
 
     let correct = false;
 
+
+    /* Question 1 */
 
     if(number === 1){
 
@@ -625,11 +849,15 @@ function checkAnswer(number){
             answer.includes("छः") ||
             answer.includes("چھ")
         ){
+
             correct = true;
+
         }
 
     }
 
+
+    /* Question 2 */
 
     if(number === 2){
 
@@ -638,26 +866,35 @@ function checkAnswer(number){
             answer.includes("allah") ||
             answer.includes("اللہ")
         ){
+
             correct = true;
+
         }
 
     }
 
+
+    /* Question 3 */
 
     if(number === 3){
 
         if(
             answer.includes("बुनियादी") ||
             answer.includes("ईमानी") ||
+            answer.includes("बातों") ||
             answer.includes("بنیادی") ||
             answer.includes("ایمانی") ||
-            answer.includes("یقین")
+            answer.includes("باتوں")
         ){
+
             correct = true;
+
         }
 
     }
 
+
+    /* Question 4 */
 
     if(number === 4){
 
@@ -666,11 +903,15 @@ function checkAnswer(number){
             answer.includes("محمد") ||
             answer.includes("muhammad")
         ){
+
             correct = true;
+
         }
 
     }
 
+
+    /* Question 5 */
 
     if(number === 5){
 
@@ -678,7 +919,9 @@ function checkAnswer(number){
             answer.includes("ईमान") ||
             answer.includes("ایمان")
         ){
+
             correct = true;
+
         }
 
     }
@@ -689,7 +932,9 @@ function checkAnswer(number){
         result.innerHTML =
         "✅ सही जवाब! माशाअल्लाह।";
 
-    }else{
+    }
+
+    else{
 
         result.innerHTML =
         "❌ जवाब सही नहीं है। दोबारा कोशिश करें।";
