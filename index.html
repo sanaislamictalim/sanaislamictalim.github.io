@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5730751878750946"
-     crossorigin="anonymous"></script>
-  <!-- Google tag (gtag.js) -->
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5730751878750946"
+crossorigin="anonymous"></script>
+
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YCDDG3FSRP"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-YCDDG3FSRP');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YCDDG3FSRP');
 </script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Sana Islamic</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
   background:#f5f5ef;
   font-family:Arial,"Noto Sans Devanagari",sans-serif;
 }
+
 .header{
   height:64px;
   background:#004d2d;
@@ -32,11 +40,13 @@ body{
   justify-content:center;
   position:relative;
 }
+
 .header-logo{
   height:58px;
   max-width:62%;
   object-fit:contain;
 }
+
 .donate{
   position:absolute;
   right:3%;
@@ -51,8 +61,14 @@ body{
   font-weight:bold;
   line-height:1.05;
 }
-.donate b{font-size:19px}
-.donate small{font-size:14px}
+
+.donate b{
+  font-size:19px;
+}
+
+.donate small{
+  font-size:14px;
+}
 
 .welcome{
   margin:4px 1.8%;
@@ -63,9 +79,64 @@ body{
   padding:5px 8px 8px;
   box-shadow:0 2px 5px #999;
 }
-.welcome .ar{font-size:27px;font-weight:bold;color:#075d35}
-.welcome .hi{font-size:21px;font-weight:bold;color:#641477}
-.welcome .en{font-size:18px;color:#222}
+
+.welcome .ar{
+  font-size:27px;
+  font-weight:bold;
+  color:#075d35;
+}
+
+.welcome .hi{
+  font-size:21px;
+  font-weight:bold;
+  color:#641477;
+}
+
+.welcome .en{
+  font-size:18px;
+  color:#222;
+}
+
+
+/* 🔔 Notification */
+
+.notification-box{
+  width:96%;
+  margin:8px auto;
+  text-align:center;
+}
+
+.notification-btn{
+  width:100%;
+  padding:13px;
+  border:none;
+  border-radius:15px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #087553,
+    #22a451
+  );
+
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+
+  box-shadow:0 2px 5px #888;
+
+  cursor:pointer;
+}
+
+.notification-status{
+  margin-top:5px;
+  font-size:14px;
+  color:#075d35;
+  font-weight:bold;
+}
+
+
+/* Grid */
 
 .grid{
   width:96%;
@@ -74,6 +145,7 @@ body{
   grid-template-columns:1fr 1fr;
   gap:7px 10px;
 }
+
 .btn{
   min-height:104px;
   border-radius:22px;
@@ -84,6 +156,7 @@ body{
   border:2px solid;
   box-shadow:0 2px 5px #888;
 }
+
 .icon{
   width:225px;
   min-width:225px;
@@ -94,23 +167,42 @@ body{
   justify-content:center;
   overflow:hidden;
 }
+
 .icon img{
   width:100%;
   height:100%;
   object-fit:cover;
   object-position:center;
 }
+
 .txt{
   flex:1;
   text-align:center;
   color:#111;
   line-height:1.15;
 }
-.txt .hi{font-size:22px;font-weight:700}
-.txt .ur{font-size:20px;font-weight:700;margin-top:2px}
-.txt .en{font-size:20px;font-weight:700;margin-top:3px}
+
+.txt .hi{
+  font-size:22px;
+  font-weight:700;
+}
+
+.txt .ur{
+  font-size:20px;
+  font-weight:700;
+  margin-top:2px;
+}
+
+.txt .en{
+  font-size:20px;
+  font-weight:700;
+  margin-top:3px;
+}
+
 .moon{
-  width:64px;height:64px;min-width:64px;
+  width:64px;
+  height:64px;
+  min-width:64px;
   border-radius:50%;
   margin-right:7px;
   display:flex;
@@ -120,44 +212,184 @@ body{
   border:3px solid currentColor;
   background:#faf7df;
 }
+
 .arrow{
   font-size:51px;
   font-weight:300;
   padding:0 12px 4px 2px;
 }
 
-/* Colors closely matching the supplied reference */
-.c1{border-color:#087553;background:linear-gradient(90deg,#d8f2e7,#fff)}
-.c1 .moon,.c1 .arrow,.c1 .en{color:#087553}
-.c2{border-color:#2456b6;background:linear-gradient(90deg,#dbe7ff,#fff)}
-.c2 .moon,.c2 .arrow,.c2 .en{color:#17469e}
-.c3{border-color:#8b249b;background:linear-gradient(90deg,#f1d9f5,#fff)}
-.c3 .moon,.c3 .arrow,.c3 .en{color:#681276}
-.c4{border-color:#d08a13;background:linear-gradient(90deg,#ffe4bf,#fff)}
-.c4 .moon,.c4 .arrow,.c4 .en{color:#9b4c00}
-.c5{border-color:#008a97;background:linear-gradient(90deg,#d7f3f4,#fff)}
-.c5 .moon,.c5 .arrow,.c5 .en{color:#006e76}
-.c6{border-color:#c21b4d;background:linear-gradient(90deg,#ffdce6,#fff)}
-.c6 .moon,.c6 .arrow,.c6 .en{color:#b00c3d}
-.c7{border-color:#d75415;background:linear-gradient(90deg,#ffe0cb,#fff)}
-.c7 .moon,.c7 .arrow,.c7 .en{color:#c33d00}
-.c8{border-color:#65952b;background:linear-gradient(90deg,#e5f1d7,#fff)}
-.c8 .moon,.c8 .arrow,.c8 .en{color:#3e740e}
-.c9{border-color:#2459b7;background:linear-gradient(90deg,#dce9ff,#fff)}
-.c9 .moon,.c9 .arrow,.c9 .en{color:#17479e}
-.c10{border-color:#7c238e;background:linear-gradient(90deg,#f0ddf5,#fff)}
-.c10 .moon,.c10 .arrow,.c10 .en{color:#641276}
-.c11{border-color:#087b7e;background:linear-gradient(90deg,#d8f1ef,#fff)}
-.c11 .moon,.c11 .arrow,.c11 .en{color:#00696b}
-.c12{border-color:#e15c00;background:linear-gradient(90deg,#ffe3ce,#fff)}
-.c12 .moon,.c12 .arrow,.c12 .en{color:#c63f00}
-.c13{border-color:#255bbb;background:linear-gradient(90deg,#dce9ff,#fff)}
-.c13 .moon,.c13 .arrow,.c13 .en{color:#17469f}
-.c14{border-color:#7b238d;background:linear-gradient(90deg,#f0ddf5,#fff)}
-.c14 .moon,.c14 .arrow,.c14 .en{color:#641276}
-.c15{border-color:#8b249b;background:linear-gradient(90deg,#f1d9f5,#fff)}
-.c15 .moon,.c15 .arrow,.c3 .en{color:#681276}
-  
+
+/* Colors */
+
+.c1{
+  border-color:#087553;
+  background:linear-gradient(90deg,#d8f2e7,#fff);
+}
+
+.c1 .moon,
+.c1 .arrow,
+.c1 .en{
+  color:#087553;
+}
+
+.c2{
+  border-color:#2456b6;
+  background:linear-gradient(90deg,#dbe7ff,#fff);
+}
+
+.c2 .moon,
+.c2 .arrow,
+.c2 .en{
+  color:#17469e;
+}
+
+.c3{
+  border-color:#8b249b;
+  background:linear-gradient(90deg,#f1d9f5,#fff);
+}
+
+.c3 .moon,
+.c3 .arrow,
+.c3 .en{
+  color:#681276;
+}
+
+.c4{
+  border-color:#d08a13;
+  background:linear-gradient(90deg,#ffe4bf,#fff);
+}
+
+.c4 .moon,
+.c4 .arrow,
+.c4 .en{
+  color:#9b4c00;
+}
+
+.c5{
+  border-color:#008a97;
+  background:linear-gradient(90deg,#d7f3f4,#fff);
+}
+
+.c5 .moon,
+.c5 .arrow,
+.c5 .en{
+  color:#006e76;
+}
+
+.c6{
+  border-color:#c21b4d;
+  background:linear-gradient(90deg,#ffdce6,#fff);
+}
+
+.c6 .moon,
+.c6 .arrow,
+.c6 .en{
+  color:#b00c3d;
+}
+
+.c7{
+  border-color:#d75415;
+  background:linear-gradient(90deg,#ffe0cb,#fff);
+}
+
+.c7 .moon,
+.c7 .arrow,
+.c7 .en{
+  color:#c33d00;
+}
+
+.c8{
+  border-color:#65952b;
+  background:linear-gradient(90deg,#e5f1d7,#fff);
+}
+
+.c8 .moon,
+.c8 .arrow,
+.c8 .en{
+  color:#3e740e;
+}
+
+.c9{
+  border-color:#2459b7;
+  background:linear-gradient(90deg,#dce9ff,#fff);
+}
+
+.c9 .moon,
+.c9 .arrow,
+.c9 .en{
+  color:#17479e;
+}
+
+.c10{
+  border-color:#7c238e;
+  background:linear-gradient(90deg,#f0ddf5,#fff);
+}
+
+.c10 .moon,
+.c10 .arrow,
+.c10 .en{
+  color:#641276;
+}
+
+.c11{
+  border-color:#087b7e;
+  background:linear-gradient(90deg,#d8f1ef,#fff);
+}
+
+.c11 .moon,
+.c11 .arrow,
+.c11 .en{
+  color:#00696b;
+}
+
+.c12{
+  border-color:#e15c00;
+  background:linear-gradient(90deg,#ffe3ce,#fff);
+}
+
+.c12 .moon,
+.c12 .arrow,
+.c12 .en{
+  color:#c63f00;
+}
+
+.c13{
+  border-color:#255bbb;
+  background:linear-gradient(90deg,#dce9ff,#fff);
+}
+
+.c13 .moon,
+.c13 .arrow,
+.c13 .en{
+  color:#17469f;
+}
+
+.c14{
+  border-color:#7b238d;
+  background:linear-gradient(90deg,#f0ddf5,#fff);
+}
+
+.c14 .moon,
+.c14 .arrow,
+.c14 .en{
+  color:#641276;
+}
+
+.c15{
+  border-color:#8b249b;
+  background:linear-gradient(90deg,#f1d9f5,#fff);
+}
+
+.c15 .moon,
+.c15 .arrow,
+.c15 .en{
+  color:#681276;
+}
+
+
+/* Contact */
+
 .contact{
   display:block;
   width:98%;
@@ -168,58 +400,176 @@ body{
   border:2px solid #c99b1c;
   box-shadow:0 2px 4px #777;
 }
+
 .contact img{
-  width:100%;height:100%;object-fit:cover;
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
+
+
+/* Mobile */
 
 @media(max-width:850px){
-  .grid{grid-template-columns:1fr}
-  .icon{width:155px;min-width:155px}
-  .donate{right:2%;padding:4px 10px}
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .icon{
+    width:155px;
+    min-width:155px;
+  }
+
+  .donate{
+    right:2%;
+    padding:4px 10px;
+  }
+
 }
+
 @media(max-width:520px){
-  .header-logo{max-width:58%;height:52px}
-  .donate b{font-size:13px}
-  .donate small{font-size:10px}
-  .welcome .ar{font-size:21px}
-  .welcome .hi{font-size:17px}
-  .welcome .en{font-size:14px}
-  .btn{min-height:92px}
-  .icon{width:105px;min-width:105px;min-height:88px}
-  .txt .hi{font-size:17px}
-  .txt .ur{font-size:16px}
-  .txt .en{font-size:16px}
-  .moon{width:48px;height:48px;min-width:48px;font-size:25px;margin-right:4px}
-  .arrow{font-size:40px;padding-right:7px}
+
+  .header-logo{
+    max-width:58%;
+    height:52px;
+  }
+
+  .donate b{
+    font-size:13px;
+  }
+
+  .donate small{
+    font-size:10px;
+  }
+
+  .welcome .ar{
+    font-size:21px;
+  }
+
+  .welcome .hi{
+    font-size:17px;
+  }
+
+  .welcome .en{
+    font-size:14px;
+  }
+
+  .btn{
+    min-height:92px;
+  }
+
+  .icon{
+    width:105px;
+    min-width:105px;
+    min-height:88px;
+  }
+
+  .txt .hi{
+    font-size:17px;
+  }
+
+  .txt .ur{
+    font-size:16px;
+  }
+
+  .txt .en{
+    font-size:16px;
+  }
+
+  .moon{
+    width:48px;
+    height:48px;
+    min-width:48px;
+    font-size:25px;
+    margin-right:4px;
+  }
+
+  .arrow{
+    font-size:40px;
+    padding-right:7px;
+  }
+
+  .notification-btn{
+    font-size:15px;
+  }
+
 }
+
 </style>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7WXTSTLMJ"></script>
-<script>
-window.dataLayer=window.dataLayer||[];
-function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());
-gtag('config','G-Q7WXTSTLMJ');
-</script>
 </head>
 
 <body>
 
+
 <header class="header">
-  <img class="header-logo" src="assets/header_logo.png" alt="Sana Islamic">
-  <a class="donate" href="donation.html"><b>❤️ DONATE</b><br><small>मदद करें ➜</small></a>
+
+  <img
+    class="header-logo"
+    src="assets/header_logo.png"
+    alt="Sana Islamic"
+  >
+
+  <a
+    class="donate"
+    href="donation.html"
+  >
+    <b>❤️ DONATE</b>
+    <br>
+    <small>मदद करें ➜</small>
+  </a>
+
 </header>
 
+
 <div class="welcome">
-  <div class="ar">السلام عليكم ورحمة الله وبركاته</div>
-  <div class="hi">अस्सलामु अलैकुम व रहमतुल्लाहि व बरकातुह</div>
-  <div class="en">Peace, Mercy and Blessings of Allah be upon you</div>
+
+  <div class="ar">
+    السلام عليكم ورحمة الله وبركاته
+  </div>
+
+  <div class="hi">
+    अस्सलामु अलैकुम व रहमतुल्लाहि व बरकातुह
+  </div>
+
+  <div class="en">
+    Peace, Mercy and Blessings of Allah be upon you
+  </div>
+
 </div>
 
+
+<!-- 🔔 DAILY NOTIFICATION BUTTON -->
+
+<div class="notification-box">
+
+  <button
+    id="notificationBtn"
+    class="notification-btn"
+    onclick="enableNotifications()"
+  >
+    🔔 Daily Islamic Notification ON करें
+  </button>
+
+  <div
+    id="notificationStatus"
+    class="notification-status"
+  ></div>
+
+</div>
+
+
 <div class="grid">
-  <a class="btn c4" href="kitab.html">
+
+
+<a class="btn c4" href="kitab.html">
+
   <div class="icon">
-    <img src="assets/icon_0.png" alt="Islamic Taleem">
+    <img
+      src="assets/icon_0.png"
+      alt="Islamic Taleem"
+    >
   </div>
 
   <div class="txt">
@@ -229,43 +579,422 @@ gtag('config','G-Q7WXTSTLMJ');
   </div>
 
   <div class="moon">☪</div>
+
   <div class="arrow">›</div>
+
 </a>
 
 
-<a class="btn c1" href="quran.html"><div class="icon"><img src="assets/icon_1.png"></div><div class="txt"><div class="hi">कुरआन पढ़ें</div><div class="ur">قرآن پڑھیں</div><div class="en">Read Quran</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
+<a class="btn c1" href="quran.html">
 
-<a class="btn c2" href="hadith.html"><div class="icon"><img src="assets/icon_8.png"></div><div class="txt"><div class="hi">हदीस पढ़ें</div><div class="ur">حدیث پڑھیں</div><div class="en">Read Hadith</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
+  <div class="icon">
+    <img src="assets/icon_1.png">
+  </div>
 
-<a class="btn c3" href="naat.html"><div class="icon"><img src="assets/icon_2.png"></div><div class="txt"><div class="hi">नअत सुनें</div><div class="ur">نعت سنیں</div><div class="en">Listen to Naat</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
+  <div class="txt">
+    <div class="hi">कुरआन पढ़ें</div>
+    <div class="ur">قرآن پڑھیں</div>
+    <div class="en">Read Quran</div>
+  </div>
 
-<a class="btn c4" href="dua.html"><div class="icon"><img src="assets/icon_9.png"></div><div class="txt"><div class="hi">दुआ पढ़ें</div><div class="ur">دعا پڑھیں</div><div class="en">Read Dua</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
 
-<a class="btn c5" href="kalma.html"><div class="icon"><img src="assets/icon_3.png"></div><div class="txt"><div class="hi">6 कलमे</div><div class="ur">چھ کلمے</div><div class="en">Six Kalmas</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
+</a>
 
-<a class="btn c6" href="darud.html"><div class="icon"><img src="assets/icon_10.png"></div><div class="txt"><div class="hi">दुरूद पढ़ें</div><div class="ur">درود پڑھیں</div><div class="en">Read Durood</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
 
-<a class="btn c7" href="duayequnud.html"><div class="icon"><img src="assets/icon_4.png"></div><div class="txt"><div class="hi">दुआ-ए-कुनूत</div><div class="ur">دعائے قنوت</div><div class="en">Dua-e-Qunoot</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
+<a class="btn c2" href="hadith.html">
 
-<a class="btn c8" href="allahki99nam.html"><div class="icon"><img src="assets/icon_11.png"></div><div class="txt"><div class="hi">अल्लाह के 99 नाम</div><div class="ur">اللہ کے 99 نام</div><div class="en">99 Names of Allah</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
+  <div class="icon">
+    <img src="assets/icon_8.png">
+  </div>
 
-<a class="btn c9" href="qibla.html"><div class="icon"><img src="assets/icon_5.png"></div><div class="txt"><div class="hi">क़िब्ला देखें</div><div class="ur">قبلہ دیکھیں</div><div class="en">Find Qibla</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
+  <div class="txt">
+    <div class="hi">हदीस पढ़ें</div>
+    <div class="ur">حدیث پڑھیں</div>
+    <div class="en">Read Hadith</div>
+  </div>
 
-<a class="btn c10" href="namaze janaja.html"><div class="icon"><img src="assets/icon_12.png"></div><div class="txt"><div class="hi">जनाज़े की नमाज़</div><div class="ur">جنازے کی نماز</div><div class="en">Funeral Prayer</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
 
-<a class="btn c11" href="prayertime.html"><div class="icon"><img src="assets/icon_6.png"></div><div class="txt"><div class="hi">नमाज़ के समय</div><div class="ur">نماز کے اوقات</div><div class="en">Prayer Times</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
+</a>
 
-<a class="btn c12" href="calendar.html"><div class="icon"><img src="assets/icon_13.png"></div><div class="txt"><div class="hi">इस्लामी कैलेंडर</div><div class="ur">اسلامی کیلنڈر</div><div class="en">Islamic Calendar</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
 
-<a class="btn c13" href="quiz.html"><div class="icon"><img src="assets/icon_7.png"></div><div class="txt"><div class="hi">इस्लामी सवाल-जवाब</div><div class="ur">اسلامی سوال و جواب</div><div class="en">Islamic Quiz</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
+<a class="btn c3" href="naat.html">
 
-<a class="btn c14" href="quran-audio.html"><div class="icon"><img src="assets/icon_14.png"></div><div class="txt"><div class="hi">कुरआन सुनें</div><div class="ur">قرآن سنیں</div><div class="en">Listen to Quran</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
+  <div class="icon">
+    <img src="assets/icon_2.png">
+  </div>
 
-<a class="btn c15"href="islamic kahani-audio.html"><div class="icon"><img src="assets/icon_15.png"></div><div class="txt"><div class="hi">इस्लामी कहानी सुनो</div><div class="ur">اسلامی کہانی سنو</div><div class="en">listen to islami kahani</div></div><div class="moon">☪</div><div class="arrow">›</div></a>
-  
+  <div class="txt">
+    <div class="hi">नअत सुनें</div>
+    <div class="ur">نعت سنیں</div>
+    <div class="en">Listen to Naat</div>
+  </div>
+
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
+
+</a>
+
+
+<a class="btn c4" href="dua.html">
+
+  <div class="icon">
+    <img src="assets/icon_9.png">
+  </div>
+
+  <div class="txt">
+    <div class="hi">दुआ पढ़ें</div>
+    <div class="ur">دعا پڑھیں</div>
+    <div class="en">Read Dua</div>
+  </div>
+
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
+
+</a>
+
+
+<a class="btn c5" href="kalma.html">
+
+  <div class="icon">
+    <img src="assets/icon_3.png">
+  </div>
+
+  <div class="txt">
+    <div class="hi">6 कलमे</div>
+    <div class="ur">چھ کلمے</div>
+    <div class="en">Six Kalmas</div>
+  </div>
+
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
+
+</a>
+
+
+<a class="btn c6" href="darud.html">
+
+  <div class="icon">
+    <img src="assets/icon_10.png">
+  </div>
+
+  <div class="txt">
+    <div class="hi">दुरूद पढ़ें</div>
+    <div class="ur">درود پڑھیں</div>
+    <div class="en">Read Durood</div>
+  </div>
+
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
+
+</a>
+
+
+<a class="btn c7" href="duayequnud.html">
+
+  <div class="icon">
+    <img src="assets/icon_4.png">
+  </div>
+
+  <div class="txt">
+    <div class="hi">दुआ-ए-कुनूत</div>
+    <div class="ur">دعائے قنوت</div>
+    <div class="en">Dua-e-Qunoot</div>
+  </div>
+
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
+
+</a>
+
+
+<a class="btn c8" href="allahki99nam.html">
+
+  <div class="icon">
+    <img src="assets/icon_11.png">
+  </div>
+
+  <div class="txt">
+    <div class="hi">अल्लाह के 99 नाम</div>
+    <div class="ur">اللہ کے 99 نام</div>
+    <div class="en">99 Names of Allah</div>
+  </div>
+
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
+
+</a>
+
+
+<a class="btn c9" href="qibla.html">
+
+  <div class="icon">
+    <img src="assets/icon_5.png">
+  </div>
+
+  <div class="txt">
+    <div class="hi">क़िब्ला देखें</div>
+    <div class="ur">قبلہ دیکھیں</div>
+    <div class="en">Find Qibla</div>
+  </div>
+
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
+
+</a>
+
+
+<a class="btn c10" href="namaze janaja.html">
+
+  <div class="icon">
+    <img src="assets/icon_12.png">
+  </div>
+
+  <div class="txt">
+    <div class="hi">जनाज़े की नमाज़</div>
+    <div class="ur">جنازے کی نماز</div>
+    <div class="en">Funeral Prayer</div>
+  </div>
+
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
+
+</a>
+
+
+<a class="btn c11" href="prayertime.html">
+
+  <div class="icon">
+    <img src="assets/icon_6.png">
+  </div>
+
+  <div class="txt">
+    <div class="hi">नमाज़ के समय</div>
+    <div class="ur">نماز کے اوقات</div>
+    <div class="en">Prayer Times</div>
+  </div>
+
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
+
+</a>
+
+
+<a class="btn c12" href="calendar.html">
+
+  <div class="icon">
+    <img src="assets/icon_13.png">
+  </div>
+
+  <div class="txt">
+    <div class="hi">इस्लामी कैलेंडर</div>
+    <div class="ur">اسلامی کیلنڈر</div>
+    <div class="en">Islamic Calendar</div>
+  </div>
+
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
+
+</a>
+
+
+<a class="btn c13" href="quiz.html">
+
+  <div class="icon">
+    <img src="assets/icon_7.png">
+  </div>
+
+  <div class="txt">
+    <div class="hi">इस्लामी सवाल-जवाब</div>
+    <div class="ur">اسلامی سوال و جواب</div>
+    <div class="en">Islamic Quiz</div>
+  </div>
+
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
+
+</a>
+
+
+<a class="btn c14" href="quran-audio.html">
+
+  <div class="icon">
+    <img src="assets/icon_14.png">
+  </div>
+
+  <div class="txt">
+    <div class="hi">कुरआन सुनें</div>
+    <div class="ur">قرآن سنیں</div>
+    <div class="en">Listen to Quran</div>
+  </div>
+
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
+
+</a>
+
+
+<a
+  class="btn c15"
+  href="islamic kahani-audio.html"
+>
+
+  <div class="icon">
+    <img src="assets/icon_15.png">
+  </div>
+
+  <div class="txt">
+    <div class="hi">इस्लामी कहानी सुनो</div>
+    <div class="ur">اسلامی کہانی سنو</div>
+    <div class="en">listen to islami kahani</div>
+  </div>
+
+  <div class="moon">☪</div>
+  <div class="arrow">›</div>
+
+</a>
+
+
 </div>
 
-<a class="contact" href="contact.html"><img src="assets/contact_bar.png" alt="Contact Us"></a>
+
+<a class="contact" href="contact.html">
+
+  <img
+    src="assets/contact_bar.png"
+    alt="Contact Us"
+  >
+
+</a>
+
+
+<!-- 🔔 NOTIFICATION JAVASCRIPT -->
+
+<script>
+
+function enableNotifications(){
+
+  const status =
+    document.getElementById("notificationStatus");
+
+  const button =
+    document.getElementById("notificationBtn");
+
+
+  /* Browser support */
+
+  if(!("Notification" in window)){
+
+    status.innerHTML =
+    "❌ आपके browser में notifications उपलब्ध नहीं हैं।";
+
+    return;
+
+  }
+
+
+  /* HTTPS check */
+
+  if(
+    location.protocol !== "https:" &&
+    location.hostname !== "localhost"
+  ){
+
+    status.innerHTML =
+    "⚠️ Notification के लिए वेबसाइट HTTPS पर होनी चाहिए।";
+
+    return;
+
+  }
+
+
+  /* Already allowed */
+
+  if(Notification.permission === "granted"){
+
+    button.innerHTML =
+    "🔔 Notification ON है";
+
+    status.innerHTML =
+    "✅ Notification पहले से ON है।";
+
+    showTestNotification();
+
+    return;
+
+  }
+
+
+  /* Permission */
+
+  Notification.requestPermission()
+  .then(function(permission){
+
+    if(permission === "granted"){
+
+      button.innerHTML =
+      "🔔 Notification ON है";
+
+      status.innerHTML =
+      "✅ Notification ON हो गया।";
+
+      showTestNotification();
+
+    }
+
+    else if(permission === "denied"){
+
+      status.innerHTML =
+      "❌ Notification की अनुमति बंद कर दी गई।";
+
+    }
+
+    else{
+
+      status.innerHTML =
+      "⚠️ Notification की अनुमति नहीं दी गई।";
+
+    }
+
+  });
+
+}
+
+
+/* Test notification */
+
+function showTestNotification(){
+
+  try{
+
+    new Notification(
+      "🕌 Sana Islamic",
+      {
+        body:
+        "अस्सलामु अलैकुम! Notification test सफल है।",
+        icon:
+        "assets/header_logo.png"
+      }
+    );
+
+  }
+
+  catch(error){
+
+    document.getElementById(
+      "notificationStatus"
+    ).innerHTML =
+    "⚠️ Test notification नहीं दिखाई जा सकी।";
+
+  }
+
+}
+
+</script>
+
 
 </body>
 </html>
