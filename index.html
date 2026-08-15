@@ -871,11 +871,49 @@ body{
 </a>
 
 
-<!-- 🔔 NOTIFICATION JAVASCRIPT -->
+<!-- 🔔 FIREBASE NOTIFICATION -->
+<script type="module">
 
-<script>
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
-function enableNotifications(){
+import {
+  getMessaging,
+  getToken,
+  onMessage
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-messaging.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAn3S_GQvt3Vd99JDzjfPEi5OuxDBasqaQ",
+  authDomain: "sanaislamictalim-3f36b.firebaseapp.com",
+  projectId: "sanaislamictalim-3f36b",
+  storageBucket: "sanaislamictalim-3f36b.firebasestorage.app",
+  messagingSenderId: "783399416662",
+  appId: "1:783399416662:web:cb52166ef262da565e9cf7",
+  measurementId: "G-CBTKSH9R9Y"
+};
+
+const app = initializeApp(firebaseConfig);
+const messaging = getMessaging(app);
+
+let firebaseSWRegistration = null;
+
+if ("serviceWorker" in navigator) {
+  try {
+    firebaseSWRegistration =
+      await navigator.serviceWorker.register(
+        "/sana-islamic/firebase-messaging-sw.js"
+      );
+
+    console.log("Firebase Service Worker registered");
+
+  } catch (error) {
+    console.error("Service Worker error:", error);
+  }
+}
+
+window.enableNotifications = async function () {
 
   const status =
     document.getElementById("notificationStatus");
@@ -883,115 +921,101 @@ function enableNotifications(){
   const button =
     document.getElementById("notificationBtn");
 
-
-  /* Browser support */
-
-  if(!("Notification" in window)){
-
+  if (!("Notification" in window)) {
     status.innerHTML =
-    "❌ आपके browser में notifications उपलब्ध नहीं हैं।";
-
+      "❌ आपके browser में notifications उपलब्ध नहीं हैं।";
     return;
-
   }
 
-
-  /* HTTPS check */
-
-  if(
+  if (
     location.protocol !== "https:" &&
     location.hostname !== "localhost"
-  ){
-
+  ) {
     status.innerHTML =
-    "⚠️ Notification के लिए वेबसाइट HTTPS पर होनी चाहिए।";
-
+      "⚠️ Notification के लिए HTTPS जरूरी है।";
     return;
-
   }
 
+  try {
 
-  /* Already allowed */
+    const permission =
+      await Notification.requestPermission();
 
-  if(Notification.permission === "granted"){
-
-    button.innerHTML =
-    "🔔 Notification ON है";
-
-    status.innerHTML =
-    "✅ Notification पहले से ON है।";
-
-    showTestNotification();
-
-    return;
-
-  }
-
-
-  /* Permission */
-
-  Notification.requestPermission()
-  .then(function(permission){
-
-    if(permission === "granted"){
-
-      button.innerHTML =
-      "🔔 Notification ON है";
-
+    if (permission !== "granted") {
       status.innerHTML =
-      "✅ Notification ON हो गया।";
-
-      showTestNotification();
-
+        "❌ Notification की अनुमति नहीं मिली।";
+      return;
     }
 
-    else if(permission === "denied"){
-
+    if (!firebaseSWRegistration) {
       status.innerHTML =
-      "❌ Notification की अनुमति बंद कर दी गई।";
-
+        "⚠️ Firebase Service Worker तैयार नहीं है।";
+      return;
     }
 
-    else{
-
-      status.innerHTML =
-      "⚠️ Notification की अनुमति नहीं दी गई।";
-
-    }
-
-  });
-
-}
-
-
-/* Test notification */
-
-function showTestNotification(){
-
-  try{
-
-    new Notification(
-      "🕌 Sana Islamic",
+    const token = await getToken(
+      messaging,
       {
-        body:
-        "अस्सलामु अलैकुम! Notification test सफल है।",
-        icon:
-        "assets/header_logo.png"
+        vapidKey:
+          "BGs2j6RQBni3JO7RmsICS3ZsgNEDQumONlYnNs7wn0aZ0ZUd-x1dKou6r5f3XrUdtGnLIVm0m7wSbpFkNBfeww",
+
+        serviceWorkerRegistration:
+          firebaseSWRegistration
       }
     );
 
+    if (token) {
+
+      console.log("FCM Token:", token);
+
+      localStorage.setItem(
+        "sana_fcm_token",
+        token
+      );
+
+      button.innerHTML =
+        "🔔 Notification ON है";
+
+      status.innerHTML =
+        "✅ Daily Islamic Notification ON हो गया।";
+
+    } else {
+
+      status.innerHTML =
+        "⚠️ FCM token नहीं मिला।";
+    }
+
+  } catch (error) {
+
+    console.error("Notification Error:", error);
+
+    status.innerHTML =
+      "❌ Notification चालू करने में समस्या हुई।";
+  }
+};
+
+onMessage(messaging, (payload) => {
+
+  console.log("Foreground message:", payload);
+
+  const title =
+    payload.notification?.title ||
+    "🕌 Sana Islamic";
+
+  const body =
+    payload.notification?.body ||
+    "आज की इस्लामी याद।";
+
+  if (Notification.permission === "granted") {
+
+    new Notification(title, {
+      body: body,
+      icon: "assets/header_logo.png"
+    });
+
   }
 
-  catch(error){
-
-    document.getElementById(
-      "notificationStatus"
-    ).innerHTML =
-    "⚠️ Test notification नहीं दिखाई जा सकी।";
-
-  }
-
-}
+});
 
 </script>
 
