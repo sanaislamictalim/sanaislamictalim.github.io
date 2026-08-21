@@ -31,8 +31,6 @@ body{
     margin:auto;
 }
 
-/* MAIN TITLE */
-
 .main-title{
     text-align:center;
     background:linear-gradient(
@@ -57,8 +55,6 @@ body{
     margin:5px 0 0;
     font-size:22px;
 }
-
-/* CARD */
 
 .card{
     background:linear-gradient(
@@ -96,8 +92,6 @@ li{
     margin-bottom:10px;
 }
 
-/* NOTE */
-
 .note{
     background:linear-gradient(
         135deg,
@@ -110,8 +104,6 @@ li{
     margin-top:15px;
 }
 
-/* QUESTIONS */
-
 .question{
     background:linear-gradient(
         135deg,
@@ -123,8 +115,6 @@ li{
     border-radius:12px;
     border:1px solid #8dcc9d;
 }
-
-/* ANSWER BOX */
 
 .answer-box{
     width:100%;
@@ -141,8 +131,6 @@ li{
     box-shadow:0 0 5px rgba(8,117,45,0.3);
 }
 
-/* BUTTON */
-
 .check-btn{
     margin-top:10px;
     padding:10px 18px;
@@ -158,11 +146,13 @@ li{
     cursor:pointer;
 }
 
+.check-btn:hover{
+    opacity:0.9;
+}
+
 .check-btn:active{
     transform:scale(0.97);
 }
-
-/* RESULT */
 
 .result{
     font-weight:bold;
@@ -170,27 +160,13 @@ li{
     min-height:30px;
 }
 
-/* NEXT BUTTON */
-
-.next-btn{
-    display:block;
-    width:100%;
-    margin-top:20px;
-    padding:14px;
-    border:0;
-    border-radius:12px;
-    background:linear-gradient(
-        135deg,
-        #075d25,
-        #22a451
-    );
-    color:white;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
+.correct{
+    color:#08752d;
 }
 
-/* FOOTER */
+.wrong{
+    color:#c62828;
+}
 
 .footer{
     text-align:center;
@@ -201,7 +177,6 @@ li{
 
 </style>
 </head>
-
 
 <body>
 
@@ -218,9 +193,9 @@ li{
 </div>
 
 
-<!-- ================================================= -->
+<!-- ========================= -->
 <!-- LESSON 1 -->
-<!-- ================================================= -->
+<!-- ========================= -->
 
 <div class="card">
 
@@ -244,8 +219,6 @@ li{
 
 </div>
 
-
-<!-- SIX PILLARS -->
 
 <div class="card">
 
@@ -298,8 +271,6 @@ li{
 </div>
 
 
-<!-- AQEEDAH -->
-
 <div class="card">
 
 <h2>
@@ -322,8 +293,6 @@ li{
 
 </div>
 
-
-<!-- BASIC AQEEDAH -->
 
 <div class="card">
 
@@ -387,8 +356,6 @@ li{
 </h2>
 
 
-<!-- Q1 -->
-
 <div class="question">
 
 <b>सवाल 1:</b>
@@ -402,11 +369,15 @@ li{
 type="text"
 id="l1q1"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
+>
 
 <button
+type="button"
 class="check-btn"
-onclick="checkAnswer('l1q1','6')">
+data-question="l1q1"
+data-answer="6"
+>
 जवाब जांचें
 </button>
 
@@ -414,8 +385,6 @@ onclick="checkAnswer('l1q1','6')">
 
 </div>
 
-
-<!-- Q2 -->
 
 <div class="question">
 
@@ -430,11 +399,15 @@ onclick="checkAnswer('l1q1','6')">
 type="text"
 id="l1q2"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
+>
 
 <button
+type="button"
 class="check-btn"
-onclick="checkAnswer('l1q2','allah')">
+data-question="l1q2"
+data-answer="allah"
+>
 जवाब जांचें
 </button>
 
@@ -442,8 +415,6 @@ onclick="checkAnswer('l1q2','allah')">
 
 </div>
 
-
-<!-- Q3 -->
 
 <div class="question">
 
@@ -458,11 +429,15 @@ onclick="checkAnswer('l1q2','allah')">
 type="text"
 id="l1q3"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
+>
 
 <button
+type="button"
 class="check-btn"
-onclick="checkAnswer('l1q3','aqeeda')">
+data-question="l1q3"
+data-answer="aqeeda"
+>
 जवाब जांचें
 </button>
 
@@ -470,8 +445,6 @@ onclick="checkAnswer('l1q3','aqeeda')">
 
 </div>
 
-
-<!-- Q4 -->
 
 <div class="question">
 
@@ -486,11 +459,15 @@ onclick="checkAnswer('l1q3','aqeeda')">
 type="text"
 id="l1q4"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
+>
 
 <button
+type="button"
 class="check-btn"
-onclick="checkAnswer('l1q4','muhammad')">
+data-question="l1q4"
+data-answer="muhammad"
+>
 जवाब जांचें
 </button>
 
@@ -498,8 +475,6 @@ onclick="checkAnswer('l1q4','muhammad')">
 
 </div>
 
-
-<!-- Q5 -->
 
 <div class="question">
 
@@ -514,11 +489,15 @@ onclick="checkAnswer('l1q4','muhammad')">
 type="text"
 id="l1q5"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
+>
 
 <button
+type="button"
 class="check-btn"
-onclick="checkAnswer('l1q5','imaan')">
+data-question="l1q5"
+data-answer="imaan"
+>
 जवाब जांचें
 </button>
 
@@ -529,9 +508,9 @@ onclick="checkAnswer('l1q5','imaan')">
 </div>
 
 
-<!-- ================================================= -->
+<!-- ========================= -->
 <!-- LESSON 2 -->
-<!-- ================================================= -->
+<!-- ========================= -->
 
 <div class="card">
 
@@ -643,13 +622,9 @@ onclick="checkAnswer('l1q5','imaan')">
 <hr>
 
 <p class="urdu">
-
 <b>اردو:</b>
-
 <br>
-
 اللہ تعالیٰ ایک ہے، اس کا کوئی شریک نہیں اور وہی اکیلا عبادت کے لائق ہے۔
-
 </p>
 
 </div>
@@ -677,11 +652,14 @@ onclick="checkAnswer('l1q5','imaan')">
 سوال 1: اللہ تعالیٰ کتنے ہیں؟
 </p>
 
-<input type="text" id="l2q1" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l2q1" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l2q1','one')">
+<button
+type="button"
+class="check-btn"
+data-question="l2q1"
+data-answer="one"
+>
 जवाब जांचें
 </button>
 
@@ -699,11 +677,14 @@ onclick="checkAnswer('l2q1','one')">
 سوال 2: عبادت کے لائق کون ہے؟
 </p>
 
-<input type="text" id="l2q2" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l2q2" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l2q2','allah')">
+<button
+type="button"
+class="check-btn"
+data-question="l2q2"
+data-answer="allah"
+>
 जवाब जांचें
 </button>
 
@@ -721,11 +702,14 @@ onclick="checkAnswer('l2q2','allah')">
 سوال 3: اللہ تعالیٰ کا کوئی شریک ہے؟
 </p>
 
-<input type="text" id="l2q3" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l2q3" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l2q3','no')">
+<button
+type="button"
+class="check-btn"
+data-question="l2q3"
+data-answer="no"
+>
 जवाब जांचें
 </button>
 
@@ -743,11 +727,14 @@ onclick="checkAnswer('l2q3','no')">
 سوال 4: توحید ہمیں کس کی عبادت کرنا سکھاتی ہے؟
 </p>
 
-<input type="text" id="l2q4" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l2q4" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l2q4','allah')">
+<button
+type="button"
+class="check-btn"
+data-question="l2q4"
+data-answer="allah"
+>
 जवाब जांचें
 </button>
 
@@ -765,11 +752,14 @@ onclick="checkAnswer('l2q4','allah')">
 سوال 5: شرک سے بچنا چاہیے یا نہیں؟
 </p>
 
-<input type="text" id="l2q5" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l2q5" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l2q5','yes')">
+<button
+type="button"
+class="check-btn"
+data-question="l2q5"
+data-answer="yes"
+>
 जवाब जांचें
 </button>
 
@@ -780,9 +770,9 @@ onclick="checkAnswer('l2q5','yes')">
 </div>
 
 
-<!-- ================================================= -->
+<!-- ========================= -->
 <!-- LESSON 3 -->
-<!-- ================================================= -->
+<!-- ========================= -->
 
 <div class="card">
 
@@ -858,8 +848,6 @@ onclick="checkAnswer('l2q5','yes')">
 
 <h2>
 📝 याद रखने की बात
-<br>
-<span class="urdu">📝 یاد رکھنے کی بات</span>
 </h2>
 
 <div class="note">
@@ -897,11 +885,11 @@ onclick="checkAnswer('l2q5','yes')">
 سوال 1: فرشتے کس کی مخلوق ہیں؟
 </p>
 
-<input type="text" id="l3q1" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l3q1" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l3q1','allah')">
+<button type="button" class="check-btn"
+data-question="l3q1"
+data-answer="allah">
 जवाब जांचें
 </button>
 
@@ -919,11 +907,11 @@ onclick="checkAnswer('l3q1','allah')">
 سوال 2: فرشتوں پر ایمان لانا کس کا حصہ ہے؟
 </p>
 
-<input type="text" id="l3q2" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l3q2" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l3q2','imaan')">
+<button type="button" class="check-btn"
+data-question="l3q2"
+data-answer="imaan">
 जवाब जांचें
 </button>
 
@@ -941,11 +929,11 @@ onclick="checkAnswer('l3q2','imaan')">
 سوال 3: وحی لانے والے فرشتے کا نام کیا ہے؟
 </p>
 
-<input type="text" id="l3q3" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l3q3" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l3q3','jibreel')">
+<button type="button" class="check-btn"
+data-question="l3q3"
+data-answer="jibreel">
 जवाब जांचें
 </button>
 
@@ -963,11 +951,11 @@ onclick="checkAnswer('l3q3','jibreel')">
 سوال 4: صور پھونکنے کی ذمہ داری کس فرشتے کی ہے؟
 </p>
 
-<input type="text" id="l3q4" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l3q4" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l3q4','israfeel')">
+<button type="button" class="check-btn"
+data-question="l3q4"
+data-answer="israfeel">
 जवाब जांचें
 </button>
 
@@ -985,11 +973,11 @@ onclick="checkAnswer('l3q4','israfeel')">
 سوال 5: کیا فرشتے اللہ کے حکم کی اطاعت کرتے ہیں؟
 </p>
 
-<input type="text" id="l3q5" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l3q5" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l3q5','yes')">
+<button type="button" class="check-btn"
+data-question="l3q5"
+data-answer="yes">
 जवाब जांचें
 </button>
 
@@ -1000,9 +988,9 @@ onclick="checkAnswer('l3q5','yes')">
 </div>
 
 
-<!-- ================================================= -->
+<!-- ========================= -->
 <!-- LESSON 4 -->
-<!-- ================================================= -->
+<!-- ========================= -->
 
 <div class="card">
 
@@ -1040,7 +1028,7 @@ onclick="checkAnswer('l3q5','yes')">
 <li>
 <b>तौरात</b> — हज़रत मूसा अलैहिस्सलाम पर।
 <br>
-<span class="urdu">توراة — حضرت موسیٰ علیہ السلام پر۔</span>
+<span class="urdu">تورات — حضرت موسیٰ علیہ السلام پر۔</span>
 </li>
 
 <li>
@@ -1085,29 +1073,6 @@ onclick="checkAnswer('l3q5','yes')">
 </div>
 
 
-<div class="card">
-
-<h2>
-📝 याद रखने की बात
-<br>
-<span class="urdu">📝 یاد رکھنے کی بات</span>
-</h2>
-
-<div class="note">
-
-<p>
-क़ुरआन मजीद अल्लाह तआला की आख़िरी किताब है, जो हज़रत मुहम्मद ﷺ पर नाज़िल हुई।
-</p>
-
-<p class="urdu">
-قرآن مجید اللہ تعالیٰ کی آخری کتاب ہے، جو حضرت محمد ﷺ پر نازل ہوئی۔
-</p>
-
-</div>
-
-</div>
-
-
 <!-- LESSON 4 QUESTIONS -->
 
 <div class="card">
@@ -1128,11 +1093,11 @@ onclick="checkAnswer('l3q5','yes')">
 سوال 1: مشہور آسمانی کتابیں کتنی ہیں؟
 </p>
 
-<input type="text" id="l4q1" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l4q1" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l4q1','4')">
+<button type="button" class="check-btn"
+data-question="l4q1"
+data-answer="4">
 जवाब जांचें
 </button>
 
@@ -1150,11 +1115,11 @@ onclick="checkAnswer('l4q1','4')">
 سوال 2: تورات کس نبی پر نازل ہوئی؟
 </p>
 
-<input type="text" id="l4q2" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l4q2" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l4q2','musa')">
+<button type="button" class="check-btn"
+data-question="l4q2"
+data-answer="musa">
 जवाब जांचें
 </button>
 
@@ -1172,11 +1137,11 @@ onclick="checkAnswer('l4q2','musa')">
 سوال 3: زبور کس نبی پر نازل ہوئی؟
 </p>
 
-<input type="text" id="l4q3" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l4q3" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l4q3','dawud')">
+<button type="button" class="check-btn"
+data-question="l4q3"
+data-answer="dawud">
 जवाब जांचें
 </button>
 
@@ -1194,11 +1159,11 @@ onclick="checkAnswer('l4q3','dawud')">
 سوال 4: قرآن مجید کس نبی پر نازل ہوا؟
 </p>
 
-<input type="text" id="l4q4" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l4q4" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l4q4','muhammad')">
+<button type="button" class="check-btn"
+data-question="l4q4"
+data-answer="muhammad">
 जवाब जांचें
 </button>
 
@@ -1216,11 +1181,11 @@ onclick="checkAnswer('l4q4','muhammad')">
 سوال 5: قرآن مجید کس کی آخری کتاب ہے؟
 </p>
 
-<input type="text" id="l4q5" class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+<input type="text" id="l4q5" class="answer-box">
 
-<button class="check-btn"
-onclick="checkAnswer('l4q5','allah')">
+<button type="button" class="check-btn"
+data-question="l4q5"
+data-answer="allah">
 जवाब जांचें
 </button>
 
@@ -1230,8 +1195,6 @@ onclick="checkAnswer('l4q5','allah')">
 
 </div>
 
-
-<!-- FOOTER -->
 
 <div class="footer">
 
@@ -1246,68 +1209,151 @@ onclick="checkAnswer('l4q5','allah')">
 </div>
 
 
-<!-- ================================================= -->
+<!-- ========================= -->
 <!-- JAVASCRIPT -->
-<!-- ================================================= -->
+<!-- ========================= -->
 
 <script>
 
-function checkAnswer(id,type){
+/* ---------------------------------
+   Text को साफ करने वाला function
+--------------------------------- */
 
-    var input = document.getElementById(id);
-    var result = document.getElementById("r_" + id);
+function cleanText(text){
 
-    if(!input || !result){
-        return;
-    }
-
-    var answer = input.value
+    return text
         .trim()
-        .toLowerCase();
+        .toLowerCase()
+        .replace(/[؟?!.,،۔]/g,"")
+        .replace(/\s+/g," ");
 
-    if(answer === ""){
+}
 
-        result.innerHTML =
-        "⚠️ पहले अपना जवाब लिखें।";
 
-        result.style.color = "orange";
+/* ---------------------------------
+   जवाब पहचानने वाला function
+--------------------------------- */
 
-        return;
-    }
+function isCorrect(answer,type){
 
-    var correct = false;
+    answer = cleanText(answer);
 
 
     /* 6 */
 
     if(type === "6"){
 
-        correct =
-        answer === "6" ||
-        answer === "६" ||
-        answer.includes("छह") ||
-        answer.includes("छः") ||
-        answer.includes("چھ");
+        return (
+            answer === "6" ||
+            answer === "६" ||
+            answer.includes("छह") ||
+            answer.includes("छः") ||
+            answer.includes("چھ")
+        );
 
     }
 
 
     /* 4 */
 
-    else if(type === "4"){
+    if(type === "4"){
 
-        correct =
-        answer === "4" ||
-        answer === "४" ||
-        answer.includes("चार") ||
-        answer.includes("چار");
+        return (
+            answer === "4" ||
+            answer === "४" ||
+            answer.includes("चार") ||
+            answer.includes("چار")
+        );
 
     }
 
 
     /* ALLAH */
 
-    else if(type === "allah"){
+    if(type === "allah"){
 
-        correct =
-        answer.includes
+        return (
+            answer.includes("अल्लाह") ||
+            answer.includes("allah") ||
+            answer.includes("اللہ")
+        );
+
+    }
+
+
+    /* ONE */
+
+    if(type === "one"){
+
+        return (
+            answer === "1" ||
+            answer === "१" ||
+            answer.includes("एक") ||
+            answer.includes("one") ||
+            answer.includes("ایک")
+        );
+
+    }
+
+
+    /* AQEEDA */
+
+    if(type === "aqeeda"){
+
+        return (
+            answer.includes("अकीदा") ||
+            answer.includes("aqeeda") ||
+            answer.includes("عقیدہ") ||
+            answer.includes("बुनियादी") ||
+            answer.includes("ایمانی")
+        );
+
+    }
+
+
+    /* MUHAMMAD */
+
+    if(type === "muhammad"){
+
+        return (
+            answer.includes("मुहम्मद") ||
+            answer.includes("मोहम्मद") ||
+            answer.includes("muhammad") ||
+            answer.includes("محمد")
+        );
+
+    }
+
+
+    /* IMAAN */
+
+    if(type === "imaan"){
+
+        return (
+            answer.includes("ईमान") ||
+            answer.includes("imaan") ||
+            answer.includes("ایمان")
+        );
+
+    }
+
+
+    /* YES */
+
+    if(type === "yes"){
+
+        return (
+            answer.includes("हां") ||
+            answer.includes("हाँ") ||
+            answer.includes("हा") ||
+            answer.includes("yes") ||
+            answer.includes("جی") ||
+            answer.includes("ہاں")
+        );
+
+    }
+
+
+    /* NO */
+
+  
