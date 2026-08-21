@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -13,8 +14,6 @@ content="width=device-width, initial-scale=1.0">
 *{
     box-sizing:border-box;
 }
-
-/* Text selection बंद */
 
 body{
     margin:0;
@@ -29,11 +28,11 @@ body{
     );
 
     font-family:Arial,sans-serif;
+
     line-height:2;
+
     color:#18351f;
 
-    -webkit-user-select:none;
-    -moz-user-select:none;
     user-select:none;
 }
 
@@ -42,7 +41,10 @@ body{
     margin:auto;
 }
 
+/* MAIN TITLE */
+
 .main-title{
+
     text-align:center;
 
     background:
@@ -66,14 +68,21 @@ body{
 }
 
 .main-title h1{
+
     margin:0;
+
     font-size:28px;
 }
 
 .main-title p{
+
     margin:5px 0 0;
+
     font-size:22px;
 }
+
+
+/* CARD */
 
 .card{
 
@@ -95,13 +104,10 @@ body{
 
     box-shadow:
     0 4px 12px rgba(0,0,0,0.10);
-
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    user-select:none;
 }
 
 .card h2{
+
     color:#08752d;
 
     text-align:center;
@@ -115,18 +121,26 @@ body{
 }
 
 .card h3{
+
     color:#08752d;
 }
 
 .urdu{
+
     direction:rtl;
+
     text-align:right;
+
     font-size:20px;
 }
 
 li{
+
     margin-bottom:10px;
 }
+
+
+/* NOTE */
 
 .note{
 
@@ -148,7 +162,7 @@ li{
 }
 
 
-/* Questions */
+/* QUESTIONS */
 
 .question{
 
@@ -169,7 +183,7 @@ li{
 }
 
 
-/* Answer Box */
+/* ANSWER BOX */
 
 .answer-box{
 
@@ -188,12 +202,11 @@ li{
 
     outline:none;
 
-    -webkit-user-select:text;
     user-select:text;
 }
 
 
-/* Button */
+/* BUTTON */
 
 .check-btn{
 
@@ -220,7 +233,7 @@ li{
 }
 
 
-/* Result */
+/* RESULT */
 
 .result{
 
@@ -230,7 +243,7 @@ li{
 }
 
 
-/* Footer */
+/* FOOTER */
 
 .footer{
 
@@ -247,40 +260,55 @@ li{
 
 </head>
 
+
 <body>
 
 <div class="container">
 
 
+<!-- ================================================= -->
 <!-- TITLE -->
+<!-- ================================================= -->
 
 <div class="main-title">
 
-<h1>📖 ईमान और अकीदा</h1>
+<h1>
+📖 ईमान और अकीदा
+</h1>
 
-<p>ایمان اور عقیدہ</p>
+<p>
+ایمان اور عقیدہ
+</p>
 
 </div>
 
 
-<!-- LESSON -->
+<!-- ================================================= -->
+<!-- LESSON 1 -->
+<!-- ================================================= -->
 
 <div class="card">
 
 <h2>
 सबक 1: ईमान क्या है؟
 <br>
+
 <span class="urdu">
 سبق 1: ایمان کیا ہے؟
 </span>
+
 </h2>
 
-<h3>हिंदी:</h3>
+<h3>
+हिंदी:
+</h3>
 
 <p>
+
 ईमान का मतलब है अल्लाह तआला और उसके बताए हुए
 सभी जरूरी अकीदों को दिल से सच्चा मानना और
 उन पर यक़ीन रखना।
+
 </p>
 
 <h3 class="urdu">
@@ -302,97 +330,66 @@ li{
 <div class="card">
 
 <h2>
+
 ईमान के 6 अरकान
+
 <br>
+
 <span class="urdu">
 ایمان کے 6 ارکان
 </span>
+
 </h2>
 
 <ol>
 
 <li>
-
-<b>हिंदी:</b>
 अल्लाह तआला पर ईमान लाना।
-
 <br>
-
 <span class="urdu">
 اللہ تعالیٰ پر ایمان لانا۔
 </span>
-
 </li>
 
-
 <li>
-
-<b>हिंदी:</b>
 उसके फ़रिश्तों पर ईमान लाना।
-
 <br>
-
 <span class="urdu">
 اس کے فرشتوں پر ایمان لانا۔
 </span>
-
 </li>
 
-
 <li>
-
-<b>हिंदी:</b>
 उसकी किताबों पर ईमान लाना।
-
 <br>
-
 <span class="urdu">
 اس کی کتابوں پر ایمان لانا۔
 </span>
-
 </li>
 
-
 <li>
-
-<b>हिंदी:</b>
 उसके रसूलों पर ईमान लाना।
-
 <br>
-
 <span class="urdu">
 اس کے رسولوں پر ایمان لانا۔
 </span>
-
 </li>
 
-
 <li>
-
-<b>हिंदी:</b>
 क़यामत के दिन पर ईमान लाना।
-
 <br>
-
 <span class="urdu">
 قیامت کے دن پر ایمان لانا۔
 </span>
-
 </li>
 
-
 <li>
-
-<b>हिंदी:</b>
 अच्छी और बुरी तक़दीर अल्लाह की तरफ़ से होने
 पर ईमान लाना।
-
 <br>
-
 <span class="urdu">
 اچھی اور بری تقدیر اللہ کی طرف سے ہونے پر ایمان لانا۔
 </span>
-
 </li>
 
 </ol>
@@ -406,7 +403,7 @@ li{
 
 <h2>
 
-अकीदा क्या है?
+अकीदा क्या है؟
 
 <br>
 
@@ -421,8 +418,10 @@ li{
 </h3>
 
 <p>
+
 अकीदा उन बुनियादी ईमानी बातों को कहते हैं
 जिन्हें मुसलमान दिल से सच्चा मानता है।
+
 </p>
 
 <h3 class="urdu">
@@ -458,86 +457,51 @@ li{
 <ul>
 
 <li>
-
-<b>हिंदी:</b>
 अल्लाह तआला एक है।
-
 <br>
-
 <span class="urdu">
 اللہ تعالیٰ ایک ہے۔
 </span>
-
 </li>
 
-
 <li>
-
-<b>हिंदी:</b>
 इबादत के लायक सिर्फ़ अल्लाह तआला है।
-
 <br>
-
 <span class="urdu">
 عبادت کے لائق صرف اللہ تعالیٰ ہے۔
 </span>
-
 </li>
 
-
 <li>
-
-<b>हिंदी:</b>
 हज़रत मुहम्मद ﷺ अल्लाह के रसूल हैं।
-
 <br>
-
 <span class="urdu">
 حضرت محمد ﷺ اللہ کے رسول ہیں۔
 </span>
-
 </li>
 
-
 <li>
-
-<b>हिंदी:</b>
 क़ुरआन मजीद अल्लाह की किताब है।
-
 <br>
-
 <span class="urdu">
 قرآن مجید اللہ کی کتاب ہے۔
 </span>
-
 </li>
 
-
 <li>
-
-<b>हिंदी:</b>
 क़यामत का दिन आने वाला है।
-
 <br>
-
 <span class="urdu">
 قیامت کا دن آنے والا ہے۔
 </span>
-
 </li>
 
-
 <li>
-
-<b>हिंदी:</b>
 हर इंसान को अपने आमाल का हिसाब देना होगा।
-
 <br>
-
 <span class="urdu">
 ہر انسان کو اپنے اعمال کا حساب دینا ہوگا۔
 </span>
-
 </li>
 
 </ul>
@@ -545,67 +509,18 @@ li{
 </div>
 
 
-<!-- REMEMBER -->
+<!-- LESSON 1 QUESTIONS -->
 
 <div class="card">
 
 <h2>
-
-📝 याद रखने की बात
-
+❓ सबक 1 के सवाल
 <br>
-
 <span class="urdu">
-📝 یاد رکھنے کی بات
+❓ سبق 1 کے سوالات
 </span>
-
 </h2>
 
-<div class="note">
-
-<b>हिंदी:</b>
-
-<p>
-ईमान की बुनियादी बातों को समझना और उन पर
-सच्चा यक़ीन रखना बहुत जरूरी है।
-</p>
-
-<hr>
-
-<p class="urdu">
-
-<b>اردو:</b>
-
-<br>
-
-ایمان کی بنیادی باتوں کو سمجھنا اور ان پر
-سچا یقین رکھنا بہت ضروری ہے۔
-
-</p>
-
-</div>
-
-</div>
-
-
-<!-- QUESTIONS -->
-
-<div class="card">
-
-<h2>
-
-❓ सबक के सवाल
-
-<br>
-
-<span class="urdu">
-❓ سبق کے سوالات
-</span>
-
-</h2>
-
-
-<!-- QUESTION 1 -->
 
 <div class="question">
 
@@ -619,31 +534,22 @@ li{
 
 <input
 type="text"
-id="answer1"
+id="l1q1"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
->
-
-<br>
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
 
 <button
 class="check-btn"
-onclick="checkAnswer(1)"
->
+onclick="checkAnswer('l1q1','6')">
 
 जवाब जांचें
 
 </button>
 
-<p
-id="result1"
-class="result">
-</p>
+<p id="r_l1q1" class="result"></p>
 
 </div>
 
-
-<!-- QUESTION 2 -->
 
 <div class="question">
 
@@ -657,31 +563,22 @@ class="result">
 
 <input
 type="text"
-id="answer2"
+id="l1q2"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
->
-
-<br>
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
 
 <button
 class="check-btn"
-onclick="checkAnswer(2)"
->
+onclick="checkAnswer('l1q2','allah')">
 
 जवाब जांचें
 
 </button>
 
-<p
-id="result2"
-class="result">
-</p>
+<p id="r_l1q2" class="result"></p>
 
 </div>
 
-
-<!-- QUESTION 3 -->
 
 <div class="question">
 
@@ -695,31 +592,22 @@ class="result">
 
 <input
 type="text"
-id="answer3"
+id="l1q3"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
->
-
-<br>
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
 
 <button
 class="check-btn"
-onclick="checkAnswer(3)"
->
+onclick="checkAnswer('l1q3','aqeeda')">
 
 जवाब जांचें
 
 </button>
 
-<p
-id="result3"
-class="result">
-</p>
+<p id="r_l1q3" class="result"></p>
 
 </div>
 
-
-<!-- QUESTION 4 -->
 
 <div class="question">
 
@@ -733,31 +621,22 @@ class="result">
 
 <input
 type="text"
-id="answer4"
+id="l1q4"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
->
-
-<br>
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
 
 <button
 class="check-btn"
-onclick="checkAnswer(4)"
->
+onclick="checkAnswer('l1q4','muhammad')">
 
 जवाब जांचें
 
 </button>
 
-<p
-id="result4"
-class="result">
-</p>
+<p id="r_l1q4" class="result"></p>
 
 </div>
 
-
-<!-- QUESTION 5 -->
 
 <div class="question">
 
@@ -771,26 +650,1020 @@ class="result">
 
 <input
 type="text"
-id="answer5"
+id="l1q5"
 class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
->
-
-<br>
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
 
 <button
 class="check-btn"
-onclick="checkAnswer(5)"
->
+onclick="checkAnswer('l1q5','imaan')">
 
 जवाब जांचें
 
 </button>
 
-<p
-id="result5"
-class="result">
+<p id="r_l1q5" class="result"></p>
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- LESSON 2 -->
+<!-- ================================================= -->
+
+<div class="card">
+
+<h2>
+सबक 2: तौहीद क्या है؟
+<br>
+
+<span class="urdu">
+سبق 2: توحید کیا ہے؟
+</span>
+
+</h2>
+
+<h3>
+हिंदी:
+</h3>
+
+<p>
+
+तौहीद का मतलब है यह यक़ीन रखना कि अल्लाह तआला एक है,
+उसका कोई शरीक नहीं और वही अकेला इबादत के लायक है।
+
 </p>
+
+<h3 class="urdu">
+اردو:
+</h3>
+
+<p class="urdu">
+
+توحید کا مطلب یہ یقین رکھنا ہے کہ اللہ تعالیٰ ایک ہے،
+اس کا کوئی شریک نہیں اور وہی اکیلا عبادت کے لائق ہے۔
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+तौहीद की बुनियादी बातें
+<br>
+
+<span class="urdu">
+توحید کی بنیادی باتیں
+</span>
+
+</h2>
+
+<ul>
+
+<li>
+अल्लाह तआला एक है।
+<br>
+<span class="urdu">
+اللہ تعالیٰ ایک ہے۔
+</span>
+</li>
+
+<li>
+अल्लाह का कोई शरीक नहीं है।
+<br>
+<span class="urdu">
+اللہ کا کوئی شریک نہیں ہے۔
+</span>
+</li>
+
+<li>
+इबादत के लायक सिर्फ़ अल्लाह तआला है।
+<br>
+<span class="urdu">
+عبادت کے لائق صرف اللہ تعالیٰ ہے۔
+</span>
+</li>
+
+<li>
+हम दुआ और इबादत सिर्फ़ अल्लाह तआला के लिए करते हैं।
+<br>
+<span class="urdu">
+ہم دعا اور عبادت صرف اللہ تعالیٰ کے لیے کرتے ہیں۔
+</span>
+</li>
+
+<li>
+अल्लाह तआला सबका पैदा करने वाला है।
+<br>
+<span class="urdu">
+اللہ تعالیٰ سب کو پیدا کرنے والا ہے۔
+</span>
+</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+शिर्क क्या है؟
+<br>
+
+<span class="urdu">
+شرک کیا ہے؟
+</span>
+
+</h2>
+
+<h3>
+हिंदी:
+</h3>
+
+<p>
+
+शिर्क का मतलब है अल्लाह तआला के साथ किसी को
+इबादत में शरीक मानना।
+
+</p>
+
+<h3 class="urdu">
+اردو:
+</h3>
+
+<p class="urdu">
+
+شرک کا مطلب ہے اللہ تعالیٰ کے ساتھ کسی کو
+عبادت میں شریک ماننا۔
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+📝 याद रखने की बात
+<br>
+
+<span class="urdu">
+📝 یاد رکھنے کی بات
+</span>
+
+</h2>
+
+<div class="note">
+
+<b>हिंदी:</b>
+
+<p>
+
+अल्लाह तआला एक है, उसका कोई शरीक नहीं और वही
+अकेला इबादत के लायक है।
+
+</p>
+
+<hr>
+
+<p class="urdu">
+
+<b>اردو:</b>
+
+<br>
+
+اللہ تعالیٰ ایک ہے، اس کا کوئی شریک نہیں اور وہی
+اکیلا عبادت کے لائق ہے۔
+
+</p>
+
+</div>
+
+</div>
+
+
+<!-- LESSON 2 QUESTIONS -->
+
+<div class="card">
+
+<h2>
+❓ सबक 2 के सवाल
+<br>
+
+<span class="urdu">
+❓ سبق 2 کے سوالات
+</span>
+
+</h2>
+
+
+<div class="question">
+
+<b>सवाल 1:</b>
+
+अल्लाह तआला कितने हैं?
+
+<p class="urdu">
+سوال 1: اللہ تعالیٰ کتنے ہیں؟
+</p>
+
+<input
+type="text"
+id="l2q1"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l2q1','one')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l2q1" class="result"></p>
+
+</div>
+
+
+<div class="question">
+
+<b>सवाल 2:</b>
+
+इबादत के लायक कौन है?
+
+<p class="urdu">
+سوال 2: عبادت کے لائق کون ہے؟
+</p>
+
+<input
+type="text"
+id="l2q2"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l2q2','allah')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l2q2" class="result"></p>
+
+</div>
+
+
+<div class="question">
+
+<b>सवाल 3:</b>
+
+अल्लाह तआला का कोई शरीक है?
+
+<p class="urdu">
+سوال 3: اللہ تعالیٰ کا کوئی شریک ہے؟
+</p>
+
+<input
+type="text"
+id="l2q3"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l2q3','no')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l2q3" class="result"></p>
+
+</div>
+
+
+<div class="question">
+
+<b>सवाल 4:</b>
+
+तौहीद हमें किसकी इबादत करना सिखाती है?
+
+<p class="urdu">
+سوال 4: توحید ہمیں کس کی عبادت کرنا سکھاتی ہے؟
+</p>
+
+<input
+type="text"
+id="l2q4"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l2q4','allah')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l2q4" class="result"></p>
+
+</div>
+
+
+<div class="question">
+
+<b>सवाल 5:</b>
+
+शिर्क से बचना चाहिए या नहीं?
+
+<p class="urdu">
+سوال 5: شرک سے بچنا چاہیے یا نہیں؟
+</p>
+
+<input
+type="text"
+id="l2q5"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l2q5','yes')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l2q5" class="result"></p>
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- LESSON 3 -->
+<!-- ================================================= -->
+
+<div class="card">
+
+<h2>
+सबक 3: फ़रिश्तों पर ईमान
+<br>
+
+<span class="urdu">
+سبق 3: فرشتوں پر ایمان
+</span>
+
+</h2>
+
+<h3>
+हिंदी:
+</h3>
+
+<p>
+
+फ़रिश्ते अल्लाह तआला की मख़लूक़ हैं।
+वे अल्लाह तआला के हुक्म की इताअत करते हैं।
+फ़रिश्तों पर ईमान लाना ईमान के 6 अरकान में से एक है।
+
+</p>
+
+<h3 class="urdu">
+اردو:
+</h3>
+
+<p class="urdu">
+
+فرشتے اللہ تعالیٰ کی مخلوق ہیں۔
+وہ اللہ تعالیٰ کے حکم کی اطاعت کرتے ہیں۔
+فرشتوں پر ایمان لانا ایمان کے 6 ارکان میں سے ایک ہے۔
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+कुछ मशहूर फ़रिश्ते
+<br>
+
+<span class="urdu">
+چند مشہور فرشتے
+</span>
+
+</h2>
+
+<ul>
+
+<li>
+
+हज़रत जिब्रील अलैहिस्सलाम
+<br>
+
+<span class="urdu">
+حضرت جبرئیل علیہ السلام
+</span>
+
+<br>
+
+वही पहुँचाने वाले फ़रिश्ते।
+
+</li>
+
+
+<li>
+
+हज़रत मीकाईल अलैहिस्सलाम
+<br>
+
+<span class="urdu">
+حضرت میکائیل علیہ السلام
+</span>
+
+<br>
+
+अल्लाह के हुक्म से बारिश आदि से संबंधित कामों पर मामूर।
+
+</li>
+
+
+<li>
+
+हज़रत इसराफ़ील अलैहिस्सलाम
+<br>
+
+<span class="urdu">
+حضرت اسرافیل علیہ السلام
+</span>
+
+<br>
+
+सूर फूँकने की ज़िम्मेदारी वाले फ़रिश्ते।
+
+</li>
+
+
+<li>
+
+मलिकुल-मौत
+<br>
+
+<span class="urdu">
+ملک الموت
+</span>
+
+<br>
+
+मौत के समय रूह क़ब्ज़ करने की ज़िम्मेदारी वाले फ़रिश्ते।
+
+</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+📝 याद रखने की बात
+<br>
+
+<span class="urdu">
+📝 یاد رکھنے کی بات
+</span>
+
+</h2>
+
+<div class="note">
+
+<p>
+
+फ़रिश्ते अल्लाह तआला की मख़लूक़ हैं और उसके
+हुक्म की इताअत करते हैं।
+
+</p>
+
+<p class="urdu">
+
+فرشتے اللہ تعالیٰ کی مخلوق ہیں اور اس کے
+حکم کی اطاعت کرتے ہیں۔
+
+</p>
+
+</div>
+
+</div>
+
+
+<!-- LESSON 3 QUESTIONS -->
+
+<div class="card">
+
+<h2>
+❓ सबक 3 के सवाल
+<br>
+
+<span class="urdu">
+❓ سبق 3 کے سوالات
+</span>
+
+</h2>
+
+
+<div class="question">
+
+<b>सवाल 1:</b>
+
+फ़रिश्ते किसकी मख़लूक़ हैं?
+
+<p class="urdu">
+سوال 1: فرشتے کس کی مخلوق ہیں؟
+</p>
+
+<input
+type="text"
+id="l3q1"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l3q1','allah')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l3q1" class="result"></p>
+
+</div>
+
+
+<div class="question">
+
+<b>सवाल 2:</b>
+
+फ़रिश्तों पर ईमान लाना किसका हिस्सा है?
+
+<p class="urdu">
+سوال 2: فرشتوں پر ایمان لانا کس کا حصہ ہے؟
+</p>
+
+<input
+type="text"
+id="l3q2"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l3q2','imaan')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l3q2" class="result"></p>
+
+</div>
+
+
+<div class="question">
+
+<b>सवाल 3:</b>
+
+वही लाने वाले फ़रिश्ते का नाम क्या है?
+
+<p class="urdu">
+سوال 3: وحی لانے والے فرشتے کا نام کیا ہے؟
+</p>
+
+<input
+type="text"
+id="l3q3"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l3q3','jibreel')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l3q3" class="result"></p>
+
+</div>
+
+
+<div class="question">
+
+<b>सवाल 4:</b>
+
+सूर फूँकने की ज़िम्मेदारी किस फ़रिश्ते की है?
+
+<p class="urdu">
+سوال 4: صور پھونکنے کی ذمہ داری کس فرشتے کی ہے؟
+</p>
+
+<input
+type="text"
+id="l3q4"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l3q4','israfeel')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l3q4" class="result"></p>
+
+</div>
+
+
+<div class="question">
+
+<b>सवाल 5:</b>
+
+क्या फ़रिश्ते अल्लाह के हुक्म की इताअत करते हैं?
+
+<p class="urdu">
+سوال 5: کیا فرشتے اللہ کے حکم کی اطاعت کرتے ہیں؟
+</p>
+
+<input
+type="text"
+id="l3q5"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l3q5','yes')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l3q5" class="result"></p>
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- LESSON 4 -->
+<!-- ================================================= -->
+
+<div class="card">
+
+<h2>
+सबक 4: आसमानी किताबों पर ईमान
+<br>
+
+<span class="urdu">
+سبق 4: آسمانی کتابوں پر ایمان
+</span>
+
+</h2>
+
+<h3>
+हिंदी:
+</h3>
+
+<p>
+
+अल्लाह तआला ने इंसानों की हिदायत के लिए
+अपने नबियों और रसूलों पर किताबें नाज़िल फ़रमाईं।
+मुसलमान इन किताबों के अस्ल तौर पर अल्लाह की तरफ़ से
+नाज़िल होने पर ईमान रखता है।
+
+</p>
+
+<h3 class="urdu">
+اردو:
+</h3>
+
+<p class="urdu">
+
+اللہ تعالیٰ نے انسانوں کی ہدایت کے لیے
+اپنے نبیوں اور رسولوں پر کتابیں نازل فرمائیں۔
+مسلمان ان کتابوں کے اصل طور پر اللہ کی طرف سے
+نازل ہونے پر ایمان رکھتا ہے۔
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+मशहूर आसमानी किताबें
+<br>
+
+<span class="urdu">
+مشہور آسمانی کتابیں
+</span>
+
+</h2>
+
+<ul>
+
+<li>
+
+<b>तौरात</b> — हज़रत मूसा अलैहिस्सलाम पर।
+
+<br>
+
+<span class="urdu">
+تورات — حضرت موسیٰ علیہ السلام پر۔
+</span>
+
+</li>
+
+
+<li>
+
+<b>ज़बूर</b> — हज़रत दाऊद अलैहिस्सलाम पर।
+
+<br>
+
+<span class="urdu">
+زبور — حضرت داؤد علیہ السلام پر۔
+</span>
+
+</li>
+
+
+<li>
+
+<b>इंजील</b> — हज़रत ईसा अलैहिस्सलाम पर।
+
+<br>
+
+<span class="urdu">
+انجیل — حضرت عیسیٰ علیہ السلام پر۔
+</span>
+
+</li>
+
+
+<li>
+
+<b>क़ुरआन मजीद</b> — हज़रत मुहम्मद ﷺ पर।
+
+<br>
+
+<span class="urdu">
+قرآن مجید — حضرت محمد ﷺ پر۔
+</span>
+
+</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+क़ुरआन मजीद
+<br>
+
+<span class="urdu">
+قرآن مجید
+</span>
+
+</h2>
+
+<p>
+
+क़ुरआन मजीद अल्लाह तआला की आख़िरी आसमानी किताब है।
+यह हज़रत मुहम्मद ﷺ पर नाज़िल हुई और पूरी इंसानियत
+के लिए हिदायत की किताब है।
+
+</p>
+
+<p class="urdu">
+
+قرآن مجید اللہ تعالیٰ کی آخری آسمانی کتاب ہے۔
+یہ حضرت محمد ﷺ پر نازل ہوئی اور پوری انسانیت
+کے لیے ہدایت کی کتاب ہے۔
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+📝 याद रखने की बात
+<br>
+
+<span class="urdu">
+📝 یاد رکھنے کی بات
+</span>
+
+</h2>
+
+<div class="note">
+
+<p>
+
+क़ुरआन मजीद अल्लाह तआला की आख़िरी किताब है,
+जो हज़रत मुहम्मद ﷺ पर नाज़िल हुई।
+
+</p>
+
+<p class="urdu">
+
+قرآن مجید اللہ تعالیٰ کی آخری کتاب ہے،
+جو حضرت محمد ﷺ پر نازل ہوئی۔
+
+</p>
+
+</div>
+
+</div>
+
+
+<!-- LESSON 4 QUESTIONS -->
+
+<div class="card">
+
+<h2>
+❓ सबक 4 के सवाल
+<br>
+
+<span class="urdu">
+❓ سبق 4 کے سوالات
+</span>
+
+</h2>
+
+
+<div class="question">
+
+<b>सवाल 1:</b>
+
+मशहूर आसमानी किताबें कितनी हैं?
+
+<p class="urdu">
+سوال 1: مشہور آسمانی کتابیں کتنی ہیں؟
+</p>
+
+<input
+type="text"
+id="l4q1"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l4q1','4')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l4q1" class="result"></p>
+
+</div>
+
+
+<div class="question">
+
+<b>सवाल 2:</b>
+
+तौरात किस नबी पर नाज़िल हुई?
+
+<p class="urdu">
+سوال 2: تورات کس نبی پر نازل ہوئی؟
+</p>
+
+<input
+type="text"
+id="l4q2"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l4q2','musa')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l4q2" class="result"></p>
+
+</div>
+
+
+<div class="question">
+
+<b>सवाल 3:</b>
+
+ज़बूर किस नबी पर नाज़िल हुई?
+
+<p class="urdu">
+سوال 3: زبور کس نبی پر نازل ہوئی؟
+</p>
+
+<input
+type="text"
+id="l4q3"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l4q3','dawud')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l4q3" class="result"></p>
+
+</div>
+
+
+<div class="question">
+
+<b>सवाल 4:</b>
+
+क़ुरआन मजीद किस नबी पर नाज़िल हुआ?
+
+<p class="urdu">
+سوال 4: قرآن مجید کس نبی پر نازل ہوا؟
+</p>
+
+<input
+type="text"
+id="l4q4"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l4q4','muhammad')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l4q4" class="result"></p>
+
+</div>
+
+
+<div class="question">
+
+<b>सवाल 5:</b>
+
+क़ुरआन मजीद किसकी आख़िरी किताब है?
+
+<p class="urdu">
+سوال 5: قرآن مجید کس کی آخری کتاب ہے؟
+</p>
+
+<input
+type="text"
+id="l4q5"
+class="answer-box"
+placeholder="अपना जवाब लिखें / اپنا جواب لکھیں">
+
+<button
+class="check-btn"
+onclick="checkAnswer('l4q5','allah')">
+
+जवाब जांचें
+
+</button>
+
+<p id="r_l4q5" class="result"></p>
 
 </div>
 
@@ -813,18 +1686,32 @@ class="result">
 </div>
 
 
+<!-- ================================================= -->
+<!-- ONLY ONE JAVASCRIPT -->
+<!-- ================================================= -->
+
 <script>
 
-function checkAnswer(number){
+function normalize(text){
+
+    return text
+    .trim()
+    .toLowerCase();
+
+}
+
+
+function checkAnswer(id, type){
 
     let input =
-    document.getElementById("answer" + number);
+    document.getElementById(id);
 
     let result =
-    document.getElementById("result" + number);
+    document.getElementById("r_" + id);
 
     let answer =
-    input.value.trim().toLowerCase();
+    normalize(input.value);
+
 
     if(answer === ""){
 
@@ -835,12 +1722,13 @@ function checkAnswer(number){
 
     }
 
+
     let correct = false;
 
 
-    /* Question 1 */
+    /* NUMBER */
 
-    if(number === 1){
+    if(type === "6"){
 
         if(
             answer === "6" ||
@@ -857,1211 +1745,10 @@ function checkAnswer(number){
     }
 
 
-    /* Question 2 */
-
-    if(number === 2){
-
-        if(
-            answer.includes("अल्लाह") ||
-            answer.includes("allah") ||
-            answer.includes("اللہ")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 3 */
-
-    if(number === 3){
-
-        if(
-            answer.includes("बुनियादी") ||
-            answer.includes("ईमानी") ||
-            answer.includes("बातों") ||
-            answer.includes("بنیادی") ||
-            answer.includes("ایمانی") ||
-            answer.includes("باتوں")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 4 */
-
-    if(number === 4){
-
-        if(
-            answer.includes("मुहम्मद") ||
-            answer.includes("محمد") ||
-            answer.includes("muhammad")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 5 */
-
-    if(number === 5){
-
-        if(
-            answer.includes("ईमान") ||
-            answer.includes("ایمان")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    if(correct){
-
-        result.innerHTML =
-        "✅ सही जवाब! माशाअल्लाह।";
-
-    }
-
-    else{
-
-        result.innerHTML =
-        "❌ जवाब सही नहीं है। दोबारा कोशिश करें।";
-
-    }
-
-}
-<div class="card"><h2>
-सबक 2: तौहीद क्या है؟
-<br>
-<span class="urdu">
-سبق 2: توحید کیا ہے؟
-</span>
-</h2><h3>हिंदी:</h3><p>
-तौहीद का मतलब है यह यक़ीन रखना कि अल्लाह तआला एक है,
-उसका कोई शरीक नहीं और वही अकेला इबादत के लायक है।
-</p><h3 class="urdu">
-اردو:
-</h3><p class="urdu">توحید کا مطلب یہ یقین رکھنا ہے کہ اللہ تعالیٰ ایک ہے،
-اس کا کوئی شریک نہیں اور وہی اکیلا عبادت کے لائق ہے۔
-
-</p></div><!-- TAUHEED --><div class="card"><h2>
-तौहीद की बुनियादी बातें
-<br>
-<span class="urdu">
-توحید کی بنیادی باتیں
-</span>
-</h2><ul><li>
-<b>हिंदी:</b>
-अल्लाह तआला एक है।
-<br>
-<span class="urdu">
-اللہ تعالیٰ ایک ہے۔
-</span>
-</li><li>
-<b>हिंदी:</b>
-अल्लाह का कोई शरीक नहीं है।
-<br>
-<span class="urdu">
-اللہ کا کوئی شریک نہیں ہے۔
-</span>
-</li><li>
-<b>हिंदी:</b>
-इबादत के लायक सिर्फ़ अल्लाह तआला है।
-<br>
-<span class="urdu">
-عبادت کے لائق صرف اللہ تعالیٰ ہے۔
-</span>
-</li><li>
-<b>हिंदी:</b>
-हम दुआ और इबादत सिर्फ़ अल्लाह तआला के लिए करते हैं।
-<br>
-<span class="urdu">
-ہم دعا اور عبادت صرف اللہ تعالیٰ کے لیے کرتے ہیں۔
-</span>
-</li><li>
-<b>हिंदी:</b>
-अल्लाह तआला सबका पैदा करने वाला है।
-<br>
-<span class="urdu">
-اللہ تعالیٰ سب کو پیدا کرنے والا ہے۔
-</span>
-</li></ul></div><!-- SHIRK --><div class="card"><h2>
-शिर्क क्या है؟
-<br>
-<span class="urdu">
-شرک کیا ہے؟
-</span>
-</h2><h3>हिंदी:</h3><p>
-शिर्क का मतलब है अल्लाह तआला के साथ किसी को इबादत में शरीक
-मानना। मुसलमान को शिर्क से बचना चाहिए और सिर्फ़ अल्लाह तआला
-की इबादत करनी चाहिए।
-</p><h3 class="urdu">
-اردو:
-</h3><p class="urdu">شرک کا مطلب ہے اللہ تعالیٰ کے ساتھ کسی کو عبادت میں شریک ماننا۔
-مسلمان کو شرک سے بچنا چاہیے اور صرف اللہ تعالیٰ کی عبادت کرنی چاہیے۔
-
-</p></div><!-- EXAMPLE --><div class="card"><h2>
-आसान मिसाल
-<br>
-<span class="urdu">
-آسان مثال
-</span>
-</h2><p>
-<b>हिंदी:</b>
-जैसे हम नमाज़ पढ़ते हैं, तो नमाज़ सिर्फ़ अल्लाह तआला के लिए पढ़ते हैं।
-इसी तरह दुआ और दूसरी इबादतें भी अल्लाह तआला ही के लिए होनी चाहिए।
-</p><p class="urdu"><b>اردو:</b>
-
-<br>جیسے ہم نماز پڑھتے ہیں تو نماز صرف اللہ تعالیٰ کے لیے پڑھتے ہیں۔
-اسی طرح دعا اور دوسری عبادتیں بھی اللہ تعالیٰ ہی کے لیے ہونی چاہئیں۔
-
-</p></div><!-- REMEMBER --><div class="card"><h2>
-📝 याद रखने की बात
-<br>
-<span class="urdu">
-📝 یاد رکھنے کی بات
-</span>
-</h2><div class="note"><b>हिंदी:</b>
-
-<p>
-अल्लाह तआला एक है, उसका कोई शरीक नहीं और वही अकेला
-इबादत के लायक है। यही तौहीद की सबसे अहम बात है।
-</p><hr><p class="urdu"><b>اردو:</b>
-
-<br>اللہ تعالیٰ ایک ہے، اس کا کوئی شریک نہیں اور وہی اکیلا
-عبادت کے لائق ہے۔ یہی توحید کی سب سے اہم بات ہے۔
-
-</p></div></div><!-- QUESTIONS --><div class="card"><h2>
-❓ सबक के सवाल
-<br>
-<span class="urdu">
-❓ سبق کے سوالات
-</span>
-</h2><!-- QUESTION 1 --><div class="question"><b>सवाल 1:</b>
-
-तौहीद का मतलब क्या है?
-
-<p class="urdu">
-سوال 1: توحید کا مطلب کیا ہے؟
-</p><input
-type="text"
-id="answer1"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(1)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result1" class="result"></p></div><!-- QUESTION 2 --><div class="question"><b>सवाल 2:</b>
-
-अल्लाह तआला कितने हैं?
-
-<p class="urdu">
-سوال 2: اللہ تعالیٰ کتنے ہیں؟
-</p><input
-type="text"
-id="answer2"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(2)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result2" class="result"></p></div><!-- QUESTION 3 --><div class="question"><b>सवाल 3:</b>
-
-इबादत के लायक कौन है?
-
-<p class="urdu">
-سوال 3: عبادت کے لائق کون ہے؟
-</p><input
-type="text"
-id="answer3"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(3)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result3" class="result"></p></div><!-- QUESTION 4 --><div class="question"><b>सवाल 4:</b>
-
-अल्लाह तआला का कोई शरीक है?
-
-<p class="urdu">
-سوال 4: اللہ تعالیٰ کا کوئی شریک ہے؟
-</p><input
-type="text"
-id="answer4"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(4)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result4" class="result"></p></div><!-- QUESTION 5 --><div class="question"><b>सवाल 5:</b>
-
-शिर्क से बचना चाहिए या नहीं?
-
-<p class="urdu">
-سوال 5: شرک سے بچنا چاہیے یا نہیں؟
-</p><input
-type="text"
-id="answer5"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(5)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result5" class="result"></p></div></div><!-- FOOTER --><div class="footer">📖 तौहीद सीखें और समझें
-
-<br>توحید سیکھیں اور سمجھیں
-
-</div><script>
-
-function checkAnswer(number){
-
-    let input =
-    document.getElementById("answer" + number);
-
-    let result =
-    document.getElementById("result" + number);
-
-    let answer =
-    input.value.trim().toLowerCase();
-
-    if(answer === ""){
-
-        result.innerHTML =
-        "⚠️ पहले अपना जवाब लिखें।";
-
-        return;
-
-    }
-
-    let correct = false;
-
-
-    /* Question 1 */
-
-    if(number === 1){
-
-        if(
-            answer.includes("अल्लाह") ||
-            answer.includes("توحید") ||
-            answer.includes("ایک") ||
-            answer.includes("एक") ||
-            answer.includes("allah")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 2 */
-
-    if(number === 2){
-
-        if(
-            answer === "1" ||
-            answer === "१" ||
-            answer.includes("एक") ||
-            answer.includes("एक ही") ||
-            answer.includes("ایک") ||
-            answer.includes("one")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 3 */
-
-    if(number === 3){
-
-        if(
-            answer.includes("अल्लाह") ||
-            answer.includes("allah") ||
-            answer.includes("اللہ")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 4 */
-
-    if(number === 4){
-
-        if(
-            answer.includes("नहीं") ||
-            answer.includes("नही") ||
-            answer.includes("نہیں") ||
-            answer.includes("no")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 5 */
-
-    if(number === 5){
-
-        if(
-            answer.includes("हां") ||
-            answer.includes("हाँ") ||
-            answer.includes("हां,") ||
-            answer.includes("جی") ||
-            answer.includes("yes")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    if(correct){
-
-        result.innerHTML =
-        "✅ सही जवाब! माशाअल्लाह।";
-
-    }
-
-    else{
-
-        result.innerHTML =
-        "❌ जवाब सही नहीं है। दोबारा कोशिश करें।";
-
-    }
-
-}
-<div class="card"><h2>
-सबक 3: फ़रिश्तों पर ईमान
-<br>
-<span class="urdu">
-سبق 3: فرشتوں پر ایمان
-</span>
-</h2><h3>हिंदी:</h3><p>
-फ़रिश्ते अल्लाह तआला की मख़लूक़ हैं। अल्लाह तआला ने उन्हें
-अपनी इताअत और अपने हुक्मों को पूरा करने के लिए पैदा किया।
-मुसलमान के लिए फ़रिश्तों पर ईमान लाना ज़रूरी है।
-</p><h3 class="urdu">
-اردو:
-</h3><p class="urdu">فرشتے اللہ تعالیٰ کی مخلوق ہیں۔ اللہ تعالیٰ نے انہیں
-اپنی اطاعت اور اپنے احکام کو پورا کرنے کے لیے پیدا کیا۔
-مسلمان کے لیے فرشتوں پر ایمان لانا ضروری ہے۔
-
-</p></div><!-- ANGELS --><div class="card"><h2>
-फ़रिश्तों के बारे में
-<br>
-<span class="urdu">
-فرشتوں کے بارے میں
-</span>
-</h2><ul><li>
-<b>हिंदी:</b>
-फ़रिश्ते अल्लाह तआला की मख़लूक़ हैं।
-<br>
-<span class="urdu">
-فرشتے اللہ تعالیٰ کی مخلوق ہیں۔
-</span>
-</li><li>
-<b>हिंदी:</b>
-फ़रिश्ते अल्लाह तआला के हुक्म की नाफ़रमानी नहीं करते।
-<br>
-<span class="urdu">
-فرشتے اللہ تعالیٰ کے حکم کی نافرمانی نہیں کرتے۔
-</span>
-</li><li>
-<b>हिंदी:</b>
-फ़रिश्ते अल्लाह तआला की इबादत और इताअत करते हैं।
-<br>
-<span class="urdu">
-فرشتے اللہ تعالیٰ کی عبادت اور اطاعت کرتے ہیں۔
-</span>
-</li><li>
-<b>हिंदी:</b>
-फ़रिश्तों पर ईमान लाना ईमान के 6 अरकान में से एक है।
-<br>
-<span class="urdu">
-فرشتوں پر ایمان لانا ایمان کے 6 ارکان میں سے ایک ہے۔
-</span>
-</li></ul></div><!-- IMPORTANT ANGELS --><div class="card"><h2>
-कुछ मशहूर फ़रिश्ते
-<br>
-<span class="urdu">
-چند مشہور فرشتے
-</span>
-</h2><ul><li><b>हिंदी:</b>
-हज़रत जिब्रील अलैहिस्सलाम — अल्लाह का पैग़ाम नबियों तक पहुँचाने वाले फ़रिश्ते।
-
-<br><span class="urdu">
-حضرت جبرئیل علیہ السلام — اللہ کا پیغام نبیوں تک پہنچانے والے فرشتے۔
-</span></li><li><b>हिंदी:</b>
-हज़रत मीकाईल अलैहिस्सलाम — अल्लाह के हुक्म से बारिश और रोज़ी से संबंधित कामों पर मामूर फ़रिश्ते।
-
-<br><span class="urdu">
-حضرت میکائیل علیہ السلام — اللہ کے حکم سے بارش اور رزق سے متعلق کاموں پر مامور فرشتے۔
-</span></li><li><b>हिंदी:</b>
-हज़रत इसराफ़ील अलैहिस्सलाम — सूर फूँकने की ज़िम्मेदारी वाले फ़रिश्ते।
-
-<br><span class="urdu">
-حضرت اسرافیل علیہ السلام — صور پھونکنے کی ذمہ داری والے فرشتے۔
-</span></li><li><b>हिंदी:</b>
-मलिकुल-मौत — मौत के समय रूह क़ब्ज़ करने की ज़िम्मेदारी वाले फ़रिश्ते।
-
-<br><span class="urdu">
-ملک الموت — موت کے وقت روح قبض کرنے کی ذمہ داری والے فرشتے۔
-</span></li></ul></div><!-- GOOD DEEDS --><div class="card"><h2>
-फ़रिश्तों से मिलने वाली सीख
-<br>
-<span class="urdu">
-فرشتوں سے ملنے والا سبق
-</span>
-</h2><p><b>हिंदी:</b>
-हमें हमेशा याद रखना चाहिए कि अल्लाह तआला हमें देखता है
-और हमारे आमाल का हिसाब होगा। इसलिए हमें अच्छे काम करने,
-सच बोलने और बुरे कामों से बचने की कोशिश करनी चाहिए।
-
-</p><p class="urdu"><b>اردو:</b>
-
-<br>ہمیں ہمیشہ یاد رکھنا چاہیے کہ اللہ تعالیٰ ہمیں دیکھتا ہے
-اور ہمارے اعمال کا حساب ہوگا۔ اس لیے ہمیں اچھے کام کرنے،
-سچ بولنے اور برے کاموں سے بچنے کی کوشش کرنی چاہیے۔
-
-</p></div><!-- REMEMBER --><div class="card"><h2>
-📝 याद रखने की बात
-<br>
-<span class="urdu">
-📝 یاد رکھنے کی بات
-</span>
-</h2><div class="note"><b>हिंदी:</b>
-
-<p>
-फ़रिश्ते अल्लाह तआला की मख़लूक़ हैं और अल्लाह के हुक्म
-की इताअत करते हैं। फ़रिश्तों पर ईमान लाना ईमान के
-6 अरकान में से एक है।
-</p><hr><p class="urdu"><b>اردو:</b>
-
-<br>فرشتے اللہ تعالیٰ کی مخلوق ہیں اور اللہ کے حکم کی اطاعت
-کرتے ہیں۔ فرشتوں پر ایمان لانا ایمان کے 6 ارکان میں سے ایک ہے۔
-
-</p></div></div><!-- QUESTIONS --><div class="card"><h2>
-❓ सबक के सवाल
-<br>
-<span class="urdu">
-❓ سبق کے سوالات
-</span>
-</h2><!-- QUESTION 1 --><div class="question"><b>सवाल 1:</b>
-
-फ़रिश्ते किसकी मख़लूक़ हैं?
-
-<p class="urdu">
-سوال 1: فرشتے کس کی مخلوق ہیں؟
-</p><input
-type="text"
-id="answer1"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(1)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result1" class="result"></p></div><!-- QUESTION 2 --><div class="question"><b>सवाल 2:</b>
-
-फ़रिश्तों पर ईमान लाना किसका हिस्सा है?
-
-<p class="urdu">
-سوال 2: فرشتوں پر ایمان لانا کس کا حصہ ہے؟
-</p><input
-type="text"
-id="answer2"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(2)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result2" class="result"></p></div><!-- QUESTION 3 --><div class="question"><b>सवाल 3:</b>
-
-वही लेकर आने वाले मशहूर फ़रिश्ते का नाम क्या है?
-
-<p class="urdu">
-سوال 3: وحی لے کر آنے والے مشہور فرشتے کا نام کیا ہے؟
-</p><input
-type="text"
-id="answer3"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(3)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result3" class="result"></p></div><!-- QUESTION 4 --><div class="question"><b>सवाल 4:</b>
-
-सूर फूँकने की ज़िम्मेदारी किस फ़रिश्ते की है?
-
-<p class="urdu">
-سوال 4: صور پھونکنے کی ذمہ داری کس فرشتے کی ہے؟
-</p><input
-type="text"
-id="answer4"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(4)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result4" class="result"></p></div><!-- QUESTION 5 --><div class="question"><b>सवाल 5:</b>
-
-क्या फ़रिश्ते अल्लाह तआला के हुक्म की इताअत करते हैं?
-
-<p class="urdu">
-سوال 5: کیا فرشتے اللہ تعالیٰ کے حکم کی اطاعت کرتے ہیں؟
-</p><input
-type="text"
-id="answer5"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(5)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result5" class="result"></p></div></div><!-- FOOTER --><div class="footer">📖 फ़रिश्तों पर ईमान सीखें
-
-<br>فرشتوں پر ایمان سیکھیں
-
-</div><script>
-
-function checkAnswer(number){
-
-    let input =
-    document.getElementById("answer" + number);
-
-    let result =
-    document.getElementById("result" + number);
-
-    let answer =
-    input.value.trim().toLowerCase();
-
-    if(answer === ""){
-
-        result.innerHTML =
-        "⚠️ पहले अपना जवाब लिखें।";
-
-        return;
-
-    }
-
-    let correct = false;
-
-
-    /* Question 1 */
-
-    if(number === 1){
-
-        if(
-            answer.includes("अल्लाह") ||
-            answer.includes("allah") ||
-            answer.includes("اللہ")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 2 */
-
-    if(number === 2){
-
-        if(
-            answer.includes("ईमान") ||
-            answer.includes("ایمان") ||
-            answer.includes("6") ||
-            answer.includes("६")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 3 */
-
-    if(number === 3){
-
-        if(
-            answer.includes("जिब्रील") ||
-            answer.includes("जिब्रईल") ||
-            answer.includes("جبرئیل") ||
-            answer.includes("جبریل") ||
-            answer.includes("jibreel") ||
-            answer.includes("jibraeel")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 4 */
-
-    if(number === 4){
-
-        if(
-            answer.includes("इसराफ़ील") ||
-            answer.includes("इसराफील") ||
-            answer.includes("اسرافیل") ||
-            answer.includes("israfeel")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 5 */
-
-    if(number === 5){
-
-        if(
-            answer.includes("हां") ||
-            answer.includes("हाँ") ||
-            answer.includes("جی ہاں") ||
-            answer.includes("جی") ||
-            answer.includes("yes")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    if(correct){
-
-        result.innerHTML =
-        "✅ सही जवाब! माशाअल्लाह।";
-
-    }
-
-    else{
-
-        result.innerHTML =
-        "❌ जवाब सही नहीं है। दोबारा कोशिश करें।";
-
-    }
-
-}
-<div class="card"><h2>
-सबक 4: आसमानी किताबों पर ईमान
-<br>
-<span class="urdu">
-سبق 4: آسمانی کتابوں پر ایمان
-</span>
-</h2><h3>हिंदी:</h3><p>
-अल्लाह तआला ने इंसानों की हिदायत के लिए अपने नबियों और रसूलों पर
-किताबें और सहीफ़े नाज़िल फ़रमाए। मुसलमान का ईमान है कि अल्लाह
-तआला की नाज़िल की हुई किताबें हक़ हैं।
-</p><h3 class="urdu">
-اردو:
-</h3><p class="urdu">
-اللہ تعالیٰ نے انسانوں کی ہدایت کے لیے اپنے نبیوں اور رسولوں پر
-کتابیں اور صحیفے نازل فرمائے۔ مسلمان کا ایمان ہے کہ اللہ تعالیٰ
-کی نازل کی ہوئی کتابیں حق ہیں۔
-</p></div><!-- HOLY BOOKS --><div class="card"><h2>
-मशहूर आसमानी किताबें
-<br>
-<span class="urdu">
-مشہور آسمانی کتابیں
-</span>
-</h2><ul><li>
-<b>हिंदी:</b>
-तौरात — हज़रत मूसा अलैहिस्सलाम पर नाज़िल हुई।
-<br>
-<span class="urdu">
-تورات — حضرت موسیٰ علیہ السلام پر نازل ہوئی۔
-</span>
-</li><li>
-<b>हिंदी:</b>
-ज़बूर — हज़रत दाऊद अलैहिस्सलाम पर नाज़िल हुई।
-<br>
-<span class="urdu">
-زبور — حضرت داؤد علیہ السلام پر نازل ہوئی۔
-</span>
-</li><li>
-<b>हिंदी:</b>
-इंजील — हज़रत ईसा अलैहिस्सलाम पर नाज़िल हुई।
-<br>
-<span class="urdu">
-انجیل — حضرت عیسیٰ علیہ السلام پر نازل ہوئی۔
-</span>
-</li><li>
-<b>हिंदी:</b>
-क़ुरआन मजीद — हज़रत मुहम्मद ﷺ पर नाज़िल हुआ।
-<br>
-<span class="urdu">
-قرآن مجید — حضرت محمد ﷺ پر نازل ہوا۔
-</span>
-</li></ul></div><!-- QURAN --><div class="card"><h2>
-क़ुरआन मजीद
-<br>
-<span class="urdu">
-قرآن مجید
-</span>
-</h2><h3>हिंदी:</h3><p>
-क़ुरआन मजीद अल्लाह तआला की आख़िरी आसमानी किताब है।
-यह हज़रत मुहम्मद ﷺ पर नाज़िल हुई। क़ुरआन पूरी इंसानियत के लिए
-हिदायत की किताब है।
-</p><h3 class="urdu">
-اردو:
-</h3><p class="urdu">
-قرآن مجید اللہ تعالیٰ کی آخری آسمانی کتاب ہے۔
-یہ حضرت محمد ﷺ پر نازل ہوئی۔ قرآن پوری انسانیت کے لیے
-ہدایت کی کتاب ہے۔
-</p></div><!-- REVELATION --><div class="card"><h2>
-क़ुरआन कैसे नाज़िल हुआ?
-<br>
-<span class="urdu">
-قرآن کیسے نازل ہوا؟
-</span>
-</h2><p><b>हिंदी:</b>
-क़ुरआन मजीद अल्लाह तआला की तरफ़ से हज़रत जिब्रील
-अलैहिस्सलाम के ज़रिए हज़रत मुहम्मद ﷺ पर नाज़िल हुआ।
-क़ुरआन लगभग 23 वर्षों में धीरे-धीरे नाज़िल हुआ।
-
-</p><p class="urdu"><b>اردو:</b>
-
-<br>قرآن مجید اللہ تعالیٰ کی طرف سے حضرت جبرئیل علیہ السلام
-کے ذریعے حضرت محمد ﷺ پر نازل ہوا۔
-قرآن تقریباً 23 سال میں تھوڑا تھوڑا نازل ہوا۔
-
-</p></div><!-- OUR DUTY --><div class="card"><h2>
-क़ुरआन के बारे में हमारी ज़िम्मेदारी
-<br>
-<span class="urdu">
-قرآن کے بارے میں ہماری ذمہ داری
-</span>
-</h2><ul><li>
-<b>हिंदी:</b>
-क़ुरआन को ईमान और अदब के साथ मानना।
-<br>
-<span class="urdu">
-قرآن کو ایمان اور ادب کے ساتھ ماننا۔
-</span>
-</li><li>
-<b>हिंदी:</b>
-क़ुरआन की तिलावत करना।
-<br>
-<span class="urdu">
-قرآن کی تلاوت کرنا۔
-</span>
-</li><li>
-<b>हिंदी:</b>
-क़ुरआन को समझने की कोशिश करना।
-<br>
-<span class="urdu">
-قرآن کو سمجھنے کی کوشش کرنا۔
-</span>
-</li><li>
-<b>हिंदी:</b>
-क़ुरआन की हिदायत पर अमल करने की कोशिश करना।
-<br>
-<span class="urdu">
-قرآن کی ہدایت پر عمل کرنے کی کوشش کرنا۔
-</span>
-</li></ul></div><!-- REMEMBER --><div class="card"><h2>
-📝 याद रखने की बात
-<br>
-<span class="urdu">
-📝 یاد رکھنے کی بات
-</span>
-</h2><div class="note"><b>हिंदी:</b>
-
-<p>
-मुसलमान सभी आसमानी किताबों के अस्ल तौर पर अल्लाह की तरफ़ से
-नाज़िल होने पर ईमान रखता है। क़ुरआन मजीद अल्लाह तआला की
-आख़िरी किताब है, जो हज़रत मुहम्मद ﷺ पर नाज़िल हुई।
-</p><hr><p class="urdu"><b>اردو:</b>
-
-<br>مسلمان تمام آسمانی کتابوں کے اصل طور پر اللہ کی طرف سے
-نازل ہونے پر ایمان رکھتا ہے۔ قرآن مجید اللہ تعالیٰ کی
-آخری کتاب ہے، جو حضرت محمد ﷺ پر نازل ہوئی۔
-
-</p></div></div><!-- QUESTIONS --><div class="card"><h2>
-❓ सबक के सवाल
-<br>
-<span class="urdu">
-❓ سبق کے سوالات
-</span>
-</h2><!-- QUESTION 1 --><div class="question"><b>सवाल 1:</b>
-
-मशहूर आसमानी किताबें कितनी हैं?
-
-<p class="urdu">
-سوال 1: مشہور آسمانی کتابیں کتنی ہیں؟
-</p><input
-type="text"
-id="answer1"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(1)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result1" class="result"></p></div><!-- QUESTION 2 --><div class="question"><b>सवाल 2:</b>
-
-तौरात किस नबी पर नाज़िल हुई?
-
-<p class="urdu">
-سوال 2: تورات کس نبی پر نازل ہوئی؟
-</p><input
-type="text"
-id="answer2"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(2)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result2" class="result"></p></div><!-- QUESTION 3 --><div class="question"><b>सवाल 3:</b>
-
-ज़बूर किस नबी पर नाज़िल हुई?
-
-<p class="urdu">
-سوال 3: زبور کس نبی پر نازل ہوئی؟
-</p><input
-type="text"
-id="answer3"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(3)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result3" class="result"></p></div><!-- QUESTION 4 --><div class="question"><b>सवाल 4:</b>
-
-क़ुरआन मजीद किस नबी पर नाज़िल हुआ?
-
-<p class="urdu">
-سوال 4: قرآن مجید کس نبی پر نازل ہوا؟
-</p><input
-type="text"
-id="answer4"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(4)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result4" class="result"></p></div><!-- QUESTION 5 --><div class="question"><b>सवाल 5:</b>
-
-क़ुरआन मजीद किसकी आख़िरी किताब है?
-
-<p class="urdu">
-سوال 5: قرآن مجید کس کی آخری کتاب ہے؟
-</p><input
-type="text"
-id="answer5"
-class="answer-box"
-placeholder="अपना जवाब लिखें / اپنا جواب لکھیں"
-
-«»
-
-<br><button
-class="check-btn"
-onclick="checkAnswer(5)"
-
-«»
-
-जवाब जांचें
-</button>
-
-<p id="result5" class="result"></p></div></div><!-- FOOTER --><div class="footer">📖 आसमानी किताबों पर ईमान सीखें
-
-<br>آسمانی کتابوں پر ایمان سیکھیں
-
-</div><script>
-
-function checkAnswer(number){
-
-    let input =
-    document.getElementById("answer" + number);
-
-    let result =
-    document.getElementById("result" + number);
-
-    let answer =
-    input.value.trim().toLowerCase();
-
-    if(answer === ""){
-
-        result.innerHTML =
-        "⚠️ पहले अपना जवाब लिखें।";
-
-        return;
-
-    }
-
-    let correct = false;
-
-
-    /* Question 1 */
-
-    if(number === 1){
+    if(type === "4"){
 
         if(
             answer === "4" ||
             answer === "४" ||
             answer.includes("चार") ||
-            answer.includes("چار")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 2 */
-
-    if(number === 2){
-
-        if(
-            answer.includes("मूसा") ||
-            answer.includes("मوسی") ||
-            answer.includes("musa")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 3 */
-
-    if(number === 3){
-
-        if(
-            answer.includes("दाऊद") ||
-            answer.includes("داود") ||
-            answer.includes("dawud")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 4 */
-
-    if(number === 4){
-
-        if(
-            answer.includes("मुहम्मद") ||
-            answer.includes("محمد") ||
-            answer.includes("muhammad")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    /* Question 5 */
-
-    if(number === 5){
-
-        if(
-            answer.includes("अल्लाह") ||
-            answer.includes("اللہ") ||
-            answer.includes("allah")
-        ){
-
-            correct = true;
-
-        }
-
-    }
-
-
-    if(correct){
-
-        result.innerHTML =
-        "✅ सही जवाब! माशाअल्लाह।";
-
-    }
-
-    else{
-
-        result.innerHTML =
-        "❌ जवाब सही नहीं है। दोबारा कोशिश करें।";
-
-    }
-
-}
-
-</script>
-
-</script>
-
-</script>
-
-</script>
-
-</body>
-</html>
+            answer.includes("چار”
