@@ -23,9 +23,7 @@ body{
     box-shadow:0 0 15px rgba(0,0,0,.15);
 }
 
-h1{
-    color:#0d8f4d;
-}
+h1{color:#0d8f4d;}
 
 #amount{
     color:#e53935;
@@ -49,29 +47,18 @@ input{
     box-sizing:border-box;
 }
 
-.copy-btn{
-    width:100%;
-    margin-top:10px;
-    padding:12px;
-    background:#2196F3;
-    color:#eccd09;
-    border:none;
-    border-radius:8px;
-    font-size:18px;
-    cursor:pointer;
-}
-
-.pay-btn{
+button{
     width:100%;
     padding:14px;
     margin-top:12px;
     border:none;
     border-radius:8px;
-    color:rgb(226, 12, 223);
+    color:white;
     font-size:18px;
     cursor:pointer;
 }
 
+.copy-btn{background:#2196F3;}
 .gpay{background:#0F9D58;}
 .phonepe{background:#5f259f;}
 .paytm{background:#00baf2;}
@@ -85,66 +72,77 @@ input{
 
 <h1>🤲 Donate</h1>
 
-<h2 id="amount"></h2>
+<h2 id="amount">दान करें</h2>
 
-<img src="qr.jpg/qr..jpg" alt="QR Code">
+<img src="qr.jpg" alt="QR Code">
 
 <h3>UPI ID</h3>
 
-<label>UPI ID</label>
+<input id="upid" value="8541849708@axl" readonly>
 
-<div class="upi-row">
-    <input id="upid" value="@axl" readonly>
+<button class="copy-btn" onclick="copyUPI()">
+📋 Copy UPI ID
+</button>
 
-   
-</div>
+<button class="gpay" onclick="pay()">
+🟢 Google Pay
+</button>
 
+<button class="phonepe" onclick="pay()">
+🟣 PhonePe
+</button>
 
-<button class="copy-btn" onclick="copyUPI()">📋 Copy UPI ID</button>
+<button class="paytm" onclick="pay()">
+💙 Paytm
+</button>
 
-<button class="pay-btn gpay" onclick="pay()">🟢 Google Pay</button>
+<button class="other" onclick="pay()">
+🏦 Other UPI
+</button>
 
-<button class="pay-btn phonepe" onclick="pay()">🟣 PhonePe</button>
-
-<button class="pay-btn paytm" onclick="pay()">💙 Paytm</button>
-
-<button class="pay-btn other" onclick="pay()">🏦 Other UPI</button>
 </div>
 
 <script>
+
 const params = new URLSearchParams(window.location.search);
 const amount = params.get("amount") || "";
 
 document.getElementById("amount").innerText =
-amount ? "आप ₹" + amount + " दान कर रहे हैं" : "दान करें";
+amount
+? "आप ₹" + amount + " दान कर रहे हैं"
+: "दान करें";
 
-function copyUPI() {
-    navigator.clipboard.writeText("8541849708@axl");
-    alert("UPI ID Copy हो गई");
+function copyUPI(){
+
+    navigator.clipboard.writeText("8541849708@axl")
+    .then(function(){
+        alert("UPI ID Copy हो गई ✅");
+    })
+    .catch(function(){
+        alert("UPI ID: 8541849708@axl");
+    });
+
 }
 
-function pay() {
-    const upi = "upi://pay?pa=8541849708@axl&pn=ROKSANA%20KHATOON&am=" + amount + "&cu=INR";
+function pay(){
+
+    if(!amount){
+        alert("कृपया पहले Donation Amount चुनें।");
+        return;
+    }
+
+    const upi =
+    "upi://pay" +
+    "?pa=8541849708@axl" +
+    "&pn=ROKSANA%20KHATOON" +
+    "&am=" + encodeURIComponent(amount) +
+    "&cu=INR";
 
     window.location.href = upi;
 
-    setTimeout(function () {
-        alert("अगर UPI App नहीं खुला, तो QR Code स्कैन करके भुगतान करें।");
-    }, 2000);
 }
-</script>
-<script>
-function copyUPI() {
-    const upi = "8541849608@axl";
 
-    navigator.clipboard.writeText(upi).then(function () {
-        alert("UPI ID Copy हो गई ✅");
-    });
-}
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
