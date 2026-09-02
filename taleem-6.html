@@ -1,1 +1,720 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>ज़कात की पूरी जानकारी | Zakat Information & Calculator</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#e8f5e9;
+    color:#d40000;
+    line-height:1.7;
+}
+
+.container{
+    width:94%;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* Header */
+.header{
+    background:linear-gradient(135deg,#087f23,#0caf3b);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.header p{
+    font-size:17px;
+}
+
+/* Section Title */
+.section-title{
+    text-align:center;
+    margin:30px 0 20px;
+}
+
+.section-title h2{
+    color:#b30000;
+    font-size:28px;
+}
+
+/* Cards Grid */
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+/* Standard Card */
+.zakat-card{
+    background:linear-gradient(135deg,#b9f6ca,#69df87);
+    border:2px solid #078b2c;
+    border-radius:15px;
+    padding:22px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.12);
+    transition:0.3s;
+}
+
+.zakat-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 9px 22px rgba(0,0,0,0.18);
+}
+
+.card-number{
+    width:42px;
+    height:42px;
+    background:white;
+    color:#d00000;
+    border:2px solid #d00000;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.zakat-card h3{
+    color:#b00000;
+    font-size:21px;
+    margin-bottom:8px;
+}
+
+.zakat-card p{
+    color:#c00000;
+    font-size:16px;
+}
+
+.urdu{
+    direction:rtl;
+    text-align:right;
+    font-family:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq",serif;
+    margin-top:12px;
+    border-top:1px solid rgba(180,0,0,0.25);
+    padding-top:10px;
+}
+
+/* Calculator */
+.calculator-section{
+    margin-top:45px;
+}
+
+.calculator{
+    max-width:750px;
+    margin:0 auto;
+    background:linear-gradient(135deg,#b9f6ca,#69df87);
+    border:2px solid #078b2c;
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 7px 20px rgba(0,0,0,0.15);
+}
+
+.calculator h2{
+    text-align:center;
+    color:#a90000;
+    margin-bottom:8px;
+}
+
+.calculator .intro{
+    text-align:center;
+    color:#c00000;
+    margin-bottom:20px;
+}
+
+.input-group{
+    margin-bottom:15px;
+}
+
+.input-group label{
+    display:block;
+    color:#a90000;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.input-group input{
+    width:100%;
+    padding:12px;
+    border:2px solid #078b2c;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+}
+
+.input-group input:focus{
+    border-color:#d00000;
+}
+
+/* Button */
+.calculate-btn{
+    width:100%;
+    padding:14px;
+    background:#078b2c;
+    color:white;
+    border:none;
+    border-radius:9px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:8px;
+}
+
+.calculate-btn:hover{
+    background:#056b21;
+}
+
+/* Result */
+.result{
+    display:none;
+    margin-top:20px;
+    background:white;
+    border:2px solid #d00000;
+    border-radius:10px;
+    padding:18px;
+    text-align:center;
+}
+
+.result h3{
+    color:#a90000;
+}
+
+.result .amount{
+    font-size:28px;
+    font-weight:bold;
+    color:#d00000;
+    margin:8px 0;
+}
+
+/* Formula */
+.formula{
+    margin-top:20px;
+    background:white;
+    border:2px dashed #078b2c;
+    border-radius:10px;
+    padding:15px;
+    text-align:center;
+    color:#b00000;
+    font-weight:bold;
+}
+
+/* Important Note */
+.note{
+    margin:30px 0;
+    background:#fff3f3;
+    border:2px solid #d00000;
+    border-radius:14px;
+    padding:20px;
+    color:#a00000;
+}
+
+.note h3{
+    margin-bottom:8px;
+}
+
+/* Footer */
+footer{
+    background:#087f23;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+}
+
+footer p{
+    margin:5px 0;
+}
+
+/* Mobile */
+@media(max-width:768px){
+    .card-grid{
+        grid-template-columns:1fr;
+    }
+
+    .header h1{
+        font-size:26px;
+    }
+
+    .section-title h2{
+        font-size:23px;
+    }
+
+    .zakat-card{
+        padding:18px;
+    }
+
+    .calculator{
+        padding:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="container">
+        <h1>ज़कात की पूरी जानकारी</h1>
+        <p>Zakat Information & Calculator</p>
+    </div>
+</header>
+
+
+<div class="container">
+
+<!-- INFORMATION SECTION -->
+<div class="section-title">
+    <h2>ज़कात के बारे में महत्वपूर्ण जानकारी</h2>
+</div>
+
+<div class="card-grid">
+
+<!-- CARD 1 -->
+<div class="zakat-card">
+    <div class="card-number">1</div>
+    <h3>ज़कात क्या है?</h3>
+    <p>
+        ज़कात इस्लाम का एक महत्वपूर्ण फ़र्ज़ है। मालदार मुसलमान अपने माल में से
+        एक निश्चित हिस्सा हक़दार लोगों को देता है।
+    </p>
+
+    <div class="urdu">
+        <strong>زکوٰۃ کیا ہے؟</strong><br>
+        زکوٰۃ اسلام کا ایک اہم فرض ہے۔ صاحبِ نصاب مسلمان اپنے مال کا مقررہ حصہ
+        مستحق لوگوں کو دیتا ہے۔
+    </div>
+</div>
+
+
+<!-- CARD 2 -->
+<div class="zakat-card">
+    <div class="card-number">2</div>
+    <h3>किस पर ज़कात फ़र्ज़ है?</h3>
+    <p>
+        जिस मुसलमान के पास ज़कात के योग्य माल निसाब तक पहुँचता हो और उस पर
+        ज़कात की शर्तें पूरी होती हों, उस पर ज़कात फ़र्ज़ होती है।
+    </p>
+
+    <div class="urdu">
+        <strong>زکوٰۃ کس پر فرض ہے؟</strong><br>
+        جس مسلمان کے پاس نصاب کے برابر زکوٰۃ والا مال ہو اور زکوٰۃ کی شرائط
+        پوری ہوں، اس پر زکوٰۃ فرض ہوتی ہے۔
+    </div>
+</div>
+
+
+<!-- CARD 3 -->
+<div class="zakat-card">
+    <div class="card-number">3</div>
+    <h3>निसाब क्या है?</h3>
+    <p>
+        निसाब वह न्यूनतम माल है जिसके पहुँचने पर ज़कात की पात्रता बनती है।
+        सोना, चाँदी, नकद और अन्य माल के निसाब की गणना में फ़िक़्ही विवरण पाए जाते हैं।
+    </p>
+
+    <div class="urdu">
+        <strong>نصاب کیا ہے؟</strong><br>
+        نصاب وہ کم از کم مال ہے جس کے مالک ہونے پر زکوٰۃ لازم ہونے کی شرائط
+        پوری ہو سکتی ہیں۔
+    </div>
+</div>
+
+
+<!-- CARD 4 -->
+<div class="zakat-card">
+    <div class="card-number">4</div>
+    <h3>ज़कात की दर कितनी है?</h3>
+    <p>
+        आम तौर पर ज़कात योग्य माल पर 2.5% यानी चालीसवाँ हिस्सा ज़कात के रूप में
+        निकाला जाता है, जब संबंधित शर्तें पूरी हों।
+    </p>
+
+    <div class="urdu">
+        <strong>زکوٰۃ کی شرح کتنی ہے؟</strong><br>
+        عام طور پر زکوٰۃ والے مال کا 2.5 فیصد یعنی چالیسواں حصہ زکوٰۃ کے طور پر
+        دیا جاتا ہے، جب متعلقہ شرائط پوری ہوں۔
+    </div>
+</div>
+
+
+<!-- CARD 5 -->
+<div class="zakat-card">
+    <div class="card-number">5</div>
+    <h3>क़ुरआन में ज़कात</h3>
+    <p>
+        क़ुरआन में नमाज़ के साथ ज़कात का भी बार-बार उल्लेख किया गया है।
+        सूरह अल-बक़रह 2:43 में नमाज़ कायम करने और ज़कात देने का आदेश आता है।
+    </p>
+
+    <div class="urdu">
+        <strong>قرآن میں زکوٰۃ</strong><br>
+        قرآن مجید میں نماز کے ساتھ زکوٰۃ کا بھی بار بار ذکر آیا ہے۔
+        سورۃ البقرہ 2:43 میں نماز قائم کرنے اور زکوٰۃ ادا کرنے کا حکم ہے۔
+    </div>
+</div>
+
+
+<!-- CARD 6 -->
+<div class="zakat-card">
+    <div class="card-number">6</div>
+    <h3>सोने पर ज़कात</h3>
+    <p>
+        सोना ज़कात के मसलों में शामिल हो सकता है। सोने के निसाब और इस्तेमाल किए
+        जाने वाले गहनों के बारे में अलग-अलग फ़िक़्ही मत मिलते हैं।
+    </p>
+
+    <div class="urdu">
+        <strong>سونے پر زکوٰۃ</strong><br>
+        سونا زکوٰۃ کے مسائل میں شامل ہو سکتا ہے۔ سونے کے نصاب اور استعمالی
+        زیورات کے بارے میں فقہی مذاہب میں تفصیل پائی جاتی ہے۔
+    </div>
+</div>
+
+
+<!-- CARD 7 -->
+<div class="zakat-card">
+    <div class="card-number">7</div>
+    <h3>चाँदी पर ज़कात</h3>
+    <p>
+        चाँदी भी ज़कात के निसाब से संबंधित माल है। निसाब की सही गणना के लिए
+        अपने स्थानीय विश्वसनीय आलिम से सलाह लेना बेहतर है।
+    </p>
+
+    <div class="urdu">
+        <strong>چاندی پر زکوٰۃ</strong><br>
+        چاندی بھی زکوٰۃ کے نصاب سے متعلق مال ہے۔ نصاب کی درست تعیین کے لیے
+        معتبر عالم سے مشورہ کرنا بہتر ہے۔
+    </div>
+</div>
+
+
+<!-- CARD 8 -->
+<div class="zakat-card">
+    <div class="card-number">8</div>
+    <h3>कैश और बैंक बैलेंस</h3>
+    <p>
+        नकद पैसा और बैंक में मौजूद ज़कात योग्य राशि को ज़कात की गणना में
+        शामिल किया जा सकता है, यदि ज़कात की अन्य शर्तें पूरी हों।
+    </p>
+
+    <div class="urdu">
+        <strong>نقد رقم اور بینک بیلنس</strong><br>
+        نقد رقم اور بینک میں موجود زکوٰۃ کے قابل رقم کو زکوٰۃ کے حساب میں
+        شامل کیا جا سکتا ہے، جب دوسری شرائط پوری ہوں۔
+    </div>
+</div>
+
+
+<!-- CARD 9 -->
+<div class="zakat-card">
+    <div class="card-number">9</div>
+    <h3>व्यापार का माल</h3>
+    <p>
+        व्यापार के लिए रखे गए माल की ज़कात का भी प्रावधान है। व्यापारिक माल की
+        कीमत और अन्य संबंधित चीज़ों की गणना में फ़िक़्ही विवरण हो सकते हैं।
+    </p>
+
+    <div class="urdu">
+        <strong>تجارتی مال</strong><br>
+        تجارت کے لیے رکھے گئے مال پر بھی زکوٰۃ کے احکام ہیں۔ تجارتی مال کی
+        قیمت اور متعلقہ چیزوں کے حساب میں فقہی تفصیل موجود ہے۔
+    </div>
+</div>
+
+
+<!-- CARD 10 -->
+<div class="zakat-card">
+    <div class="card-number">10</div>
+    <h3>घर और निजी सामान</h3>
+    <p>
+        सामान्य निजी इस्तेमाल का घर, कपड़े, फर्नीचर और रोज़मर्रा की चीज़ें
+        व्यापारिक माल न होने पर आम तौर पर ज़कात की गणना में शामिल नहीं की जातीं।
+    </p>
+
+    <div class="urdu">
+        <strong>گھر اور ذاتی سامان</strong><br>
+        ذاتی استعمال کا گھر، کپڑے، فرنیچر اور روزمرہ کی چیزیں اگر تجارتی مال
+        نہ ہوں تو عام طور پر زکوٰۃ کے حساب میں شامل نہیں ہوتیں۔
+    </div>
+</div>
+
+
+<!-- CARD 11 -->
+<div class="zakat-card">
+    <div class="card-number">11</div>
+    <h3>ज़कात किन लोगों को दी जा सकती है?</h3>
+    <p>
+        क़ुरआन सूरह अत-तौबा 9:60 में ज़कात के हक़दारों की श्रेणियाँ बताई गई हैं,
+        जैसे गरीब और जरूरतमंद लोग आदि।
+    </p>
+
+    <div class="urdu">
+        <strong>زکوٰۃ کن لوگوں کو دی جا سکتی ہے؟</strong><br>
+        قرآن مجید سورۃ التوبہ 9:60 میں زکوٰۃ کے مستحقین کی قسمیں بیان کی گئی ہیں،
+        جیسے فقیر اور مسکین وغیرہ۔
+    </div>
+</div>
+
+
+<!-- CARD 12 -->
+<div class="zakat-card">
+    <div class="card-number">12</div>
+    <h3>रिश्तेदारों को ज़कात</h3>
+    <p>
+        जरूरतमंद रिश्तेदारों को ज़कात देना कई मामलों में बेहतर हो सकता है,
+        लेकिन माता-पिता, संतान और कुछ अन्य रिश्तों के बारे में विशेष फ़िक़्ही
+        नियम हैं।
+    </p>
+
+    <div class="urdu">
+        <strong>رشتہ داروں کو زکوٰۃ</strong><br>
+        ضرورت مند رشتہ داروں کو زکوٰۃ دینا بعض صورتوں میں افضل ہو سکتا ہے،
+        لیکن والدین، اولاد اور بعض دوسرے رشتوں کے بارے میں خاص فقہی احکام ہیں۔
+    </div>
+</div>
+
+
+<!-- CARD 13 -->
+<div class="zakat-card">
+    <div class="card-number">13</div>
+    <h3>ज़कात और सदक़ा में अंतर</h3>
+    <p>
+        ज़कात एक फ़र्ज़ इबादत है जिसकी अपनी शर्तें हैं। सदक़ा आम तौर पर
+        स्वैच्छिक दान को कहा जाता है और इसके लिए ज़कात जैसी अनिवार्य शर्तें नहीं होतीं।
+    </p>
+
+    <div class="urdu">
+        <strong>زکوٰۃ اور صدقہ میں فرق</strong><br>
+        زکوٰۃ فرض عبادت ہے جس کی اپنی شرائط ہیں۔ صدقہ عام طور پر نفلی خیرات
+        کو کہا جاتا ہے۔
+    </div>
+</div>
+
+
+<!-- CARD 14 -->
+<div class="zakat-card">
+    <div class="card-number">14</div>
+    <h3>ज़कात न देने का मामला</h3>
+    <p>
+        ज़कात फ़र्ज़ होने के बाद उसे जानबूझकर न देना गंभीर धार्मिक मामला है।
+        मुसलमान को अपनी ज़िम्मेदारी पूरी करने की कोशिश करनी चाहिए।
+    </p>
+
+    <div class="urdu">
+        <strong>زکوٰۃ نہ دینے کا معاملہ</strong><br>
+        زکوٰۃ فرض ہونے کے بعد جان بوجھ کر ادا نہ کرنا ایک سنگین دینی معاملہ ہے۔
+        مسلمان کو اپنی ذمہ داری پوری کرنی چاہیے۔
+    </div>
+</div>
+
+
+<!-- CARD 15 -->
+<div class="zakat-card">
+    <div class="card-number">15</div>
+    <h3>ज़कात की आसान मिसाल</h3>
+    <p>
+        अगर किसी व्यक्ति की ज़कात योग्य राशि ₹1,00,000 हो और उस पर 2.5% की
+        ज़कात लागू हो, तो सामान्य गणना के अनुसार ज़कात ₹2,500 होगी।
+    </p>
+
+    <div class="urdu">
+        <strong>زکوٰۃ کی آسان مثال</strong><br>
+        اگر کسی شخص کا زکوٰۃ والا مال ₹1,00,000 ہو اور اس پر 2.5 فیصد زکوٰۃ
+        لاگو ہو تو عام حساب کے مطابق زکوٰۃ ₹2,500 ہوگی۔
+    </div>
+</div>
+
+
+<!-- CARD 16 -->
+<div class="zakat-card">
+    <div class="card-number">16</div>
+    <h3>ज़कात देते समय नीयत</h3>
+    <p>
+        ज़कात अदा करते समय ज़कात की नीयत होना आवश्यक माना जाता है। नीयत दिल
+        के इरादे का नाम है।
+    </p>
+
+    <div class="urdu">
+        <strong>زکوٰۃ دیتے وقت نیت</strong><br>
+        زکوٰۃ ادا کرتے وقت زکوٰۃ کی نیت ہونا ضروری ہے۔ نیت دل کے ارادے کا نام ہے۔
+    </div>
+</div>
+
+</div>
+
+
+<!-- CALCULATOR -->
+<div class="calculator-section">
+
+    <div class="section-title">
+        <h2>ज़कात कैलकुलेटर</h2>
+    </div>
+
+    <div class="calculator">
+
+        <h2>Zakat Calculator</h2>
+
+        <p class="intro">
+            अपनी ज़कात योग्य रकम डालें और अनुमानित 2.5% ज़कात देखें।
+        </p>
+
+        <div class="input-group">
+            <label>कैश / नकद राशि (₹)</label>
+            <input type="number" id="cash" placeholder="जैसे 50000" min="0">
+        </div>
+
+        <div class="input-group">
+            <label>बैंक बैलेंस (₹)</label>
+            <input type="number" id="bank" placeholder="जैसे 100000" min="0">
+        </div>
+
+        <div class="input-group">
+            <label>सोने की ज़कात योग्य कीमत (₹)</label>
+            <input type="number" id="gold" placeholder="जैसे 150000" min="0">
+        </div>
+
+        <div class="input-group">
+            <label>चाँदी की ज़कात योग्य कीमत (₹)</label>
+            <input type="number" id="silver" placeholder="जैसे 50000" min="0">
+        </div>
+
+        <div class="input-group">
+            <label>व्यापारिक माल की कीमत (₹)</label>
+            <input type="number" id="business" placeholder="जैसे 200000" min="0">
+        </div>
+
+        <div class="input-group">
+            <label>वसूल की जाने वाली रकम / उधार दिया पैसा (₹)</label>
+            <input type="number" id="receivable" placeholder="जैसे 25000" min="0">
+        </div>
+
+        <button class="calculate-btn" onclick="calculateZakat()">
+            ज़कात की गणना करें
+        </button>
+
+        <div class="result" id="result">
+
+            <h3>आपकी अनुमानित ज़कात</h3>
+
+            <div class="amount" id="zakatAmount">
+                ₹0
+            </div>
+
+            <p id="totalAmount">
+                कुल राशि: ₹0
+            </p>
+
+        </div>
+
+        <div class="formula">
+            ज़कात = ज़कात योग्य राशि × 2.5%
+        </div>
+
+    </div>
+</div>
+
+
+<!-- IMPORTANT NOTE -->
+<div class="note">
+
+    <h3>⚠️ महत्वपूर्ण जानकारी</h3>
+
+    <p>
+        यह कैलकुलेटर सामान्य 2.5% गणना के लिए बनाया गया है। निसाब, कर्ज़,
+        सोने के गहने, व्यापारिक माल, शेयर, संपत्ति और वसूल होने वाले कर्ज़
+        आदि के ज़कात संबंधी नियमों में फ़िक़्ही मतभेद हो सकते हैं।
+    </p>
+
+    <p style="margin-top:10px;">
+        अपनी व्यक्तिगत स्थिति में सही ज़कात निकालने के लिए किसी भरोसेमंद
+        आलिम/मुफ्ती से सलाह लेना बेहतर है।
+    </p>
+
+    <div class="urdu">
+        <strong>اہم معلومات:</strong><br>
+        یہ کیلکولیٹر عام 2.5 فیصد حساب کے لیے بنایا گیا ہے۔ نصاب، قرض،
+        سونے کے زیورات، تجارتی مال، شیئرز، جائیداد اور قابلِ وصول رقم وغیرہ
+        کے زکوٰۃ کے احکام میں فقہی اختلاف ہو سکتا ہے۔
+        ذاتی معاملے کے لیے معتبر عالم یا مفتی سے مشورہ کریں۔
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Zakat Information</p>
+    <p>ज़कात की जानकारी | زکوٰۃ کی معلومات</p>
+</footer>
+
+
+<script>
+
+function getValue(id){
+
+    let value = parseFloat(document.getElementById(id).value);
+
+    if(isNaN(value) || value < 0){
+        return 0;
+    }
+
+    return value;
+}
+
+
+function calculateZakat(){
+
+    let cash = getValue("cash");
+    let bank = getValue("bank");
+    let gold = getValue("gold");
+    let silver = getValue("silver");
+    let business = getValue("business");
+    let receivable = getValue("receivable");
+
+    let total =
+        cash +
+        bank +
+        gold +
+        silver +
+        business +
+        receivable;
+
+    let zakat = total * 0.025;
+
+    document.getElementById("zakatAmount").innerText =
+        "₹" + zakat.toLocaleString("en-IN", {
+            maximumFractionDigits:2
+        });
+
+    document.getElementById("totalAmount").innerText =
+        "कुल ज़कात योग्य राशि: ₹" +
+        total.toLocaleString("en-IN", {
+            maximumFractionDigits:2
+        });
+
+    document.getElementById("result").style.display = "block";
+}
+
+</script>
+
+</body>
+  </html>
