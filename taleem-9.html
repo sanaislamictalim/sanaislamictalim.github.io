@@ -198,6 +198,40 @@ footer{
     }
 }
 </style>
+    <script>
+function checkAnswer(button, correct){
+
+    const quiz = button.closest(".quiz-box");
+
+    const buttons = quiz.querySelectorAll(".answer-btn");
+    const result = quiz.querySelector(".result");
+    const explanation = quiz.querySelector(".explanation");
+
+    // सभी पुराने रंग हटाएँ
+    buttons.forEach(btn => {
+        btn.classList.remove("correct", "wrong");
+    });
+
+    // सही / गलत जवाब दिखाएँ
+    if(correct){
+
+        button.classList.add("correct");
+
+        result.innerHTML = "✅ सही जवाब! / درست جواب";
+        result.style.color = "green";
+
+    }else{
+
+        button.classList.add("wrong");
+
+        result.innerHTML = "❌ गलत जवाब! / غلط جواب";
+        result.style.color = "red";
+    }
+
+    // Explanation हमेशा दिखे
+    explanation.style.display = "block";
+}
+    </script>
 </head>
 
 <body>
