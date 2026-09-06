@@ -8,6 +8,17 @@
 
 <style>
 body{
+    <script>
+let ayatNumber = 142;
+
+document.querySelectorAll(".card").forEach(function(card) {
+    let number = document.createElement("div");
+    number.className = "number";
+    number.innerText = "आयत " + ayatNumber;
+    card.prepend(number);
+    ayatNumber++;
+});
+</script>
     font-family: Arial, sans-serif;
     background:#f90593;
     margin:0;
