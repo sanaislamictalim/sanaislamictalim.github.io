@@ -8,16 +8,8 @@
 
 <style>
 body{
-    <script>
-let ayatNumber = 1;
 
-document.querySelectorAll(".card").forEach(function(card) {
-    let number = document.createElement("div");
-    number.className = "number";
-    number.innerText = "आयत " + ayatNumber;
-    card.prepend(number);
-    ayatNumber++;
-});
+    
 </script>
     font-family: Arial, sans-serif;
     background:#f90593;
@@ -1565,3 +1557,89 @@ h2{
     <div class="hindi">
         वह एक उम्मत थी जो गुजर चुकी। उसके लिए वही है जो उसने कमाया और तुम्हारे लिए वही है जो तुमने कमाया। और तुमसे उनके कामों के बारे में सवाल नहीं किया जाएगा।
     </div>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    document.querySelectorAll(".card").forEach(function(card) {
+
+        const numberBox = card.querySelector(".number");
+
+        if (!numberBox) return;
+
+        const text = numberBox.textContent.trim();
+
+        /*
+         * उदाहरण:
+         * सूरह अल-बक़रह - आयत 20
+         */
+
+        const match = text.match(
+            /सूरह\s+(.+?)\s*-\s*आयत\s*(\d+)/
+        );
+
+        if (!match) return;
+
+        const surahName = match[1].trim();
+        const ayatNumber = match[2];
+
+        /*
+         * Surah के नाम से ID बनाना
+         */
+
+        const idName = surahName
+            .replace(/\s+/g, "-")
+            .replace(/[^\u0900-\u097F\w-]/g, "");
+
+        card.id =
+            "surah-" +
+            idName +
+            "-ayat-" +
+            ayatNumber;
+
+    });
+
+});
+</script>
+
+फिर उसके बाद:
+
+</body>
+</html>
+
+---
+
+⚠️ एक जरूरी बात
+
+आपके दिए code में यह भी गलत है:
+
+<div  <div class="arabic">
+
+इसे:
+
+<div class="arabic">
+
+कर दें।
+
+और यह:
+
+box-shadow:0 10px 815x rgba(0,0,0,0.1);
+
+में "815x" गलत है। इसे:
+
+box-shadow:0 10px 15px rgba(0,0,0,0.1);
+
+कर दें।
+
+लेकिन अभी "surah.html" के buttons को मत बदलना
+
+पहले सिर्फ "para1.html" में ऊपर वाला नया script लगाकर save करें।
+
+उसके बाद मैं आपको अगला छोटा code दूँगा जिससे "surah.html" का:
+
+📖 पढ़ें
+
+button सिर्फ Para खोलने के बजाय उसी Surah के सही स्थान पर जाएगा।
+
+और यही तरीका फिर "para1.html" से "para30.html" तक लगाया जाएगा।
+</body>
+</html> 
