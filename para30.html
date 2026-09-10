@@ -2276,98 +2276,60 @@ h2{
 <div class="arabic">وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ</div>
 <div class="hindi">और हसद करने वाले के शर से जब वह हसद करे।</div>
 </div>
-<script>
+
+    <script>
 window.addEventListener("load", function () {
 
     const params = new URLSearchParams(window.location.search);
-    const surahNumber = params.get("surah");
 
-    if (!surahNumber) return;
+    // Surah page se bheja gaya naam
+    const surahName = params.get("surah");
+
+    // Agar koi surah select nahi hai
+    // to poora Para 30 dikhega
+    if (!surahName) return;
 
     const cards = document.querySelectorAll(".card");
 
-    for (const card of cards) {
+    let found = false;
+
+    cards.forEach(function(card) {
 
         const numberText = card.querySelector(".number");
 
-        if (!numberText) continue;
+        if (!numberText) return;
 
         const text = numberText.textContent.trim();
 
-        const match = text.match(/सूरह\s+.*?\s+-\s+आयत\s+(\d+)/);
+        // Jaise:
+        // सूरह अन-नबा - आयत 1
+        // सूरह अन-नास - आयत 1
 
-        if (!match) continue;
+        if (text.startsWith("सूरह " + surahName + " -")) {
 
-        const ayatNumber = match[1];
+            // Sirf selected Surah dikhao
+            card.style.display = "block";
 
-        if (ayatNumber === "1") {
+            found = true;
 
-            const allCards = Array.from(cards);
-            const index = allCards.indexOf(card);
+        } else {
 
-            /*
-              सूरह नंबर के हिसाब से पहचान
-            */
-            const surahNames = {
-                "78": "अन-नबा",
-                "79": "अन-नाज़िआत",
-                "80": "अबस",
-                "81": "अत-तकवीर",
-                "82": "अल-इन्फितार",
-                "83": "अल-मुतफ़्फ़िफ़ीन",
-                "84": "अल-इंशिक़ाक़",
-                "85": "अल-बुरूज",
-                "86": "अत-तारिक़",
-                "87": "अल-आला",
-                "88": "अल-ग़ाशिया",
-                "89": "अल-फ़ज्र",
-                "90": "अल-बलद",
-                "91": "अश-शम्स",
-                "92": "अल-लैल",
-                "93": "अद-दुहा",
-                "94": "अश-शर्ह",
-                "95": "अत-तीन",
-                "96": "अल-अलक़",
-                "97": "अल-क़द्र",
-                "98": "अल-बय्यिना",
-                "99": "अज़-ज़िलज़ाल",
-                "100": "अल-आदियात",
-                "101": "अल-क़ारिआ",
-                "102": "अत-तकासुर",
-                "103": "अल-अस्र",
-                "104": "अल-हुमज़ा",
-                "105": "अल-फ़ील",
-                "106": "क़ुरैश",
-                "107": "अल-माऊन",
-                "108": "अल-कौसर",
-                "109": "अल-काफ़िरून",
-                "110": "अन-नस्र",
-                "111": "अल-मसद",
-                "112": "अल-इख़लास",
-                "113": "अल-फ़लक़",
-                "114": "अन-नास"
-            };
+            // Baaki Surah chhupa do
+            card.style.display = "none";
 
-            const targetName = surahNames[surahNumber];
-
-            if (!targetName) return;
-
-            if (text.startsWith("सूरह " + targetName + " -")) {
-
-                card.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-                card.style.outline = "4px solid #075c45";
-
-                break;
-            }
         }
+
+    });
+
+    // Heading bhi selected Surah ka kar do
+    const heading = document.querySelector("h2");
+
+    if (heading && found) {
+        heading.textContent = "📖 " + surahName;
     }
 
 });
-</script>
 
+</script>
 </body>
 </html>
