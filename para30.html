@@ -2276,7 +2276,6 @@ h2{
 <div class="arabic">وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ</div>
 <div class="hindi">और हसद करने वाले के शर से जब वह हसद करे।</div>
 </div>
-
 <script>
 window.addEventListener("load", function () {
 
@@ -2284,6 +2283,17 @@ window.addEventListener("load", function () {
     const surahName = params.get("surah");
 
     if (!surahName) return;
+
+    function clean(text) {
+        return text
+            .trim()
+            .replace(/\s+/g, " ")
+            .replace(/-/g, "-")
+            .replace(/–/g, "-")
+            .replace(/—/g, "-");
+    }
+
+    const targetName = clean(surahName);
 
     const cards = document.querySelectorAll(".card");
 
@@ -2293,25 +2303,30 @@ window.addEventListener("load", function () {
 
         if (!numberText) continue;
 
+        const text = clean(numberText.textContent);
+
         if (
-            numberText.textContent
-            .trim()
-            .startsWith("सूरह " + surahName + " -")
+            text.startsWith("सूरह " + targetName + " -") &&
+            text.includes("आयत 1")
         ) {
 
-            card.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+            setTimeout(function () {
 
-            card.style.outline = "4px solid #075c45";
+                card.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+                card.style.outline = "4px solid #075c45";
+
+            }, 300);
 
             break;
         }
     }
 
 });
-    
 </script>
+
 </body>
 </html>
