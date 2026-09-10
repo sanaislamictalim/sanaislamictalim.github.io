@@ -2280,20 +2280,9 @@ h2{
 window.addEventListener("load", function () {
 
     const params = new URLSearchParams(window.location.search);
-    const surahName = params.get("surah");
+    const surahNumber = params.get("surah");
 
-    if (!surahName) return;
-
-    function clean(text) {
-        return text
-            .trim()
-            .replace(/\s+/g, " ")
-            .replace(/-/g, "-")
-            .replace(/–/g, "-")
-            .replace(/—/g, "-");
-    }
-
-    const targetName = clean(surahName);
+    if (!surahNumber) return;
 
     const cards = document.querySelectorAll(".card");
 
@@ -2303,14 +2292,67 @@ window.addEventListener("load", function () {
 
         if (!numberText) continue;
 
-        const text = clean(numberText.textContent);
+        const text = numberText.textContent.trim();
 
-        if (
-            text.startsWith("सूरह " + targetName + " -") &&
-            text.includes("आयत 1")
-        ) {
+        const match = text.match(/सूरह\s+.*?\s+-\s+आयत\s+(\d+)/);
 
-            setTimeout(function () {
+        if (!match) continue;
+
+        const ayatNumber = match[1];
+
+        if (ayatNumber === "1") {
+
+            const allCards = Array.from(cards);
+            const index = allCards.indexOf(card);
+
+            /*
+              सूरह नंबर के हिसाब से पहचान
+            */
+            const surahNames = {
+                "78": "अन-नबा",
+                "79": "अन-नाज़िआत",
+                "80": "अबस",
+                "81": "अत-तकवीर",
+                "82": "अल-इन्फितार",
+                "83": "अल-मुतफ़्फ़िफ़ीन",
+                "84": "अल-इंशिक़ाक़",
+                "85": "अल-बुरूज",
+                "86": "अत-तारिक़",
+                "87": "अल-आला",
+                "88": "अल-ग़ाशिया",
+                "89": "अल-फ़ज्र",
+                "90": "अल-बलद",
+                "91": "अश-शम्स",
+                "92": "अल-लैल",
+                "93": "अद-दुहा",
+                "94": "अश-शर्ह",
+                "95": "अत-तीन",
+                "96": "अल-अलक़",
+                "97": "अल-क़द्र",
+                "98": "अल-बय्यिना",
+                "99": "अज़-ज़िलज़ाल",
+                "100": "अल-आदियात",
+                "101": "अल-क़ारिआ",
+                "102": "अत-तकासुर",
+                "103": "अल-अस्र",
+                "104": "अल-हुमज़ा",
+                "105": "अल-फ़ील",
+                "106": "क़ुरैश",
+                "107": "अल-माऊन",
+                "108": "अल-कौसर",
+                "109": "अल-काफ़िरून",
+                "110": "अन-नस्र",
+                "111": "अल-मसद",
+                "112": "अल-इख़लास",
+                "113": "अल-फ़लक़",
+                "114": "अन-नास"
+            };
+
+            const targetName = surahNames[surahNumber];
+
+            if (!targetName) return;
+
+            if (text.startsWith("सूरह " + targetName + " -")) {
 
                 card.scrollIntoView({
                     behavior: "smooth",
@@ -2319,9 +2361,8 @@ window.addEventListener("load", function () {
 
                 card.style.outline = "4px solid #075c45";
 
-            }, 300);
-
-            break;
+                break;
+            }
         }
     }
 
