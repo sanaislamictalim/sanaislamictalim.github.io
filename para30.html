@@ -2277,4 +2277,41 @@ h2{
 <div class="hindi">और हसद करने वाले के शर से जब वह हसद करे।</div>
 </div>
 
+<script>
+window.addEventListener("load", function () {
 
+    const params = new URLSearchParams(window.location.search);
+    const surahName = params.get("surah");
+
+    if (!surahName) return;
+
+    const cards = document.querySelectorAll(".card");
+
+    for (const card of cards) {
+
+        const numberText = card.querySelector(".number");
+
+        if (!numberText) continue;
+
+        if (
+            numberText.textContent
+            .trim()
+            .startsWith("सूरह " + surahName + " -")
+        ) {
+
+            card.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+            card.style.outline = "4px solid #075c45";
+
+            break;
+        }
+    }
+
+});
+    
+</script>
+</body>
+</html>
