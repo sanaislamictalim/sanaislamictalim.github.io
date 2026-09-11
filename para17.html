@@ -1196,3 +1196,59 @@ h2{
     <div class="arabic">وَجَاهِدُوا فِي اللَّهِ حَقَّ جِهَادِهِ ۚ هُوَ اجْتَبَاكُمْ وَمَا جَعَلَ عَلَيْكُمْ فِي الدِّينِ مِنْ حَرَجٍ ۚ مِّلَّةَ أَبِيكُمْ إِبْرَاهِيمَ ۚ هُوَ سَمَّاكُمُ الْمُسْلِمِينَ مِن قَبْلُ وَفِي هَٰذَا لِيَكُونَ الرَّسُولُ شَهِيدًا عَلَيْكُمْ وَتَكُونُوا شُهَدَاءَ عَلَى النَّاسِ ۚ فَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَاعْتَصِمُوا بِاللَّهِ هُوَ مَوْلَاكُمْ ۖ فَنِعْمَ الْمَوْلَىٰ وَنِعْمَ النَّصِيرُ</div>
     <div class="hindi">और अल्लाह के लिए वैसा प्रयास करो जैसा उसके लिए प्रयास करने का हक़ है। उसने तुम्हें चुन लिया है और धर्म में तुम्हारे लिए कोई कठिनाई नहीं रखी। तुम्हारे पिता इब्राहीम का धर्म है। उसी ने पहले भी तुम्हारा नाम मुस्लिम रखा और इस किताब में भी, ताकि रसूल तुम पर गवाह हों और तुम लोगों पर गवाह हो। इसलिए नमाज़ कायम करो, ज़कात दो और अल्लाह को मज़बूती से पकड़ लो। वही तुम्हारा मालिक है। तो क्या ही अच्छा मालिक और क्या ही अच्छा मददगार है।</div>
 </div>
+<script>
+window.addEventListener("load", function () {
+
+    // URL se Surah ka naam lena
+    const params = new URLSearchParams(window.location.search);
+    const surahName = (params.get("surah") || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    // Agar Surah select nahi hai to poora Para dikhao
+    if (!surahName) return;
+
+    const cards = document.querySelectorAll(".card");
+    let found = false;
+
+    cards.forEach(function(card) {
+
+        const numberElement = card.querySelector(".number");
+
+        if (!numberElement) return;
+
+        const text = numberElement.textContent
+            .replace(/\s+/g, " ")
+            .trim();
+
+        // Jaise:
+        // सूरह अन-नास - आयत 1
+        // सूरह अन-नास - आयत 2
+        const target = "सूरह " + surahName + " -";
+
+        if (text.startsWith(target)) {
+
+            // Is Surah ki Ayat dikhao
+            card.style.display = "";
+
+            found = true;
+
+        } else {
+
+            // Baaki Surah ki Ayat chhupa do
+            card.style.display = "none";
+        }
+    });
+
+    // Heading ko Surah ke naam se badal do
+    const heading = document.querySelector("h2");
+
+    if (heading && found) {
+        heading.textContent = "📖 सूरह " + surahName;
+    }
+
+});
+</script>
+</body>
+</html>
+    
