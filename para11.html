@@ -933,3 +933,59 @@ _<div class="card">
     <div class="number">सूरह हूद - आयत 5</div>
     <div class="arabic">أَلَا إِنَّهُمْ يَثْنُونَ صُدُورَهُمْ لِيَسْتَخْفُوا مِنْهُ ۚ أَلَا حِينَ يَسْتَغْشُونَ ثِيَابَهُمْ يَعْلَمُ مَا يُسِرُّونَ وَمَا يُعْلِنُونَ ۚ إِنَّهُ عَلِيمٌ بِذَاتِ الصُّدُورِ</div>
     <div class="hindi">सुन लो! वे अपने सीने मोड़ते हैं ताकि उससे छिप सकें। सुन लो! जब वे अपने कपड़ों से अपने आपको ढाँपते हैं, तब भी वह जानता है जो वे छिपाते हैं और जो प्रकट करते हैं। निश्चय ही वह दिलों की बातों को खूब जानता है।</div>
+</div>
+<script>
+window.addEventListener("load", function () {
+
+    // URL se Surah ka naam lena
+    const params = new URLSearchParams(window.location.search);
+    const surahName = (params.get("surah") || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    // Agar Surah select nahi hai to poora Para dikhao
+    if (!surahName) return;
+
+    const cards = document.querySelectorAll(".card");
+    let found = false;
+
+    cards.forEach(function(card) {
+
+        const numberElement = card.querySelector(".number");
+
+        if (!numberElement) return;
+
+        const text = numberElement.textContent
+            .replace(/\s+/g, " ")
+            .trim();
+
+        // Jaise:
+        // सूरह अन-नास - आयत 1
+        // सूरह अन-नास - आयत 2
+        const target = "सूरह " + surahName + " -";
+
+        if (text.startsWith(target)) {
+
+            // Is Surah ki Ayat dikhao
+            card.style.display = "";
+
+            found = true;
+
+        } else {
+
+            // Baaki Surah ki Ayat chhupa do
+            card.style.display = "none";
+        }
+    });
+
+    // Heading ko Surah ke naam se badal do
+    const heading = document.querySelector("h2");
+
+    if (heading && found) {
+        heading.textContent = "📖 सूरह " + surahName;
+    }
+
+});
+</script>
+</body>
+</html>
