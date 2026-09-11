@@ -1555,3 +1555,59 @@ h2{
     <div class="arabic">إِنَّ ٱللَّهَ مَعَ ٱلَّذِينَ ٱتَّقَوا۟ وَّٱلَّذِينَ هُم مُّحْسِنُونَ</div>
     <div class="hindi">निश्चय ही अल्लाह उन लोगों के साथ है जो तक़वा अपनाते हैं और जो नेक कार्य करने वाले हैं।</div>
 </div>
+<script>
+window.addEventListener("load", function () {
+
+    // URL se Surah ka naam lena
+    const params = new URLSearchParams(window.location.search);
+    const surahName = (params.get("surah") || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    // Agar Surah select nahi hai to poora Para dikhao
+    if (!surahName) return;
+
+    const cards = document.querySelectorAll(".card");
+    let found = false;
+
+    cards.forEach(function(card) {
+
+        const numberElement = card.querySelector(".number");
+
+        if (!numberElement) return;
+
+        const text = numberElement.textContent
+            .replace(/\s+/g, " ")
+            .trim();
+
+        // Jaise:
+        // सूरह अन-नास - आयत 1
+        // सूरह अन-नास - आयत 2
+        const target = "सूरह " + surahName + " -";
+
+        if (text.startsWith(target)) {
+
+            // Is Surah ki Ayat dikhao
+            card.style.display = "";
+
+            found = true;
+
+        } else {
+
+            // Baaki Surah ki Ayat chhupa do
+            card.style.display = "none";
+        }
+    });
+
+    // Heading ko Surah ke naam se badal do
+    const heading = document.querySelector("h2");
+
+    if (heading && found) {
+        heading.textContent = "📖 सूरह " + surahName;
+    }
+
+});
+</script>
+</body>
+</html>
+    
