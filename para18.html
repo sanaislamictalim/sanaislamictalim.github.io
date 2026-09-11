@@ -1262,3 +1262,58 @@ h2{
     <div class="hindi">और हमने तुमसे पहले जितने रसूल भेजे, वे सब खाना खाते थे और बाज़ारों में चलते-फिरते थे। और हमने तुममें से कुछ को कुछ के लिए परीक्षा बनाया है। क्या तुम धैर्य रखते हो? और तुम्हारा रब सब कुछ देखने वाला है।</div>
 </div>
 
+<script>
+window.addEventListener("load", function () {
+
+    // URL se Surah ka naam lena
+    const params = new URLSearchParams(window.location.search);
+    const surahName = (params.get("surah") || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    // Agar Surah select nahi hai to poora Para dikhao
+    if (!surahName) return;
+
+    const cards = document.querySelectorAll(".card");
+    let found = false;
+
+    cards.forEach(function(card) {
+
+        const numberElement = card.querySelector(".number");
+
+        if (!numberElement) return;
+
+        const text = numberElement.textContent
+            .replace(/\s+/g, " ")
+            .trim();
+
+        // Jaise:
+        // सूरह अन-नास - आयत 1
+        // सूरह अन-नास - आयत 2
+        const target = "सूरह " + surahName + " -";
+
+        if (text.startsWith(target)) {
+
+            // Is Surah ki Ayat dikhao
+            card.style.display = "";
+
+            found = true;
+
+        } else {
+
+            // Baaki Surah ki Ayat chhupa do
+            card.style.display = "none";
+        }
+    });
+
+    // Heading ko Surah ke naam se badal do
+    const heading = document.querySelector("h2");
+
+    if (heading && found) {
+        heading.textContent = "📖 सूरह " + surahName;
+    }
+
+});
+</script>
+</body>
+</html>
