@@ -1019,3 +1019,61 @@ h2{
     <div class="number">सूरह यासीन - आयत 21</div>
     <div class="arabic">اتَّبِعُوا مَن لَّا يَسْأَلُكُمْ أَجْرًا وَهُم مُّهْتَدُونَ</div>
     <div class="hindi">उन लोगों का अनुसरण करो जो तुमसे कोई बदला नहीं माँगते और वे सीधे मार्ग पर हैं।</div>
+
+</div>
+
+    <script>
+window.addEventListener("load", function () {
+
+    // URL se Surah ka naam lena
+    const params = new URLSearchParams(window.location.search);
+    const surahName = (params.get("surah") || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    // Agar Surah select nahi hai to poora Para dikhao
+    if (!surahName) return;
+
+    const cards = document.querySelectorAll(".card");
+    let found = false;
+
+    cards.forEach(function(card) {
+
+        const numberElement = card.querySelector(".number");
+
+        if (!numberElement) return;
+
+        const text = numberElement.textContent
+            .replace(/\s+/g, " ")
+            .trim();
+
+        // Jaise:
+        // सूरह अन-नास - आयत 1
+        // सूरह अन-नास - आयत 2
+        const target = "सूरह " + surahName + " -";
+
+        if (text.startsWith(target)) {
+
+            // Is Surah ki Ayat dikhao
+            card.style.display = "";
+
+            found = true;
+
+        } else {
+
+            // Baaki Surah ki Ayat chhupa do
+            card.style.display = "none";
+        }
+    });
+
+    // Heading ko Surah ke naam se badal do
+    const heading = document.querySelector("h2");
+
+    if (heading && found) {
+        heading.textContent = "📖 सूरह " + surahName;
+    }
+
+});
+</script>
+</body>
+</html>
