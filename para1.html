@@ -1557,50 +1557,60 @@ h2{
     <div class="hindi">
         वह एक उम्मत थी जो गुजर चुकी। उसके लिए वही है जो उसने कमाया और तुम्हारे लिए वही है जो तुमने कमाया। और तुमसे उनके कामों के बारे में सवाल नहीं किया जाएगा।
     </div>
-    <script>
-document.addEventListener("DOMContentLoaded", function () {
+    
+<script>
+window.addEventListener("load", function () {
 
-    document.querySelectorAll(".card").forEach(function(card) {
+    // URL se Surah ka naam lena
+    const params = new URLSearchParams(window.location.search);
+    const surahName = (params.get("surah") || "")
+        .replace(/\s+/g, " ")
+        .trim();
 
-        const numberBox = card.querySelector(".number");
+    // Agar Surah select nahi hai to poora Para dikhao
+    if (!surahName) return;
 
-        if (!numberBox) return;
+    const cards = document.querySelectorAll(".card");
+    let found = false;
 
-        const text = numberBox.textContent.trim();
+    cards.forEach(function(card) {
 
-        /*
-         * उदाहरण:
-         * सूरह अल-बक़रह - आयत 20
-         */
+        const numberElement = card.querySelector(".number");
 
-        const match = text.match(
-            /सूरह\s+(.+?)\s*-\s*आयत\s*(\d+)/
-        );
+        if (!numberElement) return;
 
-        if (!match) return;
+        const text = numberElement.textContent
+            .replace(/\s+/g, " ")
+            .trim();
 
-        const surahName = match[1].trim();
-        const ayatNumber = match[2];
+        // Jaise:
+        // सूरह अन-नास - आयत 1
+        // सूरह अन-नास - आयत 2
+        const target = "सूरह " + surahName + " -";
 
-        /*
-         * Surah के नाम से ID बनाना
-         */
+        if (text.startsWith(target)) {
 
-        const idName = surahName
-            .replace(/\s+/g, "-")
-            .replace(/[^\u0900-\u097F\w-]/g, "");
+            // Is Surah ki Ayat dikhao
+            card.style.display = "";
 
-        card.id =
-            "surah-" +
-            idName +
-            "-ayat-" +
-            ayatNumber;
+            found = true;
 
+        } else {
+
+            // Baaki Surah ki Ayat chhupa do
+            card.style.display = "none";
+        }
     });
+
+    // Heading ko Surah ke naam se badal do
+    const heading = document.querySelector("h2");
+
+    if (heading && found) {
+        heading.textContent = "📖 सूरह " + surahName;
+    }
 
 });
 </script>
-
 
 </body>
 </html> 
