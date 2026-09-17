@@ -1328,27 +1328,18 @@ h2{
     <div class="hindi">
         निश्चय ही जिन लोगों ने कुफ्र किया और कुफ्र की हालत में मर गए, उनमें से किसी से धरती भर सोना भी स्वीकार नहीं किया जाएगा, चाहे वह उसे अपने छुड़ाने के लिए दे। उनके लिए दर्दनाक अज़ाब है और उनका कोई मददगार नहीं होगा।
     </div>
-    <script>
+        
+<script>
 window.addEventListener("load", function () {
 
+    // URL se Surah ka naam lena
     const params = new URLSearchParams(window.location.search);
-
-    let surahName = (params.get("surah") || "")
+    const surahName = (params.get("surah") || "")
         .replace(/\s+/g, " ")
         .trim();
 
+    // Agar Surah select nahi hai to poora Para dikhao
     if (!surahName) return;
-
-    // Naam ko compare karne ke liye normalise karo
-    function normalize(text) {
-        return text
-            .replace(/\s+/g, " ")
-            .replace(/[-–—]/g, "-")
-            .trim()
-            .toLowerCase();
-    }
-
-    const targetName = normalize(surahName);
 
     const cards = document.querySelectorAll(".card");
     let found = false;
@@ -1359,31 +1350,30 @@ window.addEventListener("load", function () {
 
         if (!numberElement) return;
 
-        const text = normalize(numberElement.textContent);
+        const text = numberElement.textContent
+            .replace(/\s+/g, " ")
+            .trim();
 
-        // "सूरह " हटाकर नाम compare करें
-        let cardSurahName = text;
+        // Jaise:
+        // सूरह अन-नास - आयत 1
+        // सूरह अन-नास - आयत 2
+        const target = "सूरह " + surahName + " -";
 
-        if (cardSurahName.startsWith("सूरह ")) {
-            cardSurahName = cardSurahName.substring(6);
-        }
+        if (text.startsWith(target)) {
 
-        // " - आयत..." के बाद का हिस्सा हटाएं
-        cardSurahName = cardSurahName.split(" -")[0].trim();
-
-        if (cardSurahName === targetName) {
-
+            // Is Surah ki Ayat dikhao
             card.style.display = "";
+
             found = true;
 
         } else {
 
+            // Baaki Surah ki Ayat chhupa do
             card.style.display = "none";
-
         }
     });
 
-    // Heading
+    // Heading ko Surah ke naam se badal do
     const heading = document.querySelector("h2");
 
     if (heading && found) {
