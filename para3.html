@@ -1478,60 +1478,27 @@ h2{
     <div class="hindi">
         निश्चय ही जिन लोगों ने कुफ्र किया और कुफ्र की हालत में मर गए, उनमें से किसी से धरती भर सोना भी स्वीकार नहीं किया जाएगा, चाहे वह उसे अपने छुड़ाने के लिए दे। उनके लिए दर्दनाक अज़ाब है और उनका कोई मददगार नहीं होगा।
     </div>
-</div>
-
 <script>
-window.addEventListener("load", function () {
+const surah = new URLSearchParams(window.location.search).get("surah");
 
-    // URL se Surah ka naam lena
-    const params = new URLSearchParams(window.location.search);
-    const surahName = (params.get("surah") || "")
-        .replace(/\s+/g, " ")
-        .trim();
-
-    // Agar Surah select nahi hai to poora Para dikhao
-    if (!surahName) return;
-
+if (surah === "3") {
     const cards = document.querySelectorAll(".card");
-    let found = false;
 
-    cards.forEach(function(card) {
-
-        const numberElement = card.querySelector(".number");
-
-        if (!numberElement) return;
-
-        const text = numberElement.textContent
-            .replace(/\s+/g, " ")
-            .trim();
-
-        // Jaise:
-        // सूरह अन-नास - आयत 1
-        // सूरह अन-नास - आयत 2
-        const target = "सूरह " + surahName + " -";
-
-        if (text.startsWith(target)) {
-
-            // Is Surah ki Ayat dikhao
-            card.style.display = "";
-
-            found = true;
-
-        } else {
-
-            // Baaki Surah ki Ayat chhupa do
-            card.style.display = "none";
+    cards.forEach(card => {
+        if (card.innerText.includes("सूरह आल-इमरान")) {
+            setTimeout(() => {
+                card.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }, 300);
         }
     });
-
-    // Heading ko Surah ke naam se badal do
-    const heading = document.querySelector("h2");
-
-    if (heading && found) {
-        heading.textContent = "📖 सूरह " + surahName;
-    }
-
-});
+}
 </script>
+
+</body>
+</html>
+
 </body>
 </html>
