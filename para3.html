@@ -1478,26 +1478,71 @@ h2{
     <div class="hindi">
         निश्चय ही जिन लोगों ने कुफ्र किया और कुफ्र की हालत में मर गए, उनमें से किसी से धरती भर सोना भी स्वीकार नहीं किया जाएगा, चाहे वह उसे अपने छुड़ाने के लिए दे। उनके लिए दर्दनाक अज़ाब है और उनका कोई मददगार नहीं होगा।
     </div>
-<script>
-const surah = new URLSearchParams(window.location.search).get("surah");
+    <script>
+window.addEventListener("load", function () {
 
-if (surah === "3") {
+    const params = new URLSearchParams(window.location.search);
+
+    let surahName = (params.get("surah") || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    if (!surahName) return;
+
+    // Naam ko compare karne ke liye normalise karo
+    function normalize(text) {
+        return text
+            .replace(/\s+/g, " ")
+            .replace(/[-–—]/g, "-")
+            .trim()
+            .toLowerCase();
+    }
+
+    const targetName = normalize(surahName);
+
     const cards = document.querySelectorAll(".card");
+    let found = false;
 
-    cards.forEach(card => {
-        if (card.innerText.includes("सूरह आल-इमरान")) {
-            setTimeout(() => {
-                card.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }, 300);
+    cards.forEach(function(card) {
+
+        const numberElement = card.querySelector(".number");
+
+        if (!numberElement) return;
+
+        const text = normalize(numberElement.textContent);
+
+        // "सूरह " हटाकर नाम compare करें
+        let cardSurahName = text;
+
+        if (cardSurahName.startsWith("सूरह ")) {
+            cardSurahName = cardSurahName.substring(6);
+        }
+
+        // " - आयत..." के बाद का हिस्सा हटाएं
+        cardSurahName = cardSurahName.split(" -")[0].trim();
+
+        if (cardSurahName === targetName) {
+
+            card.style.display = "";
+            found = true;
+
+        } else {
+
+            card.style.display = "none";
+
         }
     });
-}
-    
 
+    // Heading
+    const heading = document.querySelector("h2");
+
+    if (heading && found) {
+        heading.textContent = "📖 सूरह " + surahName;
+    }
+
+});
 </script>
+
 
 </body>
 </html>
