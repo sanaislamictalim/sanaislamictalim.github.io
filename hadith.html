@@ -1,146 +1,216 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="hi">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>सहीह मुस्लिम — Sana Islamic Talim</title>
 
-    <meta charset="UTF-8">
+<style>
+*{
+  box-sizing:border-box;
+}
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+  background:#061b14;
+  color:#fff;
+}
 
-    <title>Hadith | Sana Islamic</title>
+header{
+  background:linear-gradient(135deg,#087443,#064d2e);
+  text-align:center;
+  padding:25px 15px;
+}
 
-    <link rel="stylesheet"
-          href="style.css">
+header h1{
+  margin:0;
+  font-size:28px;
+}
 
+header p{
+  margin:8px 0 0;
+  color:#d8ffe9;
+}
+
+.container{
+  max-width:850px;
+  margin:auto;
+  padding:15px;
+}
+
+.card{
+  background:#fff;
+  color:#222;
+  border-radius:18px;
+  padding:20px;
+  margin:18px 0;
+  box-shadow:0 6px 18px rgba(0,0,0,.3);
+}
+
+.brand{
+  text-align:center;
+  color:#087443;
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.book{
+  text-align:center;
+  font-size:19px;
+  font-weight:bold;
+  color:#333;
+  margin-bottom:12px;
+}
+
+.number{
+  background:#087443;
+  color:white;
+  display:inline-block;
+  padding:7px 14px;
+  border-radius:20px;
+  margin-bottom:12px;
+}
+
+.title{
+  font-size:20px;
+  font-weight:bold;
+  color:#075b38;
+  margin-bottom:15px;
+}
+
+.arabic{
+  direction:rtl;
+  text-align:right;
+  font-size:25px;
+  line-height:2;
+  background:#f0fff6;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+
+.hindi,
+.urdu{
+  font-size:17px;
+  line-height:1.8;
+  margin:12px 0;
+}
+
+.urdu{
+  direction:rtl;
+  text-align:right;
+}
+
+.reference{
+  border-top:1px solid #ddd;
+  margin-top:18px;
+  padding-top:12px;
+  color:#075b38;
+  font-weight:bold;
+}
+
+.button{
+  display:block;
+  text-align:center;
+  text-decoration:none;
+  background:#087443;
+  color:#fff;
+  padding:12px;
+  border-radius:10px;
+  margin-top:15px;
+  font-weight:bold;
+}
+
+.loading,
+.error{
+  text-align:center;
+  padding:30px;
+  font-size:18px;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#bdebd1;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-
-    <h1>📚 Hadith</h1>
-
-    <p>40 Hadith Collection</p>
-
+  <h1>📚 सहीह मुस्लिम</h1>
+  <p>Arabic • Hindi • Urdu</p>
 </header>
 
-
-<div class="container"
-     id="hadith-container">
-
-    <p>
-        Hadith load ho rahi hai...
-    </p>
-
+<div class="container" id="hadithList">
+  <div class="loading">Hadith लोड हो रही हैं...</div>
 </div>
 
-
-<a class="btn"
-   href="index.html">
-
-    ⬅ Back Home
-
-</a>
-
+<footer>
+  <b>sanaislamictalim</b><br>
+  सहीह मुस्लिम Hadith Collection
+</footer>
 
 <script>
 
 fetch("hadith.json")
-
 .then(response => {
-
-    if (!response.ok) {
-
-        throw new Error(
-            "hadith.json file nahi mili"
-        );
-
-    }
-
-    return response.json();
-
+  if(!response.ok){
+    throw new Error("hadith.json नहीं मिला");
+  }
+  return response.json();
 })
+.then(hadiths => {
 
+  const list = document.getElementById("hadithList");
+  list.innerHTML = "";
 
-.then(data => {
+  hadiths.forEach(h => {
 
-    const container =
-        document.getElementById(
-            "hadith-container"
-        );
+    const card = document.createElement("div");
+    card.className = "card";
 
+    card.innerHTML = `
+      <div class="brand">sanaislamictalim</div>
 
-    container.innerHTML = "";
+      <div class="book">
+        ${h.book}
+      </div>
 
+      <div class="number">
+        Hadith ${h.id}
+      </div>
 
-    data.forEach((hadith, index) => {
+      <div class="title">
+        ${h.title}
+      </div>
 
-        container.innerHTML += `
+      <div class="hindi">
+        ${h.hindi}
+      </div>
 
-        <div class="card">
+      <div class="reference">
+        📚 हवाला: ${h.source}
+      </div>
 
-            <h2>
-                📖 ${hadith.title}
-            </h2>
-
-            <p>
-                ${hadith.text}
-            </p>
-
-            <p>
-                📚 ${hadith.source}
-            </p>
-
-            <button
-                class="btn"
-                onclick="readHadith(${index + 1})">
-
-                Read Hadith ${index + 1} ➡
-
-            </button>
-
-        </div>
-
-        `;
-
-    });
-
-})
-
-
-.catch(error => {
-
-    document.getElementById(
-        "hadith-container"
-    ).innerHTML = `
-
-        <div class="card">
-
-            <h2>❌ Error</h2>
-
-            <p>
-                ${error.message}
-            </p>
-
-        </div>
-
+      <a class="button" href="hadith-detail.html?id=${h.id}">
+        पूरी Hadith पढ़ें ➡
+      </a>
     `;
 
+    list.appendChild(card);
+  });
+
+})
+.catch(error => {
+  document.getElementById("hadithList").innerHTML =
+    `<div class="error">❌ Hadith लोड नहीं हो सकी।<br><br>${error.message}</div>`;
 });
-
-
-// Read Hadith Button
-function readHadith(number) {
-
-    window.location.href =
-        "hadith-detail.html?number=" + number;
-
-}
 
 </script>
 
-
 </body>
-
 </html>
