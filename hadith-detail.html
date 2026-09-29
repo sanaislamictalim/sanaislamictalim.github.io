@@ -1,171 +1,257 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hadith — Sana Islamic Talim</title>
 
-    <title>Hadith | Sana Islamic</title>
+<style>
+*{
+  box-sizing:border-box;
+}
 
-    <link rel="stylesheet" href="style.css">
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+  background:#061b14;
+  color:#fff;
+}
+
+header{
+  background:linear-gradient(135deg,#087443,#064d2e);
+  text-align:center;
+  padding:22px 15px;
+}
+
+header h1{
+  margin:0;
+  font-size:25px;
+}
+
+.container{
+  max-width:850px;
+  margin:auto;
+  padding:15px;
+}
+
+.card{
+  background:#fff;
+  color:#222;
+  border-radius:20px;
+  padding:22px;
+  margin:18px 0;
+  box-shadow:0 6px 20px rgba(0,0,0,.35);
+}
+
+.brand{
+  text-align:center;
+  color:#087443;
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.book{
+  text-align:center;
+  color:#333;
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:15px;
+}
+
+.number{
+  text-align:center;
+  background:#087443;
+  color:white;
+  border-radius:20px;
+  padding:8px;
+  width:max-content;
+  margin:0 auto 15px;
+}
+
+.title{
+  text-align:center;
+  font-size:21px;
+  font-weight:bold;
+  color:#075b38;
+  margin-bottom:20px;
+}
+
+.label{
+  color:#087443;
+  font-weight:bold;
+  font-size:18px;
+  margin:15px 0 8px;
+}
+
+.arabic{
+  direction:rtl;
+  text-align:right;
+  font-size:27px;
+  line-height:2.1;
+  background:#effff5;
+  padding:18px;
+  border-radius:14px;
+}
+
+.hindi{
+  font-size:18px;
+  line-height:1.9;
+}
+
+.urdu{
+  direction:rtl;
+  text-align:right;
+  font-size:19px;
+  line-height:2;
+}
+
+.reference{
+  border-top:1px solid #ddd;
+  margin-top:20px;
+  padding-top:15px;
+  color:#075b38;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.back{
+  display:block;
+  text-align:center;
+  background:#087443;
+  color:#fff;
+  text-decoration:none;
+  padding:13px;
+  border-radius:11px;
+  margin-top:20px;
+  font-weight:bold;
+}
+
+.error{
+  background:#fff;
+  color:#b00020;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#bdebd1;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>📚 Hadith</h1>
-    <p>40 Hadith Collection</p>
+  <h1>📖 सहीह मुस्लिम</h1>
 </header>
 
-<div class="container">
-
-    <div class="card" id="hadith-detail">
-        <p>Hadith load ho rahi hai...</p>
-    </div>
-
-    <br>
-
-    <button class="btn" onclick="goBack()">
-        ⬅ Back to Hadith
-    </button>
-
+<div class="container" id="detail">
+  <div style="text-align:center;padding:30px;">
+    Hadith लोड हो रही है...
+  </div>
 </div>
 
+<footer>
+  <b>sanaislamictalim</b>
+</footer>
 
 <script>
 
-// URL se Hadith number lena
-const urlParams = new URLSearchParams(
-    window.location.search
-);
+const params = new URLSearchParams(window.location.search);
+const id = Number(params.get("id"));
 
-const hadithNumber = Number(
-    urlParams.get("number")
-);
-
-// Hadith number ko JSON index mein convert karna
-const hadithIndex = hadithNumber - 1;
-
-
-// JSON file load karna
 fetch("hadith.json")
-
 .then(response => {
-
-    if (!response.ok) {
-        throw new Error(
-            "hadith.json file nahi mili"
-        );
-    }
-
-    return response.json();
-
+  if(!response.ok){
+    throw new Error("hadith.json नहीं मिला");
+  }
+  return response.json();
 })
+.then(hadiths => {
 
-.then(data => {
+  const hadith = hadiths.find(h => h.id === id);
 
-    const detail =
-        document.getElementById(
-            "hadith-detail"
-        );
-
-
-    // Check karna ki Hadith available hai ya nahi
-    if (
-        isNaN(hadithNumber) ||
-        hadithIndex < 0 ||
-        hadithIndex >= data.length
-    ) {
-
-        detail.innerHTML = `
-
-            <h2>❌ Hadith nahi mili</h2>
-
-            <p>
-                Hadith number sahi nahi hai.
-            </p>
-
-        `;
-
-        return;
-    }
-
-
-    // Sahi Hadith select karna
-    const hadith =
-        data[hadithIndex];
-
-
-    // Hadith display karna
-    detail.innerHTML = `
-<h2>
-    📖 ${hadith.title}
-</h2>
-
-<hr>
-
-<h3>العربية</h3>
-
-<p style="
-    font-size:26px;
-    line-height:2;
-    direction:rtl;
-    text-align:right;
-">
-
-    ${hadith.arabic}
-
-</p>
-
-<hr>
-
-<h3>हिंदी तर्जुमा</h3>
-
-<p style="
-    font-size:20px;
-    line-height:1.8;
-">
-
-    ${hadith.text}
-
-</p>
-
-<hr>
-
-<p>
-    📚 <b>Source:</b>
-    ${hadith.source}
-</p>
-
-
+  if(!hadith){
+    document.getElementById("detail").innerHTML = `
+      <div class="error">
+        ❌ यह Hadith नहीं मिली।
+      </div>
     `;
+    return;
+  }
+
+  document.title =
+    "Hadith " + hadith.id + " — Sana Islamic Talim";
+
+  document.getElementById("detail").innerHTML = `
+
+    <div class="card">
+
+      <div class="brand">
+        sanaislamictalim
+      </div>
+
+      <div class="book">
+        ${hadith.book}
+      </div>
+
+      <div class="number">
+        Hadith ${hadith.id}
+      </div>
+
+      <div class="title">
+        ${hadith.title}
+      </div>
+
+      <div class="label">
+        🕋 अरबी
+      </div>
+
+      <div class="arabic">
+        ${hadith.arabic}
+      </div>
+
+      <div class="label">
+        🇮🇳 हिंदी तर्जुमा
+      </div>
+
+      <div class="hindi">
+        ${hadith.hindi}
+      </div>
+
+      <div class="label">
+        🇵🇰 اردو ترجمہ
+      </div>
+
+      <div class="urdu">
+        ${hadith.urdu}
+      </div>
+
+      <div class="reference">
+        📚 हवाला: ${hadith.source}
+      </div>
+
+      <a href="hadith.html" class="back">
+        ⬅ सभी Hadith पर वापस जाएँ
+      </a>
+
+    </div>
+  `;
 
 })
-
 .catch(error => {
 
-    document.getElementById(
-        "hadith-detail"
-    ).innerHTML = `
-
-        <h2>❌ Error</h2>
-
-        <p>
-            ${error.message}
-        </p>
-
-    `;
+  document.getElementById("detail").innerHTML = `
+    <div class="error">
+      ❌ Error: ${error.message}
+    </div>
+  `;
 
 });
-
-
-// Back button
-function goBack() {
-
-    window.location.href =
-        "hadith.html";
-
-}
 
 </script>
 
