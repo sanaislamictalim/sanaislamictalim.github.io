@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -59,11 +60,8 @@ margin:8px 0 15px;
 .monthBox{
 max-width:600px;
 margin:auto;
-
 background:rgba(0,0,0,.25);
-
 padding:10px;
-
 border-radius:15px;
 }
 
@@ -86,10 +84,8 @@ flex:1;
 border:0;
 border-radius:10px;
 padding:10px 5px;
-
 font-size:15px;
 font-weight:bold;
-
 background:#12a9e0;
 color:white;
 }
@@ -108,26 +104,18 @@ table-layout:fixed;
 .calendar th{
 background:#4055b8;
 color:white;
-
 padding:8px 2px;
-
 font-size:12px;
 line-height:18px;
 }
 
 .calendar td{
 height:88px;
-
 border:2px solid #061743;
-
 background:#f5f5f5;
-
 color:#111;
-
 vertical-align:top;
-
 padding:4px 2px;
-
 position:relative;
 }
 
@@ -182,42 +170,29 @@ margin-top:1px;
 .info{
 max-width:600px;
 margin:15px auto 0;
-
 background:#06edf9;
-
 color:#111;
-
 border:2px solid green;
-
 border-radius:10px;
-
 padding:10px;
-
 text-align:center;
-
 font-weight:bold;
-
 line-height:25px;
 }
 
 .footerNote{
 max-width:600px;
-
 margin:12px auto;
-
 font-size:12px;
-
 text-align:center;
-
 color:#ffe082;
 }
 
 </style>
+
 </head>
 
-
 <body>
-
 
 <div class="header">
 
@@ -232,7 +207,6 @@ color:#ffe082;
 
 <div class="main">
 
-
 <div class="title">
 📅 इस्लामिक कैलेंडर
 </div>
@@ -240,12 +214,8 @@ color:#ffe082;
 
 <div class="monthBox">
 
-
-<div id="monthTitle"
-class="monthTitle">
-
+<div id="monthTitle" class="monthTitle">
 Loading...
-
 </div>
 
 
@@ -255,12 +225,8 @@ Loading...
 ⬅ पिछला
 </button>
 
-<button
-class="todayBtn"
-onclick="goToday()">
-
+<button class="todayBtn" onclick="goToday()">
 आज
-
 </button>
 
 <button onclick="nextMonth()">
@@ -271,7 +237,6 @@ onclick="goToday()">
 
 
 <table class="calendar">
-
 
 <thead>
 
@@ -320,29 +285,22 @@ onclick="goToday()">
 <tbody id="calendarBody">
 </tbody>
 
-
 </table>
-
 
 </div>
 
 
-<div id="info"
-class="info">
-
+<div id="info" class="info">
 आज की तारीख लोड हो रही है...
-
 </div>
 
 
 <div class="footerNote">
 
-🌙 Hijri तारीख गणनात्मक है।
-चाँद देखने के अनुसार स्थानीय रूप से
-1 दिन आगे या पीछे हो सकती है।
+🌙 हिजरी तारीख चाँद देखने के अनुसार
+स्थानीय रूप से 1 दिन आगे या पीछे हो सकती है।
 
 </div>
-
 
 </div>
 
@@ -435,7 +393,7 @@ const urduDays = [
 
 
 /* =========================
-   HIJRI MONTH
+   HIJRI MONTH NAMES
 ========================= */
 
 const hijriMonthsHindi = [
@@ -546,118 +504,148 @@ document.getElementById("clock").innerHTML =
 
 updateClock();
 
-setInterval(
-updateClock,
-1000
-);
+setInterval(updateClock,1000);
 
 
 /* =========================
    HIJRI DATE
-   IMPORTANT:
-   islamic-umalqura
+   FIXED INDIA BASE DATE
+
+   29 September 2026
+   =
+   16 Rabi-ul-Aakhir 1448
 ========================= */
 
 function getHijri(date){
 
-try{
-
-const formatter =
-new Intl.DateTimeFormat(
-"en-IN-u-ca-islamic-umalqura",
-{
-day:"numeric",
-month:"numeric",
-year:"numeric"
-}
-);
-
-
-const parts =
-formatter.formatToParts(date);
-
-
-let day = 0;
-let month = 0;
-let year = 0;
-
-
-parts.forEach(function(part){
-
-if(part.type === "day"){
-
-day =
-parseInt(part.value);
-
-}
-
-if(part.type === "month"){
-
-month =
-parseInt(part.value);
-
-}
-
-if(part.type === "year"){
-
-year =
-parseInt(part.value);
-
-}
-
-});
-
-
-return {
-
-day:day,
-month:month,
-year:year
-
-};
-
-
-}
-
-catch(error){
-
 /*
- अगर किसी पुराने browser में
- Umm Al-Qura उपलब्ध नहीं है
+   तारीख का केवल दिन निकाल रहे हैं।
+   समय की वजह से तारीख नहीं बदलेगी।
 */
 
-const formatter =
-new Intl.DateTimeFormat(
-"en-IN-u-ca-islamic",
-{
-day:"numeric",
-month:"numeric",
-year:"numeric"
-}
+const currentDate = new Date(
+date.getFullYear(),
+date.getMonth(),
+date.getDate()
 );
 
 
-const parts =
-formatter.formatToParts(date);
+/*
+   BASE DATE
+*/
+
+const baseDate = new Date(
+2026,
+8,
+29
+);
 
 
-let day = 0;
-let month = 0;
-let year = 0;
+/*
+   BASE HIJRI DATE
+
+   29-09-2026
+   = 16-04-1448
+*/
+
+const baseHijriDay = 16;
+const baseHijriMonth = 4;
+const baseHijriYear = 1448;
 
 
-parts.forEach(function(part){
+/*
+   दोनों Gregorian तारीखों के
+   बीच दिनों का अंतर
+*/
 
-if(part.type === "day")
-day = parseInt(part.value);
+let difference = Math.round(
+(currentDate - baseDate) /
+(1000 * 60 * 60 * 24)
+);
 
-if(part.type === "month")
-month = parseInt(part.value);
 
-if(part.type === "year")
-year = parseInt(part.value);
+let day =
+baseHijriDay + difference;
 
-});
+let month =
+baseHijriMonth;
+
+let year =
+baseHijriYear;
+
+
+/*
+   हर हिजरी महीने के दिन
+   29/30 रखे गए हैं।
+
+   इस हिस्से को बदलकर
+   आपकी स्थानीय चाँद तारीख
+   के अनुसार आगे संशोधित किया
+   जा सकता है।
+*/
+
+const monthDays = [
+
+30, // 1 Muharram
+29, // 2 Safar
+30, // 3 Rabi-ul-Awwal
+29, // 4 Rabi-ul-Aakhir
+30, // 5 Jumadal Ula
+29, // 6 Jumadal Aakhirah
+30, // 7 Rajab
+29, // 8 Shaban
+30, // 9 Ramadan
+29, // 10 Shawwal
+30, // 11 Zilqadah
+29  // 12 Zilhijjah
+
+];
+
+
+/*
+   आगे की तारीखें
+*/
+
+while(
+day > monthDays[month - 1]
+){
+
+day =
+day -
+monthDays[month - 1];
+
+month++;
+
+if(month > 12){
+
+month = 1;
+year++;
+
+}
+
+}
+
+
+/*
+   पिछली तारीखें
+*/
+
+while(day <= 0){
+
+month--;
+
+if(month < 1){
+
+month = 12;
+year--;
+
+}
+
+day =
+day +
+monthDays[month - 1];
+
+}
 
 
 return {
@@ -667,8 +655,6 @@ month:month,
 year:year
 
 };
-
-}
 
 }
 
@@ -685,6 +671,8 @@ viewDate.getFullYear();
 const month =
 viewDate.getMonth();
 
+
+/* MONTH TITLE */
 
 document.getElementById(
 "monthTitle"
@@ -707,6 +695,8 @@ monthNamesEnglish[month]
 monthNamesUrdu[month];
 
 
+/* FIRST DAY */
+
 const firstDay =
 new Date(
 year,
@@ -714,6 +704,8 @@ month,
 1
 ).getDay();
 
+
+/* TOTAL DAYS */
 
 const totalDays =
 new Date(
@@ -739,8 +731,8 @@ document.createElement("tr");
 /* EMPTY CELLS */
 
 for(
-let i=0;
-i<firstDay;
+let i = 0;
+i < firstDay;
 i++
 ){
 
@@ -755,8 +747,8 @@ row.appendChild(cell);
 /* ALL DATES */
 
 for(
-let day=1;
-day<=totalDays;
+let day = 1;
+day <= totalDays;
 day++
 ){
 
@@ -832,6 +824,8 @@ cell.classList.add(
 let html = "";
 
 
+/* ENGLISH DATE */
+
 html +=
 '<div class="dateEnglish">'
 +
@@ -839,6 +833,8 @@ day
 +
 "</div>";
 
+
+/* HINDI DAY */
 
 html +=
 '<div class="dateHindi">'
@@ -850,6 +846,8 @@ date.getDay()
 "</div>";
 
 
+/* URDU DAY */
+
 html +=
 '<div class="dateUrdu">'
 +
@@ -860,10 +858,16 @@ date.getDay()
 "</div>";
 
 
+/* HIJRI DATE */
+
 if(
+
 hijri.day > 0
+
 &&
+
 hijri.month > 0
+
 ){
 
 html +=
@@ -887,6 +891,8 @@ hijri.month - 1
 
 }
 
+
+/* EVENT */
 
 if(eventName){
 
@@ -948,7 +954,9 @@ tbody.appendChild(row);
 }
 
 
-/* TODAY INFO */
+/* =========================
+   TODAY INFORMATION
+========================= */
 
 const now =
 new Date();
@@ -977,6 +985,7 @@ now.getMonth()
 now.getFullYear()
 
 +
+
 " | 🌙 Hijri: "
 
 +
@@ -989,9 +998,18 @@ todayHijri.month - 1
 ]
 
 +
+" "
++
+todayHijri.year
++
+" हिजरी"
+
++
+
 "<br>"
 
 +
+
 "اردو: "
 +
 hijriMonthsUrdu[
@@ -1061,6 +1079,7 @@ function(){
 
 const now =
 new Date();
+
 
 if(
 
