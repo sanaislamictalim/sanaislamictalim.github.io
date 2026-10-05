@@ -2036,15 +2036,27 @@ window.addEventListener("load", function () {
 
     // URL se Surah ka naam lena
     const params = new URLSearchParams(window.location.search);
-    const surahName = (params.get("surah") || "")
+    let surahName = (params.get("surah") || "")
         .replace(/\s+/g, " ")
         .trim();
+
+    // Naam ko compare karne ke liye normalise karna
+    function normalizeName(name) {
+        return name
+            .replace(/[’'ʻʼ`]/g, "")
+            .replace(/ـ/g, "")
+            .replace(/\s+/g, " ")
+            .trim()
+            .toLowerCase();
+    }
 
     // Agar Surah select nahi hai to poora Para dikhao
     if (!surahName) return;
 
     const cards = document.querySelectorAll(".card");
     let found = false;
+
+    const targetName = normalizeName(surahName);
 
     cards.forEach(function(card) {
 
@@ -2056,12 +2068,21 @@ window.addEventListener("load", function () {
             .replace(/\s+/g, " ")
             .trim();
 
-        // Jaise:
-        // सूरह अन-नास - आयत 1
-        // सूरह अन-नास - आयत 2
-        const target = "सूरह " + surahName + " -";
+        // "सूरह " हटाकर नाम निकालना
+        let cardSurahName = text;
 
-        if (text.startsWith(target)) {
+        if (cardSurahName.startsWith("सूरह ")) {
+            cardSurahName = cardSurahName.substring(6);
+        }
+
+        // "- आयत..." हटाना
+        cardSurahName = cardSurahName
+            .replace(/\s*-\s*आयत.*$/u, "")
+            .trim();
+
+        const normalizedCardName = normalizeName(cardSurahName);
+
+        if (normalizedCardName === targetName) {
 
             // Is Surah ki Ayat dikhao
             card.style.display = "";
@@ -2083,7 +2104,7 @@ window.addEventListener("load", function () {
     }
 
 });
-</script>
+    </script>
     </body>
     </html>
         
