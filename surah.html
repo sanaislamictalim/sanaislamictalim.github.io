@@ -6,17 +6,8 @@
 
 <title>कुरआन की 114 सूरह - Sana Islamic</title>
 
-  .surah-type{
-    display:inline-block;
-    margin:5px 0 12px;
-    padding:6px 12px;
-    border-radius:20px;
-    background:#e8f5e9;
-    color:#075c45;
-    font-weight:bold;
-    font-size:14px;
-}  
 <style>
+
 *{
     box-sizing:border-box;
 }
@@ -119,6 +110,17 @@ body{
     margin-bottom:12px;
 }
 
+.surah-type{
+    display:inline-block;
+    margin:5px 0 12px;
+    padding:6px 12px;
+    border-radius:20px;
+    background:#e8f5e9;
+    color:#075c45;
+    font-weight:bold;
+    font-size:14px;
+}
+
 .para-title{
     font-weight:bold;
     color:#075c45;
@@ -146,6 +148,16 @@ body{
     background:#075c45;
 }
 
+.no-result{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    color:#b00020;
+    font-weight:bold;
+    box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+
 .footer{
     margin-top:25px;
     text-align:center;
@@ -154,6 +166,7 @@ body{
 }
 
 @media(max-width:500px){
+
     .header h1{
         font-size:23px;
     }
@@ -165,7 +178,9 @@ body{
     .surah-arabic{
         font-size:24px;
     }
+
 }
+
 </style>
 </head>
 
@@ -199,39 +214,147 @@ body{
 
 </div>
 
+
 <script>
 
+// =====================================
 // मक्की / मदनी
+// =====================================
+
 const surahType = {
-  1:"मक्की", 2:"मदनी", 3:"मदनी", 4:"मदनी", 5:"मदनी", 6:"मक्की",
-  7:"मक्की", 8:"मदनी", 9:"मदनी", 10:"मक्की", 11:"मक्की", 12:"मक्की",
-  13:"मक्की", 14:"मक्की", 15:"मक्की", 16:"मक्की", 17:"मक्की", 18:"मक्की",
-  19:"मक्की", 20:"मक्की", 21:"मक्की", 22:"मदनी", 23:"मक्की", 24:"मदनी",
-  25:"मक्की", 26:"मक्की", 27:"मक्की", 28:"मक्की", 29:"मक्की", 30:"मक्की",
-  31:"मक्की", 32:"मक्की", 33:"मदनी", 34:"मक्की", 35:"मक्की", 36:"मक्की",
-  37:"मक्की", 38:"मक्की", 39:"मक्की", 40:"मक्की", 41:"मक्की", 42:"मक्की",
-  43:"मक्की", 44:"मक्की", 45:"मक्की", 46:"मक्की", 47:"मदनी", 48:"मदनी",
-  49:"मदनी", 50:"मक्की", 51:"मक्की", 52:"मक्की", 53:"मक्की", 54:"मक्की",
-  55:"मक्की", 56:"मक्की", 57:"मदनी", 58:"मदनी", 59:"मदनी", 60:"मदनी",
-  61:"मदनी", 62:"मदनी", 63:"मदनी", 64:"मदनी", 65:"मदनी", 66:"मदनी",
-  67:"मक्की", 68:"मक्की", 69:"मक्की", 70:"मक्की", 71:"मक्की", 72:"मक्की",
-  73:"मक्की", 74:"मक्की", 75:"मक्की", 76:"मदनी", 77:"मक्की", 78:"मक्की",
-  79:"मक्की", 80:"मक्की", 81:"मक्की", 82:"मक्की", 83:"मक्की", 84:"मक्की",
-  85:"मक्की", 86:"मक्की", 87:"मक्की", 88:"मक्की", 89:"मक्की", 90:"मक्की",
-  91:"मक्की", 92:"मक्की", 93:"मक्की", 94:"मक्की", 95:"मक्की", 96:"मक्की",
-  97:"मक्की", 98:"मदनी", 99:"मक्की", 100:"मक्की", 101:"मक्की", 102:"मक्की",
-  103:"मक्की", 104:"मक्की", 105:"मक्की", 106:"मक्की", 107:"मक्की", 108:"मक्की",
-  109:"मक्की", 110:"मदनी", 111:"मक्की", 112:"मक्की", 113:"मक्की", 114:"मक्की"
+
+1:"मक्की",
+2:"मदनी",
+3:"मदनी",
+4:"मदनी",
+5:"मदनी",
+6:"मक्की",
+7:"मक्की",
+8:"मदनी",
+9:"मदनी",
+10:"मक्की",
+11:"मक्की",
+12:"मक्की",
+13:"मक्की",
+14:"मक्की",
+15:"मक्की",
+16:"मक्की",
+17:"मक्की",
+18:"मक्की",
+19:"मक्की",
+20:"मक्की",
+21:"मक्की",
+22:"मदनी",
+23:"मक्की",
+24:"मदनी",
+25:"मक्की",
+26:"मक्की",
+27:"मक्की",
+28:"मक्की",
+29:"मक्की",
+30:"मक्की",
+31:"मक्की",
+32:"मक्की",
+33:"मदनी",
+34:"मक्की",
+35:"मक्की",
+36:"मक्की",
+37:"मक्की",
+38:"मक्की",
+39:"मक्की",
+40:"मक्की",
+41:"मक्की",
+42:"मक्की",
+43:"मक्की",
+44:"मक्की",
+45:"मक्की",
+46:"मक्की",
+47:"मदनी",
+48:"मदनी",
+49:"मदनी",
+50:"मक्की",
+51:"मक्की",
+52:"मक्की",
+53:"मक्की",
+54:"मक्की",
+55:"मक्की",
+56:"मक्की",
+57:"मदनी",
+58:"मदनी",
+59:"मदनी",
+60:"मदनी",
+61:"मदनी",
+62:"मदनी",
+63:"मदनी",
+64:"मदनी",
+65:"मदनी",
+66:"मदनी",
+67:"मक्की",
+68:"मक्की",
+69:"मक्की",
+70:"मक्की",
+71:"मक्की",
+72:"मक्की",
+73:"मक्की",
+74:"मक्की",
+75:"मक्की",
+76:"मदनी",
+77:"मक्की",
+78:"मक्की",
+79:"मक्की",
+80:"मक्की",
+81:"मक्की",
+82:"मक्की",
+83:"मक्की",
+84:"मक्की",
+85:"मक्की",
+86:"मक्की",
+87:"मक्की",
+88:"मक्की",
+89:"मक्की",
+90:"मक्की",
+91:"मक्की",
+92:"मक्की",
+93:"मक्की",
+94:"मक्की",
+95:"मक्की",
+96:"मक्की",
+97:"मक्की",
+98:"मदनी",
+99:"मक्की",
+100:"मक्की",
+101:"मक्की",
+102:"मक्की",
+103:"मक्की",
+104:"मक्की",
+105:"मक्की",
+106:"मक्की",
+107:"मक्की",
+108:"मक्की",
+109:"मक्की",
+110:"मदनी",
+111:"मक्की",
+112:"मक्की",
+113:"मक्की",
+114:"मक्की"
+
 };
-    
-    const surahs = [
+
+
+// =====================================
+// 114 सूरह
+// =====================================
+
+const surahs = [
 
 {
 number:1,
 name:"अल-फ़ातिहा",
 arabic:"الفاتحة",
 ayat:7,
-paras:[{para:1,from:1,to:7}]
+paras:[
+{para:1,from:1,to:7}
+]
 },
 
 {
@@ -253,7 +376,7 @@ arabic:"آل عمران",
 ayat:200,
 paras:[
 {para:3,from:1,to:91},
-{para:4,from:93,to:200}
+{para:4,from:92,to:200}
 ]
 },
 
@@ -272,7 +395,7 @@ paras:[
 {
 number:5,
 name:"अल-माइदा",
-arabic:"المाइदा",
+arabic:"المائدة",
 ayat:120,
 paras:[
 {para:6,from:1,to:81},
@@ -293,9 +416,7 @@ paras:[
 
 {
 number:7,
-name:"
-  अल-आ'राफ़ 
-  ",
+name:"अल-आ'राफ़",
 arabic:"الأعراف",
 ayat:206,
 paras:[
@@ -815,12 +936,15 @@ paras:[
 {para:27,from:1,to:29}
 ]
 },
-    {
+
+{
 number:58,
 name:"अल-मुजादिला",
 arabic:"المجادلة",
 ayat:22,
-paras:[{para:28,from:1,to:22}]
+paras:[
+{para:28,from:1,to:22}
+]
 },
 
 {
@@ -828,7 +952,9 @@ number:59,
 name:"अल-हश्र",
 arabic:"الحشر",
 ayat:24,
-paras:[{para:28,from:1,to:24}]
+paras:[
+{para:28,from:1,to:24}
+]
 },
 
 {
@@ -836,7 +962,9 @@ number:60,
 name:"अल-मुम्तहिना",
 arabic:"الممتحنة",
 ayat:13,
-paras:[{para:28,from:1,to:13}]
+paras:[
+{para:28,from:1,to:13}
+]
 },
 
 {
@@ -844,7 +972,9 @@ number:61,
 name:"अस-सफ़",
 arabic:"الصف",
 ayat:14,
-paras:[{para:28,from:1,to:14}]
+paras:[
+{para:28,from:1,to:14}
+]
 },
 
 {
@@ -852,7 +982,9 @@ number:62,
 name:"अल-जुमुआ",
 arabic:"الجمعة",
 ayat:11,
-paras:[{para:28,from:1,to:11}]
+paras:[
+{para:28,from:1,to:11}
+]
 },
 
 {
@@ -860,7 +992,9 @@ number:63,
 name:"अल-मुनाफ़िक़ून",
 arabic:"المنافقون",
 ayat:11,
-paras:[{para:28,from:1,to:11}]
+paras:[
+{para:28,from:1,to:11}
+]
 },
 
 {
@@ -868,7 +1002,9 @@ number:64,
 name:"अत-तग़ाबुन",
 arabic:"التغابن",
 ayat:18,
-paras:[{para:28,from:1,to:18}]
+paras:[
+{para:28,from:1,to:18}
+]
 },
 
 {
@@ -876,7 +1012,9 @@ number:65,
 name:"अत-तलाक़",
 arabic:"الطلاق",
 ayat:12,
-paras:[{para:28,from:1,to:12}]
+paras:[
+{para:28,from:1,to:12}
+]
 },
 
 {
@@ -884,7 +1022,9 @@ number:66,
 name:"अत-तहरीम",
 arabic:"التحريم",
 ayat:12,
-paras:[{para:28,from:1,to:12}]
+paras:[
+{para:28,from:1,to:12}
+]
 },
 
 {
@@ -892,7 +1032,9 @@ number:67,
 name:"अल-मुल्क",
 arabic:"الملك",
 ayat:30,
-paras:[{para:29,from:1,to:30}]
+paras:[
+{para:29,from:1,to:30}
+]
 },
 
 {
@@ -900,7 +1042,9 @@ number:68,
 name:"अल-क़लम",
 arabic:"القلم",
 ayat:52,
-paras:[{para:29,from:1,to:52}]
+paras:[
+{para:29,from:1,to:52}
+]
 },
 
 {
@@ -908,7 +1052,9 @@ number:69,
 name:"अल-हाक़्क़ा",
 arabic:"الحاقة",
 ayat:52,
-paras:[{para:29,from:1,to:52}]
+paras:[
+{para:29,from:1,to:52}
+]
 },
 
 {
@@ -916,7 +1062,9 @@ number:70,
 name:"अल-मआरिज",
 arabic:"المعارج",
 ayat:44,
-paras:[{para:29,from:1,to:44}]
+paras:[
+{para:29,from:1,to:44}
+]
 },
 
 {
@@ -924,7 +1072,9 @@ number:71,
 name:"नूह",
 arabic:"نوح",
 ayat:28,
-paras:[{para:29,from:1,to:28}]
+paras:[
+{para:29,from:1,to:28}
+]
 },
 
 {
@@ -932,7 +1082,9 @@ number:72,
 name:"अल-जिन्न",
 arabic:"الجن",
 ayat:28,
-paras:[{para:29,from:1,to:28}]
+paras:[
+{para:29,from:1,to:28}
+]
 },
 
 {
@@ -940,7 +1092,9 @@ number:73,
 name:"अल-मुज़्ज़म्मिल",
 arabic:"المزمل",
 ayat:20,
-paras:[{para:29,from:1,to:20}]
+paras:[
+{para:29,from:1,to:20}
+]
 },
 
 {
@@ -948,7 +1102,9 @@ number:74,
 name:"अल-मुद्दस्सिर",
 arabic:"المدثر",
 ayat:56,
-paras:[{para:29,from:1,to:56}]
+paras:[
+{para:29,from:1,to:56}
+]
 },
 
 {
@@ -956,7 +1112,9 @@ number:75,
 name:"अल-क़ियामा",
 arabic:"القيامة",
 ayat:40,
-paras:[{para:29,from:1,to:40}]
+paras:[
+{para:29,from:1,to:40}
+]
 },
 
 {
@@ -964,7 +1122,9 @@ number:76,
 name:"अल-इंसान",
 arabic:"الإنسان",
 ayat:31,
-paras:[{para:29,from:1,to:31}]
+paras:[
+{para:29,from:1,to:31}
+]
 },
 
 {
@@ -972,7 +1132,9 @@ number:77,
 name:"अल-मुरसलात",
 arabic:"المرسلات",
 ayat:50,
-paras:[{para:29,from:1,to:50}]
+paras:[
+{para:29,from:1,to:50}
+]
 },
 
 {
@@ -980,7 +1142,9 @@ number:78,
 name:"अन-नबा",
 arabic:"النبأ",
 ayat:40,
-paras:[{para:30,from:1,to:40}]
+paras:[
+{para:30,from:1,to:40}
+]
 },
 
 {
@@ -988,7 +1152,9 @@ number:79,
 name:"अन-नाज़िआत",
 arabic:"النازعات",
 ayat:46,
-paras:[{para:30,from:1,to:46}]
+paras:[
+{para:30,from:1,to:46}
+]
 },
 
 {
@@ -996,7 +1162,9 @@ number:80,
 name:"अबस",
 arabic:"عبس",
 ayat:42,
-paras:[{para:30,from:1,to:42}]
+paras:[
+{para:30,from:1,to:42}
+]
 },
 
 {
@@ -1004,7 +1172,9 @@ number:81,
 name:"अत-तकवीर",
 arabic:"التكوير",
 ayat:29,
-paras:[{para:30,from:1,to:29}]
+paras:[
+{para:30,from:1,to:29}
+]
 },
 
 {
@@ -1012,7 +1182,9 @@ number:82,
 name:"अल-इन्फितार",
 arabic:"الانفطار",
 ayat:19,
-paras:[{para:30,from:1,to:19}]
+paras:[
+{para:30,from:1,to:19}
+]
 },
 
 {
@@ -1020,7 +1192,9 @@ number:83,
 name:"अल-मुतफ़्फ़िफ़ीन",
 arabic:"المطففين",
 ayat:36,
-paras:[{para:30,from:1,to:36}]
+paras:[
+{para:30,from:1,to:36}
+]
 },
 
 {
@@ -1028,7 +1202,9 @@ number:84,
 name:"अल-इंशिक़ाक़",
 arabic:"الانشقاق",
 ayat:25,
-paras:[{para:30,from:1,to:25}]
+paras:[
+{para:30,from:1,to:25}
+]
 },
 
 {
@@ -1036,7 +1212,9 @@ number:85,
 name:"अल-बुरूज",
 arabic:"البروج",
 ayat:22,
-paras:[{para:30,from:1,to:22}]
+paras:[
+{para:30,from:1,to:22}
+]
 },
 
 {
@@ -1044,7 +1222,9 @@ number:86,
 name:"अत-तारिक़",
 arabic:"الطارق",
 ayat:17,
-paras:[{para:30,from:1,to:17}]
+paras:[
+{para:30,from:1,to:17}
+]
 },
 
 {
@@ -1052,7 +1232,9 @@ number:87,
 name:"अल-आला",
 arabic:"الأعلى",
 ayat:19,
-paras:[{para:30,from:1,to:19}]
+paras:[
+{para:30,from:1,to:19}
+]
 },
 
 {
@@ -1060,7 +1242,9 @@ number:88,
 name:"अल-ग़ाशिया",
 arabic:"الغاشية",
 ayat:26,
-paras:[{para:30,from:1,to:26}]
+paras:[
+{para:30,from:1,to:26}
+]
 },
 
 {
@@ -1068,7 +1252,9 @@ number:89,
 name:"अल-फ़ज्र",
 arabic:"الفجر",
 ayat:30,
-paras:[{para:30,from:1,to:30}]
+paras:[
+{para:30,from:1,to:30}
+]
 },
 
 {
@@ -1076,7 +1262,9 @@ number:90,
 name:"अल-बलद",
 arabic:"البلد",
 ayat:20,
-paras:[{para:30,from:1,to:20}]
+paras:[
+{para:30,from:1,to:20}
+]
 },
 
 {
@@ -1084,7 +1272,9 @@ number:91,
 name:"अश-शम्स",
 arabic:"الشمس",
 ayat:15,
-paras:[{para:30,from:1,to:15}]
+paras:[
+{para:30,from:1,to:15}
+]
 },
 
 {
@@ -1092,7 +1282,9 @@ number:92,
 name:"अल-लैल",
 arabic:"الليل",
 ayat:21,
-paras:[{para:30,from:1,to:21}]
+paras:[
+{para:30,from:1,to:21}
+]
 },
 
 {
@@ -1100,7 +1292,9 @@ number:93,
 name:"अद-दुहा",
 arabic:"الضحى",
 ayat:11,
-paras:[{para:30,from:1,to:11}]
+paras:[
+{para:30,from:1,to:11}
+]
 },
 
 {
@@ -1108,7 +1302,9 @@ number:94,
 name:"अश-शर्ह",
 arabic:"الشرح",
 ayat:8,
-paras:[{para:30,from:1,to:8}]
+paras:[
+{para:30,from:1,to:8}
+]
 },
 
 {
@@ -1116,7 +1312,9 @@ number:95,
 name:"अत-तीन",
 arabic:"التين",
 ayat:8,
-paras:[{para:30,from:1,to:8}]
+paras:[
+{para:30,from:1,to:8}
+]
 },
 
 {
@@ -1124,7 +1322,9 @@ number:96,
 name:"अल-अलक़",
 arabic:"العلق",
 ayat:19,
-paras:[{para:30,from:1,to:19}]
+paras:[
+{para:30,from:1,to:19}
+]
 },
 
 {
@@ -1132,7 +1332,9 @@ number:97,
 name:"अल-क़द्र",
 arabic:"القدر",
 ayat:5,
-paras:[{para:30,from:1,to:5}]
+paras:[
+{para:30,from:1,to:5}
+]
 },
 
 {
@@ -1140,7 +1342,9 @@ number:98,
 name:"अल-बय्यिना",
 arabic:"البينة",
 ayat:8,
-paras:[{para:30,from:1,to:8}]
+paras:[
+{para:30,from:1,to:8}
+]
 },
 
 {
@@ -1148,7 +1352,9 @@ number:99,
 name:"अज़-ज़िलज़ाल",
 arabic:"الزلزلة",
 ayat:8,
-paras:[{para:30,from:1,to:8}]
+paras:[
+{para:30,from:1,to:8}
+]
 },
 
 {
@@ -1156,7 +1362,9 @@ number:100,
 name:"अल-आदियात",
 arabic:"العاديات",
 ayat:11,
-paras:[{para:30,from:1,to:11}]
+paras:[
+{para:30,from:1,to:11}
+]
 },
 
 {
@@ -1164,7 +1372,9 @@ number:101,
 name:"अल-क़ारिआ",
 arabic:"القارعة",
 ayat:11,
-paras:[{para:30,from:1,to:11}]
+paras:[
+{para:30,from:1,to:11}
+]
 },
 
 {
@@ -1172,7 +1382,9 @@ number:102,
 name:"अत-तकासुर",
 arabic:"التكاثر",
 ayat:8,
-paras:[{para:30,from:1,to:8}]
+paras:[
+{para:30,from:1,to:8}
+]
 },
 
 {
@@ -1180,7 +1392,9 @@ number:103,
 name:"अल-अस्र",
 arabic:"العصر",
 ayat:3,
-paras:[{para:30,from:1,to:3}]
+paras:[
+{para:30,from:1,to:3}
+]
 },
 
 {
@@ -1188,7 +1402,9 @@ number:104,
 name:"अल-हुमज़ा",
 arabic:"الهمزة",
 ayat:9,
-paras:[{para:30,from:1,to:9}]
+paras:[
+{para:30,from:1,to:9}
+]
 },
 
 {
@@ -1196,7 +1412,9 @@ number:105,
 name:"अल-फ़ील",
 arabic:"الفيل",
 ayat:5,
-paras:[{para:30,from:1,to:5}]
+paras:[
+{para:30,from:1,to:5}
+]
 },
 
 {
@@ -1204,7 +1422,9 @@ number:106,
 name:"क़ुरैश",
 arabic:"قريش",
 ayat:4,
-paras:[{para:30,from:1,to:4}]
+paras:[
+{para:30,from:1,to:4}
+]
 },
 
 {
@@ -1212,7 +1432,9 @@ number:107,
 name:"अल-माऊन",
 arabic:"الماعون",
 ayat:7,
-paras:[{para:30,from:1,to:7}]
+paras:[
+{para:30,from:1,to:7}
+]
 },
 
 {
@@ -1220,7 +1442,9 @@ number:108,
 name:"अल-कौसर",
 arabic:"الكوثر",
 ayat:3,
-paras:[{para:30,from:1,to:3}]
+paras:[
+{para:30,from:1,to:3}
+]
 },
 
 {
@@ -1228,7 +1452,9 @@ number:109,
 name:"अल-काफ़िरून",
 arabic:"الكافرون",
 ayat:6,
-paras:[{para:30,from:1,to:6}]
+paras:[
+{para:30,from:1,to:6}
+]
 },
 
 {
@@ -1236,7 +1462,9 @@ number:110,
 name:"अन-नस्र",
 arabic:"النصر",
 ayat:3,
-paras:[{para:30,from:1,to:3}]
+paras:[
+{para:30,from:1,to:3}
+]
 },
 
 {
@@ -1244,7 +1472,9 @@ number:111,
 name:"अल-मसद",
 arabic:"المسد",
 ayat:5,
-paras:[{para:30,from:1,to:5}]
+paras:[
+{para:30,from:1,to:5}
+]
 },
 
 {
@@ -1252,7 +1482,9 @@ number:112,
 name:"अल-इख़लास",
 arabic:"الإخلاص",
 ayat:4,
-paras:[{para:30,from:1,to:4}]
+paras:[
+{para:30,from:1,to:4}
+]
 },
 
 {
@@ -1260,7 +1492,9 @@ number:113,
 name:"अल-फ़लक़",
 arabic:"الفلق",
 ayat:5,
-paras:[{para:30,from:1,to:5}]
+paras:[
+{para:30,from:1,to:5}
+]
 },
 
 {
@@ -1268,15 +1502,17 @@ number:114,
 name:"अन-नास",
 arabic:"الناس",
 ayat:6,
-paras:[{para:30,from:1,to:6}]
+paras:[
+{para:30,from:1,to:6}
+]
 }
 
 ];
 
 
-/* ================================
-   SEARCH TEXT NORMALIZE
-================================ */
+// =====================================
+// SEARCH TEXT NORMALIZE
+// =====================================
 
 function normalizeText(text){
 
@@ -1292,13 +1528,17 @@ function normalizeText(text){
 }
 
 
-/* ================================
-   SURAH SHOW
-================================ */
+// =====================================
+// SURAH SHOW
+// =====================================
 
 function showSurahs(list){
 
     const box = document.getElementById("surahList");
+
+    if(!box){
+        return;
+    }
 
     if(list.length === 0){
 
@@ -1318,10 +1558,13 @@ function showSurahs(list){
 
         surah.paras.forEach(item => {
 
+            const surahName =
+                encodeURIComponent(surah.name);
+
             paraButtons += `
             <a
                 class="read-btn"
-                href="para${item.para}.html?surah=${surah.name}"
+                href="para${item.para}.html?surah=${surahName}"
             >
                 📖 पारा ${item.para}
             </a>
@@ -1348,9 +1591,11 @@ function showSurahs(list){
             <div class="ayat">
                 कुल आयत: ${surah.ayat}
             </div>
-<div class="surah-type">
-    📍 ${surahType[surah.number]}
-</div>
+
+            <div class="surah-type">
+                📍 ${surahType[surah.number]}
+            </div>
+
             <div class="para-title">
                 📚 इस सूरह के पारे:
             </div>
@@ -1367,19 +1612,24 @@ function showSurahs(list){
 }
 
 
-/* ================================
-   SEARCH
-================================ */
+// =====================================
+// SEARCH
+// =====================================
 
 function searchSurah(){
 
-    const query =
-        normalizeText(
-            document.getElementById("searchInput").value
-        );
+    const input =
+        document.getElementById("searchInput");
 
     const resultInfo =
         document.getElementById("resultInfo");
+
+    if(!input || !resultInfo){
+        return;
+    }
+
+    const query =
+        normalizeText(input.value);
 
 
     if(query === ""){
@@ -1428,27 +1678,42 @@ function searchSurah(){
 }
 
 
-/* ================================
-   SEARCH INPUT
-================================ */
+// =====================================
+// PAGE START
+// =====================================
 
-document
-.getElementById("searchInput")
-.addEventListener("input",searchSurah);
+document.addEventListener("DOMContentLoaded", function(){
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const resultInfo =
+        document.getElementById("resultInfo");
 
 
-/* ================================
-   FIRST DISPLAY
-================================ */
+    if(searchInput){
 
-showSurahs(surahs);
+        searchInput.addEventListener(
+            "input",
+            searchSurah
+        );
 
-document
-.getElementById("resultInfo")
-.textContent="कुल 114 सूरह";
+    }
+
+
+    showSurahs(surahs);
+
+
+    if(resultInfo){
+
+        resultInfo.textContent =
+            "कुल 114 सूरह";
+
+    }
+
+});
 
 </script>
 
 </body>
-</html>
- }
+  </html>
