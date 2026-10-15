@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>कुरआन की सूरह खोजें - Sana Islamic</title>
+<title>कुरआन की 114 सूरह खोजें - Sana Islamic</title>
 
 <style>
 * {
@@ -15,91 +15,133 @@ body {
     margin: 0;
     padding: 15px;
     font-family: Arial, sans-serif;
-    background: #e8f5e9;
+    background: linear-gradient(135deg, #e8f5e9, #fffde7);
     color: #222;
 }
 
 .container {
-    max-width: 700px;
+    max-width: 850px;
     margin: auto;
 }
 
-header {
+.header {
     background: linear-gradient(135deg, #087f5b, #0b5d45);
     color: white;
     padding: 25px 15px;
     text-align: center;
-    border-radius: 15px;
+    border-radius: 16px;
 }
 
-header h1 {
+.header h1 {
     margin: 0;
+    font-size: 27px;
 }
 
 .search-box {
-    background: white;
-    padding: 15px;
     margin: 20px 0;
-    border-radius: 12px;
+    padding: 15px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px #00000015;
 }
 
-input {
+#searchInput {
     width: 100%;
-    padding: 14px;
-    font-size: 18px;
+    padding: 15px;
+    font-size: 17px;
     border: 2px solid #087f5b;
     border-radius: 10px;
+    outline: none;
 }
 
-#result {
-    margin-top: 15px;
+#resultInfo {
+    text-align: center;
+    margin-top: 12px;
+    color: #075c45;
+    font-weight: bold;
+}
+
+#surahList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 15px;
 }
 
 .card {
     background: white;
     padding: 18px;
-    margin-bottom: 15px;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px #00000015;
+    border-radius: 14px;
+    border-left: 5px solid #087f5b;
+    box-shadow: 0 3px 12px #00000012;
 }
 
 .number {
+    display: inline-block;
+    padding: 7px 12px;
     background: #087f5b;
     color: white;
-    padding: 7px 12px;
     border-radius: 20px;
-    display: inline-block;
+    font-weight: bold;
 }
 
 .name {
-    color: #075c45;
-    font-size: 23px;
-    font-weight: bold;
     margin-top: 12px;
+    font-size: 22px;
+    color: #075c45;
+    font-weight: bold;
+}
+
+.english {
+    margin-top: 5px;
+    color: #555;
+    font-size: 16px;
 }
 
 .arabic {
-    font-size: 30px;
+    margin: 12px 0;
     text-align: right;
     direction: rtl;
-    margin: 12px 0;
+    font-size: 30px;
 }
 
-a {
+.para {
+    color: #555;
+    margin-top: 8px;
+}
+
+.read-btn {
     display: inline-block;
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 9px;
     background: #087f5b;
     color: white;
-    padding: 10px 15px;
-    border-radius: 8px;
     text-decoration: none;
-    margin-top: 10px;
+    font-weight: bold;
 }
 
-.message {
+.read-btn:hover {
+    background: #075c45;
+}
+
+.no-result {
     background: white;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 22px;
     text-align: center;
+    border-radius: 12px;
+    color: #b00020;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+@media (max-width: 500px) {
+    .header h1 {
+        font-size: 23px;
+    }
 }
 </style>
 </head>
@@ -108,194 +150,222 @@ a {
 
 <div class="container">
 
-<header>
-    <h1>📖 कुरआन शरीफ</h1>
-    <p>सूरह का नाम या नंबर लिखकर खोजें</p>
-</header>
+    <div class="header">
+        <h1>📖 कुरआन शरीफ</h1>
+        <p>हिंदी, English, अरबी या नंबर से सूरह खोजें</p>
+    </div>
 
-<div class="search-box">
-    <input
-        type="text"
-        id="search"
-        placeholder="जैसे: 3, यासीन, अल-बक़रह"
-        autocomplete="off"
-    >
-    <div id="result"></div>
-</div>
+    <div class="search-box">
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="जैसे: यासीन, Yaseen, يس, 36 या ३६"
+            autocomplete="off"
+        >
+        <div id="resultInfo">कुल 114 सूरह</div>
+    </div>
+
+    <div id="surahList"></div>
+
+    <div class="footer">🌙 Sana Islamic</div>
 
 </div>
 
 <script>
 
+// 114 सूरह: हिंदी नाम, English नाम, अरबी नाम, नंबर, पारा
 const surahs = [
-["अल-फ़ातिहा","الفاتحة",1,1],
-["अल-बक़रह","البقرة",2,1],
-["आले-इमरान","آل عمران",3,3],
-["अन-निसा","النساء",4,4],
-["अल-माइदा","المائدة",5,6],
-["अल-अनआम","الأنعام",6,7],
-["अल-आ'राफ़","الأعراف",7,8],
-["अल-अन्फाल","الأنفال",8,9],
-["अत-तौबा","التوبة",9,10],
-["यूनुस","يونس",10,11],
-["हूद","هود",11,11],
-["यूसुफ़","يوسف",12,12],
-["अर-रअद","الرعد",13,13],
-["इब्राहीम","إبراهيم",14,13],
-["अल-हिज्र","الحجر",15,14],
-["अन-नहल","النحل",16,14],
-["अल-इसरा","الإسراء",17,15],
-["अल-कहफ़","الكهف",18,15],
-["मरयम","مريم",19,16],
-["ताहा","طه",20,16],
-["अल-अंबिया","الأنبياء",21,17],
-["अल-हज्ज","الحج",22,17],
-["अल-मुमिनून","المؤمنون",23,18],
-["अन-नूर","النور",24,18],
-["अल-फ़ुरकान","الفرقان",25,18],
-["अश-शुअरा","الشعراء",26,19],
-["अन-नम्ल","النمل",27,19],
-["अल-क़सस","القصص",28,20],
-["अल-अनकबूत","العنكبوت",29,20],
-["अर-रूम","الروم",30,21],
-["लुक़मान","لقمان",31,21],
-["अस-सज्दा","السجدة",32,21],
-["अल-अहज़ाब","الأحزاب",33,21],
-["सबा","سبأ",34,22],
-["फ़ातिर","فاطر",35,22],
-["यासीन","يس",36,22],
-["अस-साफ़्फ़ात","الصافات",37,23],
-["साद","ص",38,23],
-["अज़-ज़ुमर","الزمر",39,23],
-["ग़ाफ़िर","غافر",40,24],
-["फ़ुस्सिलत","فصلت",41,24],
-["अश-शूरा","الشورى",42,25],
-["अज़-ज़ुख़रुफ़","الزخرف",43,25],
-["अद-दुख़ान","الدخان",44,25],
-["अल-जासिया","الجاثية",45,25],
-["अल-अहक़ाफ़","الأحقاف",46,26],
-["मुहम्मद","محمد",47,26],
-["अल-फ़त्ह","الفتح",48,26],
-["अल-हुजुरात","الحجرات",49,26],
-["क़ाफ़","ق",50,26],
-["अज़-ज़ारियात","الذاريات",51,26],
-["अत-तूर","الطور",52,27],
-["अन-नज्म","النجم",53,27],
-["अल-क़मर","القمر",54,27],
-["अर-रहमान","الرحمن",55,27],
-["अल-वाक़िआ","الواقعة",56,27],
-["अल-हदीद","الحديد",57,27],
-["अल-मुजादिला","المجادلة",58,28],
-["अल-हश्र","الحشر",59,28],
-["अल-मुम्तहिना","الممتحنة",60,28],
-["अस-सफ़","الصف",61,28],
-["अल-जुमुआ","الجمعة",62,28],
-["अल-मुनाफ़िक़ून","المنافقون",63,28],
-["अत-तग़ाबुन","التغابن",64,28],
-["अत-तलाक़","الطلاق",65,28],
-["अत-तहरीम","التحريم",66,28],
-["अल-मुल्क","الملك",67,29],
-["अल-क़लम","القلم",68,29],
-["अल-हाक़्क़ा","الحاقة",69,29],
-["अल-मआरिज","المعارج",70,29],
-["नूह","نوح",71,29],
-["अल-जिन्न","الجن",72,29],
-["अल-मुज़्ज़म्मिल","المزمل",73,29],
-["अल-मुद्दस्सिर","المدثر",74,29],
-["अल-क़ियामा","القيامة",75,29],
-["अल-इंसान","الإنسان",76,29],
-["अल-मुरसलात","المرسلات",77,29],
-["अन-नबा","النبأ",78,30],
-["अन-नाज़िआत","النازعات",79,30],
-["अबस","عبس",80,30],
-["अत-तकवीर","التكوير",81,30],
-["अल-इन्फितार","الانفطار",82,30],
-["अल-मुतफ़्फ़िफ़ीन","المطففين",83,30],
-["अल-इंशिक़ाक़","الانشقاق",84,30],
-["अल-बुरूज","البروج",85,30],
-["अत-तारिक़","الطارق",86,30],
-["अल-आला","الأعلى",87,30],
-["अल-ग़ाशिया","الغاشية",88,30],
-["अल-फ़ज्र","الفجر",89,30],
-["अल-बलद","البلد",90,30],
-["अश-शम्स","الشمس",91,30],
-["अल-लैल","الليل",92,30],
-["अद-दुहा","الضحى",93,30],
-["अश-शर्ह","الشرح",94,30],
-["अत-तीन","التين",95,30],
-["अल-अलक़","العلق",96,30],
-["अल-क़द्र","القدر",97,30],
-["अल-बय्यिना","البينة",98,30],
-["अज़-ज़िलज़ाल","الزلزلة",99,30],
-["अल-आदियात","العاديات",100,30],
-["अल-क़ारिआ","القارعة",101,30],
-["अत-तकासुर","التكاثر",102,30],
-["अल-अस्र","العصر",103,30],
-["अल-हुमज़ा","الهمزة",104,30],
-["अल-फ़ील","الفيل",105,30],
-["क़ुरैश","قريش",106,30],
-["अल-माऊन","الماعون",107,30],
-["अल-कौसर","الكوثر",108,30],
-["अल-काफ़िरून","الكافرون",109,30],
-["अन-नस्र","النصر",110,30],
-["अल-मसद","المسد",111,30],
-["अल-इख़लास","الإخلاص",112,30],
-["अल-फ़लक़","الفلق",113,30],
-["अन-नास","الناس",114,30]
+["अल-फ़ातिहा","Al-Fatihah","الفاتحة",1,1],
+["अल-बक़रह","Al-Baqarah","البقرة",2,1],
+["आले-इमरान","Aal-Imran","آل عمران",3,3],
+["अन-निसा","An-Nisa","النساء",4,4],
+["अल-माइदा","Al-Maidah","المائدة",5,6],
+["अल-अनआम","Al-Anam","الأنعام",6,7],
+["अल-आ'राफ़","Al-Araf","الأعراف",7,8],
+["अल-अन्फाल","Al-Anfal","الأنفال",8,9],
+["अत-तौबा","At-Tawbah","التوبة",9,10],
+["यूनुस","Yunus","يونس",10,11],
+["हूद","Hud","هود",11,11],
+["यूसुफ़","Yusuf","يوسف",12,12],
+["अर-रअद","Ar-Rad","الرعد",13,13],
+["इब्राहीम","Ibrahim","إبراهيم",14,13],
+["अल-हिज्र","Al-Hijr","الحجر",15,14],
+["अन-नहल","An-Nahl","النحل",16,14],
+["अल-इसरा","Al-Isra","الإسراء",17,15],
+["अल-कहफ़","Al-Kahf","الكهف",18,15],
+["मरयम","Maryam","مريم",19,16],
+["ताहा","Ta-Ha","طه",20,16],
+["अल-अंबिया","Al-Anbiya","الأنبياء",21,17],
+["अल-हज्ज","Al-Hajj","الحج",22,17],
+["अल-मुमिनून","Al-Muminun","المؤمنون",23,18],
+["अन-नूर","An-Nur","النور",24,18],
+["अल-फ़ुरकान","Al-Furqan","الفرقان",25,18],
+["अश-शुअरा","Ash-Shuara","الشعراء",26,19],
+["अन-नम्ल","An-Naml","النمل",27,19],
+["अल-क़सस","Al-Qasas","القصص",28,20],
+["अल-अनकबूत","Al-Ankabut","العنكبوت",29,20],
+["अर-रूम","Ar-Rum","الروم",30,21],
+["लुक़मान","Luqman","لقمان",31,21],
+["अस-सज्दा","As-Sajdah","السجدة",32,21],
+["अल-अहज़ाब","Al-Ahzab","الأحزاب",33,22],
+["सबा","Saba","سبأ",34,22],
+["फ़ातिर","Fatir","فاطر",35,22],
+["यासीन","Ya-Sin","يس",36,22],
+["अस-साफ़्फ़ात","As-Saffat","الصافات",37,23],
+["साद","Sad","ص",38,23],
+["अज़-ज़ुमर","Az-Zumar","الزمر",39,23],
+["ग़ाफ़िर","Ghafir","غافر",40,24],
+["फ़ुस्सिलत","Fussilat","فصلت",41,24],
+["अश-शूरा","Ash-Shura","الشورى",42,25],
+["अज़-ज़ुख़रुफ़","Az-Zukhruf","الزخرف",43,25],
+["अद-दुख़ान","Ad-Dukhan","الدخان",44,25],
+["अल-जासिया","Al-Jathiyah","الجاثية",45,25],
+["अल-अहक़ाफ़","Al-Ahqaf","الأحقاف",46,26],
+["मुहम्मद","Muhammad","محمد",47,26],
+["अल-फ़त्ह","Al-Fath","الفتح",48,26],
+["अल-हुजुरात","Al-Hujurat","الحجرات",49,26],
+["क़ाफ़","Qaf","ق",50,26],
+["अज़-ज़ारियात","Adh-Dhariyat","الذاريات",51,26],
+["अत-तूर","At-Tur","الطور",52,27],
+["अन-नज्म","An-Najm","النجم",53,27],
+["अल-क़मर","Al-Qamar","القمر",54,27],
+["अर-रहमान","Ar-Rahman","الرحمن",55,27],
+["अल-वाक़िआ","Al-Waqiah","الواقعة",56,27],
+["अल-हदीद","Al-Hadid","الحديد",57,27],
+["अल-मुजादिला","Al-Mujadilah","المجادلة",58,28],
+["अल-हश्र","Al-Hashr","الحشر",59,28],
+["अल-मुम्तहिना","Al-Mumtahanah","الممتحنة",60,28],
+["अस-सफ़","As-Saff","الصف",61,28],
+["अल-जुमुआ","Al-Jumuah","الجمعة",62,28],
+["अल-मुनाफ़िक़ून","Al-Munafiqun","المنافقون",63,28],
+["अत-तग़ाबुन","At-Taghabun","التغابن",64,28],
+["अत-तलाक़","At-Talaq","الطلاق",65,28],
+["अत-तहरीम","At-Tahrim","التحريم",66,28],
+["अल-मुल्क","Al-Mulk","الملك",67,29],
+["अल-क़लम","Al-Qalam","القلم",68,29],
+["अल-हाक़्क़ा","Al-Haqqah","الحاقة",69,29],
+["अल-मआरिज","Al-Maarij","المعارج",70,29],
+["नूह","Nuh","نوح",71,29],
+["अल-जिन्न","Al-Jinn","الجن",72,29],
+["अल-मुज़्ज़म्मिल","Al-Muzzammil","المزمل",73,29],
+["अल-मुद्दस्सिर","Al-Muddaththir","المدثر",74,29],
+["अल-क़ियामा","Al-Qiyamah","القيامة",75,29],
+["अल-इंसान","Al-Insan","الإنسان",76,29],
+["अल-मुरसलात","Al-Mursalat","المرسلات",77,29],
+["अन-नबा","An-Naba","النبأ",78,30],
+["अन-नाज़िआत","An-Naziat","النازعات",79,30],
+["अबस","Abasa","عبس",80,30],
+["अत-तकवीर","At-Takwir","التكوير",81,30],
+["अल-इन्फितार","Al-Infitar","الانفطار",82,30],
+["अल-मुतफ़्फ़िफ़ीन","Al-Mutaffifin","المطففين",83,30],
+["अल-इंशिक़ाक़","Al-Inshiqaq","الانشقاق",84,30],
+["अल-बुरूज","Al-Buruj","البروج",85,30],
+["अत-तारिक़","At-Tariq","الطارق",86,30],
+["अल-आला","Al-Ala","الأعلى",87,30],
+["अल-ग़ाशिया","Al-Ghashiyah","الغاشية",88,30],
+["अल-फ़ज्र","Al-Fajr","الفجر",89,30],
+["अल-बलद","Al-Balad","البلد",90,30],
+["अश-शम्स","Ash-Shams","الشمس",91,30],
+["अल-लैल","Al-Layl","الليل",92,30],
+["अद-दुहा","Ad-Duha","الضحى",93,30],
+["अश-शर्ह","Ash-Sharh","الشرح",94,30],
+["अत-तीन","At-Tin","التين",95,30],
+["अल-अलक़","Al-Alaq","العلق",96,30],
+["अल-क़द्र","Al-Qadr","القدر",97,30],
+["अल-बय्यिना","Al-Bayyinah","البينة",98,30],
+["अज़-ज़िलज़ाल","Az-Zalzalah","الزلزلة",99,30],
+["अल-आदियात","Al-Adiyat","العاديات",100,30],
+["अल-क़ारिआ","Al-Qariah","القارعة",101,30],
+["अत-तकासुर","At-Takathur","التكاثر",102,30],
+["अल-अस्र","Al-Asr","العصر",103,30],
+["अल-हुमज़ा","Al-Humazah","الهمزة",104,30],
+["अल-फ़ील","Al-Fil","الفيل",105,30],
+["क़ुरैश","Quraysh","قريش",106,30],
+["अल-माऊन","Al-Maun","الماعون",107,30],
+["अल-कौसर","Al-Kawthar","الكوثر",108,30],
+["अल-काफ़िरून","Al-Kafirun","الكافرون",109,30],
+["अन-नस्र","An-Nasr","النصر",110,30],
+["अल-मसद","Al-Masad","المسد",111,30],
+["अल-इख़लास","Al-Ikhlas","الإخلاص",112,30],
+["अल-फ़लक़","Al-Falaq","الفلق",113,30],
+["अन-नास","An-Nas","الناس",114,30]
 ];
 
-function normalize(text) {
-    return String(text)
+function normalize(value) {
+    return String(value)
         .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[़ًٌٍَُِّْٰـ]/g, "")
         .replace(/[أإآٱ]/g, "ا")
-        .replace(/[ًٌٍَُِّْٰـ]/g, "")
-        .replace(/[\u093c\u093e-\u094c\u0951-\u0957]/g, "")
-        .replace(/[\s\-_'’]/g, "");
+        .replace(/[يى]/g, "ي")
+        .replace(/[ؤ]/g, "و")
+        .replace(/[ئ]/g, "ي")
+        .replace(/[^a-z0-9\u0900-\u097f\u0600-\u06ff]/g, "");
 }
 
-function convertHindiNumber(value) {
-    return value.replace(/[०-९]/g, digit =>
-        "०१२३४५६७८९".indexOf(digit)
-    );
+function convertDigits(value) {
+    return String(value)
+        .replace(/[०-९]/g, d => "०१२३४५६७८९".indexOf(d))
+        .replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d));
 }
 
-function searchSurah() {
-    const input = document.getElementById("search").value.trim();
-    const result = document.getElementById("result");
+function searchSurahs() {
+    const input = document.getElementById("searchInput").value.trim();
+    const list = document.getElementById("surahList");
+    const info = document.getElementById("resultInfo");
 
     if (!input) {
-        result.innerHTML = "";
+        list.innerHTML = "";
+        info.textContent = "कुल 114 सूरह";
         return;
     }
 
-    const query = normalize(convertHindiNumber(input));
+    const query = normalize(convertDigits(input));
 
-    const matches = surahs.filter(surah =>
-        normalize(surah[0]).includes(query) ||
-        normalize(surah[1]).includes(query) ||
-        String(surah[2]) === query
-    );
+    const results = surahs.filter(surah => {
+        const hindi = normalize(surah[0]);
+        const english = normalize(surah[1]);
+        const arabic = normalize(surah[2]);
+        const number = String(surah[3]);
 
-    if (!matches.length) {
-        result.innerHTML =
-            '<div class="message">कोई सूरह नहीं मिली। नाम या नंबर जाँचें।</div>';
+        return (
+            hindi.includes(query) ||
+            english.includes(query) ||
+            arabic.includes(query) ||
+            number === query
+        );
+    });
+
+    if (results.length === 0) {
+        list.innerHTML = `
+            <div class="no-result">
+                ❌ कोई सूरह नहीं मिली। दूसरा नाम या नंबर लिखें।
+            </div>
+        `;
+        info.textContent = "कोई परिणाम नहीं";
         return;
     }
 
-    result.innerHTML = matches.map(surah => `
+    info.textContent = `✅ ${results.length} सूरह मिली`;
+
+    list.innerHTML = results.map(surah => `
         <div class="card">
-            <span class="number">सूरह नंबर ${surah[2]}</span>
+            <span class="number">सूरह नंबर ${surah[3]}</span>
             <div class="name">${surah[0]}</div>
-            <div class="arabic">${surah[1]}</div>
-            <div>पारा: ${surah[3]}</div>
-            <a href="para${surah[3]}.html?surah=${encodeURIComponent(surah[0])}">
-                📖 पारा ${surah[3]} खोलें
+            <div class="english">${surah[1]}</div>
+            <div class="arabic" lang="ar">${surah[2]}</div>
+            <div class="para">📚 संबंधित पारा: ${surah[4]}</div>
+            <a class="read-btn"
+               href="para${surah[4]}.html?surah=${encodeURIComponent(surah[0])}">
+               📖 पारा ${surah[4]} खोलें
             </a>
         </div>
     `).join("");
 }
 
-document.getElementById("search").addEventListener("input", searchSurah);
+document.getElementById("searchInput")
+    .addEventListener("input", searchSurahs);
 
 </script>
 
