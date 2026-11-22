@@ -1,1 +1,223 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sana Islamic Taleem - पारा 1</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 15px;
+    background: #d8c9a5;
+    font-family: Georgia, serif;
+}
+
+.book-page {
+    max-width: 750px;
+    margin: 15px auto;
+    padding: 25px 20px;
+    background: #fffbea;
+    border: 5px double #98743c;
+    box-shadow: 0 3px 15px #806b46;
+}
+
+.banner img {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.book-title {
+    text-align: center;
+    color: #75501c;
+    font-size: 25px;
+    margin: 10px 0;
+}
+
+.surah-title {
+    text-align: center;
+    color: #704719;
+    border-top: 2px solid #a78b55;
+    border-bottom: 2px solid #a78b55;
+    padding: 12px 5px;
+    margin: 20px 0;
+    font-size: 23px;
+}
+
+.bismillah {
+    direction: rtl;
+    text-align: center;
+    font-size: 32px;
+    line-height: 2;
+    color: #183e25;
+    margin: 20px 0;
+}
+
+.ayah {
+    direction: rtl;
+    text-align: justify;
+    color: #142f20;
+    font-size: 31px;
+    line-height: 2.4;
+    margin: 15px 0;
+}
+
+.ayah-number {
+    display: inline-block;
+    color: #8b6428;
+    font-size: 20px;
+    border: 1px solid #a78b55;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    line-height: 32px;
+    margin: 0 5px;
+}
+
+.hindi {
+    direction: ltr;
+    text-align: center;
+    color: #754321;
+    font-family: Arial, sans-serif;
+    font-size: 19px;
+    line-height: 2;
+    padding: 5px 0 15px;
+    border-bottom: 1px dotted #b9a77d;
+}
+
+.listen {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 25px;
+    background: #245b39;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 17px;
+}
+
+.footer {
+    text-align: center;
+    color: #806638;
+    margin-top: 25px;
+    font-size: 15px;
+}
+
+@media(max-width: 480px) {
+    .book-page {
+        padding: 15px 12px;
+    }
+
+    .ayah {
+        font-size: 27px;
+    }
+
+    .hindi {
+        font-size: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="book-page">
+
+    <div class="banner">
+        <img src="image/imagespara1-banner.jpg"
+             alt="Sana Islamic Taleem">
+    </div>
+
+    <h1 class="book-title">📖 पारा 1</h1>
+
+    <button class="listen" onclick="playPara1()">
+        ▶ पूरा पारा सुनें
+    </button>
+
+    <audio id="para1Audio">
+        <source src="audio/para1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="surah-title">
+        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+        <br>
+        सूरह अल-फ़ातिहा
+    </div>
+
+    <div class="bismillah">
+        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+    </div>
+
+    <div class="ayah">
+        الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+        <span class="ayah-number">٢</span>
+    </div>
+    <div class="hindi">
+        सारी तारीफ़ें अल्लाह के लिए हैं, जो सारे जहानों का रब है।
+    </div>
+
+    <div class="ayah">
+        الرَّحْمَٰنِ الرَّحِيمِ
+        <span class="ayah-number">٣</span>
+    </div>
+    <div class="hindi">
+        जो बड़ा मेहरबान, बहुत रहम करने वाला है।
+    </div>
+
+    <div class="ayah">
+        مَالِكِ يَوْمِ الدِّينِ
+        <span class="ayah-number">٤</span>
+    </div>
+    <div class="hindi">
+        बदले के दिन (क़यामत के दिन) का मालिक है।
+    </div>
+
+    <div class="ayah">
+        إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ
+        <span class="ayah-number">٥</span>
+    </div>
+    <div class="hindi">
+        हम केवल तेरी ही इबादत करते हैं और केवल तुझ ही से मदद माँगते हैं।
+    </div>
+
+    <div class="ayah">
+        اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ
+        <span class="ayah-number">٦</span>
+    </div>
+    <div class="hindi">
+        हमें सीधा रास्ता दिखा।
+    </div>
+
+    <div class="ayah">
+        صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ
+        غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ
+        <span class="ayah-number">٧</span>
+    </div>
+    <div class="hindi">
+        उन लोगों का रास्ता जिन पर तूने इनाम किया,
+        न कि उनका जिन पर ग़ज़ब हुआ और न गुमराहों का।
+    </div>
+
+    <div class="footer">
+        Sana Islamic Taleem
+    </div>
+
+</div>
+
+<script>
+function playPara1() {
+    document.getElementById("para1Audio").play();
+}
+</script>
+
+</body>
+</html>
+
